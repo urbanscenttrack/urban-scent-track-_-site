@@ -135,11 +135,11 @@
   /* Pixar 램프처럼 이리저리 무언가를 찾듯 떠도는 빛 (hero-inner 위치 기준에는 영향 없도록 음수 z-index만 사용) */
   .hero-spotlight{
     position:absolute; top:-10%; left:-10%;
-    width:52vw; height:52vw; max-width:760px; max-height:760px; min-width:340px; min-height:340px;
+    width:58vw; height:58vw; max-width:820px; max-height:820px; min-width:380px; min-height:380px;
     border-radius:50%; z-index:-1; pointer-events:none;
-    background:radial-gradient(circle, rgba(7,7,7,0.09), rgba(7,7,7,0.03) 55%, transparent 75%);
-    filter:blur(18px);
-    animation:heroSpotlightMove 22s cubic-bezier(.45,0,.35,1) infinite;
+    background:radial-gradient(circle, rgba(255,183,80,0.32), rgba(7,7,7,0.10) 50%, transparent 72%);
+    filter:blur(24px);
+    animation:heroSpotlightMove 18s cubic-bezier(.45,0,.35,1) infinite;
   }
   @keyframes heroSpotlightMove{
     0%   { transform:translate(0,0)      scale(0.9); }
@@ -285,16 +285,16 @@
     position:relative; width:100%; display:flex; justify-content:center; margin:12px 0 6px;
   }
   .product-glow{
-    position:absolute; width:70%; max-width:520px; aspect-ratio:1/1; border-radius:50%;
-    filter:blur(70px); opacity:0.5; z-index:0;
-    animation:glowPulse 5s ease-in-out infinite;
+    position:absolute; width:78%; max-width:560px; aspect-ratio:1/1; border-radius:50%;
+    filter:blur(55px); opacity:0.6; z-index:0;
+    animation:glowPulse 4s ease-in-out infinite;
   }
-  .t1 .product-glow{ background:radial-gradient(circle,#fff,transparent 70%); }
-  .t2 .product-glow{ background:radial-gradient(circle,#0e2530,transparent 70%); opacity:0.12; }
-  .t3 .product-glow{ background:radial-gradient(circle,#c8e6c0,transparent 70%); opacity:0.25; }
+  .t1 .product-glow{ background:radial-gradient(circle,#fff,transparent 65%); }
+  .t2 .product-glow{ background:radial-gradient(circle,#0e2530,transparent 65%); opacity:0.24; }
+  .t3 .product-glow{ background:radial-gradient(circle,#c8e6c0,transparent 65%); opacity:0.4; }
   @keyframes glowPulse{
-    0%,100%{ transform:scale(0.94); }
-    50%{ transform:scale(1.14); }
+    0%,100%{ transform:scale(0.82); }
+    50%{ transform:scale(1.28); }
   }
 
   .vinyl-card{
