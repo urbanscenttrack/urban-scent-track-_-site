@@ -25,6 +25,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>urban scent track</title>
+<link rel="icon" type="image/png" href="assets/og-image.png">
+
+<!-- 카카오톡·인스타그램 등 링크 공유 미리보기용 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="urban scent track">
+<meta property="og:title" content="urban scent track — choose your scent, play your mood">
+<meta property="og:description" content="향과 음악을 함께 경험하는 브랜드. 차량용 샤쉐 컬렉션 3종.">
+<meta property="og:image" content="https://urbanscenttrack.com/assets/og-image.png">
+<meta property="og:url" content="https://urbanscenttrack.com/">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -394,12 +405,12 @@
     .hero{ min-height:100svh; padding:76px 20px 48px; }
     .hero-top{ margin-bottom:26px; }
     .hero-body{ margin-top:26px; margin-left:0; }
-    .hero-sub{ max-width:100%; font-size:1rem; }
+    .hero-sub{ max-width:100%; font-size:clamp(0.7rem,3.9vw,1rem); white-space:nowrap; }
     .hero-bottom{ margin-top:44px; }
     .hero-arrow{ font-size:1.3rem; }
 
-    .track-pills{ margin-top:32px; margin-left:0; gap:10px; }
-    .pill{ padding:8px 15px 8px 9px; font-size:0.74rem; }
+    .track-pills{ margin-top:32px; margin-left:0; gap:10px; flex-direction:column; align-items:stretch; }
+    .pill{ padding:10px 15px 10px 12px; font-size:0.74rem; justify-content:center; }
 
     .intro{ padding:96px 20px; }
     .intro-inner{ max-width:100%; }
@@ -522,7 +533,7 @@
   <div class="hero-inner">
 
     <div class="hero-top reveal in">
-      <span class="hero-mark">✳</span>
+      <span class="hero-mark">✳︎</span>
       <p class="hero-eyebrow">urban scent track collection</p>
     </div>
 
