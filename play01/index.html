@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track 01 · city citrus — urban scent track</title>
+<meta name="robots" content="noindex">
+
+<!--
+  ============================================================
+   Track 01 · city citrus 플레이리스트 연결
+  ============================================================
+   ▼▼▼ 유튜브 주소가 바뀌면 아래 한 줄만 고치세요 ▼▼▼
+-->
+<script>
+  var PLAYLIST_URL = "YOUTUBE_PLAYLIST_URL_01";
+</script>
+<!--
+   ▲▲▲ 여기까지 ▲▲▲
+   이 페이지 주소(/play01)는 절대 바뀌지 않습니다.
+   샤쉐 QR과 홈페이지 버튼이 이 주소를 가리키고 있습니다.
+  ============================================================
+-->
+
+<script>
+  location.replace(PLAYLIST_URL);
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=YOUTUBE_PLAYLIST_URL_01"></noscript>
+
+<style>
+  html,body{height:100%;margin:0;}
+  body{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:18px; background:#070707; color:#fff;
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+    text-align:center; padding:24px;
+  }
+  .brand{ font-size:0.78rem; font-weight:800; letter-spacing:0.02em; opacity:0.6; }
+  .track{ font-size:1.5rem; font-weight:800; letter-spacing:-0.02em; }
+  .msg{ font-size:0.88rem; color:rgba(255,255,255,0.55); }
+  .spin{
+    width:34px; height:34px; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.18); border-top-color:#fff;
+    animation:sp .9s linear infinite;
+  }
+  @keyframes sp{ to{ transform:rotate(360deg); } }
+  a{ color:#fff; font-size:0.84rem; }
+</style>
+</head>
+<body>
+  <div class="brand">urban scent track</div>
+  <div class="track">Track 01 · city citrus</div>
+  <div class="spin"></div>
+  <div class="msg">플레이리스트로 이동 중입니다…</div>
+  <a href="YOUTUBE_PLAYLIST_URL_01">자동으로 이동하지 않으면 여기를 눌러주세요</a>
+</body>
+</html>
