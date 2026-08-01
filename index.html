@@ -117,6 +117,7 @@
     .hero-title .line{ transform:none; opacity:1; transition:none; }
     .hero-scroll .bar{ animation:none; }
     .product-glow{ animation:none; }
+    .hero-spotlight{ animation:none; }
   }
 
   /* ---------------- hero (Motto-style: white bg, black type, left-driven layout) ---------------- */
@@ -130,6 +131,35 @@
     overflow:hidden;
   }
   .hero-inner{ max-width:1320px; margin:0 auto; width:100%; }
+
+  /* Pixar 램프처럼 이리저리 무언가를 찾듯 떠도는 빛 (hero-inner 위치 기준에는 영향 없도록 음수 z-index만 사용) */
+  .hero-spotlight{
+    position:absolute; top:-10%; left:-10%;
+    width:52vw; height:52vw; max-width:760px; max-height:760px; min-width:340px; min-height:340px;
+    border-radius:50%; z-index:-1; pointer-events:none;
+    background:radial-gradient(circle, rgba(7,7,7,0.09), rgba(7,7,7,0.03) 55%, transparent 75%);
+    filter:blur(18px);
+    animation:heroSpotlightMove 22s cubic-bezier(.45,0,.35,1) infinite;
+  }
+  @keyframes heroSpotlightMove{
+    0%   { transform:translate(0,0)      scale(0.9); }
+    15%  { transform:translate(55vw,8vh) scale(1.05); }
+    32%  { transform:translate(38vw,55vh) scale(0.85); }
+    50%  { transform:translate(8vw,62vh)  scale(1.1); }
+    68%  { transform:translate(60vw,42vh) scale(0.95); }
+    84%  { transform:translate(30vw,4vh)  scale(1); }
+    100% { transform:translate(0,0)       scale(0.9); }
+  }
+  @media (max-width:760px){
+    .hero-spotlight{ width:80vw; height:80vw; }
+    @keyframes heroSpotlightMove{
+      0%   { transform:translate(0,0)      scale(0.9); }
+      25%  { transform:translate(20vw,30vh) scale(1.05); }
+      50%  { transform:translate(5vw,55vh)  scale(0.9); }
+      75%  { transform:translate(22vw,15vh) scale(1); }
+      100% { transform:translate(0,0)       scale(0.9); }
+    }
+  }
 
   .hero-top{
     display:flex; align-items:center; gap:12px;
@@ -538,6 +568,7 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <div class="hero-spotlight" aria-hidden="true"></div>
   <div class="hero-inner">
 
     <div class="hero-top reveal in">
