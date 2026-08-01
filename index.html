@@ -116,6 +116,7 @@
   @media (prefers-reduced-motion:reduce){
     .hero-title .line{ transform:none; opacity:1; transition:none; }
     .hero-scroll .bar{ animation:none; }
+    .product-glow{ animation:none; }
   }
 
   /* ---------------- hero (Motto-style: white bg, black type, left-driven layout) ---------------- */
@@ -256,10 +257,15 @@
   .product-glow{
     position:absolute; width:70%; max-width:520px; aspect-ratio:1/1; border-radius:50%;
     filter:blur(70px); opacity:0.5; z-index:0;
+    animation:glowPulse 5s ease-in-out infinite;
   }
   .t1 .product-glow{ background:radial-gradient(circle,#fff,transparent 70%); }
   .t2 .product-glow{ background:radial-gradient(circle,#0e2530,transparent 70%); opacity:0.12; }
   .t3 .product-glow{ background:radial-gradient(circle,#c8e6c0,transparent 70%); opacity:0.25; }
+  @keyframes glowPulse{
+    0%,100%{ transform:scale(0.94); }
+    50%{ transform:scale(1.14); }
+  }
 
   .vinyl-card{
     position:relative; z-index:1;
