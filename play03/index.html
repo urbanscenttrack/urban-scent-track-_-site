@@ -22,8 +22,15 @@
   ============================================================
 -->
 
+<!-- Google tag (gtag.js) — QR 스캔/방문 집계 후 이동 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-18EHFHNG88"></script>
 <script>
-  location.replace(PLAYLIST_URL);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-18EHFHNG88', { transport_type: 'beacon' });
+  gtag('event', 'qr_play_visit', { track: 'play03' });
+  setTimeout(function(){ location.replace(PLAYLIST_URL); }, 400);
 </script>
 <noscript><meta http-equiv="refresh" content="0; url=YOUTUBE_PLAYLIST_URL_03"></noscript>
 
