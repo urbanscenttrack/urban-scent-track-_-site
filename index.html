@@ -625,8 +625,11 @@
   }
   /* ===== 모바일 전용 줄바꿈 (데스크탑에서는 무시) ===== */
   .m-br{ display:none; }
+  /* ===== 데스크탑 전용 줄바꿈 (모바일에서는 무시) ===== */
+  .d-br{ display:inline; }
   @media (max-width:760px){
     .m-br{ display:inline; }
+    .d-br{ display:none; }
     /* 모바일 히어로: SCROLL 아래 남는 배경 제거 */
     .hero{ min-height:auto; padding-bottom:52px; }
     .hero-bottom{ margin-top:36px; }
@@ -847,7 +850,7 @@
       <details class="faq-item">
         <summary>QR을 찍으면 무엇이 나오나요?</summary>
         <div class="faq-a">
-          <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다. 향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
+          <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다.<br class="d-br">향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
         </div>
       </details>
       <details class="faq-item">
