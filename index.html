@@ -528,8 +528,10 @@
     .hero-bottom{ margin-top:44px; }
     .hero-arrow{ font-size:1.3rem; }
 
-    .track-pills{ margin-top:40px; margin-left:0; gap:12px; flex-direction:column; align-items:stretch; }
-    .pill{ padding:12px 15px 12px 12px; font-size:0.78rem; justify-content:center; }
+    .track-pills{ margin-top:40px; margin-left:0; gap:6px; flex-wrap:nowrap; }
+    .pill .pill-num{ display:none; }
+    .pill{ flex:1; min-width:0; padding:8px 6px; font-size:0.6rem; gap:5px; justify-content:center; white-space:nowrap; }
+    .pill .dot{ width:7px; height:7px; flex-shrink:0; }
 
     .intro{ padding:96px 20px; }
     .intro-inner{ max-width:100%; }
@@ -673,9 +675,9 @@
     </div>
 
     <div class="track-pills reveal in d2">
-      <a class="pill p1" href="#track01"><span class="dot"></span>Track 01 · City Citrus</a>
-      <a class="pill p2" href="#track02"><span class="dot"></span>Track 02 · Clean Cotton</a>
-      <a class="pill p3" href="#track03"><span class="dot"></span>Track 03 · Concrete Forest</a>
+      <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
+      <a class="pill p2" href="#track02"><span class="dot"></span><span class="pill-num">Track 02 · </span>Clean Cotton</a>
+      <a class="pill p3" href="#track03"><span class="dot"></span><span class="pill-num">Track 03 · </span>Concrete Forest</a>
     </div>
 
     <div class="hero-bottom reveal in d3">
