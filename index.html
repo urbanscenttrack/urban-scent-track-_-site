@@ -210,14 +210,8 @@
     100% { transform:translate(0,0)       scale(0.9); }
   }
   @media (max-width:760px){
-    .hero-spotlight{ width:80vw; height:80vw; }
-    @keyframes heroSpotlightMove{
-      0%   { transform:translate(0,0)      scale(0.9); }
-      25%  { transform:translate(20vw,30vh) scale(1.05); }
-      50%  { transform:translate(5vw,55vh)  scale(0.9); }
-      75%  { transform:translate(22vw,15vh) scale(1); }
-      100% { transform:translate(0,0)       scale(0.9); }
-    }
+    /* 모바일: 좁은 화면에서는 스포트라이트가 얼룩처럼 보여 제거 */
+    .hero-spotlight{ display:none; }
   }
 
   .hero-top{
@@ -269,9 +263,10 @@
 
   @media (max-width:760px){
     .hero-tonearm{ display:none; }
-    .hero-title .line.push-1{ margin-left:3vw; }
-    .hero-title .line.push-2{ margin-left:5vw; }
-    .hero-title .line.push-3{ margin-left:1vw; }
+    /* 모바일: 들여쓰기 제거하고 왼쪽 정렬로 깔끔하게 */
+    .hero-title .line.push-1{ margin-left:0; }
+    .hero-title .line.push-2{ margin-left:0; }
+    .hero-title .line.push-3{ margin-left:0; }
   }
 
   /* track strip under hero */
