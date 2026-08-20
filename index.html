@@ -275,7 +275,6 @@
   }
   .hero-scroll .bar{ width:2px; height:40px; border-radius:2px; background:linear-gradient(rgba(7,7,7,0.75),transparent); animation:scrolldrift 2.2s cubic-bezier(.4,0,.2,1) infinite; transform-origin:top; }
 
-  .hero-tonearm{ position:absolute; right:-9.5%; top:8%; width:53.2%; max-width:817px; height:auto; opacity:1; pointer-events:none; filter:drop-shadow(0 30px 40px rgba(0,0,0,0.18)) drop-shadow(0 8px 12px rgba(0,0,0,0.12)); }
   @keyframes scrolldrift{
     0%   { transform:translateY(-6px) scaleY(0.85); opacity:0.25; }
     45%  { transform:translateY(0)    scaleY(1);    opacity:1; }
@@ -283,7 +282,6 @@
   }
 
   @media (max-width:760px){
-    .hero-tonearm{ display:none; }
     /* 모바일: 들여쓰기 제거하고 왼쪽 정렬로 깔끔하게 */
     .hero-title .line.push-1{ margin-left:0; }
     .hero-title .line.push-2{ margin-left:0; }
@@ -531,7 +529,6 @@
   .footer-legal p{ font-size:0.68rem; line-height:1.7; color:rgba(255,255,255,0.32); margin:0 0 4px; }
   .footer-bottom{ margin-top:30px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.72rem; color:rgba(255,255,255,0.35); }
   /* ===================== RESPONSIVE ===================== */
-  /* NOTE: .hero-tonearm 데스크탑 배치(right/top/width)는 의도적으로 건드리지 않음 */
 
   /* --- 태블릿 / 좁은 데스크탑 --- */
   @media (max-width:1024px){
@@ -667,7 +664,7 @@
                  linear-gradient(0deg, rgba(7,7,7,0.55) 0%, transparent 22%);
     }
     .hero-inner{ position:relative; z-index:1; }
-    .hero-spotlight, .hero-tonearm, .hero-top{ display:none; }
+    .hero-spotlight, .hero-top{ display:none; }
     .hero-title{ color:#fff; }
     .hero-title .line.push-1, .hero-title .line.push-2, .hero-title .line.push-3{ margin-left:0; }
     .hero-title-desktop .line{ transform:none; opacity:1; transition:none; }
@@ -756,11 +753,6 @@
     <div class="hero-bottom reveal in d3">
       <div class="hero-scroll"><span>Scroll</span><span class="bar"></span></div>
     </div>
-
-    <picture>
-      <source srcset="assets/tonearm.webp" type="image/webp">
-      <img class="hero-tonearm reveal in d3" src="assets/tonearm.png" width="1720" height="1216" alt="턴테이블 톤암" />
-    </picture>
 
   </div>
 </header>
