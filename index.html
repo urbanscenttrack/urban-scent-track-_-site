@@ -253,6 +253,7 @@
   .hero-title .line.push-1{ margin-left:7vw; }
   .hero-title .line.push-2{ margin-left:15vw; }
   .hero-title .line.push-3{ margin-left:2.5vw; }
+  .hero-title-mobile{ display:none; }
 
   .hero-body{
     display:flex; justify-content:flex-start;
@@ -553,6 +554,8 @@
     .hero-top, .hero-body, .hero-bottom{ display:none; }
     .hero-title{ font-size:clamp(2.3rem,10vw,3.5rem); line-height:1.08; letter-spacing:-0.02em; color:#fff; }
     .hero-title .line{ margin-bottom:0.06em; }
+    .hero-title-desktop{ display:none; }
+    .hero-title-mobile{ display:block; }
     .hero-arrow{ font-size:1.3rem; }
 
     .track-pills{ margin-top:26px; margin-left:0; gap:6px; flex-direction:row; flex-wrap:nowrap; }
@@ -720,12 +723,13 @@
       <p class="hero-eyebrow">urban scent track collection</p>
     </div>
 
-    <h1 class="hero-title">
+    <h1 class="hero-title hero-title-desktop">
       <span class="line-mask"><span class="line">CHOOSE</span></span>
       <span class="line-mask"><span class="line push-1">YOUR SCENT</span></span>
       <span class="line-mask"><span class="line push-2">PLAY YOUR</span></span>
       <span class="line-mask"><span class="line push-3">MOOD</span></span>
     </h1>
+    <h1 class="hero-title hero-title-mobile">Choose your scent. Play your mood.</h1>
 
     <div class="hero-body reveal in d2">
       <p class="hero-sub">Urban Scent Track은 향과 음악을 함께<br class="m-br"> 경험하는 브랜드입니다.</p>
