@@ -447,6 +447,11 @@
   }
   .notes-close:hover{ background:rgba(7,7,7,0.12); }
   @media (max-width:520px){ .notes-btn{ top:-12px; right:-6px; padding:10px 15px; font-size:0.65rem; } }
+  .notes-desc{
+    display:none; margin-top:20px; padding-top:18px;
+    border-top:1px solid rgba(7,7,7,0.08);
+    font-size:0.88rem; line-height:1.7; color:#3a3a3c;
+  }
 
   .track-desc{ font-size:0.98rem; line-height:1.8; opacity:0.85; max-width:840px; text-align:center; }
   .track-music{ font-size:0.86rem; opacity:0.7; }
@@ -577,7 +582,8 @@
     .track-inner{ gap:30px; }
     .track-tagline{ font-size:1rem; }
     .track-tags{ font-size:0.8rem; }
-    .track-desc{ font-size:0.92rem; line-height:1.75; max-width:100%; }
+    .track-desc{ display:none; }
+    .notes-desc{ display:block; }
     .track-music{ font-size:0.82rem; }
 
     .vinyl-card{ width:243px; padding:24px 20px 22px; border-radius:24px; }
@@ -964,6 +970,7 @@
     <div class="notes-row"><div class="notes-label">Top</div><div class="notes-val" id="notesTop"></div></div>
     <div class="notes-row"><div class="notes-label">Middle</div><div class="notes-val" id="notesMid"></div></div>
     <div class="notes-row"><div class="notes-label">Base</div><div class="notes-val" id="notesBase"></div></div>
+    <p class="notes-desc" id="notesDesc"></p>
   </div>
 </div>
 
@@ -1032,15 +1039,18 @@
     "1": { title:"01 · City Citrus", dot:"d1",
            top:"Lemon · Verbena · Basil",
            mid:"Black Pepper · Sandalwood · Jasmine",
-           base:"Patchouli · Clove · Vetiver" },
+           base:"Patchouli · Clove · Vetiver",
+           desc:"레몬과 버베나의 산뜻함 뒤로 샌달우드와 베티버의 차분한 우디 향이 이어집니다. 상큼하지만 가볍기만 하지 않은 향을 좋아하는 분께 잘 맞습니다." },
     "2": { title:"02 · Clean Cotton", dot:"d2",
            top:"Eucalyptus · Mint · Cotton",
            mid:"Aldehyde · Muguet · Peony",
-           base:"Cotton Accord · White Musk · Iris" },
+           base:"Cotton Accord · White Musk · Iris",
+           desc:"유칼립투스와 민트의 깨끗한 첫인상 뒤로 코튼과 화이트 머스크의 부드러운 향이 이어집니다. 갓 세탁한 섬유처럼 포근하고 깨끗한 향을 좋아하는 분께 잘 맞습니다." },
     "3": { title:"03 · Concrete Forest", dot:"d3",
            top:"Bitter Orange · Geranium · Violet Leaf",
            mid:"Green Bamboo · Oak · Mate",
-           base:"Benzoin · Mimosa · Moss" }
+           base:"Benzoin · Mimosa · Moss",
+           desc:"비터 오렌지와 그린 노트의 쌉쌀한 첫인상 뒤로 오크와 모스의 깊은 우디 향이 이어집니다. 풀잎과 나무가 함께 느껴지는 차분한 향을 좋아하는 분께 잘 맞습니다." }
   };
   const modal = document.getElementById('notesModal');
   function openNotes(key){
@@ -1050,6 +1060,7 @@
     document.getElementById('notesTop').textContent = n.top;
     document.getElementById('notesMid').textContent = n.mid;
     document.getElementById('notesBase').textContent = n.base;
+    document.getElementById('notesDesc').textContent = n.desc || '';
     modal.classList.add('open');
   }
   function closeNotes(){ modal.classList.remove('open'); }
