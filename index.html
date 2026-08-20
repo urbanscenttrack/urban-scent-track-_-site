@@ -17,6 +17,16 @@
    ▶ 음악 듣기 버튼은 /play01 /play02 /play03 로 고정입니다.
      유튜브 주소가 바뀌면 이 파일이 아니라
      play01/index.html 안의 URL 한 줄만 고치세요.
+
+   ▶ (선택) 네이버·카카오 유입 분석을 추가로 붙이고 싶다면
+     아래 <head> 안, GA4 스크립트 바로 아래에 주석 처리된
+     "네이버 프리미엄 로그 분석" / "카카오 픽셀" 블록이 있습니다.
+     각 서비스에서 발급받은 ID를 채운 뒤 주석 표시만
+     풀면 바로 작동합니다.
+       - 네이버 프리미엄 로그 분석: https://searchad.naver.com 에서
+         "네이버 애널리틱스" 가입 후 발급되는 로그 ID
+       - 카카오 픽셀: 카카오모먼트(카카오 광고) 계정 개설 후
+         발급되는 픽셀 ID
   ============================================================
 -->
 <!DOCTYPE html>
@@ -34,6 +44,29 @@
   gtag('js', new Date());
   gtag('config', 'G-18EHFHNG88');
 </script>
+
+<!--
+  (선택) 네이버 프리미엄 로그 분석 — searchad.naver.com 에서 발급받은
+  로그 ID로 NAVER_LOG_ID 를 교체하고 이 블록의 주석을 해제하세요.
+
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+  if (!wcs_add) var wcs_add = {};
+  wcs_add["wa"] = "NAVER_LOG_ID";
+  if (window.wcs) { wcs.inflow("urbanscenttrack.com"); wcs_do(); }
+</script>
+-->
+
+<!--
+  (선택) 카카오 픽셀 — 카카오모먼트에서 발급받은 픽셀 ID로
+  KAKAO_PIXEL_ID 를 교체하고 이 블록의 주석을 해제하세요.
+
+<script src="//t1.daumcdn.net/kas/static/kp.js"></script>
+<script>
+  kakaoPixel('KAKAO_PIXEL_ID').pageView();
+</script>
+-->
+
 <title>urban scent track(어반센트트랙) | 향과 음악이 있는 샤쉐</title>
 <meta name="description" content="urban scent track(어반센트트랙) — 향과 음악을 함께 경험하는 샤쉐 브랜드. QR로 플레이리스트 감상.">
 <meta name="keywords" content="어반센트트랙, urban scent track, 샤쉐, 향수 샤쉐, 차량용 방향제, 드라이브 플레이리스트">
