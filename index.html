@@ -546,7 +546,7 @@
   /* --- 모바일 (톤암 숨김 구간) --- */
   @media (max-width:760px){
     .hero{
-      min-height:100svh; padding:76px 20px 40px;
+      min-height:100svh; min-height:100dvh; padding:76px 20px 32px;
       background:#070707 url('assets/hero-mobile.webp') center/cover no-repeat;
       color:#fff;
       justify-content:flex-end;
@@ -557,13 +557,13 @@
     }
     .hero-inner{ position:relative; z-index:1; }
     .hero-top, .hero-body, .hero-bottom{ display:none; }
-    .hero-title{ font-size:clamp(2.3rem,10vw,3.5rem); line-height:1.08; letter-spacing:-0.02em; color:#fff; }
+    .hero-title{ font-size:clamp(2.6rem,11.5vw,3.9rem); line-height:1.08; letter-spacing:-0.02em; color:#fff; }
     .hero-title .line{ margin-bottom:0.06em; }
     .hero-title-desktop{ display:none; }
     .hero-title-mobile{ display:block; }
     .hero-arrow{ font-size:1.3rem; }
 
-    .track-pills{ margin-top:26px; margin-left:0; gap:6px; flex-direction:row; flex-wrap:nowrap; }
+    .track-pills{ margin-top:46px; margin-left:0; gap:6px; flex-direction:row; flex-wrap:nowrap; }
     .pill .pill-num{ display:none; }
     .pill{
       flex:1; min-width:0; padding:8px 6px; font-size:0.6rem; gap:5px; justify-content:center; white-space:nowrap;
