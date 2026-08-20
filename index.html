@@ -102,7 +102,8 @@
 }
 </script>
 
-<link rel="preload" as="image" href="assets/tonearm.webp" media="(min-width:761px)">
+<link rel="preload" as="image" href="assets/hero-desktop.webp" media="(min-width:761px)">
+<link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width:760px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -638,6 +639,34 @@
     /* 카드 내부 노트/태그라인 가로 유지 */
     .vc-notes{ flex-wrap:nowrap; white-space:nowrap; }
     .vc-tagline{ white-space:nowrap; }
+  }
+
+  /* ===== 데스크탑 히어로: 풀블리드 사진 배경 ===== */
+  @media (min-width:761px){
+    .hero{
+      background:#070707 url('assets/hero-desktop.webp') center/cover no-repeat;
+      color:#fff;
+      justify-content:center;
+    }
+    .hero::before{
+      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:linear-gradient(100deg, rgba(7,7,7,0.94) 0%, rgba(7,7,7,0.8) 22%, rgba(7,7,7,0.35) 42%, rgba(7,7,7,0.05) 58%, transparent 70%),
+                 linear-gradient(0deg, rgba(7,7,7,0.55) 0%, transparent 22%);
+    }
+    .hero-inner{ position:relative; z-index:1; }
+    .hero-spotlight, .hero-tonearm, .hero-top{ display:none; }
+    .hero-title{ color:#fff; }
+    .hero-title .line.push-1, .hero-title .line.push-2, .hero-title .line.push-3{ margin-left:0; }
+    .hero-body{ margin-left:0; }
+    .hero-sub{ color:rgba(255,255,255,0.75); }
+    .hero-bottom{ display:none; }
+    .track-pills{ margin-left:0; }
+    .pill .pill-num{ display:none; }
+    .pill{
+      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#fff;
+      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    }
+    .pill:hover{ background:rgba(255,255,255,0.16); }
   }
 
   /* 낮은 화면(노트북)에서 한 단계 더 압축 */
