@@ -184,6 +184,42 @@
     background:var(--white); color:var(--black); border-radius:980px;
     text-decoration:none;
   }
+  /* ---------------- floating audio player (브랜드 테마곡) ---------------- */
+  .audio-fab{
+    position:fixed; right:24px; bottom:24px; z-index:90;
+    width:50px; height:50px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(7,7,7,0.72); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.14);
+    cursor:pointer; padding:0;
+    box-shadow:0 6px 24px rgba(0,0,0,0.28);
+    transition:transform .25s ease, background .25s ease;
+  }
+  .audio-fab:hover{ transform:translateY(-2px); background:rgba(7,7,7,0.85); }
+  .audio-fab svg{ width:18px; height:18px; fill:var(--white); position:relative; z-index:1; }
+  .audio-fab .icon-pause{ display:none; }
+  .audio-fab.is-playing .icon-play{ display:none; }
+  .audio-fab.is-playing .icon-pause{ display:block; }
+  .audio-fab-ring{
+    position:absolute; inset:-1px; border-radius:50%;
+    border:1px solid rgba(255,255,255,0.35);
+    opacity:0; transform:scale(1);
+  }
+  .audio-fab.is-playing .audio-fab-ring{
+    animation:audioRingPulse 1.8s cubic-bezier(.4,0,.2,1) infinite;
+  }
+  @keyframes audioRingPulse{
+    0%   { opacity:0.55; transform:scale(1); }
+    100% { opacity:0; transform:scale(1.55); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .audio-fab.is-playing .audio-fab-ring{ animation:none; }
+  }
+  @media (max-width:760px){
+    .audio-fab{ right:16px; bottom:16px; width:44px; height:44px; }
+    .audio-fab svg{ width:16px; height:16px; }
+  }
+
   @media (max-width:760px){
     .nav-links{ display:none; }
     /* 모바일: 히어로(흰 배경) 위에서는 네비를 투명하게 — 회색 띠 제거 */
@@ -747,6 +783,13 @@
   <a class="nav-cta" href="SMARTSTORE_MAIN" target="_blank" rel="noopener">Shop</a>
 </nav>
 
+<button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
+  <span class="audio-fab-ring" aria-hidden="true"></span>
+  <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+  <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+</button>
+<audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
+
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-spotlight" aria-hidden="true"></div>
@@ -1046,6 +1089,30 @@
     const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive:true });
     onScroll();
+  })();
+
+  // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
+  (function(){
+    const btn = document.getElementById('themeAudioToggle');
+    const audio = document.getElementById('themeAudio');
+    if(!btn || !audio) return;
+    btn.addEventListener('click', ()=>{
+      if(audio.paused){
+        audio.play().catch(()=>{});
+      } else {
+        audio.pause();
+      }
+    });
+    audio.addEventListener('play', ()=>{
+      btn.classList.add('is-playing');
+      btn.setAttribute('aria-pressed','true');
+      btn.setAttribute('aria-label','브랜드 테마곡 일시정지');
+    });
+    audio.addEventListener('pause', ()=>{
+      btn.classList.remove('is-playing');
+      btn.setAttribute('aria-pressed','false');
+      btn.setAttribute('aria-label','브랜드 테마곡 재생');
+    });
   })();
 
   const els = document.querySelectorAll('.reveal:not(.in)');
