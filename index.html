@@ -187,19 +187,27 @@
   /* ---------------- floating audio player (브랜드 테마곡) ---------------- */
   .audio-fab{
     position:fixed; right:24px; bottom:24px; z-index:90;
-    width:50px; height:50px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
+    height:44px; padding:0 18px 0 14px; border-radius:980px;
+    display:flex; align-items:center; gap:8px;
     background:rgba(7,7,7,0.72); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
     border:1px solid rgba(255,255,255,0.14);
-    cursor:pointer; padding:0;
+    cursor:pointer;
     box-shadow:0 6px 24px rgba(0,0,0,0.28);
     transition:transform .25s ease, background .25s ease;
   }
   .audio-fab:hover{ transform:translateY(-2px); background:rgba(7,7,7,0.85); }
-  .audio-fab svg{ width:18px; height:18px; fill:var(--white); position:relative; z-index:1; }
+  .audio-fab-icon{
+    position:relative; width:26px; height:26px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+  }
+  .audio-fab svg{ width:14px; height:14px; fill:var(--white); position:relative; z-index:1; }
   .audio-fab .icon-pause{ display:none; }
   .audio-fab.is-playing .icon-play{ display:none; }
   .audio-fab.is-playing .icon-pause{ display:block; }
+  .audio-fab-label{
+    font-size:0.74rem; font-weight:600; color:var(--white); white-space:nowrap;
+  }
   .audio-fab-ring{
     position:absolute; inset:-1px; border-radius:50%;
     border:1px solid rgba(255,255,255,0.35);
@@ -212,12 +220,23 @@
     0%   { opacity:0.55; transform:scale(1); }
     100% { opacity:0; transform:scale(1.55); }
   }
+  @keyframes audioFabHint{
+    0%, 78%, 100% { transform:translateX(0); }
+    82% { transform:translateX(-3px); }
+    86% { transform:translateX(2px); }
+    90% { transform:translateX(-2px); }
+    94% { transform:translateX(0); }
+  }
+  .audio-fab:not(.is-playing){ animation:audioFabHint 5s ease-in-out 1.5s 2; }
   @media (prefers-reduced-motion:reduce){
     .audio-fab.is-playing .audio-fab-ring{ animation:none; }
+    .audio-fab{ animation:none; }
   }
   @media (max-width:760px){
-    .audio-fab{ right:16px; bottom:16px; width:44px; height:44px; }
-    .audio-fab svg{ width:16px; height:16px; }
+    .audio-fab{ right:16px; bottom:16px; height:40px; padding:0 14px 0 10px; }
+    .audio-fab-icon{ width:22px; height:22px; }
+    .audio-fab svg{ width:12px; height:12px; }
+    .audio-fab-label{ font-size:0.7rem; }
   }
 
   @media (max-width:760px){
@@ -784,9 +803,12 @@
 </nav>
 
 <button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
-  <span class="audio-fab-ring" aria-hidden="true"></span>
-  <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-  <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  <span class="audio-fab-icon">
+    <span class="audio-fab-ring" aria-hidden="true"></span>
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </span>
+  <span class="audio-fab-label">Play Sound</span>
 </button>
 <audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
@@ -1095,6 +1117,7 @@
   (function(){
     const btn = document.getElementById('themeAudioToggle');
     const audio = document.getElementById('themeAudio');
+    const label = btn ? btn.querySelector('.audio-fab-label') : null;
     if(!btn || !audio) return;
     btn.addEventListener('click', ()=>{
       if(audio.paused){
@@ -1107,11 +1130,13 @@
       btn.classList.add('is-playing');
       btn.setAttribute('aria-pressed','true');
       btn.setAttribute('aria-label','브랜드 테마곡 일시정지');
+      if(label) label.textContent = 'Now Playing';
     });
     audio.addEventListener('pause', ()=>{
       btn.classList.remove('is-playing');
       btn.setAttribute('aria-pressed','false');
       btn.setAttribute('aria-label','브랜드 테마곡 재생');
+      if(label) label.textContent = 'Play Sound';
     });
   })();
 
