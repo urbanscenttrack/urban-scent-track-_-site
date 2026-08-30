@@ -775,7 +775,7 @@
     .track-tagline{ grid-column:2; grid-row:3; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
     .track-tags{ grid-column:2; grid-row:4; font-size:15px; margin-top:16px; }
     .track-divider{ grid-column:2; grid-row:5; height:1px; background:currentColor; opacity:0.13; margin-top:28px; }
-    .track-desc{ grid-column:2; grid-row:6; text-align:left; font-size:16px; line-height:1.75; max-width:520px; margin-top:28px; }
+    .track-desc{ grid-column:2; grid-row:6; text-align:left; font-size:16px; line-height:1.75; max-width:none; margin-top:28px; }
     .track-music{ grid-column:2; grid-row:7; font-size:15px; margin-top:26px; }
     .buy-row{
       grid-column:2; grid-row:8;
@@ -797,6 +797,11 @@
     /* 카드 내부 노트/태그라인 가로 유지 */
     .vc-notes{ flex-wrap:nowrap; white-space:nowrap; }
     .vc-tagline{ white-space:nowrap; }
+  }
+
+  /* 넉넉한 데스크탑 폭에서는 설명 문장이 반드시 한 줄로 유지되도록 */
+  @media (min-width:1180px){
+    .track-desc{ white-space:nowrap; }
   }
 
   /* ===== 히어로: 영상 배경 (데스크탑/모바일 각각 breakpoint에서 display 지정) ===== */
