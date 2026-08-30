@@ -208,6 +208,7 @@
   .audio-fab.is-playing .icon-pause{ display:block; }
   .audio-fab-label{
     font-size:0.74rem; font-weight:600; color:var(--white); white-space:nowrap;
+    text-transform:uppercase; letter-spacing:0.04em;
   }
   .audio-fab-ring{
     position:absolute; inset:-1px; border-radius:50%;
@@ -235,12 +236,15 @@
   }
   @media (max-width:760px){
     .audio-fab{
-      position:static; align-self:flex-end; margin:0 0 16px;
-      height:40px; padding:0 14px 0 10px;
+      height:auto; padding:0; gap:4px;
+      background:none; border:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none;
+      border-radius:0;
     }
-    .audio-fab-icon{ width:22px; height:22px; }
-    .audio-fab svg{ width:12px; height:12px; }
-    .audio-fab-label{ font-size:0.7rem; }
+    .audio-fab:hover{ transform:none; background:none; }
+    .audio-fab-icon{ width:9px; height:9px; }
+    .audio-fab-ring{ display:none; }
+    .audio-fab svg{ width:9px; height:9px; }
+    .audio-fab-label{ font-size:0.68rem; font-weight:700; letter-spacing:0.06em; opacity:0.85; }
   }
 
   @media (max-width:760px){
@@ -841,6 +845,14 @@
   <a class="nav-cta" href="SMARTSTORE_MAIN" target="_blank" rel="noopener">Shop</a>
 </nav>
 
+<button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
+  <span class="audio-fab-icon">
+    <span class="audio-fab-ring" aria-hidden="true"></span>
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </span>
+  <span class="audio-fab-label">Play Sound</span>
+</button>
 <audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
 <!-- HERO -->
@@ -879,15 +891,6 @@
     </div>
 
   </div>
-
-  <button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
-    <span class="audio-fab-icon">
-      <span class="audio-fab-ring" aria-hidden="true"></span>
-      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-    </span>
-    <span class="audio-fab-label">Play Sound</span>
-  </button>
 
   <div class="track-pills reveal in d2">
     <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
@@ -1162,6 +1165,34 @@
     onScroll();
   })();
 
+  // 모바일: Listen 버튼을 네비게이션 바 밖, 로고 아래쪽에 정렬 (fixed 유지, nav 안에 넣지 않음 — backdrop-filter로 인한 containing block 문제 방지)
+  (function(){
+    const fab = document.getElementById('themeAudioToggle');
+    const logo = document.querySelector('.nav-logo');
+    const nav = document.querySelector('.nav');
+    if(!fab || !logo || !nav) return;
+
+    function align(){
+      if(!window.matchMedia('(max-width:760px)').matches){
+        fab.style.left = '';
+        fab.style.top = '';
+        fab.style.right = '';
+        fab.style.bottom = '';
+        return;
+      }
+      const logoRect = logo.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+      fab.style.left = Math.round(logoRect.left) + 'px';
+      fab.style.top = Math.round(navRect.bottom + 14) + 'px';
+    }
+    window.addEventListener('resize', align);
+    window.addEventListener('load', align);
+    align();
+    setTimeout(align, 300); // 폰트 로딩 후 로고 너비/위치 재계산
+  })();
+
   // 히어로: 데스크탑은 영상 재생 후 지정 지점에서 브랜드명 타이핑 & 정지, 모바일은 사진 배경이라 바로 표시
   (function(){
     const video = document.querySelector('.hero-video');
@@ -1217,6 +1248,8 @@
     const audio = document.getElementById('themeAudio');
     const label = btn ? btn.querySelector('.audio-fab-label') : null;
     if(!btn || !audio) return;
+    const TEXT = { idle: () => 'Listen', playing: () => 'Playing' };
+    if(label) label.textContent = TEXT.idle();
     btn.addEventListener('click', ()=>{
       if(audio.paused){
         audio.play().catch(()=>{});
@@ -1228,13 +1261,13 @@
       btn.classList.add('is-playing');
       btn.setAttribute('aria-pressed','true');
       btn.setAttribute('aria-label','브랜드 테마곡 일시정지');
-      if(label) label.textContent = 'Now Playing';
+      if(label) label.textContent = TEXT.playing();
     });
     audio.addEventListener('pause', ()=>{
       btn.classList.remove('is-playing');
       btn.setAttribute('aria-pressed','false');
       btn.setAttribute('aria-label','브랜드 테마곡 재생');
-      if(label) label.textContent = 'Play Sound';
+      if(label) label.textContent = TEXT.idle();
     });
   })();
 
