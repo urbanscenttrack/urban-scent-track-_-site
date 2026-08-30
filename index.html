@@ -748,31 +748,44 @@
   }
   /* ===== 데스크탑: Track 섹션 2단 레이아웃 (카드 왼쪽 / 텍스트 오른쪽, 한 화면에 담기도록) ===== */
   @media (min-width:761px){
-    .track-section{ padding:160px 24px; }
+    .track-section{ padding:150px 24px; }
     .track-inner{
       display:grid;
-      grid-template-columns:minmax(260px,340px) 1fr;
+      grid-template-columns:minmax(320px,420px) 1fr;
       align-items:center;
-      column-gap:80px; row-gap:0;
-      max-width:1160px;
+      column-gap:130px; row-gap:0;
+      max-width:1280px;
       text-align:left;
     }
 
-    /* 카드는 크기·기울기 그대로 유지 — 왼쪽 컬럼에 배치 */
+    /* 카드 확대 — 왼쪽 컬럼에 배치, 내부 요소들도 함께 비례 확대 */
     .product-stage{ grid-column:1; grid-row:1/8; margin:0; justify-content:center; }
+    .vinyl-card{
+      width:340px; padding:34px 30px 32px; border-radius:34px;
+    }
+    .vc-brand{ font-size:0.86rem; }
+    .vc-title{ font-size:1.95rem; margin-top:4px; }
+    .vc-vinyl-wrap{ width:178px; height:178px; margin:20px 0; }
+    .vc-notes{ font-size:1.08rem; gap:10px; }
+    .vc-divider{ width:42px; height:2px; margin:15px 0; }
+    .vc-tagline{ font-size:0.93rem; }
+    .vc-slider{ padding-top:22px; gap:12px; }
+    .vc-slider .lab{ font-size:0.78rem; }
+    .vc-slider .knob{ width:16px; height:16px; }
+    .notes-btn{ font-size:0.8rem; padding:14px 22px; top:-16px; right:-22px; }
 
     .track-kicker{ grid-column:2; grid-row:1; }
     .track-title{
       grid-column:2; grid-row:2;
-      font-size:clamp(2.2rem,4vw,3.6rem);
-      text-align:left; margin-top:8px;
+      font-size:clamp(2.6rem,4.6vw,4.3rem);
+      text-align:left; margin-top:10px;
     }
-    .track-tagline{ grid-column:2; grid-row:3; max-width:none; margin-top:14px; }
+    .track-tagline{ grid-column:2; grid-row:3; max-width:none; margin-top:16px; }
     .track-tags{ grid-column:2; grid-row:4; margin-top:8px; }
-    .track-desc{ grid-column:2; grid-row:5; text-align:left; max-width:none; margin-top:26px; }
+    .track-desc{ grid-column:2; grid-row:5; text-align:left; max-width:none; margin-top:28px; }
     .track-music{ grid-column:2; grid-row:6; margin-top:16px; }
-    .buy-row{ grid-column:2; grid-row:7; justify-content:flex-start; margin-top:26px; }
-    .track-features{ grid-column:1/-1; grid-row:8; }
+    .buy-row{ grid-column:2; grid-row:7; justify-content:flex-start; margin-top:28px; }
+    .track-features{ grid-column:1/-1; grid-row:8; margin-top:130px; }
 
     /* 카드 내부 노트/태그라인 가로 유지 */
     .vc-notes{ flex-wrap:nowrap; white-space:nowrap; }
