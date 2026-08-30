@@ -790,7 +790,7 @@
     }
     /* 카드와 텍스트 사이 간격은 텍스트쪽 padding으로 (grid item margin은 트랙을 좁혀 카드가 겹침) */
     .track-kicker, .track-title, .track-tagline, .track-tags,
-    .track-divider, .track-desc, .track-music, .buy-row{
+    .track-desc, .track-music, .buy-row{
       padding-left:clamp(80px,9.5vw,170px);
     }
 
@@ -805,10 +805,13 @@
     }
     .track-tagline{ grid-column:3; grid-row:4; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
     .track-tags{ grid-column:3; grid-row:5; font-size:15px; margin-top:16px; }
-    /* 선을 짧게 — 전체 폭으로 늘어나면 오른쪽이 무거워 보여 가운데 정렬이 깨져 보임 */
+    /* 선을 짧게 — 전체 폭으로 늘어나면 오른쪽이 무거워 보여 가운데 정렬이 깨져 보임.
+       padding이 아닌 margin으로 밀어야 함 (border-box라 padding을 주면 선 자체가 0px가 됨) */
     .track-divider{
-      grid-column:3; grid-row:6; width:64px; height:1px; margin-top:28px;
-      background:rgba(0,0,0,0.12); background-clip:content-box; opacity:1;
+      grid-column:3; grid-row:6;
+      width:64px; height:1px; margin-top:28px;
+      margin-left:clamp(80px,9.5vw,170px);
+      background:rgba(0,0,0,0.12); opacity:1;
     }
     .track-desc{ grid-column:3; grid-row:7; text-align:left; font-size:16px; line-height:1.75; max-width:none; margin-top:28px; }
     .track-music{ grid-column:3; grid-row:8; font-size:15px; margin-top:26px; }
