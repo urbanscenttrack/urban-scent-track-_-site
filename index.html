@@ -731,6 +731,8 @@
 
     .track-features{ grid-template-columns:repeat(2,1fr); gap:22px 14px; margin-top:44px; padding-top:26px; }
     .tf-en{ white-space:normal; }
+    /* 한글이 단어 중간에서 잘리지 않고 단어 통째로 다음 줄로 내려가게 */
+    .tf-kr, .track-music{ word-break:keep-all; }
     /* 모바일: 트랙별 반복 대신 맨 아래 흰 배경 섹션 하나만 */
     .track-features.in-track{ display:none; }
     .features-band{ padding:56px 20px; }
@@ -773,8 +775,10 @@
     .track-section{ padding:150px 24px 110px; }
     .track-inner{
       display:grid;
-      /* 바깥 1fr 두 개가 카드+텍스트 묶음을 화면 정가운데로 밀어줌 */
-      grid-template-columns:1fr 271px auto 1fr;
+      /* 바깥 두 칸의 비율로 카드+텍스트 묶음의 좌우 위치를 잡음.
+         수학적 정중앙은 1fr/1fr이지만, 왼쪽 카드가 시각적으로 무거워
+         광학 보정으로 오른쪽으로 약 40px 이동 (왼쪽 칸을 더 크게) */
+      grid-template-columns:1.7fr 271px auto 1fr;
       grid-template-rows:0.85fr repeat(8,auto) 1.15fr auto;
       align-items:center;
       column-gap:0; row-gap:0;
@@ -1406,10 +1410,10 @@
     video.playbackRate = 1.5;
 
     const TYPE_INTERVAL_MS = 90;
-    const STOP_AT_S = 10;
-    const START_TYPING_AT_S = STOP_AT_S - (FULL_TEXT.length * TYPE_INTERVAL_MS / 1000) - 0.3;
+    // 재생 시작 후 7초(실제 체감 시간)에 브랜드명 타이핑 시작 → 이후 계속 그대로 유지
+    const START_TYPING_AFTER_MS = 7000;
     let typingStarted = false;
-    let stopped = false;
+    let timerArmed = false;
 
     function startTyping(){
       if(typingStarted) return;
@@ -1423,15 +1427,21 @@
       }, TYPE_INTERVAL_MS);
     }
 
-    video.addEventListener('timeupdate', ()=>{
-      if(stopped) return;
-      if(video.currentTime >= START_TYPING_AT_S) startTyping();
-      if(video.currentTime >= STOP_AT_S){
-        stopped = true;
-        video.pause();
-        video.currentTime = STOP_AT_S;
-      }
-    });
+    function armTimer(){
+      if(timerArmed) return;
+      timerArmed = true;
+      setTimeout(startTyping, START_TYPING_AFTER_MS);
+    }
+
+    // 실제 재생이 시작된 시점부터 7초를 잰다
+    if(!video.paused && video.currentTime > 0) armTimer();
+    video.addEventListener('playing', armTimer, { once:true });
+
+    // 영상은 별도로 멈추지 않고 끝까지 재생된 뒤 마지막 프레임에서 정지(loop 없음).
+    // 자동재생이 막히는 등 예외 상황에서도 워드마크는 반드시 나오도록 보강.
+    video.addEventListener('ended', startTyping);
+    // 자동재생이 3초 안에 시작되지 않으면(정책 차단 등) 그때부터라도 타이머를 건다
+    setTimeout(armTimer, 3000);
   })();
 
   // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
