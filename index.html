@@ -848,6 +848,14 @@
   <a class="nav-cta" href="SMARTSTORE_MAIN" target="_blank" rel="noopener">Shop</a>
 </nav>
 
+<button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
+  <span class="audio-fab-icon">
+    <span class="audio-fab-ring" aria-hidden="true"></span>
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </span>
+  <span class="audio-fab-label">Play Sound</span>
+</button>
 <audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
 <!-- HERO -->
@@ -862,14 +870,6 @@
     <div class="hero-outro-word" aria-hidden="true">
       <span class="hero-outro-text" id="heroOutroText"></span><span class="hero-outro-cursor"></span>
     </div>
-    <button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
-      <span class="audio-fab-icon">
-        <span class="audio-fab-ring" aria-hidden="true"></span>
-        <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-        <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-      </span>
-      <span class="audio-fab-label">Play Sound</span>
-    </button>
   </div>
 
   <div class="hero-inner">
@@ -1168,6 +1168,25 @@
     const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive:true });
     onScroll();
+  })();
+
+  // Listen 버튼 배치: 데스크탑은 hero 밖(overflow:hidden에 의한 클리핑 방지, 스크롤해도 항상 노출),
+  // 모바일은 hero-outro 안(워드마크 바로 아래, 문서 흐름 안에서 자연스럽게 표시)
+  (function(){
+    const fab = document.getElementById('themeAudioToggle');
+    const outro = document.getElementById('heroOutro');
+    const nav = document.querySelector('.nav');
+    if(!fab || !outro || !nav) return;
+
+    function place(){
+      if(window.matchMedia('(max-width:760px)').matches){
+        if(fab.parentElement !== outro) outro.appendChild(fab);
+      } else {
+        if(fab.parentElement !== document.body) document.body.insertBefore(fab, nav.nextSibling);
+      }
+    }
+    place();
+    window.addEventListener('resize', place);
   })();
 
   // 히어로: 데스크탑은 영상 재생 후 지정 지점에서 브랜드명 타이핑 & 정지, 모바일은 사진 배경이라 바로 표시
