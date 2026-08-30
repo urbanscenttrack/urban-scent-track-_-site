@@ -234,7 +234,10 @@
     .audio-fab{ animation:none; }
   }
   @media (max-width:760px){
-    .audio-fab{ right:22px; bottom:auto; top:64px; height:40px; padding:0 14px 0 10px; }
+    .audio-fab{
+      position:static; align-self:flex-end; margin:0 0 16px;
+      height:40px; padding:0 14px 0 10px;
+    }
     .audio-fab-icon{ width:22px; height:22px; }
     .audio-fab svg{ width:12px; height:12px; }
     .audio-fab-label{ font-size:0.7rem; }
@@ -838,14 +841,6 @@
   <a class="nav-cta" href="SMARTSTORE_MAIN" target="_blank" rel="noopener">Shop</a>
 </nav>
 
-<button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
-  <span class="audio-fab-icon">
-    <span class="audio-fab-ring" aria-hidden="true"></span>
-    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-  </span>
-  <span class="audio-fab-label">Play Sound</span>
-</button>
 <audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
 <!-- HERO -->
@@ -884,6 +879,15 @@
     </div>
 
   </div>
+
+  <button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
+    <span class="audio-fab-icon">
+      <span class="audio-fab-ring" aria-hidden="true"></span>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </span>
+    <span class="audio-fab-label">Play Sound</span>
+  </button>
 
   <div class="track-pills reveal in d2">
     <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
@@ -1156,30 +1160,6 @@
     const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive:true });
     onScroll();
-  })();
-
-  // 모바일: Play Sound 버튼을 Shop 버튼 바로 아래 가운데로 정렬
-  (function(){
-    const fab = document.getElementById('themeAudioToggle');
-    const shop = document.querySelector('.nav-cta');
-    if(!fab || !shop) return;
-
-    function align(){
-      if(!window.matchMedia('(max-width:760px)').matches){
-        fab.style.left = '';
-        fab.style.right = '';
-        return;
-      }
-      const shopRect = shop.getBoundingClientRect();
-      const fabWidth = fab.offsetWidth;
-      const centerX = shopRect.left + shopRect.width / 2;
-      fab.style.right = 'auto';
-      fab.style.left = Math.round(centerX - fabWidth / 2) + 'px';
-    }
-    window.addEventListener('resize', align);
-    window.addEventListener('load', align);
-    align();
-    setTimeout(align, 300); // 폰트 로딩 후 Shop 버튼 너비 재계산
   })();
 
   // 히어로: 데스크탑은 영상 재생 후 지정 지점에서 브랜드명 타이핑 & 정지, 모바일은 사진 배경이라 바로 표시
