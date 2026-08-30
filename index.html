@@ -751,34 +751,47 @@
     .track-section{ padding:150px 24px 110px; }
     .track-inner{
       display:grid;
-      grid-template-columns:271px 1fr;
-      grid-template-rows:repeat(8,auto) 1fr;
+      /* 바깥 1fr 두 개가 카드+텍스트 묶음을 화면 정가운데로 밀어줌 */
+      grid-template-columns:1fr 271px auto 1fr;
+      grid-template-rows:1.5fr repeat(8,auto) 0.5fr auto;
       align-items:center;
-      column-gap:clamp(48px,7vw,120px); row-gap:0;
+      column-gap:0; row-gap:0;
       width:100%; max-width:1320px; margin:0 auto;
       min-height:calc(100vh - 260px);
       text-align:left;
     }
 
-    /* 카드는 원래 크기 그대로 유지 — 왼쪽 컬럼에 배치 */
-    .product-stage{ grid-column:1; grid-row:1/9; margin:0; justify-content:center; align-self:center; }
+    /* 카드는 원래 크기 그대로 유지 — 가운데 묶음의 왼쪽에 배치 */
+    .product-stage{
+      grid-column:2; grid-row:2/10; margin:0;
+      justify-content:center; align-self:center;
+    }
+    /* 카드와 텍스트 사이 간격은 텍스트쪽 padding으로 (grid item margin은 트랙을 좁혀 카드가 겹침) */
+    .track-kicker, .track-title, .track-tagline, .track-tags,
+    .track-divider, .track-desc, .track-music, .buy-row{
+      padding-left:clamp(48px,7vw,120px);
+    }
 
     .track-kicker{
-      grid-column:2; grid-row:1;
+      grid-column:3; grid-row:2;
       font-size:13px; font-weight:700; letter-spacing:0.08em; margin-top:0;
     }
     .track-title{
-      grid-column:2; grid-row:2;
+      grid-column:3; grid-row:3;
       font-size:clamp(2.75rem,6.4vw,4.75rem); font-weight:900; line-height:0.98; letter-spacing:-0.02em;
       text-align:left; margin-top:18px;
     }
-    .track-tagline{ grid-column:2; grid-row:3; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
-    .track-tags{ grid-column:2; grid-row:4; font-size:15px; margin-top:16px; }
-    .track-divider{ grid-column:2; grid-row:5; height:1px; background:currentColor; opacity:0.13; margin-top:28px; }
-    .track-desc{ grid-column:2; grid-row:6; text-align:left; font-size:16px; line-height:1.75; max-width:none; margin-top:28px; }
-    .track-music{ grid-column:2; grid-row:7; font-size:15px; margin-top:26px; }
+    .track-tagline{ grid-column:3; grid-row:4; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
+    .track-tags{ grid-column:3; grid-row:5; font-size:15px; margin-top:16px; }
+    /* background-clip:content-box → padding 영역엔 선이 그려지지 않아 텍스트 시작점과 맞음 */
+    .track-divider{
+      grid-column:3; grid-row:6; height:1px; margin-top:28px;
+      background:rgba(0,0,0,0.12); background-clip:content-box; opacity:1;
+    }
+    .track-desc{ grid-column:3; grid-row:7; text-align:left; font-size:16px; line-height:1.75; max-width:none; margin-top:28px; }
+    .track-music{ grid-column:3; grid-row:8; font-size:15px; margin-top:26px; }
     .buy-row{
-      grid-column:2; grid-row:8;
+      grid-column:3; grid-row:9;
       justify-content:flex-start; flex-wrap:nowrap; gap:14px; margin-top:30px;
     }
     .buy-row .btn-pill, .buy-row .price-tag, .buy-row .price-note{ white-space:nowrap; }
@@ -786,7 +799,7 @@
     .buy-row .price-note{ font-size:14px; }
     .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
     .track-features{
-      grid-column:1/-1; grid-row:9; align-self:end;
+      grid-column:1/-1; grid-row:11; align-self:end;
       grid-template-columns:repeat(4,1fr);
       margin-top:0; padding-top:clamp(28px,4vh,40px);
       gap:28px;
