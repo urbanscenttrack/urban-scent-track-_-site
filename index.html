@@ -127,7 +127,6 @@
 }
 </script>
 
-<link rel="preload" as="image" href="assets/hero-desktop.webp" media="(min-width:761px)">
 <link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width:760px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -740,11 +739,11 @@
   }
   .hero-outro.is-visible{ opacity:1; }
   .hero-outro-text{
-    font-size:clamp(2rem,6vw,4.2rem); font-weight:800; letter-spacing:-0.02em;
-    color:#fff; text-transform:lowercase; white-space:nowrap;
+    font-size:clamp(2.2rem,6.5vw,4.6rem); font-weight:800; letter-spacing:-0.02em;
+    color:#070707; text-transform:lowercase; white-space:nowrap;
   }
   .hero-outro-cursor{
-    display:inline-block; width:3px; height:0.85em; margin-left:3px; background:#fff;
+    display:inline-block; width:3px; height:0.85em; margin-left:3px; background:#070707;
     vertical-align:-0.1em;
     animation:heroCursorBlink 0.9s steps(1) infinite;
   }
@@ -754,7 +753,7 @@
   }
   @media (min-width:761px){
     .hero{
-      background:#070707 url('assets/hero-desktop.webp') center/cover no-repeat;
+      background:#070707;
       color:#fff;
       justify-content:center;
     }
@@ -774,13 +773,14 @@
       overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     .hero-bottom{ display:none; }
-    .track-pills{ position:absolute; left:0; right:0; bottom:52px; margin:0; justify-content:flex-start; }
+    .track-pills{ position:absolute; left:auto; right:210px; bottom:24px; margin:0; justify-content:flex-end; }
     .pill .pill-num{ display:none; }
     .pill{
       background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#fff;
       -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
     }
     .pill:hover{ background:rgba(255,255,255,0.16); }
+    .audio-fab{ min-width:172px; justify-content:center; }
   }
 
   /* 낮은 화면(노트북)에서 한 단계 더 압축 */
@@ -838,7 +838,7 @@
 <header class="hero" id="top">
   <div class="hero-spotlight" aria-hidden="true"></div>
 
-  <video class="hero-video" muted playsinline autoplay poster="assets/hero-desktop.webp" aria-hidden="true">
+  <video class="hero-video" muted playsinline autoplay aria-hidden="true">
     <source src="assets/hero-video.mp4" type="video/mp4" media="(min-width:761px)">
   </video>
 
@@ -865,16 +865,16 @@
       <span class="hero-outro-text" id="heroOutroText"></span><span class="hero-outro-cursor"></span>
     </div>
 
-    <div class="track-pills reveal in d2">
-      <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
-      <a class="pill p2" href="#track02"><span class="dot"></span><span class="pill-num">Track 02 · </span>Clean Cotton</a>
-      <a class="pill p3" href="#track03"><span class="dot"></span><span class="pill-num">Track 03 · </span>Concrete Forest</a>
-    </div>
-
     <div class="hero-bottom reveal in d3">
       <div class="hero-scroll"><span>Scroll</span><span class="bar"></span></div>
     </div>
 
+  </div>
+
+  <div class="track-pills reveal in d2">
+    <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
+    <a class="pill p2" href="#track02"><span class="dot"></span><span class="pill-num">Track 02 · </span>Clean Cotton</a>
+    <a class="pill p3" href="#track03"><span class="dot"></span><span class="pill-num">Track 03 · </span>Concrete Forest</a>
   </div>
 </header>
 
@@ -1144,7 +1144,7 @@
     onScroll();
   })();
 
-  // 데스크탑 히어로 영상: 끝나기 직전 브랜드명 타이핑 후 마지막 프레임에서 정지
+  // 데스크탑 히어로 영상: 13초 지점에서 브랜드명 타이핑 후 그 프레임에서 정지
   (function(){
     const video = document.querySelector('.hero-video');
     const outro = document.getElementById('heroOutro');
@@ -1154,12 +1154,14 @@
 
     const FULL_TEXT = 'urbanscenttrack';
     const TYPE_INTERVAL_MS = 90;
-    const START_BEFORE_END_S = FULL_TEXT.length * (TYPE_INTERVAL_MS / 1000) + 0.6;
-    let started = false;
+    const STOP_AT_S = 13;
+    const START_TYPING_AT_S = STOP_AT_S - (FULL_TEXT.length * TYPE_INTERVAL_MS / 1000) - 0.3;
+    let typingStarted = false;
+    let stopped = false;
 
     function startTyping(){
-      if(started) return;
-      started = true;
+      if(typingStarted) return;
+      typingStarted = true;
       outro.classList.add('is-visible');
       let i = 0;
       const timer = setInterval(()=>{
@@ -1170,10 +1172,14 @@
     }
 
     video.addEventListener('timeupdate', ()=>{
-      if(!video.duration || isNaN(video.duration)) return;
-      if(video.duration - video.currentTime <= START_BEFORE_END_S) startTyping();
+      if(stopped) return;
+      if(video.currentTime >= START_TYPING_AT_S) startTyping();
+      if(video.currentTime >= STOP_AT_S){
+        stopped = true;
+        video.pause();
+        video.currentTime = STOP_AT_S;
+      }
     });
-    video.addEventListener('ended', startTyping);
   })();
 
   // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
