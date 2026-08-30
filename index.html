@@ -819,6 +819,8 @@
     }
     /* 버튼 묶음이 한 줄을 통째로 차지 → Shop / 음악 듣기가 가격 아래로 */
     .buy-cta{ flex-basis:100%; display:flex; align-items:center; gap:14px; }
+    /* 가격 래퍼는 모바일 전용 — 데스크탑에서는 없는 것처럼 동작시켜 기존 레이아웃 100% 유지 */
+    .price-row{ display:contents; }
     .buy-row .btn-pill, .buy-row .price-tag, .buy-row .price-note{ white-space:nowrap; }
     .buy-row .price-tag{ font-size:30px; font-weight:800; }
     .buy-row .price-note{ font-size:14px; }
