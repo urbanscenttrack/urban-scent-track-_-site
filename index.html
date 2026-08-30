@@ -188,8 +188,8 @@
   /* ---------------- floating audio player (브랜드 테마곡) ---------------- */
   .audio-fab{
     position:fixed; right:24px; bottom:34px; z-index:90;
-    height:44px; padding:0 18px 0 14px; border-radius:980px;
-    display:flex; align-items:center; gap:8px;
+    width:46px; height:46px; padding:0; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
     background:rgba(7,7,7,0.72); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
     border:1px solid rgba(255,255,255,0.14);
     cursor:pointer;
@@ -206,9 +206,6 @@
   .audio-fab .icon-pause{ display:none; }
   .audio-fab.is-playing .icon-play{ display:none; }
   .audio-fab.is-playing .icon-pause{ display:block; }
-  .audio-fab-label{
-    font-size:0.74rem; font-weight:600; color:var(--white); white-space:nowrap;
-  }
   .audio-fab-ring{
     position:absolute; inset:-1px; border-radius:50%;
     border:1px solid rgba(255,255,255,0.35);
@@ -234,10 +231,9 @@
     .audio-fab{ animation:none; }
   }
   @media (max-width:760px){
-    .audio-fab{ right:16px; bottom:auto; top:64px; height:40px; padding:0 14px 0 10px; }
+    .audio-fab{ right:16px; bottom:auto; top:64px; width:40px; height:40px; }
     .audio-fab-icon{ width:22px; height:22px; }
     .audio-fab svg{ width:12px; height:12px; }
-    .audio-fab-label{ font-size:0.7rem; }
   }
 
   @media (max-width:760px){
@@ -654,14 +650,17 @@
       overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
 
-    .track-pills{ margin-top:46px; margin-left:0; gap:6px; flex-direction:row; flex-wrap:nowrap; }
+    .track-pills{ margin-top:34px; margin-left:0; gap:0; flex-direction:column; flex-wrap:nowrap; align-items:stretch; }
     .pill .pill-num{ display:none; }
     .pill{
-      flex:1; min-width:0; padding:8px 6px; font-size:0.6rem; gap:5px; justify-content:center; white-space:nowrap;
-      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#fff;
-      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      width:100%; flex:none; min-width:0; padding:14px 2px; font-size:0.88rem; font-weight:600;
+      letter-spacing:-0.005em; gap:11px; justify-content:flex-start; white-space:nowrap;
+      background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,0.16); border-radius:0;
+      color:#fff; -webkit-backdrop-filter:none; backdrop-filter:none;
     }
-    .pill:hover{ background:rgba(255,255,255,0.16); }
+    .pill:first-child{ border-top:1px solid rgba(255,255,255,0.16); }
+    .pill::after{ content:'›'; margin-left:auto; opacity:0.45; font-weight:400; font-size:1rem; }
+    .pill:hover{ background:rgba(255,255,255,0.05); }
     .pill .dot{ width:7px; height:7px; flex-shrink:0; }
 
     .intro{ padding:96px 20px; }
@@ -783,14 +782,13 @@
       overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
     }
     .hero-bottom{ display:none; }
-    .track-pills{ position:absolute; left:auto; right:210px; bottom:34px; margin:0; justify-content:flex-end; }
+    .track-pills{ position:absolute; left:auto; right:100px; bottom:34px; margin:0; justify-content:flex-end; }
     .pill .pill-num{ display:none; }
     .pill{
       background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#fff;
       -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
     }
     .pill:hover{ background:rgba(255,255,255,0.16); }
-    .audio-fab{ min-width:172px; justify-content:center; }
   }
 
   /* 낮은 화면(노트북)에서 한 단계 더 압축 */
@@ -840,7 +838,6 @@
     <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
     <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
   </span>
-  <span class="audio-fab-label">Play Sound</span>
 </button>
 <audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
@@ -1207,7 +1204,6 @@
   (function(){
     const btn = document.getElementById('themeAudioToggle');
     const audio = document.getElementById('themeAudio');
-    const label = btn ? btn.querySelector('.audio-fab-label') : null;
     if(!btn || !audio) return;
     btn.addEventListener('click', ()=>{
       if(audio.paused){
@@ -1220,13 +1216,11 @@
       btn.classList.add('is-playing');
       btn.setAttribute('aria-pressed','true');
       btn.setAttribute('aria-label','브랜드 테마곡 일시정지');
-      if(label) label.textContent = 'Now Playing';
     });
     audio.addEventListener('pause', ()=>{
       btn.classList.remove('is-playing');
       btn.setAttribute('aria-pressed','false');
       btn.setAttribute('aria-label','브랜드 테마곡 재생');
-      if(label) label.textContent = 'Play Sound';
     });
   })();
 
