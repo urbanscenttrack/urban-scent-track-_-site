@@ -746,36 +746,50 @@
     .pill:hover, .btn-pill:hover, .notes-btn:hover{ transform:none; box-shadow:none; }
     .notes-btn:hover{ box-shadow:0 12px 30px -10px rgba(0,0,0,0.45); }
   }
-  /* ===== 데스크탑: Track 섹션 2단 레이아웃 (카드 왼쪽 / 텍스트 오른쪽, 한 화면에 담기도록) ===== */
+  /* ===== 데스크탑: Track 섹션 2단 레이아웃 (참고 HTML의 크기·간격을 그대로 반영, 카드는 기존 크기 유지) ===== */
   @media (min-width:761px){
     .track-section{ padding:150px 24px; }
     .track-inner{
       display:grid;
-      grid-template-columns:271px minmax(360px,520px);
-      grid-template-rows:repeat(7,auto) 1fr;
-      align-items:center; justify-content:center;
-      column-gap:140px; row-gap:0;
-      width:auto; max-width:1160px; margin:0 auto;
-      min-height:calc(100vh - 300px);
+      grid-template-columns:271px 1fr;
+      align-items:center;
+      column-gap:clamp(48px,7vw,120px); row-gap:0;
+      width:100%; max-width:1320px; margin:0 auto;
       text-align:left;
     }
 
     /* 카드는 원래 크기 그대로 유지 — 왼쪽 컬럼에 배치 */
-    .product-stage{ grid-column:1; grid-row:1/8; margin:0; justify-content:center; align-self:center; }
+    .product-stage{ grid-column:1; grid-row:1/9; margin:0; justify-content:center; align-self:center; }
 
-    .track-kicker{ grid-column:2; grid-row:1; }
+    .track-kicker{
+      grid-column:2; grid-row:1;
+      font-size:13px; font-weight:700; letter-spacing:0.08em; margin-top:0;
+    }
     .track-title{
       grid-column:2; grid-row:2;
-      font-size:clamp(2.6rem,4.6vw,4.3rem);
-      text-align:left; margin-top:10px;
+      font-size:clamp(2.75rem,6.4vw,4.75rem); font-weight:900; line-height:0.98; letter-spacing:-0.02em;
+      text-align:left; margin-top:18px;
     }
-    .track-tagline{ grid-column:2; grid-row:3; max-width:none; margin-top:16px; }
-    .track-tags{ grid-column:2; grid-row:4; margin-top:8px; }
-    .track-desc{ grid-column:2; grid-row:5; text-align:left; max-width:none; margin-top:28px; }
-    .track-music{ grid-column:2; grid-row:6; margin-top:16px; }
-    .buy-row{ grid-column:2; grid-row:7; justify-content:flex-start; flex-wrap:nowrap; margin-top:28px; }
+    .track-tagline{ grid-column:2; grid-row:3; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
+    .track-tags{ grid-column:2; grid-row:4; font-size:15px; margin-top:16px; }
+    .track-divider{ grid-column:2; grid-row:5; height:1px; background:currentColor; opacity:0.13; margin-top:28px; }
+    .track-desc{ grid-column:2; grid-row:6; text-align:left; font-size:16px; line-height:1.75; max-width:520px; margin-top:28px; }
+    .track-music{ grid-column:2; grid-row:7; font-size:15px; margin-top:26px; }
+    .buy-row{
+      grid-column:2; grid-row:8;
+      justify-content:flex-start; flex-wrap:nowrap; gap:14px; margin-top:30px;
+    }
     .buy-row .btn-pill, .buy-row .price-tag, .buy-row .price-note{ white-space:nowrap; }
-    .track-features{ grid-column:1/-1; grid-row:8; align-self:end; margin-top:0; }
+    .buy-row .price-tag{ font-size:30px; font-weight:800; }
+    .buy-row .price-note{ font-size:14px; }
+    .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
+    .track-features{
+      grid-column:1/-1; grid-row:9;
+      margin-top:clamp(48px,7vh,84px); padding-top:clamp(28px,4vh,40px);
+      gap:28px;
+    }
+    .tf-en{ font-size:0.72rem; }
+    .tf-kr{ font-size:0.81rem; }
 
     /* 카드 내부 노트/태그라인 가로 유지 */
     .vc-notes{ flex-wrap:nowrap; white-space:nowrap; }
@@ -838,13 +852,13 @@
 
   /* 낮은 화면(노트북)에서 한 단계 더 압축 */
   @media (min-width:761px) and (max-height:900px){
-    .track-section{ padding:120px 24px; }
-    .track-inner{ min-height:calc(100vh - 240px); }
-    .track-title{ font-size:clamp(2.2rem,3.8vw,3.4rem); margin-top:6px; }
-    .track-tagline{ margin-top:10px; }
-    .track-tags{ margin-top:6px; }
-    .track-desc{ margin-top:18px; }
-    .track-music{ margin-top:12px; }
+    .track-section{ padding:100px 24px; }
+    .track-title{ font-size:clamp(2.2rem,3.8vw,3.2rem); margin-top:10px; }
+    .track-tagline{ margin-top:12px; }
+    .track-tags{ margin-top:8px; }
+    .track-divider{ margin-top:16px; }
+    .track-desc{ margin-top:16px; }
+    .track-music{ margin-top:14px; }
     .buy-row{ margin-top:20px; }
     .track-features{ padding-top:20px; }
   }
@@ -950,6 +964,7 @@
     <h2 class="track-title reveal d1">city citrus</h2>
     <p class="track-tagline reveal d1">Fresh citrus layered over calm woods.</p>
     <p class="track-tags reveal d1">#상큼한향 #시트러스향 #우디향</p>
+    <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
       <div class="product-shadow"></div>
@@ -1007,6 +1022,7 @@
     <h2 class="track-title reveal d1">clean cotton</h2>
     <p class="track-tagline reveal d1">Clean cotton with soft white musk.</p>
     <p class="track-tags reveal d1">#깨끗한향 #포근한향 #비누향</p>
+    <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
       <div class="product-shadow"></div>
@@ -1064,6 +1080,7 @@
     <h2 class="track-title reveal d1">concrete forest</h2>
     <p class="track-tagline reveal d1">Where the city meets the forest.</p>
     <p class="track-tags reveal d1">#호텔향 #우디향 #숲향</p>
+    <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
       <div class="product-shadow"></div>
