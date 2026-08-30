@@ -545,6 +545,7 @@
   .track-music b{ font-weight:700; opacity:1; }
 
   .buy-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center; }
+  .price-row{ display:flex; align-items:baseline; gap:8px; }
   .price-tag{ font-size:1.4rem; font-weight:700; }
   .price-note{ font-size:0.72rem; opacity:0.6; }
   .btn-pill{
@@ -704,12 +705,18 @@
     .intro-caption{ margin-top:20px; font-size:0.94rem; }
 
     .track-section{ min-height:auto; padding:96px 20px; }
-    .track-inner{ gap:30px; }
-    .track-tagline{ font-size:1rem; }
-    .track-tags{ font-size:0.8rem; }
+    /* 카드 위 텍스트 블록(제목/한줄소개/해시태그)은 한 세트로 묶어 촘촘하게, 그 아래(카드/설명/버튼)는 기존 간격 유지 */
+    .track-inner{ gap:0; }
+    .track-kicker{ margin-top:0; }
+    .track-title{ margin-top:10px; }
+    .track-tagline{ font-size:1rem; margin-top:8px; }
+    .track-tags{ font-size:0.8rem; margin-top:8px; }
+    .track-divider{ margin-top:30px; }
+    .product-stage{ margin-top:30px; }
     .track-desc{ display:none; }
     .notes-desc{ display:block; }
-    .track-music{ font-size:0.82rem; }
+    .track-music{ font-size:0.82rem; margin-top:30px; }
+    .buy-row{ margin-top:30px; }
 
     .vinyl-card{ width:243px; padding:24px 20px 22px; border-radius:24px; }
     .vc-vinyl-wrap{ width:123px; height:123px; margin:14px 0; }
@@ -1024,8 +1031,10 @@
     <p class="track-music reveal d3">어울리는 음악 — <b>밝고 경쾌한 플레이리스트</b></p>
 
     <div class="buy-row reveal d3">
-      <span class="price-tag">₩16,900</span>
-      <span class="price-note">2 piece set</span>
+      <div class="price-row">
+        <span class="price-tag">₩16,900</span>
+        <span class="price-note">2 piece set</span>
+      </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="SMARTSTORE_TRACK01" target="_blank" rel="noopener">Shop Track 01</a>
         <a class="btn-pill outline" href="/play01">Track 01 음악 듣기 ↗</a>
@@ -1066,8 +1075,10 @@
     <p class="track-music reveal d3">어울리는 음악 — <b>부드럽고 편안한 플레이리스트</b></p>
 
     <div class="buy-row reveal d3">
-      <span class="price-tag">₩16,900</span>
-      <span class="price-note">2 piece set</span>
+      <div class="price-row">
+        <span class="price-tag">₩16,900</span>
+        <span class="price-note">2 piece set</span>
+      </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="SMARTSTORE_TRACK02" target="_blank" rel="noopener">Shop Track 02</a>
         <a class="btn-pill outline" href="/play02">Track 02 음악 듣기 ↗</a>
@@ -1108,8 +1119,10 @@
     <p class="track-music reveal d3">어울리는 음악 — <b>도시적인 그루브와 자연의 여유가 공존하는 플레이리스트</b></p>
 
     <div class="buy-row reveal d3">
-      <span class="price-tag">₩16,900</span>
-      <span class="price-note">2 piece set</span>
+      <div class="price-row">
+        <span class="price-tag">₩16,900</span>
+        <span class="price-note">2 piece set</span>
+      </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="SMARTSTORE_TRACK03" target="_blank" rel="noopener">Shop Track 03</a>
         <a class="btn-pill outline" href="/play03">Track 03 음악 듣기 ↗</a>
