@@ -751,29 +751,15 @@
     .track-section{ padding:150px 24px; }
     .track-inner{
       display:grid;
-      grid-template-columns:minmax(290px,320px) minmax(360px,480px);
-      align-items:center; justify-content:center;
-      column-gap:96px; row-gap:0;
-      width:auto; max-width:1160px; margin:0 auto;
+      grid-template-columns:271px 1fr;
+      align-items:center;
+      column-gap:48px; row-gap:0;
+      width:100%; max-width:1400px; margin:0 auto;
       text-align:left;
     }
 
-    /* 카드는 살짝만 확대 — 비율 고정을 풀어 내부 콘텐츠가 카드 밖으로 넘치지 않도록 함 */
+    /* 카드는 원래 크기 그대로 유지 — 왼쪽 컬럼에 배치 */
     .product-stage{ grid-column:1; grid-row:1/8; margin:0; justify-content:center; align-self:center; }
-    .vinyl-card{
-      width:300px; aspect-ratio:auto; height:auto;
-      padding:30px 27px 29px; border-radius:31px;
-    }
-    .vc-brand{ font-size:0.78rem; }
-    .vc-title{ font-size:1.72rem; margin-top:3px; }
-    .vc-vinyl-wrap{ width:156px; height:156px; margin:18px 0; }
-    .vc-notes{ font-size:0.95rem; gap:9px; }
-    .vc-divider{ width:38px; height:2px; margin:13px 0; }
-    .vc-tagline{ font-size:0.82rem; }
-    .vc-slider{ padding-top:20px; gap:11px; }
-    .vc-slider .lab{ font-size:0.69rem; }
-    .vc-slider .knob{ width:14px; height:14px; }
-    .notes-btn{ font-size:0.78rem; padding:12px 20px; top:-15px; right:-20px; }
 
     .track-kicker{ grid-column:2; grid-row:1; }
     .track-title{
@@ -785,7 +771,8 @@
     .track-tags{ grid-column:2; grid-row:4; margin-top:8px; }
     .track-desc{ grid-column:2; grid-row:5; text-align:left; max-width:none; margin-top:26px; }
     .track-music{ grid-column:2; grid-row:6; margin-top:16px; }
-    .buy-row{ grid-column:2; grid-row:7; justify-content:flex-start; margin-top:26px; }
+    .buy-row{ grid-column:2; grid-row:7; justify-content:flex-start; flex-wrap:nowrap; margin-top:26px; }
+    .buy-row .btn-pill{ white-space:nowrap; }
     .track-features{ grid-column:1/-1; grid-row:8; margin-top:150px; }
 
     /* 카드 내부 노트/태그라인 가로 유지 */
