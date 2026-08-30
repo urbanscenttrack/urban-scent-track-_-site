@@ -568,6 +568,16 @@
   .tf-en{ font-size:0.66rem; font-weight:800; letter-spacing:0.03em; text-transform:lowercase; opacity:0.55; white-space:nowrap; }
   .tf-kr{ font-size:0.8rem; font-weight:600; opacity:0.9; line-height:1.35; }
 
+  /* ---------------- features band (full collection 진입 전 독립 섹션, 흰 배경) ---------------- */
+  .features-band{
+    background:var(--white); color:var(--near-black);
+    padding:64px 24px;
+  }
+  .features-band .track-features{
+    max-width:1320px; margin:0 auto;
+    border-top:none; padding-top:0; margin-top:0;
+  }
+
   /* ---------------- bundle ---------------- */
   .bundle{
     background:var(--black); padding:150px 24px; text-align:center; position:relative; overflow:hidden;
@@ -714,6 +724,7 @@
 
     .track-features{ grid-template-columns:repeat(2,1fr); gap:22px 14px; margin-top:44px; padding-top:26px; }
     .tf-en{ white-space:normal; }
+    .features-band{ padding:56px 20px; }
 
     .bundle{ padding:96px 20px; }
     .bundle p{ font-size:0.95rem; max-width:100%; }
@@ -804,13 +815,12 @@
     .buy-row .price-note{ font-size:14px; }
     .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
     .track-features{
-      grid-column:1/-1; grid-row:11; align-self:end;
       grid-template-columns:repeat(4,1fr);
-      margin-top:0; padding-top:clamp(28px,4vh,40px);
       gap:28px;
     }
     .tf-en{ font-size:0.72rem; }
     .tf-kr{ font-size:0.81rem; }
+    .features-band{ padding:88px 24px; }
 
     /* 카드 내부 노트/태그라인 가로 유지 */
     .vc-notes{ flex-wrap:nowrap; white-space:nowrap; }
@@ -887,7 +897,6 @@
     .track-desc{ margin-top:16px; }
     .track-music{ margin-top:14px; }
     .buy-row{ margin-top:20px; }
-    .track-features{ padding-top:20px; }
   }
   /* ===== 모바일 전용 줄바꿈 (데스크탑에서는 무시) ===== */
   .m-br{ display:none; }
@@ -1023,24 +1032,6 @@
       </div>
     </div>
 
-    <div class="track-features reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1083,24 +1074,6 @@
       </div>
     </div>
 
-    <div class="track-features reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1143,23 +1116,27 @@
       </div>
     </div>
 
-    <div class="track-features reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
+  </div>
+</section>
+
+<!-- FEATURES BAND -->
+<section class="features-band">
+  <div class="track-features reveal">
+    <div class="track-feature">
+      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
+      <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
+    </div>
+    <div class="track-feature">
+      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
+      <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
+    </div>
+    <div class="track-feature">
+      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
+      <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
+    </div>
+    <div class="track-feature">
+      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+      <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
     </div>
   </div>
 </section>
