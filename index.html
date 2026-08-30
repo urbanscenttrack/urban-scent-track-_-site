@@ -748,7 +748,7 @@
   }
   /* ===== 데스크탑: Track 섹션 2단 레이아웃 (참고 HTML의 크기·간격을 그대로 반영, 카드는 기존 크기 유지) ===== */
   @media (min-width:761px){
-    .track-section{ padding:150px 24px; }
+    .track-section{ padding:150px 24px 110px; }
     .track-inner{
       display:grid;
       grid-template-columns:271px 1fr;
@@ -756,7 +756,7 @@
       align-items:center;
       column-gap:clamp(48px,7vw,120px); row-gap:0;
       width:100%; max-width:1320px; margin:0 auto;
-      min-height:calc(100vh - 300px);
+      min-height:calc(100vh - 260px);
       text-align:left;
     }
 
@@ -786,11 +786,10 @@
     .buy-row .price-note{ font-size:14px; }
     .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
     .track-features{
-      grid-column:1/-1; grid-row:9; align-self:end; justify-self:center;
-      grid-template-columns:repeat(4,auto); justify-content:center;
-      width:fit-content; margin:0 auto;
+      grid-column:1/-1; grid-row:9; align-self:end;
+      grid-template-columns:repeat(4,1fr);
       margin-top:0; padding-top:clamp(28px,4vh,40px);
-      gap:28px 56px;
+      gap:28px;
     }
     .tf-en{ font-size:0.72rem; }
     .tf-kr{ font-size:0.81rem; }
@@ -856,8 +855,8 @@
 
   /* 낮은 화면(노트북)에서 한 단계 더 압축 */
   @media (min-width:761px) and (max-height:900px){
-    .track-section{ padding:100px 24px; }
-    .track-inner{ min-height:calc(100vh - 200px); }
+    .track-section{ padding:100px 24px 90px; }
+    .track-inner{ min-height:calc(100vh - 190px); }
     .track-title{ font-size:clamp(2.2rem,3.8vw,3.2rem); margin-top:10px; }
     .track-tagline{ margin-top:12px; }
     .track-tags{ margin-top:8px; }
