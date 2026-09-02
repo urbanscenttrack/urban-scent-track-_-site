@@ -128,6 +128,7 @@
 </script>
 
 <link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width:760px)">
+<link rel="preload" as="image" href="assets/hero-desktop.webp" media="(min-width:761px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -677,7 +678,6 @@
     }
     .hero-arrow{ font-size:1.3rem; }
 
-    .hero-video{ display:none; }
     .hero-outro{ padding-bottom:9vh; }
 
     /* 서브 텍스트도 데스크탑처럼 화면엔 숨기되 검색엔진용으로 DOM에는 유지 (하단 intro 섹션에 동일 설명이 이미 있음) */
@@ -878,17 +878,13 @@
   }
   @media (min-width:761px){
     .hero{
-      background:#070707;
+      background:#070707 url('assets/hero-desktop.webp') center/cover no-repeat;
       color:#fff;
       justify-content:center;
     }
     .hero::before{
       content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
       background:linear-gradient(180deg, rgba(7,7,7,0.5) 0%, rgba(7,7,7,0.05) 20%, rgba(7,7,7,0.05) 68%, rgba(7,7,7,0.7) 100%);
-    }
-    .hero-video{
-      display:block; position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; z-index:-1;
     }
     .hero-inner{ position:relative; z-index:1; flex:1; }
     .hero-spotlight, .hero-top{ display:none; }
@@ -964,10 +960,6 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-spotlight" aria-hidden="true"></div>
-
-  <video class="hero-video" muted playsinline autoplay aria-hidden="true">
-    <source src="assets/hero-video.mp4" type="video/mp4" media="(min-width:761px)">
-  </video>
 
   <div class="hero-outro" id="heroOutro">
     <div class="hero-outro-word" aria-hidden="true">
@@ -1389,31 +1381,16 @@
     window.addEventListener('resize', place);
   })();
 
-  // 히어로: 데스크탑은 영상 재생 후 지정 지점에서 브랜드명 타이핑 & 정지, 모바일은 사진 배경이라 바로 표시
+  // 히어로: 정적 이미지 배경 위에 브랜드명이 0.7초 뒤 타이핑되고, 이후 계속 그대로 유지
   (function(){
-    const video = document.querySelector('.hero-video');
     const outro = document.getElementById('heroOutro');
     const outroText = document.getElementById('heroOutroText');
     if(!outro || !outroText) return;
 
     const FULL_TEXT = 'urbanscenttrack';
-    const isDesktop = window.matchMedia('(min-width:761px)').matches;
-
-    // 모바일: 영상 없이 사진 배경이므로 워드마크를 바로 표시
-    if(!isDesktop){
-      outroText.textContent = FULL_TEXT;
-      outro.classList.add('is-visible');
-      return;
-    }
-
-    if(!video) return;
-    video.playbackRate = 1.5;
-
     const TYPE_INTERVAL_MS = 90;
-    // 재생 시작 후 7초(실제 체감 시간)에 브랜드명 타이핑 시작 → 이후 계속 그대로 유지
-    const START_TYPING_AFTER_MS = 7000;
+    const START_TYPING_AFTER_MS = 700;
     let typingStarted = false;
-    let timerArmed = false;
 
     function startTyping(){
       if(typingStarted) return;
@@ -1423,25 +1400,18 @@
       const timer = setInterval(()=>{
         i++;
         outroText.textContent = FULL_TEXT.slice(0, i);
-        if(i >= FULL_TEXT.length) clearInterval(timer);
+        if(i >= FULL_TEXT.length) clearInterval(timer);  // 다 찍히면 멈춘 채로 유지
       }, TYPE_INTERVAL_MS);
     }
 
-    function armTimer(){
-      if(timerArmed) return;
-      timerArmed = true;
-      setTimeout(startTyping, START_TYPING_AFTER_MS);
+    // 모션 최소화 설정을 쓰는 사용자는 애니메이션 없이 바로 표시
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      outroText.textContent = FULL_TEXT;
+      outro.classList.add('is-visible');
+      return;
     }
 
-    // 실제 재생이 시작된 시점부터 7초를 잰다
-    if(!video.paused && video.currentTime > 0) armTimer();
-    video.addEventListener('playing', armTimer, { once:true });
-
-    // 영상은 별도로 멈추지 않고 끝까지 재생된 뒤 마지막 프레임에서 정지(loop 없음).
-    // 자동재생이 막히는 등 예외 상황에서도 워드마크는 반드시 나오도록 보강.
-    video.addEventListener('ended', startTyping);
-    // 자동재생이 3초 안에 시작되지 않으면(정책 차단 등) 그때부터라도 타이머를 건다
-    setTimeout(armTimer, 3000);
+    setTimeout(startTyping, START_TYPING_AFTER_MS);
   })();
 
   // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
