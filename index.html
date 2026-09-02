@@ -1390,7 +1390,20 @@
     const FULL_TEXT = 'urbanscenttrack';
     const TYPE_INTERVAL_MS = 90;
     const START_TYPING_AFTER_MS = 700;
+    const isDesktop = window.matchMedia('(min-width:761px)').matches;
     let typingStarted = false;
+
+    function showInstantly(){
+      outroText.textContent = FULL_TEXT;
+      outro.classList.add('is-visible');
+    }
+
+    // 모바일: 기존과 동일하게 워드마크를 바로 표시 (타이핑 없음)
+    // 모션 최소화 설정을 쓰는 사용자도 애니메이션 없이 바로 표시
+    if(!isDesktop || window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      showInstantly();
+      return;
+    }
 
     function startTyping(){
       if(typingStarted) return;
@@ -1402,13 +1415,6 @@
         outroText.textContent = FULL_TEXT.slice(0, i);
         if(i >= FULL_TEXT.length) clearInterval(timer);  // 다 찍히면 멈춘 채로 유지
       }, TYPE_INTERVAL_MS);
-    }
-
-    // 모션 최소화 설정을 쓰는 사용자는 애니메이션 없이 바로 표시
-    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-      outroText.textContent = FULL_TEXT;
-      outro.classList.add('is-visible');
-      return;
     }
 
     setTimeout(startTyping, START_TYPING_AFTER_MS);
