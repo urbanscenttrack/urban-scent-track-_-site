@@ -141,9 +141,13 @@
     --white:#ffffff;
     --grey:#86868b;
     --grey-light:#f5f5f7;
+    /* 트랙 컬러 기준 = 트랙 상세페이지 제목·버튼에 쓴 포인트 컬러(track1/2/3-accent)로 통일.
+       track1은 원래 색이 이미 accent와 같아 변경 없음. track2·track3는 기존 파스텔/네온이
+       accent보다 흐려서 여기 맞춰 더 진하게 조정 — pill 점, SCENT NOTES 점, Collection 미니카드가
+       전부 이 값을 참조하므로 여기만 바꾸면 사이트 전체 색이 한 기준으로 맞춰짐 */
     --track1a:#ff5f2e; --track1b:#ffb37a; --track1-ink:#2b0f00;
-    --track2a:#7fd0f2; --track2b:#e3f4fd; --track2-ink:#0a2c3d;
-    --track3a:#91ff29; --track3b:#e6ffb3; --track3-ink:#1a2b0a;
+    --track2a:#1f9bd6; --track2b:#8fd4ef; --track2-ink:#ffffff;
+    --track3a:#4c9a1c; --track3b:#a8d97e; --track3-ink:#ffffff;
     --vc1:#ff4f22; --vc2:#29b6e8; --vc3:#91ff29;
     /* 데스크탑 트랙 페이지 포인트 컬러(제목·버튼 전용) — 흰/아이보리 배경 위에서도 또렷하게 보이도록
        원래 그라디언트보다 진하게 조정 (특히 track2·track3는 파스텔/네온이라 배경용 채도를 그대로 쓰면 대비가 약함) */
@@ -605,7 +609,7 @@
   .bundle-stage .mini:nth-child(2){ transform:translateY(-14px); z-index:2; }
   .bundle-stage .mini:nth-child(3){ transform:rotate(6deg) translateY(10px); }
   .bundle-stage .m1{ background:linear-gradient(160deg,var(--track1a),var(--track1b)); color:var(--track1-ink); }
-  .bundle-stage .m2{ background:linear-gradient(160deg,var(--track2a),#dfeef3); color:#0e2530; }
+  .bundle-stage .m2{ background:linear-gradient(160deg,var(--track2a),var(--track2b)); color:var(--track2-ink); }
   .bundle-stage .m3{ background:linear-gradient(160deg,var(--track3a),var(--track3b)); color:var(--track3-ink); }
   .bundle-meta{ font-size:0.8rem; color:var(--grey); margin-bottom:34px; }
   .bundle-meta b{ color:var(--white); }
