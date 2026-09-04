@@ -145,6 +145,12 @@
     --track2a:#7fd0f2; --track2b:#e3f4fd; --track2-ink:#0a2c3d;
     --track3a:#91ff29; --track3b:#e6ffb3; --track3-ink:#1a2b0a;
     --vc1:#ff4f22; --vc2:#29b6e8; --vc3:#91ff29;
+    /* 데스크탑 트랙 페이지 포인트 컬러(제목·버튼 전용) — 흰/아이보리 배경 위에서도 또렷하게 보이도록
+       원래 그라디언트보다 진하게 조정 (특히 track2·track3는 파스텔/네온이라 배경용 채도를 그대로 쓰면 대비가 약함) */
+    --track1-accent:#ff5f2e;
+    --track2-accent:#1f9bd6;
+    --track3-accent:#4c9a1c;
+    --ivory:#faf7f1;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -775,6 +781,19 @@
   /* ===== 데스크탑: Track 섹션 2단 레이아웃 (참고 HTML의 크기·간격을 그대로 반영, 카드는 기존 크기 유지) ===== */
   @media (min-width:761px){
     .track-section{ padding:150px 24px 110px; }
+    /* 배경은 트랙마다 다른 원색 그라디언트 대신 아이보리 하나로 통일 — 유치해 보이는 걸 방지하고,
+       대신 제목과 Shop 버튼에만 트랙 포인트 컬러를 줘서 구분. 경계에는 그 색의 얇은 라인만 추가.
+       (모바일은 요청 범위 밖이라 기존 원색 그라디언트 그대로 유지) */
+    .t1, .t2, .t3{ background:var(--ivory); color:var(--near-black); }
+    .t1{ border-top:4px solid var(--track1-accent); }
+    .t2{ border-top:4px solid var(--track2-accent); }
+    .t3{ border-top:4px solid var(--track3-accent); }
+    .t1 .track-title{ color:var(--track1-accent); }
+    .t2 .track-title{ color:var(--track2-accent); }
+    .t3 .track-title{ color:var(--track3-accent); }
+    .t1 .btn-pill.dark{ background:var(--track1-accent); }
+    .t2 .btn-pill.dark{ background:var(--track2-accent); }
+    .t3 .btn-pill.dark{ background:var(--track3-accent); }
     .track-inner{
       display:grid;
       /* 바깥 두 칸의 비율로 카드+텍스트 묶음의 좌우 위치를 잡음.
