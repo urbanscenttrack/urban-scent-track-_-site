@@ -713,6 +713,17 @@
     .intro-caption{ margin-top:20px; font-size:0.94rem; }
 
     .track-section{ min-height:auto; padding:96px 20px; }
+    /* 데스크탑과 동일하게: 배경은 아이보리로 통일하고 제목·Shop 버튼에만 트랙 포인트 컬러, 섹션 위쪽엔 그 색 라인 */
+    .t1, .t2, .t3{ background:var(--ivory); color:var(--near-black); }
+    .t1{ border-top:4px solid var(--track1-accent); }
+    .t2{ border-top:4px solid var(--track2-accent); }
+    .t3{ border-top:4px solid var(--track3-accent); }
+    .t1 .track-title{ color:var(--track1-accent); }
+    .t2 .track-title{ color:var(--track2-accent); }
+    .t3 .track-title{ color:var(--track3-accent); }
+    .t1 .btn-pill.dark{ background:var(--track1-accent); }
+    .t2 .btn-pill.dark{ background:var(--track2-accent); }
+    .t3 .btn-pill.dark{ background:var(--track3-accent); }
     /* 카드 위 텍스트 블록(제목/한줄소개/해시태그)은 한 세트로 묶어 촘촘하게, 그 아래(카드/설명/버튼)는 기존 간격 유지 */
     .track-inner{ gap:0; }
     .track-kicker{ margin-top:0; }
