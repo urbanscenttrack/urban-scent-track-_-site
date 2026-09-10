@@ -310,8 +310,6 @@
     overflow:hidden;
   }
   .hero-inner{ max-width:1320px; margin:0 auto; width:100%; }
-  /* 히어로 영상은 데스크탑 전용 (모바일은 사진 배경 유지) */
-  .hero-video{ display:none; }
 
   /* Pixar 램프처럼 이리저리 무언가를 찾듯 떠도는 빛 (hero-inner 위치 기준에는 영향 없도록 음수 z-index만 사용) */
   .hero-spotlight{
@@ -920,7 +918,7 @@
     .track-desc{ white-space:nowrap; }
   }
 
-  /* ===== 히어로: 영상 배경 (데스크탑/모바일 각각 breakpoint에서 display 지정) ===== */
+  /* ===== 히어로: 정적 사진 배경 (데스크탑/모바일 각각 breakpoint에서 display 지정) ===== */
   .hero-outro{
     position:absolute; inset:0;
     z-index:2; text-align:center; pointer-events:none;
@@ -951,11 +949,6 @@
     .hero::before{
       content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
       background:linear-gradient(180deg, rgba(7,7,7,0.5) 0%, rgba(7,7,7,0.05) 20%, rgba(7,7,7,0.05) 68%, rgba(7,7,7,0.7) 100%);
-    }
-    /* 영상은 배경 이미지 위에 겹쳐 재생 → 로드 전에는 이미지가 보이므로 빈 화면이 없음 */
-    .hero-video{
-      display:block; position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; z-index:-1;
     }
     .hero-inner{ position:relative; z-index:1; flex:1; }
     .hero-spotlight, .hero-top{ display:none; }
@@ -1031,12 +1024,6 @@
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-spotlight" aria-hidden="true"></div>
-
-  <!-- 영상 로드 전 첫 화면은 .hero의 배경 이미지가 담당(데스크탑 전용).
-       poster 속성은 display:none이어도 모바일까지 내려받으므로 쓰지 않음 -->
-  <video class="hero-video" muted playsinline autoplay preload="auto" aria-hidden="true">
-    <source src="assets/hero-video.mp4" type="video/mp4" media="(min-width:761px)">
-  </video>
 
   <div class="hero-outro" id="heroOutro">
     <div class="hero-outro-word" aria-hidden="true">
@@ -1469,7 +1456,7 @@
     window.addEventListener('resize', place);
   })();
 
-  // 히어로: 정적 이미지 배경 위에 브랜드명이 0.7초 뒤 타이핑되고, 이후 계속 그대로 유지
+  // 히어로: 정적 이미지 배경 위에 브랜드명이 1초 뒤 타이핑되고, 이후 계속 그대로 유지
   (function(){
     const outro = document.getElementById('heroOutro');
     const outroText = document.getElementById('heroOutroText');
@@ -1477,7 +1464,7 @@
 
     const FULL_TEXT = 'urbanscenttrack';
     const TYPE_INTERVAL_MS = 90;
-    const START_TYPING_AFTER_MS = 700;
+    const START_TYPING_AFTER_MS = 1000;
     const isDesktop = window.matchMedia('(min-width:761px)').matches;
     let typingStarted = false;
 
