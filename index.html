@@ -553,7 +553,7 @@
     font-size:0.88rem; line-height:1.7; color:#3a3a3c;
   }
 
-  /* ---------------- 추석 선물세트 팝업 (페이지 진입 시 1회) ---------------- */
+  /* ---------------- 추석 선물세트 팝업 (페이지 맨 아래까지 스크롤 시 1회) ---------------- */
   .promo-modal{
     position:fixed; inset:0; z-index:300;
     display:none; align-items:center; justify-content:center; padding:20px;
@@ -1584,12 +1584,13 @@
   document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeNotes(); });
 </script>
 
-<!-- 추석 선물세트 팝업: 페이지 진입 시 살짝 뒤에 자동으로 뜨고, "오늘 하루 보지 않기" 누르면 자정까지 다시 안 뜸 -->
+<!-- 추석 선물세트 팝업: 페이지 맨 아래까지 스크롤하면 뜨고, "오늘 하루 보지 않기" 누르면 자정까지 다시 안 뜸 -->
 <script>
   (function(){
     var promo = document.getElementById('promoModal');
     if(!promo) return;
     var HIDE_KEY = 'ust_promo_chuseok_hide_until';
+    var shown = false;
 
     function isHidden(){
       try{
@@ -1606,10 +1607,18 @@
       }catch(e){}
       closePromo();
     }
-
-    if(!isHidden()){
-      setTimeout(function(){ promo.classList.add('open'); }, 900);
+    function maybeShowAtBottom(){
+      if(shown || isHidden()) return;
+      var scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 4);
+      if(scrolledToBottom){
+        shown = true;
+        promo.classList.add('open');
+        window.removeEventListener('scroll', maybeShowAtBottom);
+      }
     }
+
+    window.addEventListener('scroll', maybeShowAtBottom, { passive:true });
+    maybeShowAtBottom(); // 페이지가 처음부터 짧아 스크롤 없이 이미 바닥인 경우 대비
 
     document.getElementById('promoClose').addEventListener('click', closePromo);
     document.getElementById('promoHideToday').addEventListener('click', hideToday);
