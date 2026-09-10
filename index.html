@@ -924,8 +924,8 @@
     z-index:2; text-align:center; pointer-events:none;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
   }
-  .hero-outro-word{ opacity:0; transition:opacity .5s ease; }
-  .hero-outro.is-visible .hero-outro-word{ opacity:1; }
+  /* 페이지 열리자마자 바로 보이도록 페이드인 없이 처음부터 완전 불투명 */
+  .hero-outro-word{ opacity:1; }
   .hero-outro .audio-fab{ pointer-events:auto; }
   .hero-outro-text{
     font-size:clamp(2.4rem,7vw,5rem); font-weight:800; letter-spacing:-0.02em;
@@ -1456,43 +1456,17 @@
     window.addEventListener('resize', place);
   })();
 
-  // 히어로: 정적 이미지 배경 위에 브랜드명이 1초 뒤 타이핑되고, 이후 계속 그대로 유지
+  // 히어로: 정적 이미지 배경 위에 브랜드명을 진입 즉시 표시하고 계속 유지
   (function(){
     const outro = document.getElementById('heroOutro');
     const outroText = document.getElementById('heroOutroText');
     if(!outro || !outroText) return;
 
     const FULL_TEXT = 'urbanscenttrack';
-    const TYPE_INTERVAL_MS = 90;
-    const START_TYPING_AFTER_MS = 1000;
-    const isDesktop = window.matchMedia('(min-width:761px)').matches;
-    let typingStarted = false;
 
-    function showInstantly(){
-      outroText.textContent = FULL_TEXT;
-      outro.classList.add('is-visible');
-    }
-
-    // 모바일: 기존과 동일하게 워드마크를 바로 표시 (타이핑 없음)
-    // 모션 최소화 설정을 쓰는 사용자도 애니메이션 없이 바로 표시
-    if(!isDesktop || window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-      showInstantly();
-      return;
-    }
-
-    function startTyping(){
-      if(typingStarted) return;
-      typingStarted = true;
-      outro.classList.add('is-visible');
-      let i = 0;
-      const timer = setInterval(()=>{
-        i++;
-        outroText.textContent = FULL_TEXT.slice(0, i);
-        if(i >= FULL_TEXT.length) clearInterval(timer);  // 다 찍히면 멈춘 채로 유지
-      }, TYPE_INTERVAL_MS);
-    }
-
-    setTimeout(startTyping, START_TYPING_AFTER_MS);
+    // 데스크탑/모바일 모두 페이지 열리자마자 워드마크를 바로 표시 (타이핑 없음)
+    outroText.textContent = FULL_TEXT;
+    outro.classList.add('is-visible');
   })();
 
   // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
