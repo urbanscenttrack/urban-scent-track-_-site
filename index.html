@@ -453,44 +453,18 @@
   .track-tagline{ font-size:1.15rem; font-weight:500; opacity:0.78; max-width:460px; }
   .track-tags{ margin-top:10px; font-size:0.86rem; font-weight:500; opacity:0.6; letter-spacing:0.01em; }
 
-  /* product mock — big floating sachet card */
+  /* 실제 제품 사진 — 사진 자체에 그림자가 들어 있어 별도 CSS 그림자를 쓰지 않음 */
   .product-stage{
     position:relative; z-index:0; width:100%; display:flex; justify-content:center; margin:12px 0 6px;
   }
-  .product-shadow{
-    position:absolute; bottom:-6%; left:50%; transform:translateX(-50%);
-    width:64%; max-width:320px; height:32px;
-    background:radial-gradient(ellipse,rgba(0,0,0,0.32),transparent 72%);
-    filter:blur(10px); z-index:0; pointer-events:none;
-  }
+  .product-figure{ position:relative; z-index:1; }
+  .product-photo{ display:block; height:470px; width:auto; }
 
-  /* 실제 제품 사진(배경 제거 PNG) — 기존 카드와 같은 자리·같은 크기, 그림자도 기존 값 유지 */
-  .product-figure{
-    position:relative; z-index:1;
-    transition:transform .5s cubic-bezier(.16,1,.3,1);
-  }
-  .product-figure:hover{ transform:scale(1.03); }
-  /* 끈이 가려지지 않도록 버튼을 택 오른쪽 위 모서리 쪽으로 내려 배치 */
-  .product-figure .notes-btn{ top:15%; right:-20px; }
-  .product-photo{
-    display:block; height:430px; width:auto;
-    /* 투명 배경이라 box-shadow 대신 drop-shadow로 실루엣을 따라가게 함 */
-    filter:drop-shadow(0 50px 60px rgba(0,0,0,0.30)) drop-shadow(0 18px 26px rgba(0,0,0,0.20));
-  }
-
-  /* scent notes button + modal */
+  /* scent notes 버튼 — 구매 버튼 줄에 함께 놓이는 알약 버튼 */
   .notes-btn{
-    position:absolute; z-index:3;
-    top:-14px; right:-18px;
-    display:flex; align-items:center; gap:7px;
-    padding:11px 18px; border-radius:980px; border:none; cursor:pointer;
-    font-family:inherit; font-size:0.7rem; font-weight:800;
-    letter-spacing:0.06em; text-transform:uppercase;
-    background:#0c0c0a; color:#fff;
-    box-shadow:0 12px 30px -10px rgba(0,0,0,0.45);
-    transition:transform .25s ease, box-shadow .25s ease;
+    border:1.4px solid currentColor; background:transparent; color:inherit;
+    cursor:pointer; font-family:inherit;
   }
-  .notes-btn:hover{ transform:translateY(-2px) scale(1.04); box-shadow:0 16px 34px -10px rgba(0,0,0,0.5); }
   .notes-btn .plus{ font-size:0.95rem; font-weight:700; line-height:1; }
 
   .notes-modal{
@@ -523,7 +497,6 @@
     font-family:inherit;
   }
   .notes-close:hover{ background:rgba(7,7,7,0.12); }
-  @media (max-width:520px){ .notes-btn{ top:-12px; right:-6px; padding:10px 15px; font-size:0.65rem; } }
   .notes-desc{
     display:none; margin-top:20px; padding-top:18px;
     border-top:1px solid rgba(7,7,7,0.08);
@@ -760,7 +733,7 @@
     .track-music{ font-size:0.82rem; margin-top:30px; }
     .buy-row{ margin-top:30px; }
 
-    .product-photo{ height:386px; }
+    .product-photo{ height:420px; }
 
     .buy-row{ flex-direction:column; gap:12px; width:100%; }
     /* 데스크탑용 버튼 래퍼 — 모바일에서는 기존처럼 세로로 쌓이게 */
@@ -796,16 +769,14 @@
     .intro{ padding:80px 18px; }
     .track-section{ padding:80px 18px; }
     .track-title{ letter-spacing:-0.035em; }
-    .product-photo{ height:min(358px,96vw); }
+    .product-photo{ height:min(390px,104vw); }
     .bundle-stage .mini{ width:84px; margin-left:-14px; }
     .price-tag{ font-size:1.25rem; }
   }
 
   /* --- 터치 기기: hover 잔상 제거 --- */
   @media (hover:none){
-    .product-figure:hover{ transform:none; }
-    .pill:hover, .btn-pill:hover, .notes-btn:hover{ transform:none; box-shadow:none; }
-    .notes-btn:hover{ box-shadow:0 12px 30px -10px rgba(0,0,0,0.45); }
+    .pill:hover, .btn-pill:hover{ transform:none; box-shadow:none; }
   }
   /* ===== 데스크탑: Track 섹션 2단 레이아웃 (참고 HTML의 크기·간격을 그대로 반영, 카드는 기존 크기 유지) ===== */
   @media (min-width:761px){
@@ -1070,10 +1041,8 @@
     <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
-      <div class="product-shadow"></div>
       <div class="product-figure">
-        <button class="notes-btn" data-track="1" type="button">scent notes <span class="plus">+</span></button>
-        <img class="product-photo" src="assets/product-01.webp" width="630" height="1028" loading="lazy"
+        <img class="product-photo" src="assets/product-01.webp" width="803" height="1039" loading="lazy"
              alt="Track 01 city citrus 차량용 종이 샤쉐 실제 제품 — 레몬·샌달우드·파출리">
       </div>
     </div>
@@ -1088,6 +1057,7 @@
       </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13753483365" target="_blank" rel="noopener">Shop Track 01</a>
+        <button class="btn-pill notes-btn" data-track="1" type="button">scent notes <span class="plus">+</span></button>
         <a class="btn-pill outline" href="/play01">Track 01 음악 듣기 ↗</a>
       </div>
     </div>
@@ -1124,10 +1094,8 @@
     <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
-      <div class="product-shadow"></div>
       <div class="product-figure">
-        <button class="notes-btn" data-track="2" type="button">scent notes <span class="plus">+</span></button>
-        <img class="product-photo" src="assets/product-02.webp" width="659" height="1094" loading="lazy"
+        <img class="product-photo" src="assets/product-02.webp" width="803" height="1039" loading="lazy"
              alt="Track 02 clean cotton 차량용 종이 샤쉐 실제 제품 — 민트·코튼·화이트머스크">
       </div>
     </div>
@@ -1142,6 +1110,7 @@
       </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13753483366" target="_blank" rel="noopener">Shop Track 02</a>
+        <button class="btn-pill notes-btn" data-track="2" type="button">scent notes <span class="plus">+</span></button>
         <a class="btn-pill outline" href="/play02">Track 02 음악 듣기 ↗</a>
       </div>
     </div>
@@ -1178,10 +1147,8 @@
     <div class="track-divider reveal d1"></div>
 
     <div class="product-stage reveal d2">
-      <div class="product-shadow"></div>
       <div class="product-figure">
-        <button class="notes-btn" data-track="3" type="button">scent notes <span class="plus">+</span></button>
-        <img class="product-photo" src="assets/product-03.webp" width="649" height="1073" loading="lazy"
+        <img class="product-photo" src="assets/product-03.webp" width="803" height="1039" loading="lazy"
              alt="Track 03 concrete forest 차량용 종이 샤쉐 실제 제품 — 그린뱀부·오크·모스">
       </div>
     </div>
@@ -1196,6 +1163,7 @@
       </div>
       <div class="buy-cta">
         <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13753483367" target="_blank" rel="noopener">Shop Track 03</a>
+        <button class="btn-pill notes-btn" data-track="3" type="button">scent notes <span class="plus">+</span></button>
         <a class="btn-pill outline" href="/play03">Track 03 음악 듣기 ↗</a>
       </div>
     </div>
