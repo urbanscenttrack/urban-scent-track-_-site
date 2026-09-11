@@ -738,12 +738,12 @@
 
     /* 모바일: 제품 3% 축소 + 그림자를 뺀 '택' 기준으로 가운데 정렬
        (사진 오른쪽에 그림자 여백이 있어 그대로 두면 택이 왼쪽으로 치우쳐 보임) */
-    .product-photo{ height:auto; width:min(417px,97%); transform:translateX(9.8%); }
+    .product-photo{ height:auto; width:min(417px,88vw); transform:translateX(9.8%); }
 
     .buy-row{ flex-direction:column; gap:12px; width:100%; }
     /* 데스크탑용 버튼 래퍼 — 모바일에서는 기존처럼 세로로 쌓이게 */
     .buy-cta{ display:flex; flex-direction:column; align-items:center; gap:12px; width:100%; }
-    .btn-pill{ width:100%; max-width:280px; justify-content:center; padding:14px 24px; }
+    .btn-pill{ width:100%; max-width:238px; justify-content:center; padding:13px 20px; }
 
     .track-features{ grid-template-columns:repeat(2,1fr); gap:22px 14px; margin-top:44px; padding-top:26px; }
     .tf-en{ white-space:normal; }
@@ -774,7 +774,7 @@
     .intro{ padding:80px 18px; }
     .track-section{ padding:80px 18px; }
     .track-title{ letter-spacing:-0.035em; }
-    .product-photo{ height:auto; width:97%; transform:translateX(9.8%); }
+    .product-photo{ height:auto; width:88vw; transform:translateX(9.8%); }
     .bundle-stage .mini{ width:84px; margin-left:-14px; }
     .price-tag{ font-size:1.25rem; }
   }
@@ -804,7 +804,7 @@
       /* 바깥 두 칸의 비율로 카드+텍스트 묶음의 좌우 위치를 잡음.
          수학적 정중앙은 1fr/1fr이지만, 왼쪽 카드가 시각적으로 무거워
          광학 보정으로 오른쪽으로 약 40px 이동 (왼쪽 칸을 더 크게) */
-      grid-template-columns:1.4fr 480px auto 1fr;
+      grid-template-columns:1fr 420px auto 1fr;
       grid-template-rows:0.68fr repeat(8,auto) 1.32fr auto;
       align-items:center;
       column-gap:0; row-gap:0;
@@ -818,6 +818,8 @@
       grid-column:2; grid-row:2/10; margin:0;
       justify-content:flex-start; align-self:center;
     }
+    /* 사진 왼쪽에 들어있는 빈 여백(약 13%)만큼 당겨, 택의 왼쪽 모서리가 묶음의 왼쪽 끝이 되도록 */
+    .product-stage .product-photo{ transform:translateX(-12.95%); }
     /* 카드와 텍스트 사이 간격은 텍스트쪽 padding으로 (grid item margin은 트랙을 좁혀 카드가 겹침) */
     .track-kicker, .track-title, .track-tagline, .track-tags,
     .track-desc, .track-music, .buy-row{
@@ -1047,7 +1049,7 @@
 
     <div class="product-stage reveal d2">
       <div class="product-figure">
-        <img class="product-photo" src="assets/product-01.webp" width="982" height="966" loading="lazy"
+        <img class="product-photo" src="assets/product-01.webp" width="973" height="966" loading="lazy"
              alt="Track 01 city citrus 차량용 종이 샤쉐 실제 제품 — 레몬·샌달우드·파출리">
       </div>
     </div>
@@ -1100,7 +1102,7 @@
 
     <div class="product-stage reveal d2">
       <div class="product-figure">
-        <img class="product-photo" src="assets/product-02.webp" width="1009" height="966" loading="lazy"
+        <img class="product-photo" src="assets/product-02.webp" width="973" height="966" loading="lazy"
              alt="Track 02 clean cotton 차량용 종이 샤쉐 실제 제품 — 민트·코튼·화이트머스크">
       </div>
     </div>
@@ -1153,7 +1155,7 @@
 
     <div class="product-stage reveal d2">
       <div class="product-figure">
-        <img class="product-photo" src="assets/product-03.webp" width="982" height="966" loading="lazy"
+        <img class="product-photo" src="assets/product-03.webp" width="973" height="966" loading="lazy"
              alt="Track 03 concrete forest 차량용 종이 샤쉐 실제 제품 — 그린뱀부·오크·모스">
       </div>
     </div>
