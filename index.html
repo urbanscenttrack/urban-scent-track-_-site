@@ -839,8 +839,9 @@
     .track-tags{ grid-column:3; grid-row:5; font-size:15px; margin-top:16px; }
     /* 선을 짧게 — 전체 폭으로 늘어나면 오른쪽이 무거워 보여 가운데 정렬이 깨져 보임.
        padding이 아닌 margin으로 밀어야 함 (border-box라 padding을 주면 선 자체가 0px가 됨) */
+    /* 선이 오른쪽 끝까지 뻗으면 묶음의 오른쪽이 무거워져 가운데 정렬이 깨져 보임 → 텍스트 칸 폭까지만 */
     .track-divider{
-      grid-column:3/-1; grid-row:6;
+      grid-column:3; grid-row:6;
       width:auto; height:1px; margin-top:28px;
       margin-left:clamp(16px,2.2vw,40px);
       background:rgba(0,0,0,0.12); opacity:1;
