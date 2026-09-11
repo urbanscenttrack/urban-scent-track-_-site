@@ -1469,17 +1469,31 @@
     window.addEventListener('resize', place);
   })();
 
-  // 히어로: 정적 이미지 배경 위에 브랜드명을 진입 즉시 표시하고 계속 유지
+  // 히어로: 페이지 열리는 즉시(딜레이 없이) 브랜드명이 타이핑되고, 다 찍히면 그대로 계속 유지
   (function(){
     const outro = document.getElementById('heroOutro');
     const outroText = document.getElementById('heroOutroText');
     if(!outro || !outroText) return;
 
     const FULL_TEXT = 'urbanscenttrack';
+    const TYPE_INTERVAL_MS = 62;   // 15글자 × 62ms ≒ 0.9초면 다 찍힘
 
-    // 데스크탑/모바일 모두 페이지 열리자마자 워드마크를 바로 표시 (타이핑 없음)
-    outroText.textContent = FULL_TEXT;
     outro.classList.add('is-visible');
+
+    // 모션 최소화 설정을 쓰는 사용자는 애니메이션 없이 바로 전체 표시
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      outroText.textContent = FULL_TEXT;
+      return;
+    }
+
+    // 첫 글자는 첫 페인트에 바로 보이게 하고(빈 화면 구간 없음) 이어서 타이핑
+    outroText.textContent = FULL_TEXT.slice(0, 1);
+    let i = 1;
+    const timer = setInterval(() => {
+      i++;
+      outroText.textContent = FULL_TEXT.slice(0, i);
+      if(i >= FULL_TEXT.length) clearInterval(timer);  // 다 찍히면 멈춘 채로 유지
+    }, TYPE_INTERVAL_MS);
   })();
 
   // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
