@@ -551,7 +551,7 @@
     font-size:0.88rem; line-height:1.7; color:#3a3a3c;
   }
 
-  /* ---------------- 추석 선물세트 팝업 (페이지 맨 아래까지 스크롤 시 1회) ---------------- */
+  /* ---------------- 추석 선물세트 팝업 (FULL COLLECTION 섹션 도달 시 1회) ---------------- */
   .promo-modal{
     position:fixed; inset:0; z-index:300;
     display:none; align-items:center; justify-content:center; padding:20px;
@@ -1558,7 +1558,7 @@
   document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeNotes(); });
 </script>
 
-<!-- 추석 선물세트 팝업: 페이지 맨 아래까지 스크롤하면 뜨고, "오늘 하루 보지 않기" 누르면 자정까지 다시 안 뜸 -->
+<!-- 추석 선물세트 팝업: FULL COLLECTION("세 트랙을, 한 번에.") 섹션에 도달하면 뜨고, "오늘 하루 보지 않기" 누르면 자정까지 다시 안 뜸 -->
 <script>
   (function(){
     var promo = document.getElementById('promoModal');
@@ -1581,18 +1581,37 @@
       }catch(e){}
       closePromo();
     }
-    function maybeShowAtBottom(){
+    // FULL COLLECTION("세 트랙을, 한 번에.") 섹션이 화면에 들어오면 1회 노출
+    var trigger = document.getElementById('bundle');
+
+    function openPromo(){
       if(shown || isHidden()) return;
-      var scrolledToBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 4);
-      if(scrolledToBottom){
-        shown = true;
-        promo.classList.add('open');
-        window.removeEventListener('scroll', maybeShowAtBottom);
-      }
+      shown = true;
+      promo.classList.add('open');
     }
 
-    window.addEventListener('scroll', maybeShowAtBottom, { passive:true });
-    maybeShowAtBottom(); // 페이지가 처음부터 짧아 스크롤 없이 이미 바닥인 경우 대비
+    if(trigger && 'IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            openPromo();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      io.observe(trigger);
+    } else if(trigger){
+      // IntersectionObserver 미지원 브라우저 대비
+      var onScroll = function(){
+        var r = trigger.getBoundingClientRect();
+        if(r.top < window.innerHeight * 0.65 && r.bottom > 0){
+          openPromo();
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+      window.addEventListener('scroll', onScroll, { passive:true });
+      onScroll();
+    }
 
     document.getElementById('promoClose').addEventListener('click', closePromo);
     document.getElementById('promoHideToday').addEventListener('click', hideToday);
