@@ -588,27 +588,46 @@
 
   /* ---------------- giving (기부 안내) ---------------- */
   .giving{
+    position:relative; overflow:hidden;
     background:var(--ivory); color:var(--near-black);
-    padding:132px 24px; text-align:center;
     border-top:1px solid rgba(7,7,7,0.08);
   }
-  .giving-inner{ max-width:780px; margin:0 auto; }
+  /* 아이들 사진 — 오른쪽에 깔고 왼쪽은 배경색으로 서서히 사라지게 */
+  .giving-photo{
+    position:absolute; top:0; right:0; bottom:0; width:47%;
+    background:url('assets/giving-kids.webp') right 38%/cover no-repeat;
+  }
+  .giving-photo::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--ivory) 0%, rgba(250,249,246,0.55) 26%, rgba(250,249,246,0) 55%);
+  }
+  .giving-inner{
+    position:relative; z-index:1;
+    max-width:1320px; margin:0 auto;
+    padding:150px 24px; text-align:left;
+  }
+  .giving-body{ max-width:600px; }
   .giving-kicker{
     font-size:0.78rem; font-weight:700; letter-spacing:0.14em;
     text-transform:uppercase; opacity:0.45;
   }
   .giving-lead{
-    margin-top:24px;
-    font-size:clamp(1.3rem,2.5vw,1.85rem); font-weight:600;
-    line-height:1.6; letter-spacing:-0.02em; word-break:keep-all;
+    margin-top:20px;
+    font-size:clamp(0.95rem,1.35vw,1.06rem); font-weight:600;
+    line-height:1.7; letter-spacing:-0.01em; word-break:keep-all;
   }
   .giving-lead b{ font-weight:800; }
+  .giving-head{
+    margin-top:26px;
+    font-size:clamp(1.5rem,2.9vw,2.3rem); font-weight:700;
+    line-height:1.45; letter-spacing:-0.03em; word-break:keep-all;
+  }
   .giving-sub{
-    margin-top:24px; color:#5c5c59;
-    font-size:clamp(0.9rem,1.4vw,1rem); line-height:1.9; word-break:keep-all;
+    margin-top:16px; color:#5c5c59;
+    font-size:clamp(0.9rem,1.35vw,1.02rem); line-height:1.8; word-break:keep-all;
   }
   .giving-note{
-    display:inline-block; margin-top:34px; padding-top:16px;
+    display:inline-block; margin-top:30px; padding-top:14px;
     border-top:1px solid rgba(7,7,7,0.12);
     font-size:0.8rem; line-height:1.7; color:#8a8a86; word-break:keep-all;
   }
@@ -779,8 +798,18 @@
     /* 모바일: 트랙별 반복 대신 맨 아래 흰 배경 섹션 하나만 */
     .track-features.in-track{ display:none; }
     .features-band{ padding:56px 20px; }
-    .giving{ padding:88px 20px; }
-    .giving-sub{ margin-top:18px; }
+    .giving-photo{
+      position:relative; width:100%; height:auto; aspect-ratio:5/4;
+      background-position:center 28%;
+    }
+    .giving-photo::after{
+      background:linear-gradient(180deg, rgba(250,249,246,0) 55%, var(--ivory) 100%);
+    }
+    .giving-inner{ padding:26px 20px 84px; text-align:center; }
+    .giving-body{ max-width:100%; }
+    .giving-head{ margin-top:20px; }
+    .giving-sub{ margin-top:14px; }
+    .giving-note{ margin-top:26px; }
 
     .bundle{ padding:96px 20px; }
     .bundle p{ font-size:0.95rem; max-width:100%; }
@@ -1251,11 +1280,15 @@
 
 <!-- GIVING -->
 <section class="giving">
-  <div class="giving-inner reveal">
-    <div class="giving-kicker">Giving Back</div>
-    <p class="giving-lead">판매 순이익의 <b>10%</b>는 저소득층 아이들의 교육과 주거환경 개선을 위해 기부됩니다.</p>
-    <p class="giving-sub">모든 아이들의 가능성이 더 넓은 미래로 이어질 수 있도록,<br>어반그리드와 urbanscenttrack, 그리고 고객이 함께합니다.</p>
-    <p class="giving-note">누적 기부 금액은 매달 이곳에 업데이트될 예정입니다.</p>
+  <div class="giving-photo" role="img" aria-label="환하게 웃고 있는 두 아이"></div>
+  <div class="giving-inner">
+    <div class="giving-body reveal">
+      <div class="giving-kicker">Giving Back</div>
+      <p class="giving-lead">판매 순이익의 <b>10%</b>는 저소득층 아이들의<br class="d-br"> 교육과 주거환경 개선을 위해 기부됩니다.</p>
+      <p class="giving-head">모든 아이들의 가능성이<br>더 넓은 미래로 이어질 수 있도록,</p>
+      <p class="giving-sub">어반그리드와 urban scent track, 그리고 고객이 함께합니다.</p>
+      <p class="giving-note">누적 기부 금액은 매달 이곳에 업데이트될 예정입니다.</p>
+    </div>
   </div>
 </section>
 
