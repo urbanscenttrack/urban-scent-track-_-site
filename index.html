@@ -800,6 +800,8 @@
     .t2 .btn-pill.dark{ background:var(--track2-accent); }
     .t3 .btn-pill.dark{ background:var(--track3-accent); }
     .track-inner{
+      /* 광학 보정: 왼쪽 사진이 시각적으로 무거워 수학적 정중앙보다 살짝 오른쪽에 두는 게 안정적 */
+      transform:translateX(clamp(0px,(100vw - 1200px) * 0.1,34px));
       display:grid;
       /* 바깥 두 칸의 비율로 카드+텍스트 묶음의 좌우 위치를 잡음.
          수학적 정중앙은 1fr/1fr이지만, 왼쪽 카드가 시각적으로 무거워
@@ -863,6 +865,7 @@
     .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
     /* 데스크탑: 원래 설계대로 트랙 섹션마다 하단에 배치 */
     .track-features.in-track{
+      transform:translateX(calc(-1 * clamp(0px,(100vw - 1200px) * 0.1,34px)));
       grid-column:1/-1; grid-row:11; align-self:end;
       grid-template-columns:repeat(4,1fr);
       margin-top:0; padding-top:clamp(28px,4vh,40px);
