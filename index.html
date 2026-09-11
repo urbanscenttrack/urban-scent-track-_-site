@@ -735,7 +735,9 @@
     .track-music{ font-size:0.82rem; margin-top:30px; }
     .buy-row{ margin-top:30px; }
 
-    .product-photo{ height:auto; width:min(430px,100%); }
+    /* 모바일: 제품 3% 축소 + 그림자를 뺀 '택' 기준으로 가운데 정렬
+       (사진 오른쪽에 그림자 여백이 있어 그대로 두면 택이 왼쪽으로 치우쳐 보임) */
+    .product-photo{ height:auto; width:min(417px,97%); transform:translateX(9.8%); }
 
     .buy-row{ flex-direction:column; gap:12px; width:100%; }
     /* 데스크탑용 버튼 래퍼 — 모바일에서는 기존처럼 세로로 쌓이게 */
@@ -771,7 +773,7 @@
     .intro{ padding:80px 18px; }
     .track-section{ padding:80px 18px; }
     .track-title{ letter-spacing:-0.035em; }
-    .product-photo{ height:auto; width:100%; }
+    .product-photo{ height:auto; width:97%; transform:translateX(9.8%); }
     .bundle-stage .mini{ width:84px; margin-left:-14px; }
     .price-tag{ font-size:1.25rem; }
   }
