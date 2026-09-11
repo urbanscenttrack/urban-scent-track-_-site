@@ -1480,15 +1480,14 @@
     if(!outro || !outroText) return;
 
     const FULL_TEXT = 'urbanscenttrack';
-    const TYPE_INTERVAL_MS = 62;   // 15글자 × 62ms ≒ 0.9초면 다 찍힘
+
+    // 타이핑은 화면이 움직이는 애니메이션이 아니라 글자가 차례로 나타나는 방식이라
+    // "동작 줄이기"(iOS 손쉬운 사용) 설정에서도 그대로 보여주되, 더 빠르게 끝냄.
+    // (깜빡이는 커서만 CSS에서 정지 — 깜빡임은 민감할 수 있음)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const TYPE_INTERVAL_MS = reduceMotion ? 34 : 62;   // 15글자 ≒ 0.5초 / 0.9초
 
     outro.classList.add('is-visible');
-
-    // 모션 최소화 설정을 쓰는 사용자는 애니메이션 없이 바로 전체 표시
-    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-      outroText.textContent = FULL_TEXT;
-      return;
-    }
 
     // 첫 글자는 첫 페인트에 바로 보이게 하고(빈 화면 구간 없음) 이어서 타이핑
     outroText.textContent = FULL_TEXT.slice(0, 1);
