@@ -254,8 +254,7 @@ button{ font:inherit; color:inherit; }
 .tracklist .go{ text-align:right; }
 
 .chapter{ position:relative; overflow:hidden; }
-.chapter.c1, .chapter.c3{ background:var(--cream); }
-.chapter.c2{ background:var(--stone); }
+.chapter.c1, .chapter.c2, .chapter.c3{ background:var(--cream); }
 .chapter-bar{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding-block:18px; border-bottom:1px solid var(--line); }
 .chapter-bar .lbl:nth-child(2){ font-size:12px; }
 .chapter-bar .lbl:last-child{ text-align:right; color:var(--mute); }
@@ -263,10 +262,13 @@ button{ font:inherit; color:inherit; }
 
 /* 샤쉐 뒤: LP 홈 무늬(브랜드 모티프, 색 없이) */
 .plate{ grid-column:1 / span 6; position:relative; display:grid; place-items:center; aspect-ratio:1 / 1; max-height:640px; }
-.plate::before, .plate::after{ content:none; display:none; }
+.plate::before{ content:none; display:none; }
+.plate{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.plate::after{ content:""; display:block; width:clamp(150px,15vw,220px); height:16px; margin-top:22px; border-radius:50%; background:radial-gradient(closest-side, rgba(60,44,34,.22), rgba(60,44,34,0)); animation:shadowSway 7s ease-in-out infinite alternate; }
+@keyframes shadowSway{ from{ transform:translateX(-4px) scaleX(.98); } to{ transform:translateX(4px) scaleX(1.02); } }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .plate img{ position:relative; z-index:1; width:clamp(200px,21vw,300px); height:auto; transform-origin:50% 2%; animation:sway 7s ease-in-out infinite alternate;
-  filter:drop-shadow(0 30px 34px rgba(60,44,34,.2)) drop-shadow(0 5px 7px rgba(60,44,34,.08)); }
+  filter:drop-shadow(0 18px 22px rgba(60,44,34,.16)) drop-shadow(0 3px 5px rgba(60,44,34,.08)); }
 @keyframes sway{ from{ transform:rotate(-1.6deg); } to{ transform:rotate(1.8deg); } }
 .track-copy{ grid-column:8 / span 5; display:flex; flex-direction:column; gap:18px; }
 .track.flip .plate{ grid-column:7 / span 6; grid-row:1; }
@@ -617,7 +619,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   <section class="chapter c2" id="track02" data-tone="light">
     <div class="wrap">
       <div class="chapter-bar"><span class="lbl">Track 02 / 03</span><span class="lbl">Clean Cotton</span><span class="lbl">Soft &amp; slow</span></div>
-        <article class="track grid12 flip">
+        <article class="track grid12">
       <div class="plate rv"><img src="assets/sachet-02.webp" alt="Clean Cotton 차량용 종이 샤쉐" loading="lazy" width="560" height="857"></div>
       <div class="track-copy rv">
         <span class="lbl">Track 02 — Soft &amp; slow</span>
