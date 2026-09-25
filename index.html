@@ -263,14 +263,7 @@ button{ font:inherit; color:inherit; }
 
 /* 샤쉐 뒤: LP 홈 무늬(브랜드 모티프, 색 없이) */
 .plate{ grid-column:1 / span 6; position:relative; display:grid; place-items:center; aspect-ratio:1 / 1; max-height:640px; }
-.plate::before{ content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:50%;
-  background:
-    radial-gradient(circle, rgba(46,38,36,.16) 0 12.5%, transparent 12.8%),
-    radial-gradient(circle, transparent 0 16%, rgba(46,38,36,.14) 16.2% 16.5%, transparent 16.8%),
-    repeating-radial-gradient(circle, rgba(46,38,36,.11) 0 .6px, transparent 1.2px 9px);
-  -webkit-mask:radial-gradient(circle, #000 0 70%, transparent 71%); mask:radial-gradient(circle, #000 0 70%, transparent 71%);
-  animation:spin 38s linear infinite; }
-.plate::after{ content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:50%; border:1px solid rgba(46,38,36,.16); transform:scale(.99); }
+.plate::before, .plate::after{ content:none; display:none; }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .plate img{ position:relative; z-index:1; width:clamp(200px,21vw,300px); height:auto; transform-origin:50% 2%; animation:sway 7s ease-in-out infinite alternate;
   filter:drop-shadow(0 30px 34px rgba(60,44,34,.2)) drop-shadow(0 5px 7px rgba(60,44,34,.08)); }
@@ -423,6 +416,94 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   .giving-note{ justify-self:center; }
   .faq-a{ padding-right:0; }
   .section-top .lbl{ font-size:10px; white-space:nowrap; }
+
+  /* ===== 모바일 최적화 (데스크탑 영향 없음) ===== */
+  /* 히어로: 룸미러 샤쉐 제거, 스크롤 길이 단축, 글자 축소 */
+  .hang{ display:none; }
+  .hero{ height:360vh; }
+  #idea{ top:280vh !important; }
+  .hero h1{ font-size:clamp(46px,13.5vw,60px); }
+  .t-left{ top:30%; }
+  .t-right{ top:46%; }
+  .hero-caption p{ font-size:16px; }
+  .selectors{ gap:14px; font-size:11.5px; }
+  .idea h2{ font-size:clamp(26px,7.4vw,32px); line-height:1.25; }
+  .idea-top{ margin-bottom:22px; }
+  .idea-top .kr{ display:none; }
+  .idea-side p{ font-size:13.5px; }
+
+  /* 공통 글자·여백 */
+  .section{ padding-block:72px; }
+  .after-top{ margin-top:32px; }
+  .h2{ font-size:clamp(30px,8.4vw,36px); }
+  .body{ font-size:14px; line-height:1.8; }
+  .lead{ font-size:16.5px; }
+  .btn{ height:46px; padding:0 16px; font-size:13px; gap:14px; }
+  .dock-shop{ height:42px; padding:0 18px; font-size:12px; }
+  .dock-sound{ width:42px; height:42px; }
+
+  /* 트랙리스트 */
+  .tracklist-sec{ padding-block:72px 56px; }
+  .tracklist{ margin-top:32px; }
+  .tracklist .t{ font-size:19px; }
+  .tracklist .m{ font-size:10px; }
+  .tracklist .p{ font-size:12.5px; }
+
+  /* 트랙 챕터 */
+  .chapter-bar{ padding-block:14px; }
+  .chapter-bar .lbl{ font-size:10px; }
+  .track{ padding-block:20px 60px; }
+  .plate{ max-width:300px; }
+  .plate img{ width:min(42vw,170px); }
+  .track-copy{ gap:14px; }
+  .track-copy > .lbl{ display:none; }
+  .track-copy h3{ font-size:30px; }
+  .track-copy .en{ display:none; }
+  .track-copy .lead{ margin-top:0; }
+  .tags span{ padding:6px 10px; font-size:11.5px; }
+  .music{ font-size:13px; }
+  .music b{ width:26px; height:26px; }
+  .notes dl{ padding:14px 16px; }
+  .notes dl div{ grid-template-columns:56px 1fr; }
+  .notes dd{ font-size:12.5px; }
+  .buy{ padding-top:18px; }
+  .price{ font-size:21px; }
+  .buy-actions{ width:100%; }
+  .buy-actions .btn{ flex:1; }
+
+  /* 특징 띠 */
+  .details-band{ padding-block:36px; }
+  .detail{ padding-inline:14px; }
+  .detail .num{ font-size:24px; }
+  .detail p{ font-size:13.5px; }
+
+  /* 컬렉션 */
+  .collection-head .h2{ font-size:clamp(30px,8.4vw,36px); }
+  .trio{ margin-top:36px; }
+  .trio img{ width:78%; }
+  .trio strong{ font-size:13.5px; letter-spacing:-.04em; }
+  .trio .lbl{ font-size:9.5px; }
+  .collection-bar{ margin-top:36px; }
+  .collection-bar p{ font-size:15px; }
+  .collection-bar p span{ display:block; margin:6px 0 0; }
+
+  /* 기부 */
+  .giving-inner{ padding-block:20px 72px; }
+  .giving-lead{ font-size:14px; }
+  .giving-head{ font-size:22px; margin-top:20px; }
+  .giving-sub{ font-size:14px; }
+
+  /* FAQ */
+  .faq-grid > .h2{ font-size:28px; }
+  .faq-item summary{ grid-template-columns:30px 1fr 18px; font-size:15px; padding:18px 0; }
+  .faq-a{ padding:0 0 20px 42px; }
+  .faq-a p{ font-size:13.5px; }
+
+  /* 푸터 */
+  footer{ padding-block:72px calc(env(safe-area-inset-bottom,0px) + 88px); }
+  .footer-top h2{ font-size:clamp(40px,11.5vw,48px); }
+  .legal{ margin-top:48px; }
+  .legal p{ font-size:11.5px; }
 }
 @media (prefers-reduced-motion:reduce){
   *{ animation:none !important; transition:none !important; }
