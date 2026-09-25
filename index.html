@@ -39,7 +39,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://urbanscenttrack.com/">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#191412">
+<meta name="theme-color" content="#0d0d0d">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -101,29 +101,27 @@
 </script>
 
 <link rel="preload" as="image" href="assets/hero-windshield.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable.css">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/pretendard-subset.woff2" crossorigin>
 <style>
+@font-face{ font-family:'Pretendard'; src:url('assets/fonts/pretendard-subset.woff2') format('woff2'); font-weight:45 920; font-style:normal; font-display:swap; }
 /* ============================================================
    urban scent track — 한 가지 글꼴(넓은 산세리프), 적은 색.
    색은 샤쉐 제품에만 있다.
    ============================================================ */
 :root{
   color-scheme: light;
-  --ink:#2e2624;          /* 따뜻한 다크 브라운 */
-  --ink-2:#5b5250;
-  --mute:#8a817d;
-  --cream:#fbf6ee;
-  --line:rgba(46,38,36,.16);
-  --night:#191412;
-  --on-night:#f6efe4;
-  --on-night-2:rgba(246,239,228,.58);
-  --line-night:rgba(246,239,228,.14);
+  --ink:#111111;          /* 따뜻한 다크 브라운 */
+  --ink-2:#4a4a47;
+  --mute:#8b8a85;
+  --cream:#f3f1ec;
+  --line:rgba(17,17,17,.16);
+  --night:#0d0d0d;
+  --on-night:#f3f1ec;
+  --on-night-2:rgba(243,241,236,.58);
+  --line-night:rgba(243,241,236,.14);
 
-  --wide:'Archivo','Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
-  --kr:'Pretendard Variable',Pretendard,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --wide:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  --kr:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   --gut:clamp(20px,3.4vw,56px);
 }
 *{ box-sizing:border-box; }
@@ -145,7 +143,7 @@ button{ font:inherit; color:inherit; }
   padding:calc(env(safe-area-inset-top,0px) + 20px) var(--gut) 20px; color:#fff; transition:color .4s ease;
   font:600 12.5px/1 var(--wide); font-stretch:112%;
 }
-.nav::before{ content:""; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity .4s ease; background:rgba(247,242,234,.78); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2); border-bottom:1px solid rgba(46,38,36,.08); }
+.nav::before{ content:""; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity .4s ease; background:rgba(243,241,236,.78); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2); border-bottom:1px solid rgba(17,17,17,.08); }
 .nav.tone-light{ color:var(--ink); }
 .nav.tone-light::before{ opacity:1; }
 .nav-left, .nav-right{ display:flex; gap:28px; }
@@ -157,8 +155,8 @@ button{ font:inherit; color:inherit; }
 /* ---------- 하단 플로팅 (Shop + Sound) ---------- */
 .dock{ position:fixed; left:50%; bottom:calc(env(safe-area-inset-bottom,0px) + 22px); z-index:60; display:flex; gap:6px; transform:translate(-50%,24px); opacity:0; pointer-events:none; transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s ease; }
 .dock.show{ transform:translate(-50%,0); opacity:1; pointer-events:auto; }
-.dock-shop{ display:flex; align-items:center; white-space:nowrap; height:46px; padding:0 22px; border-radius:999px; background:#fff; color:var(--ink); font:600 13px/1 var(--wide); font-stretch:112%; box-shadow:0 8px 30px rgba(25,20,18,.16); }
-.dock-sound{ width:46px; height:46px; border-radius:50%; border:0; background:#fff; color:var(--ink); display:grid; place-items:center; cursor:pointer; box-shadow:0 8px 30px rgba(25,20,18,.16); }
+.dock-shop{ display:flex; align-items:center; white-space:nowrap; height:46px; padding:0 22px; border-radius:999px; background:#fff; color:var(--ink); font:600 13px/1 var(--wide); font-stretch:112%; box-shadow:0 8px 30px rgba(10,10,10,.16); }
+.dock-sound{ width:46px; height:46px; border-radius:50%; border:0; background:#fff; color:var(--ink); display:grid; place-items:center; cursor:pointer; box-shadow:0 8px 30px rgba(10,10,10,.16); }
 .eq{ display:flex; align-items:flex-end; gap:2px; height:12px; }
 .eq i{ width:2px; height:4px; background:currentColor; border-radius:1px; }
 .dock-sound[aria-pressed="true"] .eq i{ animation:eq .9s ease-in-out infinite; }
@@ -171,6 +169,7 @@ button{ font:inherit; color:inherit; }
 .hero{ position:relative; height:470vh; background:var(--night); color:#fff; }
 .stage{ position:sticky; top:0; height:100vh; height:100svh; min-height:560px; overflow:hidden; }
 .hero-img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 0%; will-change:transform,opacity; }
+.hero-img{ -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); -webkit-mask-composite:source-in; mask-image:linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-composite:intersect; }
 .photo-layer{ position:absolute; inset:0; will-change:transform,opacity; }
 .hang{ position:absolute; aspect-ratio:1024 / 1880; transform-origin:50% 0; animation:hangSway 5s ease-in-out infinite alternate; }
 .hang img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; opacity:0; z-index:1; }
@@ -179,11 +178,12 @@ button{ font:inherit; color:inherit; }
 @keyframes hangIn{ from{ opacity:0; } to{ opacity:1; } }
 @keyframes hangSway{ from{ transform:rotate(-2.4deg); } to{ transform:rotate(2.4deg); } }
 .shade-top{ position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,0) 24%,rgba(0,0,0,0) 62%,rgba(0,0,0,.48)); }
-.shade-city{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(25,20,18,.35),rgba(25,20,18,.62) 55%,rgba(25,20,18,.86)); opacity:0; }
+.shade-city{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,10,10,.35),rgba(10,10,10,.62) 55%,rgba(10,10,10,.86)); opacity:0; }
 .fade{ will-change:opacity; }
 .hero-topline{ position:absolute; left:var(--gut); right:var(--gut); top:calc(env(safe-area-inset-top,0px) + 88px); display:flex; justify-content:space-between; opacity:.85; }
-.hero h1{ position:absolute; inset:0; margin:0; pointer-events:none; font-weight:500; font-stretch:125%; letter-spacing:-.075em; line-height:.86; font-size:clamp(58px,9.6vw,168px); }
+.hero h1{ position:absolute; inset:0; margin:0; pointer-events:none; font-weight:500; font-stretch:125%; letter-spacing:-.045em; line-height:.86; font-size:clamp(58px,9.6vw,168px); }
 .hero h1 > span{ position:absolute; will-change:transform,opacity; }
+.hero h1 .soft{ position:static; color:rgba(255,255,255,.6); }
 .t-left{ left:var(--gut); top:29%; }
 .t-right{ right:var(--gut); top:47%; text-align:right; }
 .hero-caption{ position:absolute; left:var(--gut); bottom:118px; }
@@ -219,7 +219,7 @@ button{ font:inherit; color:inherit; }
 .section-top{ display:flex; justify-content:space-between; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--line); }
 .section-top .lbl{ white-space:nowrap; }
 .section-top .lbl:last-child{ color:var(--mute); }
-.h2{ margin:0; font-weight:500; font-stretch:112%; font-size:clamp(38px,4.8vw,74px); line-height:1.02; letter-spacing:-.06em; }
+.h2{ margin:0; font-weight:500; font-stretch:112%; font-size:clamp(38px,4.8vw,74px); line-height:1.02; letter-spacing:-.035em; }
 .h2.k{ font-family:var(--kr); font-stretch:normal; line-height:1.2; letter-spacing:-.05em; }
 .h2 .soft{ color:var(--mute); }
 .body{ margin:0; font:500 15px/1.85 var(--kr); color:var(--ink-2); letter-spacing:-.01em; }
@@ -233,7 +233,7 @@ button{ font:inherit; color:inherit; }
 .btn.line:hover{ background:var(--ink); color:var(--cream); }
 
 /* 01 TRACKS — 앨범 뒷면처럼: 어두운 트랙리스트 → 트랙마다 한 장(chapter) */
-:root{ --stone:#efe8dd; --stone-2:#e7dfd2; }
+:root{ --stone:#e9e7e1; --stone-2:#e2e0da; }
 .dark-band{ background:var(--night); color:var(--on-night); }
 .dark-band .section-top{ border-color:var(--line-night); }
 .dark-band .section-top .lbl:last-child{ color:var(--on-night-2); }
@@ -245,9 +245,9 @@ button{ font:inherit; color:inherit; }
 .tracklist-head p{ grid-column:9 / span 4; align-self:end; }
 .tracklist{ margin:clamp(48px,6vw,80px) 0 0; padding:0; list-style:none; border-top:1px solid var(--line-night); }
 .tracklist a{ display:grid; grid-template-columns:72px 1.3fr 1fr 1fr 120px 28px; align-items:center; gap:16px; padding:22px 0; border-bottom:1px solid var(--line-night); transition:padding .35s cubic-bezier(.2,.8,.2,1), background .35s ease; }
-.tracklist a:hover{ padding-inline:14px; background:rgba(246,239,228,.04); }
+.tracklist a:hover{ padding-inline:14px; background:rgba(243,241,236,.04); }
 .tracklist .n{ font:500 13px/1 var(--wide); font-stretch:112%; color:var(--on-night-2); font-variant-numeric:tabular-nums; }
-.tracklist .t{ font:500 clamp(22px,2.2vw,34px)/1 var(--wide); font-stretch:120%; letter-spacing:-.06em; }
+.tracklist .t{ font:500 clamp(22px,2.2vw,34px)/1 var(--wide); font-stretch:120%; letter-spacing:-.035em; }
 .tracklist .m{ font:700 11px/1.3 var(--wide); font-stretch:118%; text-transform:uppercase; color:var(--on-night-2); }
 .tracklist .k{ font:500 13.5px/1.4 var(--kr); color:var(--on-night-2); }
 .tracklist .p{ font:600 14px/1 var(--wide); font-stretch:112%; text-align:right; font-variant-numeric:tabular-nums; }
@@ -264,30 +264,30 @@ button{ font:inherit; color:inherit; }
 .plate{ grid-column:1 / span 6; position:relative; display:grid; place-items:center; aspect-ratio:1 / 1; max-height:640px; }
 .plate::before{ content:none; display:none; }
 .plate{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.plate::after{ content:""; display:block; width:clamp(150px,15vw,220px); height:16px; margin-top:22px; border-radius:50%; background:radial-gradient(closest-side, rgba(60,44,34,.22), rgba(60,44,34,0)); animation:shadowSway 7s ease-in-out infinite alternate; }
+.plate::after{ content:""; display:block; width:clamp(150px,15vw,220px); height:16px; margin-top:22px; border-radius:50%; background:radial-gradient(closest-side, rgba(20,20,20,.22), rgba(20,20,20,0)); animation:shadowSway 7s ease-in-out infinite alternate; }
 @keyframes shadowSway{ from{ transform:translateX(-4px) scaleX(.98); } to{ transform:translateX(4px) scaleX(1.02); } }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .plate img{ position:relative; z-index:1; width:clamp(200px,21vw,300px); height:auto; transform-origin:50% 2%; animation:sway 7s ease-in-out infinite alternate;
-  filter:drop-shadow(0 18px 22px rgba(60,44,34,.16)) drop-shadow(0 3px 5px rgba(60,44,34,.08)); }
+  filter:drop-shadow(0 18px 22px rgba(20,20,20,.16)) drop-shadow(0 3px 5px rgba(20,20,20,.08)); }
 @keyframes sway{ from{ transform:rotate(-1.6deg); } to{ transform:rotate(1.8deg); } }
 .track-copy{ grid-column:8 / span 5; display:flex; flex-direction:column; gap:18px; }
 .track.flip .plate{ grid-column:7 / span 6; grid-row:1; }
 .track.flip .track-copy{ grid-column:1 / span 5; grid-row:1; }
 .track-copy .lbl{ color:var(--mute); }
-.track-copy h3{ margin:0; font-weight:500; font-stretch:118%; font-size:clamp(38px,3.8vw,62px); line-height:1; letter-spacing:-.065em; }
+.track-copy h3{ margin:0; font-weight:500; font-stretch:118%; font-size:clamp(38px,3.8vw,62px); line-height:1; letter-spacing:-.04em; }
 .track-copy .en{ margin:-8px 0 0; font:500 14px/1.4 var(--wide); font-stretch:108%; color:var(--mute); }
 .track-copy .lead{ margin-top:10px; }
 .tags{ margin:0; display:flex; flex-wrap:wrap; gap:6px; }
-.tags span{ padding:7px 12px; border-radius:999px; background:rgba(46,38,36,.06); font:500 12.5px/1 var(--kr); color:var(--ink-2); }
+.tags span{ padding:7px 12px; border-radius:999px; background:rgba(17,17,17,.06); font:500 12.5px/1 var(--kr); color:var(--ink-2); }
 .music{ display:flex; align-items:center; gap:12px; font:500 14px/1.5 var(--kr); color:var(--ink-2); }
 .music b{ display:grid; place-items:center; width:30px; height:30px; flex:none; border-radius:50%; background:var(--ink); color:var(--cream); font-size:9px; padding-left:2px; }
 .music a{ color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
 .notes{ margin-top:4px; }
 .notes summary{ list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:12px; padding:4px 0; font:700 11px/1.35 var(--wide); font-stretch:118%; text-transform:uppercase; }
 .notes summary::-webkit-details-marker{ display:none; }
-.notes summary i{ display:grid; place-items:center; width:24px; height:24px; border-radius:50%; border:1px solid rgba(46,38,36,.3); font:400 15px/1 var(--wide); font-style:normal; transition:transform .3s ease, background .25s ease, color .25s ease; }
+.notes summary i{ display:grid; place-items:center; width:24px; height:24px; border-radius:50%; border:1px solid rgba(17,17,17,.3); font:400 15px/1 var(--wide); font-style:normal; transition:transform .3s ease, background .25s ease, color .25s ease; }
 .notes[open] summary i{ transform:rotate(45deg); background:var(--ink); color:var(--cream); border-color:var(--ink); }
-.notes dl{ margin:16px 0 0; display:grid; gap:10px; padding:18px 20px; background:rgba(46,38,36,.05); border-radius:14px; }
+.notes dl{ margin:16px 0 0; display:grid; gap:10px; padding:18px 20px; background:rgba(17,17,17,.05); border-radius:14px; }
 .notes dl div{ display:grid; grid-template-columns:70px 1fr; gap:12px; align-items:baseline; }
 .notes dt{ font:700 10px/1.6 var(--wide); font-stretch:118%; text-transform:uppercase; color:var(--mute); }
 .notes dd{ margin:0; font:500 13.5px/1.6 var(--wide); font-stretch:106%; }
@@ -301,7 +301,7 @@ button{ font:inherit; color:inherit; }
 .details-grid{ display:grid; grid-template-columns:repeat(4,1fr); }
 .detail{ display:grid; grid-template-columns:auto 1fr; gap:6px 18px; align-items:start; padding:6px clamp(16px,2vw,32px); border-left:1px solid var(--line-night); }
 .detail:first-child{ border-left:0; padding-left:0; }
-.detail .num{ grid-row:span 2; font:500 clamp(34px,3.2vw,50px)/.85 var(--wide); font-stretch:125%; letter-spacing:-.07em; color:var(--on-night); }
+.detail .num{ grid-row:span 2; font:500 clamp(34px,3.2vw,50px)/.85 var(--wide); font-stretch:125%; letter-spacing:-.04em; color:var(--on-night); }
 .detail .lbl{ color:var(--on-night-2); padding-top:2px; }
 .detail p{ margin:0; font:600 15px/1.45 var(--kr); letter-spacing:-.03em; }
 
@@ -309,12 +309,15 @@ button{ font:inherit; color:inherit; }
 .collection{ background:var(--stone); }
 .collection-head{ text-align:center; display:grid; justify-items:center; gap:18px; }
 .collection-head .h2{ font-size:clamp(40px,5.4vw,84px); }
-.collection-head .body{ max-width:46ch; }
+.collection-head .body{ max-width:none; }
+.set-desc span{ display:block; }
+.m-br{ display:none; }
+.set-desc span:first-child{ font-family:var(--wide); font-stretch:108%; color:var(--ink); margin-bottom:4px; }
 .trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,3vw,48px); max-width:1100px; margin:clamp(56px,7vw,100px) auto 0; }
 .trio a{ display:grid; justify-items:center; gap:22px; text-align:center; }
 .trio figure{ margin:0; position:relative; width:100%; display:grid; place-items:center; padding-bottom:28px; }
-.trio figure::after{ content:""; position:absolute; left:50%; bottom:6px; width:62%; height:16px; transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side, rgba(60,44,34,.2), transparent); }
-.trio img{ width:min(64.8%,207px); height:auto; transform-origin:50% 2%; transition:transform .8s cubic-bezier(.2,.8,.2,1); filter:drop-shadow(0 26px 30px rgba(60,44,34,.2)) drop-shadow(0 4px 6px rgba(60,44,34,.08)); }
+.trio figure::after{ content:""; position:absolute; left:50%; bottom:6px; width:62%; height:16px; transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side, rgba(20,20,20,.2), transparent); }
+.trio img{ width:min(64.8%,207px); height:auto; transform-origin:50% 2%; transition:transform .8s cubic-bezier(.2,.8,.2,1); filter:drop-shadow(0 26px 30px rgba(20,20,20,.2)) drop-shadow(0 4px 6px rgba(20,20,20,.08)); }
 .trio a:hover img{ transform:translateY(-8px) rotate(-1.5deg); }
 .trio .lbl{ color:var(--mute); }
 .trio strong{ display:block; margin-top:6px; font-weight:500; font-stretch:118%; font-size:clamp(20px,1.8vw,26px); letter-spacing:-.055em; }
@@ -327,7 +330,7 @@ button{ font:inherit; color:inherit; }
 /* 04 GIVING — 현재 사이트 구도: 오른쪽 사진이 배경색으로 스며듦 */
 .giving{ position:relative; overflow:hidden; background:var(--cream); }
 .giving-photo{ position:absolute; top:0; right:0; bottom:0; width:50%; background:url('assets/giving-kids.webp') right 38% / cover no-repeat; }
-.giving-photo::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--cream) 0%, rgba(251,246,238,.55) 26%, rgba(251,246,238,0) 58%); }
+.giving-photo::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--cream) 0%, rgba(243,241,236,.55) 26%, rgba(243,241,236,0) 58%); }
 .giving-inner{ position:relative; z-index:1; padding-block:clamp(120px,12vw,180px); }
 .giving-body{ max-width:700px; display:grid; gap:0; }
 .giving-body .lbl{ color:var(--mute); }
@@ -341,7 +344,7 @@ button{ font:inherit; color:inherit; }
 .faq-sec{ background:var(--stone); }
 .faq-grid > .h2{ grid-column:1 / span 4; font-size:clamp(32px,3.6vw,54px); }
 .faq-list{ grid-column:6 / span 7; }
-.faq-item{ border-bottom:1px solid rgba(46,38,36,.1); }
+.faq-item{ border-bottom:1px solid rgba(17,17,17,.1); }
 .faq-item summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:44px 1fr 20px; gap:12px; align-items:baseline; padding:22px 0; font:600 16px/1.5 var(--kr); letter-spacing:-.02em; }
 .faq-item summary::-webkit-details-marker{ display:none; }
 .faq-item summary i{ font:600 11px/1 var(--wide); font-style:normal; color:var(--mute); }
@@ -356,16 +359,69 @@ footer{ background:var(--night); color:var(--on-night); padding-block:clamp(96px
 footer .section-top{ border-color:var(--line-night); }
 footer .section-top .lbl:last-child{ color:var(--on-night-2); }
 .footer-top{ align-items:end; }
-.footer-top h2{ grid-column:1 / span 8; margin:0; font-weight:500; font-stretch:125%; font-size:clamp(48px,7vw,120px); line-height:.92; letter-spacing:-.08em; }
+.footer-top h2{ grid-column:1 / span 8; margin:0; font-weight:500; font-stretch:125%; font-size:clamp(48px,7vw,120px); line-height:.92; letter-spacing:-.045em; }
 .footer-links{ grid-column:10 / span 3; display:grid; gap:4px; }
 .footer-links a{ display:flex; justify-content:space-between; padding:10px 0; font:600 13.5px/1 var(--wide); font-stretch:110%; transition:padding .25s ease; }
 .footer-links a:hover{ padding-left:6px; }
 .legal{ display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-top:clamp(64px,8vw,112px); padding-top:24px; border-top:1px solid var(--line-night); }
 .legal p{ margin:0; font:500 12.5px/1.8 var(--kr); color:var(--on-night-2); }
 .legal a{ font:600 12.5px/1 var(--kr); }
-.wordmark{ margin-top:clamp(40px,6vw,88px); padding-inline:var(--gut); font-weight:500; font-stretch:125%; letter-spacing:-.08em; line-height:1.08; white-space:nowrap; text-align:center; font-size:calc((100vw - 2 * var(--gut)) / 9.5); color:var(--on-night); user-select:none; }
+.wordmark{ margin-top:clamp(40px,6vw,88px); padding-inline:var(--gut); font-weight:500; font-stretch:125%; letter-spacing:-.045em; line-height:1.08; white-space:nowrap; text-align:center; font-size:calc((100vw - 2 * var(--gut)) / 9.5); color:var(--on-night); user-select:none; }
 .footer-end{ display:flex; justify-content:space-between; gap:16px; margin-top:18px; color:var(--on-night-2); }
 
+
+/* 푸터: 줄 단위 / 글자 단위 등장 */
+.js .lines .ln{ display:block; overflow:hidden; padding-bottom:.08em; margin-bottom:-.08em; }
+.js .lines .ln > span{ display:block; transform:translateY(108%); transition:transform 1.05s cubic-bezier(.2,.8,.2,1); transition-delay:calc(var(--i,0) * 110ms); }
+.js .lines.in .ln > span{ transform:none; }
+.js .wordmark{ overflow:hidden; }
+.js .wordmark .ch{ display:inline-block; transform:translateY(105%); opacity:0; transition:transform 1s cubic-bezier(.2,.8,.2,1), opacity 1s ease; transition-delay:calc(var(--i,0) * 45ms); }
+.js .wordmark.in .ch{ transform:none; opacity:1; }
+
+/* ===== 요소·배경 애니메이션 ===== */
+/* A. 트랙리스트: 오른쪽에 반쯤 걸친 큰 LP가 천천히 회전 + 트랙마다 이퀄라이저 */
+.tracklist-sec{ position:relative; overflow:hidden; }
+.tracklist-sec .wrap{ position:relative; z-index:1; }
+.big-vinyl{ position:absolute; right:-18vw; top:50%; width:min(62vw,860px); aspect-ratio:1; transform:translateY(-50%); pointer-events:none; z-index:0; opacity:.55; }
+.big-vinyl i{ position:absolute; inset:0; border-radius:50%; animation:spin 24s linear infinite;
+  background:
+    radial-gradient(circle, #0d0d0d 0 3%, #2a2a2a 3.2% 16%, transparent 16.3%),
+    repeating-radial-gradient(circle, rgba(255,255,255,.045) 0 1px, transparent 1.5px 5px),
+    conic-gradient(from 20deg, rgba(255,255,255,.10), rgba(255,255,255,0) 12%, rgba(255,255,255,.07) 25%, rgba(255,255,255,0) 38%, rgba(255,255,255,.10) 50%, rgba(255,255,255,0) 62%, rgba(255,255,255,.07) 75%, rgba(255,255,255,0) 88%, rgba(255,255,255,.10)),
+    #141414; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.tracklist .n{ display:flex; align-items:center; gap:10px; }
+.eqb{ display:inline-flex; align-items:flex-end; gap:2px; height:12px; }
+.eqb b{ width:2px; height:3px; background:var(--on-night-2); border-radius:1px; animation:eqb 1.1s ease-in-out infinite; }
+.eqb b:nth-child(2){ animation-delay:-.35s; } .eqb b:nth-child(3){ animation-delay:-.7s; }
+.tracklist li:nth-child(2) .eqb b{ animation-duration:1.4s; } .tracklist li:nth-child(3) .eqb b{ animation-duration:.9s; }
+.tracklist a:hover .eqb b{ background:var(--on-night); }
+@keyframes eqb{ 0%,100%{ height:3px; } 50%{ height:12px; } }
+
+/* B. 제품 챕터: 가로등 불빛이 앞유리를 지나가듯, 빛줄기가 배경을 천천히 가로지름 */
+.chapter{ isolation:isolate; }
+.chapter::before{ content:""; position:absolute; top:-20%; bottom:-20%; left:-40%; width:42%; z-index:-1; pointer-events:none;
+  background:linear-gradient(100deg, rgba(17,17,17,0) 0%, rgba(17,17,17,.045) 30%, rgba(17,17,17,.075) 48%, rgba(255,255,255,.55) 53%, rgba(255,255,255,.75) 56%, rgba(255,255,255,0) 72%);
+  filter:blur(6px); transform:skewX(-14deg); animation:passLight 9s cubic-bezier(.45,0,.3,1) infinite; }
+.chapter.c2::before{ animation-delay:-3s; } .chapter.c3::before{ animation-delay:-6s; }
+.chapter::after{ content:""; position:absolute; inset:0; z-index:-2; pointer-events:none; background:radial-gradient(60% 70% at 26% 55%, rgba(17,17,17,.045), transparent 70%); }
+@keyframes passLight{ 0%{ left:-40%; } 55%{ left:110%; } 100%{ left:110%; } }
+
+/* C. 특징 띠: 도로 차선이 흘러가듯 */
+.details-band{ position:relative; overflow:hidden; }
+.details-band::after{ content:""; position:absolute; left:0; right:0; bottom:18px; height:2px; pointer-events:none;
+  background:repeating-linear-gradient(90deg, rgba(243,241,236,.28) 0 44px, transparent 44px 96px); background-size:96px 2px; animation:lane 1.6s linear infinite; }
+@keyframes lane{ to{ background-position:-96px 0; } }
+
+/* D. 컬렉션: 샤쉐 3개가 각자 다른 박자로 흔들림 */
+.trio img{ animation:sway 6s ease-in-out infinite alternate; }
+.trio a:nth-child(2) img{ animation-duration:7.2s; animation-delay:-2s; }
+.trio a:nth-child(3) img{ animation-duration:6.6s; animation-delay:-4s; }
+.trio a:hover img{ animation-play-state:paused; }
+
+/* E. 기부: 사진이 아주 천천히 다가옴 */
+.giving-photo{ animation:kenburns 22s ease-in-out infinite alternate; transform-origin:70% 40%; }
+@keyframes kenburns{ from{ transform:scale(1); } to{ transform:scale(1.08); } }
 /* 등장 */
 .js .rv{ opacity:0; transform:translateY(24px); transition:opacity 1.1s cubic-bezier(.2,.8,.2,1), transform 1.1s cubic-bezier(.2,.8,.2,1); }
 .js .rv.in{ opacity:1; transform:none; }
@@ -412,7 +468,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   .collection-bar{ border-radius:22px; padding:22px; }
   .collection-bar .btn{ width:100%; }
   .giving-photo{ position:relative; width:100%; aspect-ratio:5 / 4; background-position:center 28%; }
-  .giving-photo::after{ background:linear-gradient(180deg, rgba(251,246,238,0) 55%, var(--cream) 100%); }
+  .giving-photo::after{ background:linear-gradient(180deg, rgba(243,241,236,0) 55%, var(--cream) 100%); }
   .giving-inner{ padding-block:24px 96px; text-align:center; }
   .giving-body{ max-width:100%; justify-items:center; }
   .giving-note{ justify-self:center; }
@@ -420,8 +476,11 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   .section-top .lbl{ font-size:10px; white-space:nowrap; }
 
   /* ===== 모바일 최적화 (데스크탑 영향 없음) ===== */
+  .m-br{ display:inline; }
   /* 히어로: 룸미러 샤쉐 제거, 스크롤 길이 단축, 글자 축소 */
   .hang{ display:none; }
+  .big-vinyl{ width:120vw; right:-62vw; top:34%; opacity:.6; }
+  .hero-img{ -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image:linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
   .hero{ height:360vh; }
   #idea{ top:280vh !important; }
   .hero h1{ font-size:clamp(46px,13.5vw,60px); }
@@ -510,6 +569,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
 @media (prefers-reduced-motion:reduce){
   *{ animation:none !important; transition:none !important; }
   .js .rv{ opacity:1; transform:none; }
+  .js .lines .ln > span, .js .wordmark .ch{ opacity:1 !important; transform:none !important; }
   .idea > *{ opacity:1; }
   html{ scroll-behavior:auto; }
 }
@@ -548,7 +608,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
       <div class="shade-city" id="shade"></div>
       <div class="shade-top fade"></div>
       <div class="hero-topline fade"><span class="lbl">Scents for your everyday scenes</span><span class="lbl">Fragrance × Music</span></div>
-      <h1><span class="t-left" id="tl">Scent<br>in.</span><span class="t-right" id="tr">Sound<br>on.</span></h1>
+      <h1><span class="t-left" id="tl">Scent<br><span class="soft">in.</span></span><span class="t-right" id="tr">Sound<br><span class="soft">on.</span></span></h1>
       <div class="hero-caption fade"><p>공간에 향을.<br>순간에 음악을.</p><span>향과 음악이 함께하는<br>나만의 작은 장면.</span></div>
       <a class="hero-scroll fade" href="#idea"><span class="lbl">Scroll to find your mood</span><i aria-hidden="true"></i></a>
       <div class="hero-bottom fade">
@@ -574,6 +634,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
 
   <!-- 01 TRACKS : 트랙리스트 -->
   <section class="dark-band tracklist-sec" id="tracks" data-tone="dark">
+    <div class="big-vinyl" aria-hidden="true"><i></i></div>
     <div class="wrap">
       <div class="section-top"><span class="lbl">01 — The tracks</span><span class="lbl">Side A / 3 tracks</span></div>
       <div class="tracklist-head grid12 after-top">
@@ -581,9 +642,9 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
         <p class="body rv">향마다 어울리는 플레이리스트가 있습니다.<br>오늘의 기분에 맞는 트랙을 골라보세요.</p>
       </div>
       <ol class="tracklist rv">
-        <li><a href="#track01"><span class="n">01</span><span class="t">City Citrus</span><span class="m">Bright &amp; rhythmic</span><span class="k">레몬 · 샌달우드 · 파출리</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
-        <li><a href="#track02"><span class="n">02</span><span class="t">Clean Cotton</span><span class="m">Soft &amp; slow</span><span class="k">민트 · 코튼 · 화이트 머스크</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
-        <li><a href="#track03"><span class="n">03</span><span class="t">Concrete Forest</span><span class="m">Deep &amp; groovy</span><span class="k">그린 뱀부 · 오크 · 모스</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+        <li><a href="#track01"><span class="n">01<span class="eqb" aria-hidden="true"><b></b><b></b><b></b></span></span><span class="t">City Citrus</span><span class="m">Bright &amp; rhythmic</span><span class="k">레몬 · 샌달우드 · 파출리</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+        <li><a href="#track02"><span class="n">02<span class="eqb" aria-hidden="true"><b></b><b></b><b></b></span></span><span class="t">Clean Cotton</span><span class="m">Soft &amp; slow</span><span class="k">민트 · 코튼 · 화이트 머스크</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+        <li><a href="#track03"><span class="n">03<span class="eqb" aria-hidden="true"><b></b><b></b><b></b></span></span><span class="t">Concrete Forest</span><span class="m">Deep &amp; groovy</span><span class="k">그린 뱀부 · 오크 · 모스</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
       </ol>
     </div>
   </section>
@@ -690,7 +751,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
       <div class="section-top"><span class="lbl">02 — The full collection</span><span class="lbl">3 tracks / 6 pieces</span></div>
       <div class="collection-head after-top rv">
         <h2 class="h2">One collection.<br><span class="soft">Every mood.</span></h2>
-        <p class="body">City Citrus, Clean Cotton, Concrete Forest. 서로 다른 향을 번갈아 사용하거나 선물용으로 선택할 수 있는 3종 세트입니다.</p>
+        <p class="body set-desc"><span>City Citrus, Clean Cotton, Concrete Forest.</span><span>서로 다른 향을 번갈아 사용하거나<br class="m-br"> 선물용으로 선택할 수 있는 3종 세트입니다.</span></p>
       </div>
       <div class="trio rv">
         <a href="#track01"><figure><img src="assets/sachet-01.webp" loading="lazy" alt="City Citrus" width="560" height="857"></figure><div><span class="lbl">Track 01</span><strong>City Citrus</strong><span class="kr">상큼한 시트러스와 차분한 우디</span></div></a>
@@ -726,25 +787,25 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
         <h2 class="h2 k">자주 묻는 질문</h2>
         <div class="faq-list">
           <details class="faq-item"><summary><i>01</i>향은 얼마나 지속되나요?</summary><div class="faq-a">
-            <p>옷장·서랍 등 밀폐된 공간에서는 2~3개월, 방·거실 등 열린 공간에서는 2~3주 정도 지속됩니다. 차량은 환기가 잦을수록 발향 기간이 짧아질 수 있습니다.</p>
-            <p>여름철 직사광선이 직접 닿는 운전석·조수석 앞쪽에는 두지 않는 것이 좋습니다. 앞좌석 헤드레스트에 걸어 뒷좌석 방향으로 늘어뜨리는 방식을 추천합니다. 발향이 줄었다고 느껴지면 샤쉐를 한 번씩 흔들어주면 향이 다시 퍼집니다.</p>
+            <p>옷장·서랍 등 밀폐된 공간에서는 2~3개월, 방·거실 등 열린 공간에서는 2~3주 정도 지속됩니다.<br>차량은 환기가 잦을수록 발향 기간이 짧아질 수 있습니다.</p>
+            <p>여름철 직사광선이 직접 닿는 운전석·조수석 앞쪽에는 두지 않는 것이 좋습니다.<br>앞좌석 헤드레스트에 걸어 뒷좌석 방향으로 늘어뜨리는 방식을 추천합니다.<br>발향이 줄었다고 느껴지면 샤쉐를 한 번씩 흔들어주면 향이 다시 퍼집니다.</p>
           </div></details>
           <details class="faq-item"><summary><i>02</i>QR을 찍으면 무엇이 나오나요?</summary><div class="faq-a">
-            <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다. 향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
+            <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다.<br>향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
           </div></details>
           <details class="faq-item"><summary><i>03</i>배송은 얼마나 걸리나요?</summary><div class="faq-a">
-            <p>결제 완료 후 2~3영업일 이내 출고됩니다. 제주·도서산간 지역은 추가 배송비가 발생할 수 있습니다.</p>
+            <p>결제 완료 후 2~3영업일 이내 출고됩니다.<br>제주·도서산간 지역은 추가 배송비가 발생할 수 있습니다.</p>
           </div></details>
           <details class="faq-item"><summary><i>04</i>교환·반품은 어떻게 하나요?</summary><div class="faq-a">
-            <p>단순 변심에 의한 교환·반품은 미개봉 상태에 한해 수령 후 7일 이내 가능합니다. 향 제품 특성상 개봉 후에는 단순 변심에 의한 교환·반품이 어렵습니다.</p>
-            <p>제품 불량·오배송의 경우 판매자 부담으로 교환해 드립니다. 이메일(urbanscenttrack@gmail.com) 또는 카카오톡 채널로 문의해주세요.</p>
+            <p>단순 변심에 의한 교환·반품은 미개봉 상태에 한해 수령 후 7일 이내 가능합니다.<br>향 제품 특성상 개봉 후에는 단순 변심에 의한 교환·반품이 어렵습니다.</p>
+            <p>제품 불량·오배송의 경우 판매자 부담으로 교환해 드립니다.<br>이메일(urbanscenttrack@gmail.com) 또는 카카오톡 채널로 문의해주세요.</p>
           </div></details>
           <details class="faq-item"><summary><i>05</i>개봉했더니 습기가 느껴지거나 포장에 얼룩이 있어요.</summary><div class="faq-a">
-            <p>밀봉 포장 특성상 개봉 직후 파우치에 습기가 느껴질 수 있으며, 사용하면서 차츰 건조됩니다. 일부 향료는 보관 중 포장지에 배어나며 자국이 남을 수 있으나, 제품 성능과 품질에는 문제가 없습니다.</p>
+            <p>밀봉 포장 특성상 개봉 직후 파우치에 습기가 느껴질 수 있으며, 사용하면서 차츰 건조됩니다.<br>일부 향료는 보관 중 포장지에 배어나며 자국이 남을 수 있으나, 제품 성능과 품질에는 문제가 없습니다.</p>
             <p>플라스틱·원목·가죽·실크 등에 직접 닿으면 변색될 수 있으니 주의해주세요.</p>
           </div></details>
           <details class="faq-item"><summary><i>06</i>반려동물이 있어도 사용할 수 있나요?</summary><div class="faq-a">
-            <p>유해물질 검사와 안전확인대상생활화학제품 인증 신고를 마친 제품입니다. 다만 모든 향료에는 반려동물이 섭취해서는 안 되는 성분이 있을 수 있으므로, 반려동물이 섭취할 수 없는 장소에서 사용해주세요. 개별 반려동물마다 반응이 다를 수 있습니다.</p>
+            <p>유해물질 검사와 안전확인대상생활화학제품 인증 신고를 마친 제품입니다.<br>다만 모든 향료에는 반려동물이 섭취해서는 안 되는 성분이 있을 수 있으므로, 반려동물이 섭취할 수 없는 장소에서 사용해주세요.<br>개별 반려동물마다 반응이 다를 수 있습니다.</p>
           </div></details>
           <details class="faq-item"><summary><i>07</i>다 쓴 샤쉐는 어떻게 버리나요?</summary><div class="faq-a">
             <p>사용이 끝난 샤쉐는 일반쓰레기로, 포장에 사용된 비닐·종이는 개별 표기에 따라 분리배출해주세요.</p>
@@ -760,7 +821,7 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   <div class="wrap">
     <div class="section-top"><span class="lbl">urban scent track</span><span class="lbl">Scent in. Sound on.</span></div>
     <div class="footer-top grid12 after-top">
-      <h2 class="rv">Stay in<br>your mood.</h2>
+      <h2 class="lines">Stay in<br>your mood.</h2>
       <div class="footer-links">
         <a href="https://pf.kakao.com/_dAbxaX/chat" target="_blank" rel="noopener"><span>고객센터</span><span>↗</span></a>
         <a href="https://www.instagram.com/urbanscenttrack" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
@@ -797,15 +858,23 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   const easeInOut = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
   let vh = innerHeight;
 
+  const heroImgs = [...document.querySelectorAll('.hero-img')];
   function measure(){
     const vw = innerWidth; vh = innerHeight;
-    const s0 = Math.max(vw/PW, vh/PH), ox = (vw - PW*s0)/2;
-    photoLayer.style.transformOrigin = city.style.transformOrigin = (ox + VPX*s0) + 'px ' + (VPY*s0) + 'px';
+    const mobile = vw < 900;
+    // 모바일: 사진을 화면 폭의 2.1배로 줄여 룸미러가 덜 크게 보이게, 위아래는 차 안 어둠으로 이어짐
+    // 데스크탑: 화면을 꽉 채우는 크기의 86%로 줄여 룸미러를 작게, 가장자리는 차 안 어둠으로 번지게
+    // 모바일: 화면 폭의 2.1배
+    const s0 = mobile ? (vw * 2.1) / PW : Math.max(vw/PW, vh/PH) * .86;
+    const ox = (vw - PW*s0)/2;
+    const oy = mobile ? Math.max(0, (vh - PH*s0) * .42) : (vh - PH*s0) * .35;
+    heroImgs.forEach(img => Object.assign(img.style, { inset:'auto', left:ox+'px', top:oy+'px', width:(PW*s0)+'px', height:(PH*s0)+'px', objectFit:'fill' }));
+    photoLayer.style.transformOrigin = city.style.transformOrigin = (ox + VPX*s0) + 'px ' + (oy + VPY*s0) + 'px';
     // 룸미러에 샤쉐 줄이 걸리도록 (원본 사진 기준 x 826)
     const HW = 243;
     hang.style.width = (HW*s0) + 'px';
     hang.style.left = (ox + (826 - .5*HW)*s0) + 'px';
-    hang.style.top = (150*s0) + 'px';   // 줄 끝이 룸미러 뒤에서 시작 → 거울 위 레이어가 줄을 덮어 실제로 걸린 것처럼
+    hang.style.top = (oy + 150*s0) + 'px';   // 줄 끝이 룸미러 뒤에서 시작 → 거울 위 레이어가 줄을 덮어 실제로 걸린 것처럼
     render();
   }
 
@@ -847,7 +916,14 @@ footer .section-top .lbl:last-child{ color:var(--on-night-2); }
   measure();
 
   // 등장
-  const rv = document.querySelectorAll('.rv');
+  // 푸터: 줄 단위·글자 단위 등장 준비
+  document.querySelectorAll('.lines').forEach(el => {
+    const parts = el.innerHTML.split(/<br\s*\/?>/i);
+    el.innerHTML = parts.map((h, i) => '<span class="ln"><span style="--i:' + i + '">' + h.trim() + '</span></span>').join('');
+  });
+  const wm = document.querySelector('.wordmark > span');
+  if(wm){ wm.innerHTML = [...wm.textContent].map((c, i) => c === ' ' ? ' ' : '<span class="ch" style="--i:' + i + '">' + c + '</span>').join(''); }
+  const rv = document.querySelectorAll('.rv, .lines, .wordmark');
   if('IntersectionObserver' in window && !reduce){
     const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin:'0px 0px -10% 0px' });
     rv.forEach(el => io.observe(el));
