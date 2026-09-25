@@ -1,35 +1,8 @@
-<!--
-  ============================================================
-   URBAN SCENT TRACK — 배포용 index.html
-  ============================================================
-   ▶ 스마트스토어 구매 링크는 모두 연결 완료 (2026-09-10)
-
-     메인(상단 Shop, 고객센터)  https://smartstore.naver.com/urbanscenttrack
-     Track 01                  .../products/13762727147
-     Track 02                  .../products/13762727148
-     Track 03                  .../products/13762727149
-     3종 풀 컬렉션         .../products/13762727150
-
-   ▶ 카카오톡 · 인스타그램은 이미 연결되어 있습니다 (푸터)
-     https://pf.kakao.com/_dAbxaX (일반) / https://pf.kakao.com/_dAbxaX/chat (문의)
-     https://www.instagram.com/urbanscenttrack
-
-   ▶ 음악 듣기 버튼은 /play01 /play02 /play03 로 고정입니다.
-     유튜브 주소가 바뀌면 이 파일이 아니라
-     play01/index.html 안의 URL 한 줄만 고치세요.
-
-   ▶ 카카오 픽셀은 설치 완료(urbanscenttrack, ID 9191789720917030384).
-     네이버 쪽은 아직 미설치 — 아래 <head> 안, GA4 스크립트 바로
-     아래에 주석 처리된 "네이버 프리미엄 로그 분석" 블록이 있습니다.
-     searchad.naver.com 도구 메뉴에서 발급받은 로그 ID로
-     NAVER_LOG_ID 를 교체하고 주석 표시만 풀면 바로 작동합니다.
-  ============================================================
--->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="naver-site-verification" content="68bd69a5ad4f9411a82f6a0fc07e56c3f42f34a2" />
 
 <!-- Google tag (gtag.js) -->
@@ -66,7 +39,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://urbanscenttrack.com/">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#070707">
+<meta name="theme-color" content="#191412">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
@@ -127,1395 +100,694 @@
 }
 </script>
 
-<link rel="preload" as="image" href="assets/hero-mobile.webp" media="(max-width:760px)">
-<link rel="preload" as="image" href="assets/hero-desktop.webp" media="(min-width:761px)">
+<link rel="preload" as="image" href="assets/hero-windshield.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/variable/pretendardvariable.css">
 <style>
-  :root{
-    --black:#070707;
-    --near-black:#111113;
-    --white:#ffffff;
-    --grey:#86868b;
-    --grey-light:#f5f5f7;
-    /* 트랙 컬러 기준 = 트랙 상세페이지 제목·버튼에 쓴 포인트 컬러(track1/2/3-accent)로 통일.
-       track1은 원래 색이 이미 accent와 같아 변경 없음. track2·track3는 기존 파스텔/네온이
-       accent보다 흐려서 여기 맞춰 더 진하게 조정 — pill 점, SCENT NOTES 점, Collection 미니카드가
-       전부 이 값을 참조하므로 여기만 바꾸면 사이트 전체 색이 한 기준으로 맞춰짐 */
-    --track1a:#ff5f2e; --track1b:#ffb37a; --track1-ink:#2b0f00;
-    --track2a:#1f9bd6; --track2b:#8fd4ef; --track2-ink:#ffffff;
-    --track3a:#4c9a1c; --track3b:#a8d97e; --track3-ink:#ffffff;
-    --vc1:#ff4f22; --vc2:#29b6e8; --vc3:#91ff29;
-    /* 데스크탑 트랙 페이지 포인트 컬러(제목·버튼 전용) — 흰/아이보리 배경 위에서도 또렷하게 보이도록
-       원래 그라디언트보다 진하게 조정 (특히 track2·track3는 파스텔/네온이라 배경용 채도를 그대로 쓰면 대비가 약함) */
-    --track1-accent:#ff5f2e;
-    --track2-accent:#1f9bd6;
-    --track3-accent:#4c9a1c;
-    --ivory:#faf9f6;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Manrope','Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
-    background:var(--black);
-    color:var(--white);
-    -webkit-font-smoothing:antialiased;
-    -webkit-text-size-adjust:100%;
-    overflow-x:hidden;
-  }
-  ::selection{ background:var(--white); color:var(--black); }
-  a{ color:inherit; }
-  img{max-width:100%;display:block;}
+/* ============================================================
+   urban scent track — 한 가지 글꼴(넓은 산세리프), 적은 색.
+   색은 샤쉐 제품에만 있다.
+   ============================================================ */
+:root{
+  color-scheme: light;
+  --ink:#2e2624;          /* 따뜻한 다크 브라운 */
+  --ink-2:#5b5250;
+  --mute:#8a817d;
+  --cream:#fbf6ee;
+  --line:rgba(46,38,36,.16);
+  --night:#191412;
+  --on-night:#f6efe4;
+  --on-night-2:rgba(246,239,228,.58);
+  --line-night:rgba(246,239,228,.14);
 
-  /* ---------------- nav ---------------- */
-  .nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 28px;
-    height:52px;
-    background:rgba(7,7,7,0.55);
-    backdrop-filter:blur(20px) saturate(180%);
-    -webkit-backdrop-filter:blur(20px) saturate(180%);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-  }
-  .nav-logo{
-    font-size:0.82rem; font-weight:700; letter-spacing:-0.01em;
-    text-decoration:none; text-transform:lowercase;
-  }
-  .nav-links{ display:flex; gap:30px; list-style:none; }
-  .nav-links a{
-    font-size:0.76rem; font-weight:500; opacity:0.75; text-decoration:none;
-    transition:opacity .25s ease;
-  }
-  .nav-links a:hover{ opacity:1; }
-  .nav-cta{
-    font-size:0.74rem; font-weight:600; padding:7px 16px;
-    background:var(--white); color:var(--black); border-radius:980px;
-    text-decoration:none;
-  }
-  /* ---------------- floating audio player (브랜드 테마곡) ---------------- */
-  .audio-fab{
-    position:fixed; right:24px; bottom:34px; z-index:90;
-    height:44px; padding:0 18px 0 14px; border-radius:980px;
-    display:flex; align-items:center; gap:8px;
-    background:rgba(7,7,7,0.72); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%);
-    border:1px solid rgba(255,255,255,0.14);
-    cursor:pointer;
-    box-shadow:0 6px 24px rgba(0,0,0,0.28);
-    transition:transform .25s ease, background .25s ease;
-  }
-  .audio-fab:hover{ transform:translateY(-2px); background:rgba(7,7,7,0.85); }
-  .audio-fab-icon{
-    position:relative; width:26px; height:26px; flex:none;
-    display:flex; align-items:center; justify-content:center;
-    border-radius:50%;
-  }
-  .audio-fab svg{ width:14px; height:14px; fill:var(--white); position:relative; z-index:1; }
-  .audio-fab .icon-pause{ display:none; }
-  .audio-fab.is-playing .icon-play{ display:none; }
-  .audio-fab.is-playing .icon-pause{ display:block; }
-  .audio-fab-label{
-    font-size:0.74rem; font-weight:600; color:var(--white); white-space:nowrap;
-    text-transform:uppercase; letter-spacing:0.04em;
-  }
-  .audio-fab-ring{
-    position:absolute; inset:-1px; border-radius:50%;
-    border:1px solid rgba(255,255,255,0.35);
-    opacity:0; transform:scale(1);
-  }
-  .audio-fab.is-playing .audio-fab-ring{
-    animation:audioRingPulse 1.8s cubic-bezier(.4,0,.2,1) infinite;
-  }
-  @keyframes audioRingPulse{
-    0%   { opacity:0.55; transform:scale(1); }
-    100% { opacity:0; transform:scale(1.55); }
-  }
-  @keyframes audioFabHint{
-    0%, 78%, 100% { transform:translateX(0); }
-    82% { transform:translateX(-3px); }
-    86% { transform:translateX(2px); }
-    90% { transform:translateX(-2px); }
-    94% { transform:translateX(0); }
-  }
-  .audio-fab:not(.is-playing){ animation:audioFabHint 5s ease-in-out 1.5s 2; }
-  @media (prefers-reduced-motion:reduce){
-    .audio-fab.is-playing .audio-fab-ring{ animation:none; }
-    .audio-fab{ animation:none; }
-  }
-  @media (max-width:760px){
-    .audio-fab{
-      position:static; margin-top:12px; gap:6px;
-      height:auto; padding:0;
-      background:none; border:0; box-shadow:none;
-      -webkit-backdrop-filter:none; backdrop-filter:none;
-    }
-    .audio-fab:hover{ transform:none; }
-    .audio-fab-icon{ width:11px; height:11px; }
-    .audio-fab-ring{ display:none; }
-    .audio-fab svg{ width:11px; height:11px; }
-    .audio-fab-label{ font-size:0.72rem; opacity:0.9; }
-  }
+  --wide:'Archivo','Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  --kr:'Pretendard Variable',Pretendard,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --gut:clamp(20px,3.4vw,56px);
+}
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:var(--wide); font-stretch:112%; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; word-break:keep-all; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; }
+:focus-visible{ outline:1.5px solid currentColor; outline-offset:4px; }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
-  @media (max-width:760px){
-    .nav-links{ display:none; }
-    /* 모바일: 히어로(흰 배경) 위에서는 네비를 투명하게 — 회색 띠 제거 */
-    .nav{ transition:background .35s ease, border-color .35s ease; }
-    .nav-logo{ transition:color .35s ease; }
-    .nav-cta{ transition:background .35s ease, color .35s ease; }
-    .nav:not(.scrolled){
-      background:transparent; border-bottom-color:transparent;
-      backdrop-filter:none; -webkit-backdrop-filter:none;
-    }
-    .nav:not(.scrolled) .nav-logo{ color:#fff; }
-  }
+/* 작은 대문자 라벨: 사이트 전체에서 이 한 가지만 쓴다 */
+.lbl{ font:700 11px/1.35 var(--wide); font-stretch:118%; letter-spacing:-.01em; text-transform:uppercase; }
+.kr{ font-family:var(--kr); font-stretch:normal; }
 
-  /* ---------------- reveal ---------------- */
-  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-  .reveal.d1{ transition-delay:.08s; }
-  .reveal.d2{ transition-delay:.16s; }
-  .reveal.d3{ transition-delay:.24s; }
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed; inset:0 0 auto 0; z-index:60; display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  padding:calc(env(safe-area-inset-top,0px) + 20px) var(--gut) 20px; color:#fff; transition:color .4s ease;
+  font:600 12.5px/1 var(--wide); font-stretch:112%;
+}
+.nav::before{ content:""; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity .4s ease; background:rgba(247,242,234,.78); backdrop-filter:blur(16px) saturate(1.2); -webkit-backdrop-filter:blur(16px) saturate(1.2); border-bottom:1px solid rgba(46,38,36,.08); }
+.nav.tone-light{ color:var(--ink); }
+.nav.tone-light::before{ opacity:1; }
+.nav-left, .nav-right{ display:flex; gap:28px; }
+.nav-right{ justify-content:flex-end; }
+.nav a{ opacity:.9; transition:opacity .2s ease; }
+.nav a:hover{ opacity:.55; }
+.brand{ font:600 17px/1 var(--wide); font-stretch:125%; letter-spacing:-.04em; white-space:nowrap; opacity:1 !important; }
 
-  /* hero title — 줄 단위 순차 등장 */
-  .hero-title .line-mask{ display:block; overflow:hidden; }
-  .hero-title .line{
-    display:block;
-    transform:translateY(105%);
-    opacity:0;
-    transition:transform 1s cubic-bezier(.16,1,.3,1), opacity .8s ease;
-  }
-  .hero-title.in .line{ transform:translateY(0); opacity:1; }
-  .hero-title.in .line:nth-child(1){ transition-delay:0s; }
-  .hero-title .line-mask:nth-child(2) .line{ transition-delay:.12s; }
-  .hero-title .line-mask:nth-child(3) .line{ transition-delay:.24s; }
-  .hero-title .line-mask:nth-child(4) .line{ transition-delay:.36s; }
-  @media (prefers-reduced-motion:reduce){
-    .hero-title .line{ transform:none; opacity:1; transition:none; }
-    .hero-scroll .bar{ animation:none; }
-    .hero-spotlight{ animation:none; }
-  }
+/* ---------- 하단 플로팅 (Shop + Sound) ---------- */
+.dock{ position:fixed; left:50%; bottom:calc(env(safe-area-inset-bottom,0px) + 22px); z-index:60; display:flex; gap:6px; transform:translate(-50%,24px); opacity:0; pointer-events:none; transition:transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s ease; }
+.dock.show{ transform:translate(-50%,0); opacity:1; pointer-events:auto; }
+.dock-shop{ display:flex; align-items:center; white-space:nowrap; height:46px; padding:0 22px; border-radius:999px; background:#fff; color:var(--ink); font:600 13px/1 var(--wide); font-stretch:112%; box-shadow:0 8px 30px rgba(25,20,18,.16); }
+.dock-sound{ width:46px; height:46px; border-radius:50%; border:0; background:#fff; color:var(--ink); display:grid; place-items:center; cursor:pointer; box-shadow:0 8px 30px rgba(25,20,18,.16); }
+.eq{ display:flex; align-items:flex-end; gap:2px; height:12px; }
+.eq i{ width:2px; height:4px; background:currentColor; border-radius:1px; }
+.dock-sound[aria-pressed="true"] .eq i{ animation:eq .9s ease-in-out infinite; }
+.dock-sound[aria-pressed="true"] .eq i:nth-child(2){ animation-delay:-.3s; }
+.dock-sound[aria-pressed="true"] .eq i:nth-child(3){ animation-delay:-.6s; }
+.dock-sound[aria-pressed="true"] .eq i:nth-child(4){ animation-delay:-.15s; }
+@keyframes eq{ 0%,100%{ height:4px; } 50%{ height:12px; } }
 
-  /* ---------------- hero (Motto-style: white bg, black type, left-driven layout) ---------------- */
-  .hero{
-    position:relative;
-    z-index:0;
-    min-height:100vh;
-    display:flex; flex-direction:column; justify-content:flex-start;
-    padding:96px 32px 64px;
-    background:#ffffff;
-    color:#070707;
-    overflow:hidden;
-  }
-  .hero-inner{ max-width:1320px; margin:0 auto; width:100%; }
+/* ---------- HERO → IDEA (한 장면으로 이어짐) ---------- */
+.hero{ position:relative; height:470vh; background:var(--night); color:#fff; }
+.stage{ position:sticky; top:0; height:100vh; height:100svh; min-height:560px; overflow:hidden; }
+.hero-img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 0%; will-change:transform,opacity; }
+.photo-layer{ position:absolute; inset:0; will-change:transform,opacity; }
+.hang{ position:absolute; aspect-ratio:1024 / 1880; transform-origin:50% 0; animation:hangSway 5s ease-in-out infinite alternate; }
+.hang img{ position:absolute; inset:0; width:100%; height:100%; max-width:none; opacity:0; z-index:1; }
+.hang img.on{ opacity:1; z-index:1; }
+.hang img.in{ z-index:2; animation:hangIn .5s ease forwards; }
+@keyframes hangIn{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes hangSway{ from{ transform:rotate(-2.4deg); } to{ transform:rotate(2.4deg); } }
+.shade-top{ position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,0) 24%,rgba(0,0,0,0) 62%,rgba(0,0,0,.48)); }
+.shade-city{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(25,20,18,.35),rgba(25,20,18,.62) 55%,rgba(25,20,18,.86)); opacity:0; }
+.fade{ will-change:opacity; }
+.hero-topline{ position:absolute; left:var(--gut); right:var(--gut); top:calc(env(safe-area-inset-top,0px) + 88px); display:flex; justify-content:space-between; opacity:.85; }
+.hero h1{ position:absolute; inset:0; margin:0; pointer-events:none; font-weight:500; font-stretch:125%; letter-spacing:-.075em; line-height:.86; font-size:clamp(58px,9.6vw,168px); }
+.hero h1 > span{ position:absolute; will-change:transform,opacity; }
+.t-left{ left:var(--gut); top:29%; }
+.t-right{ right:var(--gut); top:47%; text-align:right; }
+.hero-caption{ position:absolute; left:var(--gut); bottom:118px; }
+.hero-caption p{ margin:0 0 10px; font:600 clamp(18px,1.5vw,21px)/1.45 var(--kr); letter-spacing:-.03em; }
+.hero-caption span{ font:500 13px/1.6 var(--kr); opacity:.75; }
+.hero-scroll{ position:absolute; right:var(--gut); bottom:124px; display:flex; align-items:center; gap:14px; }
+.hero-scroll i{ width:1px; height:30px; background:currentColor; opacity:.75; transform-origin:top; animation:drop 2.4s cubic-bezier(.6,0,.2,1) infinite; }
+@keyframes drop{ 0%{ transform:scaleY(0); } 45%{ transform:scaleY(1); } 100%{ transform:scaleY(1); opacity:0; } }
+.hero-bottom{ position:absolute; left:var(--gut); right:var(--gut); bottom:calc(env(safe-area-inset-bottom,0px) + 26px); display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; padding-top:16px; border-top:1px solid rgba(255,255,255,.26); }
+.hero-bottom .lbl{ opacity:.8; }
+.selectors{ display:flex; gap:26px; font:600 13px/1 var(--wide); font-stretch:112%; }
+.selectors a{ display:flex; gap:9px; align-items:baseline; opacity:.9; }
+.selectors a span{ font-size:10px; opacity:.6; }
+.selectors a:hover{ opacity:.6; }
 
-  /* Pixar 램프처럼 이리저리 무언가를 찾듯 떠도는 빛 (hero-inner 위치 기준에는 영향 없도록 음수 z-index만 사용) */
-  .hero-spotlight{
-    position:absolute; top:-10%; left:-10%;
-    width:58vw; height:58vw; max-width:820px; max-height:820px; min-width:380px; min-height:380px;
-    border-radius:50%; z-index:-1; pointer-events:none;
-    background:radial-gradient(circle, rgba(255,183,80,0.32), rgba(7,7,7,0.10) 50%, transparent 72%);
-    filter:blur(24px);
-    animation:heroSpotlightMove 13s cubic-bezier(.45,0,.35,1) infinite;
-  }
-  @keyframes heroSpotlightMove{
-    0%   { transform:translate(0,0)      scale(0.9); }
-    15%  { transform:translate(55vw,8vh) scale(1.05); }
-    32%  { transform:translate(38vw,55vh) scale(0.85); }
-    50%  { transform:translate(8vw,62vh)  scale(1.1); }
-    68%  { transform:translate(60vw,42vh) scale(0.95); }
-    84%  { transform:translate(30vw,4vh)  scale(1); }
-    100% { transform:translate(0,0)       scale(0.9); }
-  }
-  @media (max-width:760px){
-    /* 모바일: 좁은 화면에서는 스포트라이트가 얼룩처럼 보여 제거 */
-    .hero-spotlight{ display:none; }
-  }
+/* 도시에 도착한 뒤: The idea */
+.idea{ position:absolute; left:var(--gut); right:var(--gut); bottom:calc(env(safe-area-inset-bottom,0px) + 104px); display:grid; grid-template-columns:repeat(12,1fr); gap:0 24px; align-items:end; color:var(--on-night); }
+.idea > *{ opacity:0; will-change:opacity,transform; }
+.idea-top{ grid-column:1 / -1; display:flex; justify-content:space-between; padding-bottom:16px; margin-bottom:clamp(28px,4vw,56px); border-bottom:1px solid var(--line-night); }
+.idea-top .kr{ font:500 13px/1.3 var(--kr); color:var(--on-night-2); }
+.idea h2{ grid-column:1 / span 8; margin:0; font:500 clamp(40px,5.4vw,88px)/1.12 var(--kr); letter-spacing:-.055em; }
+.idea h2 span{ color:var(--on-night-2); }
+.idea-side{ grid-column:9 / span 4; display:grid; gap:18px; padding-bottom:10px; }
+.idea-side p{ margin:0; font:500 15px/1.8 var(--kr); letter-spacing:-.01em; }
+.idea-side p.m{ color:var(--on-night-2); font-size:14px; }
+.idea-side a{ display:inline-flex; justify-content:space-between; gap:18px; padding:14px 0; border-top:1px solid var(--line-night); font:600 14px/1 var(--kr); pointer-events:auto; }
+.anchor{ position:absolute; left:0; width:1px; height:1px; }
 
-  .hero-top{
-    display:flex; align-items:center; gap:12px;
-    margin-bottom:38px;
-  }
-  .hero-mark{ font-size:1.5rem; line-height:1; }
-  .hero-eyebrow{
-    font-size:0.78rem; font-weight:600; letter-spacing:0.02em;
-    color:var(--grey); text-transform:lowercase;
-  }
+/* ============ 아래 섹션 (이전 구성: 라벨 줄 · 그리드 · 스펙 표) ============ */
+.wrap{ max-width:1440px; margin:0 auto; padding-inline:var(--gut); }
+.section{ padding-block:clamp(96px,11vw,168px); }
+.section.tight{ padding-top:0; }
+.section-top{ display:flex; justify-content:space-between; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+.section-top .lbl{ white-space:nowrap; }
+.section-top .lbl:last-child{ color:var(--mute); }
+.h2{ margin:0; font-weight:500; font-stretch:112%; font-size:clamp(38px,4.8vw,74px); line-height:1.02; letter-spacing:-.06em; }
+.h2.k{ font-family:var(--kr); font-stretch:normal; line-height:1.2; letter-spacing:-.05em; }
+.h2 .soft{ color:var(--mute); }
+.body{ margin:0; font:500 15px/1.85 var(--kr); color:var(--ink-2); letter-spacing:-.01em; }
+.lead{ margin:0; font:600 clamp(18px,1.5vw,21px)/1.45 var(--kr); letter-spacing:-.035em; }
+.after-top{ margin-top:clamp(48px,6vw,96px); }
+.grid12{ display:grid; grid-template-columns:repeat(12,1fr); gap:0 24px; }
 
-  .hero-title{
-    font-size:clamp(2.5rem,8.6vw,6.8rem);
-    font-weight:800; letter-spacing:-0.035em; line-height:0.98;
-    text-transform:uppercase;
-  }
-  .hero-title .line{ display:block; }
-  .hero-title .line.push-1{ margin-left:7vw; }
-  .hero-title .line.push-2{ margin-left:15vw; }
-  .hero-title .line.push-3{ margin-left:2.5vw; }
-  .hero-title-mobile{ display:none; }
+.btn{ display:inline-flex; align-items:center; justify-content:space-between; gap:26px; height:52px; padding:0 22px; font:600 14px/1 var(--kr); letter-spacing:-.01em; border:1px solid var(--ink); transition:background .25s ease, color .25s ease; }
+.btn.solid{ background:var(--ink); color:var(--cream); }
+.btn.solid:hover{ background:transparent; color:var(--ink); }
+.btn.line:hover{ background:var(--ink); color:var(--cream); }
 
-  .hero-body{
-    display:flex; justify-content:flex-start;
-    margin-top:34px; margin-left:2vw;
-  }
-  .hero-sub{
-    font-size:1.12rem; font-weight:400; color:var(--grey);
-    max-width:680px; line-height:1.7;
-  }
+/* 01 TRACKS — 앨범 뒷면처럼: 어두운 트랙리스트 → 트랙마다 한 장(chapter) */
+:root{ --stone:#efe8dd; --stone-2:#e7dfd2; }
+.dark-band{ background:var(--night); color:var(--on-night); }
+.dark-band .section-top{ border-color:var(--line-night); }
+.dark-band .section-top .lbl:last-child{ color:var(--on-night-2); }
+.dark-band .body{ color:var(--on-night-2); }
+.dark-band .h2 .soft{ color:var(--on-night-2); }
 
-  .hero-bottom{
-    margin-top:64px;
-    display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:20px;
-  }
-  .hero-arrow{ font-size:1.6rem; }
-  .hero-scroll{
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    font-size:0.74rem; font-weight:600; color:rgba(7,7,7,0.72); letter-spacing:0.12em; text-transform:uppercase;
-  }
-  .hero-scroll .bar{ width:2px; height:40px; border-radius:2px; background:linear-gradient(rgba(7,7,7,0.75),transparent); animation:scrolldrift 2.2s cubic-bezier(.4,0,.2,1) infinite; transform-origin:top; }
+.tracklist-sec{ padding-block:clamp(88px,10vw,140px) clamp(72px,8vw,112px); }
+.tracklist-head h2{ grid-column:1 / span 7; }
+.tracklist-head p{ grid-column:9 / span 4; align-self:end; }
+.tracklist{ margin:clamp(48px,6vw,80px) 0 0; padding:0; list-style:none; border-top:1px solid var(--line-night); }
+.tracklist a{ display:grid; grid-template-columns:72px 1.3fr 1fr 1fr 120px 28px; align-items:center; gap:16px; padding:22px 0; border-bottom:1px solid var(--line-night); transition:padding .35s cubic-bezier(.2,.8,.2,1), background .35s ease; }
+.tracklist a:hover{ padding-inline:14px; background:rgba(246,239,228,.04); }
+.tracklist .n{ font:500 13px/1 var(--wide); font-stretch:112%; color:var(--on-night-2); font-variant-numeric:tabular-nums; }
+.tracklist .t{ font:500 clamp(22px,2.2vw,34px)/1 var(--wide); font-stretch:120%; letter-spacing:-.06em; }
+.tracklist .m{ font:700 11px/1.3 var(--wide); font-stretch:118%; text-transform:uppercase; color:var(--on-night-2); }
+.tracklist .k{ font:500 13.5px/1.4 var(--kr); color:var(--on-night-2); }
+.tracklist .p{ font:600 14px/1 var(--wide); font-stretch:112%; text-align:right; font-variant-numeric:tabular-nums; }
+.tracklist .go{ text-align:right; }
 
-  @keyframes scrolldrift{
-    0%   { transform:translateY(-6px) scaleY(0.85); opacity:0.25; }
-    45%  { transform:translateY(0)    scaleY(1);    opacity:1; }
-    100% { transform:translateY(8px)  scaleY(0.85); opacity:0; }
-  }
+.chapter{ position:relative; overflow:hidden; }
+.chapter.c1, .chapter.c3{ background:var(--cream); }
+.chapter.c2{ background:var(--stone); }
+.chapter-bar{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:16px; padding-block:18px; border-bottom:1px solid var(--line); }
+.chapter-bar .lbl:nth-child(2){ font-size:12px; }
+.chapter-bar .lbl:last-child{ text-align:right; color:var(--mute); }
+.track{ padding-block:clamp(56px,6vw,96px) clamp(64px,7vw,110px); align-items:center; }
 
-  @media (max-width:760px){
-    /* 모바일: 들여쓰기 제거하고 왼쪽 정렬로 깔끔하게 */
-    .hero-title .line.push-1{ margin-left:0; }
-    .hero-title .line.push-2{ margin-left:0; }
-    .hero-title .line.push-3{ margin-left:0; }
-  }
+/* 샤쉐 뒤: LP 홈 무늬(브랜드 모티프, 색 없이) */
+.plate{ grid-column:1 / span 6; position:relative; display:grid; place-items:center; aspect-ratio:1 / 1; max-height:640px; }
+.plate::before{ content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:50%;
+  background:
+    radial-gradient(circle, rgba(46,38,36,.16) 0 12.5%, transparent 12.8%),
+    radial-gradient(circle, transparent 0 16%, rgba(46,38,36,.14) 16.2% 16.5%, transparent 16.8%),
+    repeating-radial-gradient(circle, rgba(46,38,36,.11) 0 .6px, transparent 1.2px 9px);
+  -webkit-mask:radial-gradient(circle, #000 0 70%, transparent 71%); mask:radial-gradient(circle, #000 0 70%, transparent 71%);
+  animation:spin 38s linear infinite; }
+.plate::after{ content:""; position:absolute; width:88%; aspect-ratio:1; border-radius:50%; border:1px solid rgba(46,38,36,.16); transform:scale(.99); }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.plate img{ position:relative; z-index:1; width:clamp(200px,21vw,300px); height:auto; transform-origin:50% 2%; animation:sway 7s ease-in-out infinite alternate;
+  filter:drop-shadow(0 30px 34px rgba(60,44,34,.2)) drop-shadow(0 5px 7px rgba(60,44,34,.08)); }
+@keyframes sway{ from{ transform:rotate(-1.6deg); } to{ transform:rotate(1.8deg); } }
+.track-copy{ grid-column:8 / span 5; display:flex; flex-direction:column; gap:18px; }
+.track.flip .plate{ grid-column:7 / span 6; grid-row:1; }
+.track.flip .track-copy{ grid-column:1 / span 5; grid-row:1; }
+.track-copy .lbl{ color:var(--mute); }
+.track-copy h3{ margin:0; font-weight:500; font-stretch:118%; font-size:clamp(38px,3.8vw,62px); line-height:1; letter-spacing:-.065em; }
+.track-copy .en{ margin:-8px 0 0; font:500 14px/1.4 var(--wide); font-stretch:108%; color:var(--mute); }
+.track-copy .lead{ margin-top:10px; }
+.tags{ margin:0; display:flex; flex-wrap:wrap; gap:6px; }
+.tags span{ padding:7px 12px; border-radius:999px; background:rgba(46,38,36,.06); font:500 12.5px/1 var(--kr); color:var(--ink-2); }
+.music{ display:flex; align-items:center; gap:12px; font:500 14px/1.5 var(--kr); color:var(--ink-2); }
+.music b{ display:grid; place-items:center; width:30px; height:30px; flex:none; border-radius:50%; background:var(--ink); color:var(--cream); font-size:9px; padding-left:2px; }
+.music a{ color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.notes{ margin-top:4px; }
+.notes summary{ list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:12px; padding:4px 0; font:700 11px/1.35 var(--wide); font-stretch:118%; text-transform:uppercase; }
+.notes summary::-webkit-details-marker{ display:none; }
+.notes summary i{ display:grid; place-items:center; width:24px; height:24px; border-radius:50%; border:1px solid rgba(46,38,36,.3); font:400 15px/1 var(--wide); font-style:normal; transition:transform .3s ease, background .25s ease, color .25s ease; }
+.notes[open] summary i{ transform:rotate(45deg); background:var(--ink); color:var(--cream); border-color:var(--ink); }
+.notes dl{ margin:16px 0 0; display:grid; gap:10px; padding:18px 20px; background:rgba(46,38,36,.05); border-radius:14px; }
+.notes dl div{ display:grid; grid-template-columns:70px 1fr; gap:12px; align-items:baseline; }
+.notes dt{ font:700 10px/1.6 var(--wide); font-stretch:118%; text-transform:uppercase; color:var(--mute); }
+.notes dd{ margin:0; font:500 13.5px/1.6 var(--wide); font-stretch:106%; }
+.buy{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:10px; padding-top:22px; border-top:1px solid var(--line); }
+.price{ font:600 24px/1 var(--wide); font-stretch:115%; letter-spacing:-.05em; }
+.price small{ display:block; margin-top:7px; font:500 12px/1 var(--wide); font-stretch:100%; letter-spacing:0; color:var(--mute); }
+.buy-actions{ display:flex; gap:8px; flex-wrap:wrap; }
 
-  /* track strip under hero */
-  .track-pills{
-    position:relative; z-index:1;
-    margin-top:44px; margin-left:2vw;
-    display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-start;
-  }
-  .pill{
-    display:flex; align-items:center; gap:8px;
-    padding:9px 18px 9px 10px; border-radius:980px;
-    background:rgba(7,7,7,0.04); border:1px solid rgba(7,7,7,0.1);
-    font-size:0.78rem; font-weight:500; text-decoration:none; color:var(--black);
-    transition:background .25s ease, transform .25s ease;
-  }
-  .pill:hover{ background:rgba(7,7,7,0.08); transform:translateY(-2px); }
-  .pill .dot{ width:9px; height:9px; border-radius:50%; }
-  .pill.p1 .dot{ background:linear-gradient(135deg,var(--track1a),var(--track1b)); }
-  .pill.p2 .dot{ background:linear-gradient(135deg,var(--track2a),var(--track2b)); }
-  .pill.p3 .dot{ background:linear-gradient(135deg,var(--track3a),var(--track3b)); }
+/* 02 DETAILS — 여백 없이 꽉 찬 어두운 띠 */
+.details-band{ padding-block:clamp(40px,4.5vw,64px); }
+.details-grid{ display:grid; grid-template-columns:repeat(4,1fr); }
+.detail{ display:grid; grid-template-columns:auto 1fr; gap:6px 18px; align-items:start; padding:6px clamp(16px,2vw,32px); border-left:1px solid var(--line-night); }
+.detail:first-child{ border-left:0; padding-left:0; }
+.detail .num{ grid-row:span 2; font:500 clamp(34px,3.2vw,50px)/.85 var(--wide); font-stretch:125%; letter-spacing:-.07em; color:var(--on-night); }
+.detail .lbl{ color:var(--on-night-2); padding-top:2px; }
+.detail p{ margin:0; font:600 15px/1.45 var(--kr); letter-spacing:-.03em; }
 
-  /* ---------------- intro statement ---------------- */
-  .intro{
-    background:var(--black);
-    padding:160px 24px;
-    text-align:center;
-  }
-  .intro-inner{ max-width:1420px; margin:0 auto; }
-  .intro h2{
-    font-size:clamp(1.9rem,4.3vw,3.4rem); font-weight:600; letter-spacing:-0.02em; line-height:1.35;
-    color:rgba(255,255,255,0.94);
-  }
-  .intro h2 b{ color:var(--white); font-weight:800; }
-  .intro-brand{
-    font-size:clamp(1.9rem,4.3vw,3.4rem); font-weight:800; color:var(--white);
-    letter-spacing:-0.02em; line-height:1.35; text-transform:lowercase; margin-bottom:2px;
-  }
-  .intro-caption{ margin-top:26px; font-size:1rem; color:var(--grey); line-height:1.7; }
+/* 03 COLLECTION */
+.collection{ background:var(--stone); }
+.collection-head{ text-align:center; display:grid; justify-items:center; gap:18px; }
+.collection-head .h2{ font-size:clamp(40px,5.4vw,84px); }
+.collection-head .body{ max-width:46ch; }
+.trio{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,3vw,48px); max-width:1100px; margin:clamp(56px,7vw,100px) auto 0; }
+.trio a{ display:grid; justify-items:center; gap:22px; text-align:center; }
+.trio figure{ margin:0; position:relative; width:100%; display:grid; place-items:center; padding-bottom:28px; }
+.trio figure::after{ content:""; position:absolute; left:50%; bottom:6px; width:62%; height:16px; transform:translateX(-50%); border-radius:50%; background:radial-gradient(closest-side, rgba(60,44,34,.2), transparent); }
+.trio img{ width:min(64.8%,207px); height:auto; transform-origin:50% 2%; transition:transform .8s cubic-bezier(.2,.8,.2,1); filter:drop-shadow(0 26px 30px rgba(60,44,34,.2)) drop-shadow(0 4px 6px rgba(60,44,34,.08)); }
+.trio a:hover img{ transform:translateY(-8px) rotate(-1.5deg); }
+.trio .lbl{ color:var(--mute); }
+.trio strong{ display:block; margin-top:6px; font-weight:500; font-stretch:118%; font-size:clamp(20px,1.8vw,26px); letter-spacing:-.055em; }
+.trio span.kr{ font:500 13px/1.5 var(--kr); color:var(--ink-2); }
+.collection-bar{ max-width:1100px; margin:clamp(56px,6vw,88px) auto 0; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; padding:22px 22px 22px 30px; background:var(--cream); border-radius:999px; }
+.collection-bar p{ margin:0; font:600 16px/1.5 var(--kr); letter-spacing:-.03em; }
+.collection-bar p span{ margin-left:12px; font:500 13px/1 var(--wide); color:var(--mute); letter-spacing:0; }
+.collection-bar .btn{ border-radius:999px; }
 
-  /* ---------------- track sections (apple product page style) ---------------- */
-  .track-section{
-    position:relative;
-    min-height:100vh;
-    display:flex; align-items:center; justify-content:center;
-    padding:140px 24px;
-    overflow:hidden;
-  }
-  .t1{ background:linear-gradient(160deg,var(--track1a),var(--track1b) 130%); color:var(--track1-ink); }
-  .t2{ background:linear-gradient(160deg,var(--track2a),var(--track2b) 130%); color:var(--track2-ink); }
-  .t3{ background:linear-gradient(160deg,var(--track3a),var(--track3b) 130%); color:var(--track3-ink); }
+/* 04 GIVING — 현재 사이트 구도: 오른쪽 사진이 배경색으로 스며듦 */
+.giving{ position:relative; overflow:hidden; background:var(--cream); }
+.giving-photo{ position:absolute; top:0; right:0; bottom:0; width:50%; background:url('assets/giving-kids.webp') right 38% / cover no-repeat; }
+.giving-photo::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--cream) 0%, rgba(251,246,238,.55) 26%, rgba(251,246,238,0) 58%); }
+.giving-inner{ position:relative; z-index:1; padding-block:clamp(120px,12vw,180px); }
+.giving-body{ max-width:700px; display:grid; gap:0; }
+.giving-body .lbl{ color:var(--mute); }
+.giving-lead{ margin:22px 0 0; font:600 clamp(15px,1.25vw,17px)/1.75 var(--kr); letter-spacing:-.02em; }
+.giving-lead b{ font-weight:700; }
+.giving-head{ margin:28px 0 0; font:600 clamp(26px,2.6vw,40px)/1.4 var(--kr); letter-spacing:-.045em; }
+.giving-sub{ margin:18px 0 0; font:500 clamp(15px,1.25vw,17px)/1.8 var(--kr); color:var(--ink-2); }
+.giving-note{ justify-self:start; margin:34px 0 0; padding-top:14px; border-top:1px solid var(--line); font:500 13px/1.6 var(--kr); color:var(--mute); font-variant-numeric:tabular-nums; }
 
-  .track-inner{
-    position:relative; z-index:2;
-    max-width:1080px; width:100%;
-    display:flex; flex-direction:column; align-items:center; text-align:center; gap:44px;
-  }
-  .track-kicker{
-    font-size:0.84rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
-    opacity:0.65;
-  }
-  .track-title{
-    font-size:clamp(2.8rem,9vw,7.5rem); font-weight:800; letter-spacing:-0.04em; line-height:0.94;
-    text-transform:lowercase;
-  }
-  .track-tagline{ font-size:1.15rem; font-weight:500; opacity:0.78; max-width:460px; }
-  .track-tags{ margin-top:10px; font-size:0.86rem; font-weight:500; opacity:0.6; letter-spacing:0.01em; }
+/* 05 FAQ */
+.faq-sec{ background:var(--stone); }
+.faq-grid > .h2{ grid-column:1 / span 4; font-size:clamp(32px,3.6vw,54px); }
+.faq-list{ grid-column:6 / span 7; }
+.faq-item{ border-bottom:1px solid rgba(46,38,36,.1); }
+.faq-item summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:44px 1fr 20px; gap:12px; align-items:baseline; padding:22px 0; font:600 16px/1.5 var(--kr); letter-spacing:-.02em; }
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary i{ font:600 11px/1 var(--wide); font-style:normal; color:var(--mute); }
+.faq-item summary::after{ content:"+"; font:300 22px/1 var(--wide); justify-self:end; transition:transform .3s ease; }
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+.faq-a{ padding:0 32px 24px 56px; display:grid; gap:10px; }
+.faq-a p{ margin:0; font:500 14.5px/1.8 var(--kr); color:var(--ink-2); }
+.cert{ margin:22px 0 0; font:500 12px/1.5 var(--kr); color:var(--mute); }
 
-  /* 실제 제품 사진 — 사진 자체에 그림자가 들어 있어 별도 CSS 그림자를 쓰지 않음 */
-  .product-stage{
-    position:relative; z-index:0; width:100%; display:flex; justify-content:center; margin:12px 0 6px;
-  }
-  .product-figure{ position:relative; z-index:1; }
-  /* 사진은 세로 기준으로 크기를 잡되, img{max-width:100%}에 걸려 가로가 눌리지 않도록 해제
-     (가로가 눌리면 택이 실제보다 기울어져 보임) */
-  .product-photo{ display:block; height:470px; width:auto; max-width:none; }
+/* FOOTER */
+footer{ background:var(--night); color:var(--on-night); padding-block:clamp(96px,11vw,168px) calc(env(safe-area-inset-bottom,0px) + 96px); overflow:hidden; }
+footer .section-top{ border-color:var(--line-night); }
+footer .section-top .lbl:last-child{ color:var(--on-night-2); }
+.footer-top{ align-items:end; }
+.footer-top h2{ grid-column:1 / span 8; margin:0; font-weight:500; font-stretch:125%; font-size:clamp(48px,7vw,120px); line-height:.92; letter-spacing:-.08em; }
+.footer-links{ grid-column:10 / span 3; display:grid; gap:4px; }
+.footer-links a{ display:flex; justify-content:space-between; padding:10px 0; font:600 13.5px/1 var(--wide); font-stretch:110%; transition:padding .25s ease; }
+.footer-links a:hover{ padding-left:6px; }
+.legal{ display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-top:clamp(64px,8vw,112px); padding-top:24px; border-top:1px solid var(--line-night); }
+.legal p{ margin:0; font:500 12.5px/1.8 var(--kr); color:var(--on-night-2); }
+.legal a{ font:600 12.5px/1 var(--kr); }
+.wordmark{ margin-top:clamp(40px,6vw,88px); padding-inline:var(--gut); font-weight:500; font-stretch:125%; letter-spacing:-.08em; line-height:1.08; white-space:nowrap; text-align:center; font-size:calc((100vw - 2 * var(--gut)) / 9.5); color:var(--on-night); user-select:none; }
+.footer-end{ display:flex; justify-content:space-between; gap:16px; margin-top:18px; color:var(--on-night-2); }
 
-  /* scent notes 버튼 — 구매 버튼 줄에 함께 놓이는 알약 버튼 */
-  .notes-btn{
-    border:1.4px solid currentColor; background:transparent; color:inherit;
-    cursor:pointer; font-family:inherit;
-  }
-  .notes-btn .plus{ font-size:0.95rem; font-weight:700; line-height:1; }
+/* 등장 */
+.js .rv{ opacity:0; transform:translateY(24px); transition:opacity 1.1s cubic-bezier(.2,.8,.2,1), transform 1.1s cubic-bezier(.2,.8,.2,1); }
+.js .rv.in{ opacity:1; transform:none; }
 
-  .notes-modal{
-    position:fixed; inset:0; z-index:200;
-    display:none; align-items:center; justify-content:center; padding:24px;
-    background:rgba(7,7,7,0.55);
-    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
-  }
-  .notes-modal.open{ display:flex; }
-  .notes-box{
-    position:relative; width:100%; max-width:420px;
-    background:#fff; color:#1d1d1f; border-radius:26px; padding:34px 30px 30px;
-    box-shadow:0 40px 90px -30px rgba(0,0,0,0.5);
-    animation:notesIn .35s cubic-bezier(.16,1,.3,1);
-  }
-  @keyframes notesIn{ from{ opacity:0; transform:translateY(18px) scale(.97);} to{ opacity:1; transform:none;} }
-  .notes-head{ display:flex; align-items:center; gap:10px; }
-  .notes-dot{ width:11px; height:11px; border-radius:50%; flex-shrink:0; }
-  .notes-dot.d1{ background:linear-gradient(135deg,var(--track1a),var(--track1b)); }
-  .notes-dot.d2{ background:linear-gradient(135deg,var(--track2a),var(--track2b)); }
-  .notes-dot.d3{ background:linear-gradient(135deg,var(--track3a),var(--track3b)); }
-  .notes-title{ font-size:1rem; font-weight:800; letter-spacing:-0.01em; }
-  .notes-row{ margin-top:20px; }
-  .notes-label{ font-size:0.66rem; font-weight:700; color:#8a8a8e; letter-spacing:0.06em; text-transform:uppercase; }
-  .notes-val{ font-size:0.9rem; color:#3a3a3c; margin-top:5px; line-height:1.55; }
-  .notes-close{
-    position:absolute; top:16px; right:16px; width:32px; height:32px;
-    border:none; border-radius:50%; cursor:pointer;
-    background:rgba(7,7,7,0.06); color:#1d1d1f; font-size:1rem; line-height:1;
-    font-family:inherit;
-  }
-  .notes-close:hover{ background:rgba(7,7,7,0.12); }
-  .notes-desc{
-    display:none; margin-top:20px; padding-top:18px;
-    border-top:1px solid rgba(7,7,7,0.08);
-    font-size:0.88rem; line-height:1.7; color:#3a3a3c;
-  }
+/* ---------- MOBILE ---------- */
+@media (max-width:900px){
+  .nav{ grid-template-columns:auto 1fr; }
+  .nav-left{ display:none; }
+  .brand{ font-size:15px; }
+  .nav-right{ gap:18px; font-size:12px; }
+  .hero-topline .lbl{ font-size:9.5px; }
+  .hero-topline .lbl:last-child{ display:none; }
+  .t-left{ top:32%; }
+  .t-right{ top:50%; }
+  .hero-caption{ bottom:176px; }
+  .hero-caption span, .hero-scroll{ display:none; }
+  .hero-bottom{ flex-direction:column; align-items:flex-start; gap:14px; }
+  .selectors{ gap:16px; font-size:12px; flex-wrap:wrap; }
+  .idea{ bottom:calc(env(safe-area-inset-bottom,0px) + 90px); }
+  .idea h2, .idea-side{ grid-column:1 / -1; }
+  .idea h2{ font-size:clamp(30px,8.6vw,42px); }
+  .idea-side{ margin-top:26px; }
+  .idea-side p:first-child{ display:none; }
 
-
-  .track-desc{ font-size:0.98rem; line-height:1.8; opacity:0.85; max-width:840px; text-align:center; }
-  .track-music{ font-size:0.86rem; opacity:0.7; }
-  .track-music b{ font-weight:700; opacity:1; }
-
-  .buy-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center; }
-  .price-row{ display:flex; align-items:baseline; gap:8px; }
-  .price-tag{ font-size:1.4rem; font-weight:700; }
-  .price-note{ font-size:0.72rem; opacity:0.6; }
-  .btn-pill{
-    font-size:0.86rem; font-weight:600; padding:13px 30px; border-radius:980px;
-    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .btn-pill.dark{ background:#141311; color:#fff; }
-  .btn-pill.outline{ border:1.4px solid currentColor; color:inherit; }
-  .btn-pill:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(0,0,0,0.35); }
-
-  /* ---------------- track features strip ---------------- */
-  .track-features{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:22px 16px;
-    width:100%; margin-top:56px; padding-top:28px;
-    border-top:1px solid rgba(0,0,0,0.12);
-  }
-  .track-feature{ display:flex; align-items:flex-start; gap:11px; text-align:left; }
-  .tf-icon{ width:20px; height:20px; flex-shrink:0; stroke:currentColor; fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; opacity:0.8; margin-top:2px; }
-  .tf-text{ display:flex; flex-direction:column; gap:3px; min-width:0; }
-  .tf-en{ font-size:0.66rem; font-weight:800; letter-spacing:0.03em; text-transform:lowercase; opacity:0.55; white-space:nowrap; }
-  .tf-kr{ font-size:0.8rem; font-weight:600; opacity:0.9; line-height:1.35; }
-
-  /* ---------------- features band (full collection 진입 전 독립 섹션, 흰 배경) ---------------- */
-  .features-band{
-    background:var(--white); color:var(--near-black);
-    padding:64px 24px;
-  }
-  .features-band .track-features{
-    max-width:1320px; margin:0 auto;
-    border-top:none; padding-top:0; margin-top:0;
-  }
-
-  /* ---------------- giving (기부 안내) ---------------- */
-  .giving{
-    position:relative; overflow:hidden;
-    background:var(--ivory); color:var(--near-black);
-    border-top:1px solid rgba(7,7,7,0.08);
-  }
-  /* 아이들 사진 — 오른쪽에 깔고 왼쪽은 배경색으로 서서히 사라지게 */
-  .giving-photo{
-    position:absolute; top:0; right:0; bottom:0; width:47%;
-    background:url('assets/giving-kids.webp') right 38%/cover no-repeat;
-  }
-  .giving-photo::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(90deg, var(--ivory) 0%, rgba(250,249,246,0.55) 26%, rgba(250,249,246,0) 55%);
-  }
-  .giving-inner{
-    position:relative; z-index:1;
-    max-width:1320px; margin:0 auto;
-    padding:150px 24px; text-align:left;
-  }
-  .giving-body{ max-width:600px; }
-  .giving-kicker{
-    font-size:0.78rem; font-weight:700; letter-spacing:0.14em;
-    text-transform:uppercase; opacity:0.45;
-  }
-  .giving-lead{
-    margin-top:20px;
-    font-size:clamp(0.95rem,1.35vw,1.06rem); font-weight:600;
-    line-height:1.7; letter-spacing:-0.01em; word-break:keep-all;
-  }
-  .giving-lead b{ font-weight:800; }
-  .giving-head{
-    margin-top:26px;
-    font-size:clamp(1.5rem,2.9vw,2.3rem); font-weight:700;
-    line-height:1.45; letter-spacing:-0.03em; word-break:keep-all;
-  }
-  .giving-sub{
-    margin-top:16px; color:#5c5c59;
-    font-size:clamp(0.9rem,1.35vw,1.02rem); line-height:1.8; word-break:keep-all;
-  }
-  .giving-note{
-    display:inline-block; margin-top:30px; padding-top:14px;
-    border-top:1px solid rgba(7,7,7,0.12);
-    font-size:0.8rem; line-height:1.7; color:#8a8a86; word-break:keep-all;
-  }
-
-  /* ---------------- bundle ---------------- */
-  .bundle{
-    background:var(--black); padding:150px 24px; text-align:center; position:relative; overflow:hidden;
-  }
-  .bundle h2{ font-size:clamp(2.2rem,6vw,4.2rem); font-weight:800; letter-spacing:-0.03em; line-height:1.05; }
-  .bundle p{ margin-top:20px; color:var(--grey); font-size:1.02rem; max-width:700px; margin-left:auto; margin-right:auto; }
-  .bundle-stage{ display:flex; justify-content:center; gap:-20px; margin:70px 0 50px; }
-  .bundle-stage .mini{
-    width:130px; aspect-ratio:2/3; border-radius:20px; margin-left:-24px;
-    box-shadow:0 30px 60px -18px rgba(0,0,0,0.6);
-    display:flex; align-items:flex-end; padding:16px;
-    font-size:0.62rem; font-weight:700; color:#fff; text-transform:lowercase;
-  }
-  .bundle-stage .mini:first-child{ margin-left:0; transform:rotate(-6deg) translateY(10px); }
-  .bundle-stage .mini:nth-child(2){ transform:translateY(-14px); z-index:2; }
-  .bundle-stage .mini:nth-child(3){ transform:rotate(6deg) translateY(10px); }
-  .bundle-stage .m1{ background:linear-gradient(160deg,var(--track1a),var(--track1b)); color:var(--track1-ink); }
-  .bundle-stage .m2{ background:linear-gradient(160deg,var(--track2a),var(--track2b)); color:#0c1c24; }
-  .bundle-stage .m3{ background:linear-gradient(160deg,var(--track3a),var(--track3b)); color:#12200a; }
-  .bundle-meta{ font-size:0.8rem; color:var(--grey); margin-bottom:34px; }
-  .bundle-meta b{ color:var(--white); }
-
-  /* ---------------- faq ---------------- */
-  .faq{ background:var(--near-black); padding:130px 24px; }
-  .faq-inner{ max-width:760px; margin:0 auto; }
-  .faq-title{ font-size:clamp(1.9rem,5vw,3rem); font-weight:800; letter-spacing:-0.03em; margin-top:16px; margin-bottom:44px; }
-  .faq-item{ border-bottom:1px solid rgba(255,255,255,0.1); }
-  .faq-item summary{
-    cursor:pointer; list-style:none; position:relative;
-    padding:22px 40px 22px 0;
-    font-size:1.02rem; font-weight:600; color:rgba(255,255,255,0.88);
-  }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-item summary::after{
-    content:'+'; position:absolute; right:4px; top:50%; transform:translateY(-50%);
-    font-size:1.3rem; font-weight:400; color:rgba(255,255,255,0.4);
-    transition:transform .3s ease;
-  }
-  .faq-item[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
-  .faq-a{ padding:0 0 24px; }
-  .faq-a p{ font-size:0.92rem; line-height:1.75; color:rgba(255,255,255,0.55); margin-bottom:10px; }
-  .faq-cert{ margin-top:40px; font-size:0.74rem; color:rgba(255,255,255,0.3); }
-  @media (max-width:760px){
-    .faq{ padding:90px 20px; }
-    .faq-item summary{ font-size:0.95rem; padding:19px 34px 19px 0; }
-  }
-
-  /* ---------------- footer ---------------- */
-  footer{ background:var(--black); color:rgba(255,255,255,0.55); padding:70px 24px 30px; }
-  .footer-inner{ max-width:1080px; margin:0 auto; }
-  .footer-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1); }
-  .footer-brand{ font-size:1.1rem; font-weight:700; color:#fff; text-transform:lowercase; }
-  .footer-brand-kr{ font-size:0.72rem; font-weight:500; color:rgba(255,255,255,0.45); text-transform:none; }
-  .footer-brand-sub{ margin-top:10px; font-size:0.84rem; max-width:280px; line-height:1.6; }
-  .footer-cols{ display:flex; gap:64px; flex-wrap:wrap; }
-  .footer-col-title{ font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:rgba(255,255,255,0.35); margin-bottom:14px; }
-  .footer-col a, .footer-col p{ display:block; font-size:0.84rem; text-decoration:none; margin-bottom:10px; color:rgba(255,255,255,0.6); }
-  .footer-col a:hover{ color:#fff; }
-  .footer-legal{ margin-top:32px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1); }
-  .footer-legal p{ font-size:0.68rem; line-height:1.7; color:rgba(255,255,255,0.32); margin:0 0 4px; }
-  .footer-bottom{ margin-top:30px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.72rem; color:rgba(255,255,255,0.35); }
-  /* ===================== RESPONSIVE ===================== */
-
-  /* --- 태블릿 / 좁은 데스크탑 --- */
-  @media (max-width:1024px){
-    .hero{ padding:88px 26px 56px; }
-    .intro{ padding:120px 22px; }
-    .track-section{ padding:110px 22px; }
-    .track-inner{ gap:36px; }
-    .bundle{ padding:120px 22px; }
-    .footer-cols{ gap:44px; }
-  }
-
-  /* --- 모바일 (톤암 숨김 구간) --- */
-  @media (max-width:760px){
-    .hero{
-      min-height:100svh; min-height:100dvh; padding:76px 20px 20px;
-      background:#070707 url('assets/hero-mobile.webp') center/cover no-repeat;
-      color:#fff;
-      justify-content:flex-end;
-    }
-    .hero::before{
-      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
-      background:linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 40%, rgba(7,7,7,0.88) 88%, rgba(7,7,7,0.96) 100%);
-    }
-    .hero-inner{ position:relative; z-index:1; }
-    .hero-top, .hero-bottom{ display:none; }
-    .hero-title{ font-size:clamp(2.35rem,10.2vw,3.6rem); line-height:1.08; letter-spacing:-0.02em; color:#fff; }
-    .hero-title-mobile-2line{ font-size:clamp(2.3rem,9.9vw,3.6rem); line-height:1.25; }
-    .hero-title .line{ margin-bottom:0.06em; }
-    .hero-title-desktop{ display:none; }
-    /* 영문 헤드라인은 화면엔 숨기되 검색엔진용으로 DOM에는 유지 */
-    .hero-title-mobile{
-      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-    .hero-arrow{ font-size:1.3rem; }
-
-    .hero-outro{ padding-bottom:9vh; }
-
-    /* 서브 텍스트도 데스크탑처럼 화면엔 숨기되 검색엔진용으로 DOM에는 유지 (하단 intro 섹션에 동일 설명이 이미 있음) */
-    .hero-body{
-      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-
-    .track-pills{ margin-top:34px; margin-left:0; gap:0; flex-direction:column; flex-wrap:nowrap; align-items:stretch; }
-    .pill .pill-num{ display:none; }
-    .pill{
-      width:100%; flex:none; min-width:0; padding:14px 2px; font-size:0.88rem; font-weight:600;
-      letter-spacing:-0.005em; gap:11px; justify-content:flex-start; white-space:nowrap;
-      background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,0.16); border-radius:0;
-      color:#fff; -webkit-backdrop-filter:none; backdrop-filter:none;
-    }
-    .pill:first-child{ border-top:1px solid rgba(255,255,255,0.16); }
-    .pill::after{ content:'›'; margin-left:auto; opacity:0.45; font-weight:400; font-size:1rem; }
-    .pill:hover{ background:rgba(255,255,255,0.05); }
-    .pill .dot{ display:none; }
-
-    .intro{ padding:96px 20px; }
-    .intro-inner{ max-width:100%; }
-    .intro-brand{ margin-bottom:4px; }
-    .intro-caption{ margin-top:20px; font-size:0.94rem; }
-
-    .track-section{ min-height:auto; padding:96px 20px; }
-    /* 데스크탑과 동일하게: 배경은 아이보리로 통일하고 제목·Shop 버튼에만 트랙 포인트 컬러, 섹션 위쪽엔 그 색 라인 */
-    .t1, .t2, .t3{ background:var(--ivory); color:var(--near-black); }
-    .t1{ border-top:4px solid var(--track1-accent); }
-    .t2{ border-top:4px solid var(--track2-accent); }
-    .t3{ border-top:4px solid var(--track3-accent); }
-    .t1 .track-title{ color:var(--track1-accent); }
-    .t2 .track-title{ color:var(--track2-accent); }
-    .t3 .track-title{ color:var(--track3-accent); }
-    .t1 .btn-pill.dark{ background:var(--track1-accent); }
-    .t2 .btn-pill.dark{ background:var(--track2-accent); }
-    .t3 .btn-pill.dark{ background:var(--track3-accent); }
-    /* 카드 위 텍스트 블록(제목/한줄소개/해시태그)은 한 세트로 묶어 촘촘하게, 그 아래(카드/설명/버튼)는 기존 간격 유지 */
-    .track-inner{ gap:0; }
-    .track-kicker{ margin-top:0; }
-    .track-title{ margin-top:10px; }
-    .track-tagline{ font-size:1rem; margin-top:8px; }
-    .track-tags{ font-size:0.8rem; margin-top:8px; }
-    .track-divider{ margin-top:30px; }
-    /* 제품 사진 위아래 여백을 조금씩 축소 */
-    .product-stage{ margin-top:18px; margin-bottom:0; }
-    .track-desc{ display:none; }
-    .notes-desc{ display:block; }
-    .track-music{ font-size:0.82rem; margin-top:18px; }
-    .buy-row{ margin-top:30px; }
-
-    /* 모바일: 제품 3% 축소 + 그림자를 뺀 '택' 기준으로 가운데 정렬
-       (사진 오른쪽에 그림자 여백이 있어 그대로 두면 택이 왼쪽으로 치우쳐 보임) */
-    .product-photo{ height:auto; width:min(417px,88vw); transform:translateX(9.8%); }
-
-    .buy-row{ flex-direction:column; gap:12px; width:100%; }
-    /* 데스크탑용 버튼 래퍼 — 모바일에서는 기존처럼 세로로 쌓이게 */
-    .buy-cta{ display:flex; flex-direction:column; align-items:center; gap:12px; width:100%; }
-    .btn-pill{ width:100%; max-width:195px; justify-content:center; padding:13px 18px; }
-
-    .track-features{ grid-template-columns:repeat(2,1fr); gap:22px 14px; margin-top:44px; padding-top:26px; }
-    .tf-en{ white-space:normal; }
-    /* 한글이 단어 중간에서 잘리지 않고 단어 통째로 다음 줄로 내려가게 */
-    .tf-kr, .track-music{ word-break:keep-all; }
-    /* 모바일: 트랙별 반복 대신 맨 아래 흰 배경 섹션 하나만 */
-    .track-features.in-track{ display:none; }
-    .features-band{ padding:56px 20px; }
-    .giving-photo{
-      position:relative; width:100%; height:auto; aspect-ratio:5/4;
-      background-position:center 28%;
-    }
-    .giving-photo::after{
-      background:linear-gradient(180deg, rgba(250,249,246,0) 55%, var(--ivory) 100%);
-    }
-    .giving-inner{ padding:26px 20px 84px; text-align:center; }
-    .giving-body{ max-width:100%; }
-    .giving-lead{ font-size:0.9rem; line-height:1.65; }
-    .giving-head{ margin-top:20px; font-size:1.28rem; line-height:1.5; letter-spacing:-0.035em; }
-    .giving-sub{ margin-top:14px; font-size:0.85rem; line-height:1.7; }
-    .giving-note{ margin-top:26px; font-size:0.74rem; }
-
-    .bundle{ padding:96px 20px; }
-    .bundle p{ font-size:0.95rem; max-width:100%; }
-    .bundle-stage{ margin:52px 0 40px; }
-    .bundle-stage .mini{ width:100px; margin-left:-18px; border-radius:16px; padding:12px; }
-
-    .notes-box{ padding:30px 24px 26px; border-radius:22px; }
-
-    footer{ padding:56px 20px 26px; }
-    .footer-top{ flex-direction:column; gap:28px; }
-    .footer-brand-sub{ max-width:100%; }
-    .footer-cols{ gap:32px; }
-    .footer-bottom{ flex-direction:column; gap:8px; }
-  }
-
-  /* --- 소형 모바일 --- */
-  @media (max-width:520px){
-    .hero{ padding:70px 18px 42px; }
-    .hero-title{ letter-spacing:-0.03em; }
-    .intro{ padding:80px 18px; }
-    .track-section{ padding:80px 18px; }
-    .track-title{ letter-spacing:-0.035em; }
-    .product-photo{ height:auto; width:88vw; transform:translateX(9.8%); }
-    .bundle-stage .mini{ width:84px; margin-left:-14px; }
-    .price-tag{ font-size:1.25rem; }
-  }
-
-  /* --- 터치 기기: hover 잔상 제거 --- */
-  @media (hover:none){
-    .pill:hover, .btn-pill:hover{ transform:none; box-shadow:none; }
-  }
-  /* ===== 데스크탑: Track 섹션 2단 레이아웃 (참고 HTML의 크기·간격을 그대로 반영, 카드는 기존 크기 유지) ===== */
-  @media (min-width:761px){
-    .track-section{ padding:150px 24px 110px; }
-    /* 배경은 트랙마다 다른 원색 그라디언트 대신 아이보리 하나로 통일 — 유치해 보이는 걸 방지하고,
-       대신 제목과 Shop 버튼에만 트랙 포인트 컬러를 줘서 구분. 경계에는 그 색의 얇은 라인만 추가.
-       (모바일은 요청 범위 밖이라 기존 원색 그라디언트 그대로 유지) */
-    .t1, .t2, .t3{ background:var(--ivory); color:var(--near-black); }
-    .t1{ border-top:4px solid var(--track1-accent); }
-    .t2{ border-top:4px solid var(--track2-accent); }
-    .t3{ border-top:4px solid var(--track3-accent); }
-    .t1 .track-title{ color:var(--track1-accent); }
-    .t2 .track-title{ color:var(--track2-accent); }
-    .t3 .track-title{ color:var(--track3-accent); }
-    .t1 .btn-pill.dark{ background:var(--track1-accent); }
-    .t2 .btn-pill.dark{ background:var(--track2-accent); }
-    .t3 .btn-pill.dark{ background:var(--track3-accent); }
-    .track-inner{
-      display:grid;
-      /* 바깥 두 칸의 비율로 카드+텍스트 묶음의 좌우 위치를 잡음.
-         수학적 정중앙은 1fr/1fr이지만, 왼쪽 카드가 시각적으로 무거워
-         광학 보정으로 오른쪽으로 약 40px 이동 (왼쪽 칸을 더 크게) */
-      grid-template-columns:0 50% auto 0;
-      grid-template-rows:0.68fr repeat(8,auto) 1.32fr auto;
-      align-items:center;
-      column-gap:0; row-gap:0;
-      width:100%; max-width:1320px; margin:0 auto;
-      min-height:calc(100vh - 260px);
-      text-align:left;
-    }
-
-    /* 카드는 원래 크기 그대로 유지 — 가운데 묶음의 왼쪽에 배치 */
-    .product-stage{
-      grid-column:2; grid-row:2/10; margin:0;
-      justify-content:center; align-self:center;
-    }
-    /* 사진 오른쪽의 그림자 여백을 빼고 '택' 기준으로 왼쪽 절반의 가운데에 오도록 */
-    .product-stage .product-photo{ transform:translateX(9.73%); }
-    /* 카드와 텍스트 사이 간격은 텍스트쪽 padding으로 (grid item margin은 트랙을 좁혀 카드가 겹침) */
-    .track-kicker, .track-title, .track-tagline, .track-tags,
-    .track-desc, .track-music, .buy-row{
-      padding-left:0;
-    }
-
-    .track-kicker{
-      grid-column:3; grid-row:2;
-      font-size:13px; font-weight:700; letter-spacing:0.08em; margin-top:0;
-    }
-    .track-title{
-      grid-column:3; grid-row:3;
-      font-size:clamp(2.75rem,6.4vw,4.75rem); font-weight:900; line-height:0.98; letter-spacing:-0.02em;
-      text-align:left; margin-top:18px;
-    }
-    .track-tagline{ grid-column:3; grid-row:4; font-size:19px; font-weight:500; max-width:none; margin-top:22px; }
-    .track-tags{ grid-column:3; grid-row:5; font-size:15px; margin-top:16px; }
-    /* 선을 짧게 — 전체 폭으로 늘어나면 오른쪽이 무거워 보여 가운데 정렬이 깨져 보임.
-       padding이 아닌 margin으로 밀어야 함 (border-box라 padding을 주면 선 자체가 0px가 됨) */
-    /* 선이 오른쪽 끝까지 뻗으면 묶음의 오른쪽이 무거워져 가운데 정렬이 깨져 보임 → 텍스트 칸 폭까지만 */
-    .track-divider{
-      grid-column:3; grid-row:6;
-      width:auto; height:1px; margin-top:28px;
-      margin-left:0;
-      background:rgba(0,0,0,0.12); opacity:1;
-    }
-    .track-desc{ grid-column:3; grid-row:7; text-align:left; font-size:16px; line-height:1.75; max-width:none; margin-top:28px; }
-    .track-music{ grid-column:3; grid-row:8; font-size:15px; margin-top:26px; }
-    .buy-row{
-      grid-column:3; grid-row:9;
-      justify-content:flex-start; align-items:center;
-      flex-wrap:wrap; column-gap:14px; row-gap:22px; margin-top:30px;
-    }
-    /* 버튼 묶음이 한 줄을 통째로 차지 → Shop / 음악 듣기가 가격 아래로 */
-    .buy-cta{ flex-basis:100%; display:flex; align-items:center; gap:14px; }
-    /* 가격 래퍼는 모바일 전용 — 데스크탑에서는 없는 것처럼 동작시켜 기존 레이아웃 100% 유지 */
-    .price-row{ display:contents; }
-    .buy-row .btn-pill, .buy-row .price-tag, .buy-row .price-note{ white-space:nowrap; }
-    .buy-row .price-tag{ font-size:30px; font-weight:800; }
-    .buy-row .price-note{ font-size:14px; }
-    .buy-row .btn-pill{ padding:16px 30px; font-size:15px; font-weight:700; }
-    /* 데스크탑: 원래 설계대로 트랙 섹션마다 하단에 배치 */
-    .track-features.in-track{
-      grid-column:1/-1; grid-row:11; align-self:end;
-      grid-template-columns:repeat(4,1fr);
-      margin-top:0; padding-top:clamp(28px,4vh,40px);
-      gap:28px;
-    }
-    .tf-en{ font-size:0.72rem; }
-    .tf-kr{ font-size:0.81rem; }
-    /* 데스크탑에서는 맨 아래 흰 배경 섹션 숨김 (모바일 전용) */
-    .features-band{ display:none; }
-
-    /* 카드 내부 노트/태그라인 가로 유지 */
-  }
-
-  /* 넉넉한 데스크탑 폭에서는 설명 문장이 반드시 한 줄로 유지되도록 */
-  @media (min-width:1180px){
-    .track-desc{ white-space:nowrap; }
-  }
-
-  /* ===== 히어로: 정적 사진 배경 (데스크탑/모바일 각각 breakpoint에서 display 지정) ===== */
-  .hero-outro{
-    position:absolute; inset:0;
-    z-index:2; text-align:center; pointer-events:none;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-  }
-  /* 페이지 열리자마자 바로 보이도록 페이드인 없이 처음부터 완전 불투명 */
-  .hero-outro-word{ opacity:1; }
-  .hero-outro .audio-fab{ pointer-events:auto; }
-  .hero-outro-text{
-    font-size:clamp(2.4rem,7vw,5rem); font-weight:800; letter-spacing:-0.02em;
-    color:#fff; text-transform:lowercase; white-space:nowrap;
-  }
-  .hero-outro-cursor{
-    display:inline-block; width:3px; height:0.85em; margin-left:3px; background:#fff;
-    vertical-align:-0.1em;
-    animation:heroCursorBlink 0.9s steps(1) infinite;
-  }
-  @keyframes heroCursorBlink{ 50%{ opacity:0; } }
-  @media (prefers-reduced-motion:reduce){
-    .hero-outro-cursor{ animation:none; }
-  }
-  @media (min-width:761px){
-    .hero{
-      background:#070707 url('assets/hero-desktop.webp') center/cover no-repeat;
-      color:#fff;
-      justify-content:center;
-    }
-    .hero::before{
-      content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(58% 42% at 50% 50%, rgba(7,7,7,0.42) 0%, rgba(7,7,7,0.18) 55%, rgba(7,7,7,0) 100%),
-        linear-gradient(180deg, rgba(7,7,7,0.5) 0%, rgba(7,7,7,0.08) 20%, rgba(7,7,7,0.08) 68%, rgba(7,7,7,0.7) 100%);
-    }
-    /* 밝은 배경 사진에서도 워드마크가 또렷하게 읽히도록 */
-    .hero-outro-text{ text-shadow:0 2px 26px rgba(7,7,7,0.45), 0 1px 4px rgba(7,7,7,0.35); }
-    .hero-inner{ position:relative; z-index:1; flex:1; }
-    .hero-spotlight, .hero-top{ display:none; }
-    /* 헤드라인/서브텍스트는 화면엔 숨기되 검색엔진용으로 DOM에는 유지 */
-    .hero-title-desktop, .hero-body{
-      position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-    .hero-bottom{ display:none; }
-    .track-pills{ position:absolute; left:auto; right:210px; bottom:34px; margin:0; justify-content:flex-end; }
-    .pill .pill-num{ display:none; }
-    .pill{
-      background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#fff;
-      -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-    }
-    .pill:hover{ background:rgba(255,255,255,0.16); }
-    .audio-fab{ min-width:172px; justify-content:center; }
-  }
-
-  /* 낮은 화면(노트북)에서 한 단계 더 압축 */
-  @media (min-width:761px) and (max-height:900px){
-    .track-section{ padding:100px 24px 90px; }
-    .track-inner{ min-height:calc(100vh - 190px); }
-    .track-title{ font-size:clamp(2.2rem,3.8vw,3.2rem); margin-top:10px; }
-    .track-tagline{ margin-top:12px; }
-    .track-tags{ margin-top:8px; }
-    .track-divider{ margin-top:16px; }
-    .track-desc{ margin-top:16px; }
-    .track-music{ margin-top:14px; }
-    .buy-row{ margin-top:20px; }
-    .track-features.in-track{ padding-top:20px; }
-  }
-  /* ===== 모바일 전용 줄바꿈 (데스크탑에서는 무시) ===== */
-  .m-br{ display:none; }
-  /* ===== 데스크탑 전용 줄바꿈 (모바일에서는 무시) ===== */
-  .d-br{ display:inline; }
-  @media (max-width:760px){
-    .m-br{ display:inline; }
-    .d-br{ display:none; }
-  }
-
-  /* ===== 커스텀 원형 커서 (마우스 사용 기기에서만) ===== */
-  @media (hover:hover) and (pointer:fine){
-    body, a, button, .pill, .btn-pill, .notes-btn, .product-figure{
-      cursor:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Ccircle cx='13' cy='13' r='9' fill='%23ffffff' stroke='rgba(0,0,0,0.16)' stroke-width='1'/%3E%3C/svg%3E") 13 13, auto;
-    }
-  }
+  .tracklist-head h2, .tracklist-head p, .plate, .track-copy, .track.flip .plate, .track.flip .track-copy, .faq-grid > .h2, .faq-list, .footer-top h2, .footer-links{ grid-column:1 / -1; grid-row:auto; }
+  .tracklist-head p, .faq-list, .footer-links{ margin-top:28px; }
+  .tracklist a{ grid-template-columns:40px 1fr auto; row-gap:8px; padding:18px 0; }
+  .tracklist .m{ grid-column:2; grid-row:2; }
+  .tracklist .k, .tracklist .go{ display:none; }
+  .tracklist .p{ grid-column:3; grid-row:1; }
+  .chapter-bar{ grid-template-columns:1fr auto; }
+  .chapter-bar .lbl:nth-child(2){ display:none; }
+  .track{ padding-block:24px 72px; }
+  .plate{ width:100%; max-width:420px; justify-self:center; }
+  .plate img{ width:min(50vw,220px); }
+  .track-copy{ margin-top:8px; }
+  .details-grid{ grid-template-columns:1fr 1fr; row-gap:28px; }
+  .detail:nth-child(3){ border-left:0; padding-left:0; }
+  .detail{ grid-template-columns:1fr; padding-inline:16px; }
+  .detail .num{ grid-row:auto; font-size:30px; margin-bottom:6px; }
+  .trio{ gap:8px; }
+  .trio strong{ font-size:15px; }
+  .trio span.kr{ display:none; }
+  .collection-bar{ border-radius:22px; padding:22px; }
+  .collection-bar .btn{ width:100%; }
+  .giving-photo{ position:relative; width:100%; aspect-ratio:5 / 4; background-position:center 28%; }
+  .giving-photo::after{ background:linear-gradient(180deg, rgba(251,246,238,0) 55%, var(--cream) 100%); }
+  .giving-inner{ padding-block:24px 96px; text-align:center; }
+  .giving-body{ max-width:100%; justify-items:center; }
+  .giving-note{ justify-self:center; }
+  .faq-a{ padding-right:0; }
+  .section-top .lbl{ font-size:10px; white-space:nowrap; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .js .rv{ opacity:1; transform:none; }
+  .idea > *{ opacity:1; }
+  html{ scroll-behavior:auto; }
+}
 </style>
 </head>
 <body>
-
-<nav class="nav">
-  <a class="nav-logo" href="#top" aria-label="urban scent track 어반센트트랙 홈">urban scent track</a>
-  <ul class="nav-links">
-    <li><a href="#track01">Track 01</a></li>
-    <li><a href="#track02">Track 02</a></li>
-    <li><a href="#track03">Track 03</a></li>
-    <li><a href="#bundle">Collection</a></li>
-  </ul>
-  <a class="nav-cta" href="https://smartstore.naver.com/urbanscenttrack" target="_blank" rel="noopener">Shop</a>
-</nav>
-
-<button id="themeAudioToggle" class="audio-fab" type="button" aria-label="브랜드 테마곡 재생" aria-pressed="false">
-  <span class="audio-fab-icon">
-    <span class="audio-fab-ring" aria-hidden="true"></span>
-    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
-  </span>
-  <span class="audio-fab-label">Play Sound</span>
-</button>
-<audio id="themeAudio" src="assets/theme-song.mp3" preload="none" loop></audio>
-
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="hero-spotlight" aria-hidden="true"></div>
-
-  <div class="hero-outro" id="heroOutro">
-    <div class="hero-outro-word" aria-hidden="true">
-      <span class="hero-outro-text" id="heroOutroText"></span><span class="hero-outro-cursor"></span>
-    </div>
-  </div>
-
-  <div class="hero-inner">
-
-    <div class="hero-top reveal in">
-      <span class="hero-mark">✳︎</span>
-      <p class="hero-eyebrow">urban scent track collection</p>
-    </div>
-
-    <h1 class="hero-title hero-title-desktop">
-      <span class="line-mask"><span class="line">CHOOSE</span></span>
-      <span class="line-mask"><span class="line push-1">YOUR SCENT</span></span>
-      <span class="line-mask"><span class="line push-2">PLAY YOUR</span></span>
-      <span class="line-mask"><span class="line push-3">MOOD</span></span>
-    </h1>
-    <div class="hero-title hero-title-mobile hero-title-mobile-2line">Choose your scent.<br>Play your mood.</div>
-
-    <div class="hero-body reveal in d2">
-      <p class="hero-sub">Urban Scent Track은 향과 음악을<br class="m-br"> 함께 경험하는 브랜드입니다.</p>
-    </div>
-
-    <div class="hero-bottom reveal in d3">
-      <div class="hero-scroll"><span>Scroll</span><span class="bar"></span></div>
-    </div>
-
-  </div>
-
-  <div class="track-pills reveal in d2">
-    <a class="pill p1" href="#track01"><span class="dot"></span><span class="pill-num">Track 01 · </span>City Citrus</a>
-    <a class="pill p2" href="#track02"><span class="dot"></span><span class="pill-num">Track 02 · </span>Clean Cotton</a>
-    <a class="pill p3" href="#track03"><span class="dot"></span><span class="pill-num">Track 03 · </span>Concrete Forest</a>
+<header class="nav" id="nav">
+  <nav class="nav-left" aria-label="주 메뉴">
+    <a href="#idea">The idea</a><a href="#tracks">The tracks</a><a href="#collection">Collection</a><a href="#faq">FAQ</a>
+  </nav>
+  <a class="brand" href="#top">urban scent track</a>
+  <div class="nav-right">
+    <a href="https://www.instagram.com/urbanscenttrack" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://pf.kakao.com/_dAbxaX/chat" target="_blank" rel="noopener">고객센터</a>
   </div>
 </header>
 
-<!-- INTRO STATEMENT -->
-<section class="intro">
-  <div class="intro-inner reveal">
-    <p class="intro-brand">urban scent track</p>
-    <h2>향과 음악을 함께 즐기는<br class="m-br"> 프래그런스 컬렉션.</h2>
-    <p class="intro-caption">제품의 QR을 스캔하면 컬렉션에 맞는<br class="m-br"> 플레이리스트를 바로 감상할 수 있습니다.</p>
-  </div>
-</section>
-
-<!-- TRACK 01 -->
-<section class="track-section t1" id="track01">
-  <div class="track-inner">
-    <div class="track-kicker reveal">Track 01</div>
-    <h2 class="track-title reveal d1">city citrus</h2>
-    <p class="track-tagline reveal d1">Fresh citrus layered over calm woods.</p>
-    <p class="track-tags reveal d1">#상큼한향 #시트러스향 #우디향</p>
-    <div class="track-divider reveal d1"></div>
-
-    <div class="product-stage reveal d2">
-      <div class="product-figure">
-        <img class="product-photo" src="assets/product-01.webp" width="973" height="966" loading="lazy"
-             alt="Track 01 city citrus 차량용 종이 샤쉐 실제 제품 — 레몬·샌달우드·파출리">
-      </div>
-    </div>
-
-    <p class="track-desc reveal d2">레몬과 버베나의 산뜻함 뒤로 샌달우드와<br class="m-br"> 베티버의 차분한 우디 향이 이어집니다.<br>상큼하지만 가볍기만 하지 않은 향을<br class="m-br"> 좋아하는 분께 잘 맞습니다.</p>
-    <p class="track-music reveal d3">어울리는 음악 — <b>밝고 경쾌한 플레이리스트</b></p>
-
-    <div class="buy-row reveal d3">
-      <div class="price-row">
-        <span class="price-tag">₩16,900</span>
-        <span class="price-note">2 piece set</span>
-      </div>
-      <div class="buy-cta">
-        <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13762727147" target="_blank" rel="noopener">Shop Track 01</a>
-        <button class="btn-pill notes-btn" data-track="1" type="button">scent notes <span class="plus">+</span></button>
-        <a class="btn-pill outline" href="/play01">Track 01 음악 듣기 ↗</a>
-      </div>
-    </div>
-
-    <div class="track-features in-track reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TRACK 02 -->
-<section class="track-section t2" id="track02">
-  <div class="track-inner">
-    <div class="track-kicker reveal">Track 02</div>
-    <h2 class="track-title reveal d1">clean cotton</h2>
-    <p class="track-tagline reveal d1">Clean cotton with soft white musk.</p>
-    <p class="track-tags reveal d1">#깨끗한향 #포근한향 #비누향</p>
-    <div class="track-divider reveal d1"></div>
-
-    <div class="product-stage reveal d2">
-      <div class="product-figure">
-        <img class="product-photo" src="assets/product-02.webp" width="973" height="966" loading="lazy"
-             alt="Track 02 clean cotton 차량용 종이 샤쉐 실제 제품 — 민트·코튼·화이트머스크">
-      </div>
-    </div>
-
-    <p class="track-desc reveal d2">유칼립투스와 민트의 깨끗한 첫인상 뒤로<br class="m-br"> 코튼과 화이트 머스크의 부드러운 향이 이어집니다.<br>갓 세탁한 섬유처럼 포근하고<br class="m-br"> 깨끗한 향을 좋아하는 분께 잘 맞습니다.</p>
-    <p class="track-music reveal d3">어울리는 음악 — <b>부드럽고 편안한 플레이리스트</b></p>
-
-    <div class="buy-row reveal d3">
-      <div class="price-row">
-        <span class="price-tag">₩16,900</span>
-        <span class="price-note">2 piece set</span>
-      </div>
-      <div class="buy-cta">
-        <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13762727148" target="_blank" rel="noopener">Shop Track 02</a>
-        <button class="btn-pill notes-btn" data-track="2" type="button">scent notes <span class="plus">+</span></button>
-        <a class="btn-pill outline" href="/play02">Track 02 음악 듣기 ↗</a>
-      </div>
-    </div>
-
-    <div class="track-features in-track reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TRACK 03 -->
-<section class="track-section t3" id="track03">
-  <div class="track-inner">
-    <div class="track-kicker reveal">Track 03</div>
-    <h2 class="track-title reveal d1">concrete forest</h2>
-    <p class="track-tagline reveal d1">Where the city meets the forest.</p>
-    <p class="track-tags reveal d1">#호텔향 #우디향 #숲향</p>
-    <div class="track-divider reveal d1"></div>
-
-    <div class="product-stage reveal d2">
-      <div class="product-figure">
-        <img class="product-photo" src="assets/product-03.webp" width="973" height="966" loading="lazy"
-             alt="Track 03 concrete forest 차량용 종이 샤쉐 실제 제품 — 그린뱀부·오크·모스">
-      </div>
-    </div>
-
-    <p class="track-desc reveal d2">비터 오렌지와 그린 노트의 쌉쌀한 첫인상 뒤로<br class="m-br"> 오크와 모스의 깊은 우디 향이 이어집니다.<br>풀잎과 나무가 함께 느껴지는<br class="m-br"> 차분한 향을 좋아하는 분께 잘 맞습니다.</p>
-    <p class="track-music reveal d3">어울리는 음악 — <b>도시적인 그루브와 자연의 여유가 공존하는 플레이리스트</b></p>
-
-    <div class="buy-row reveal d3">
-      <div class="price-row">
-        <span class="price-tag">₩16,900</span>
-        <span class="price-note">2 piece set</span>
-      </div>
-      <div class="buy-cta">
-        <a class="btn-pill dark" href="https://smartstore.naver.com/urbanscenttrack/products/13762727149" target="_blank" rel="noopener">Shop Track 03</a>
-        <button class="btn-pill notes-btn" data-track="3" type="button">scent notes <span class="plus">+</span></button>
-        <a class="btn-pill outline" href="/play03">Track 03 음악 듣기 ↗</a>
-      </div>
-    </div>
-
-    <div class="track-features in-track reveal d3">
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-        <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-        <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-        <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-      </div>
-      <div class="track-feature">
-        <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-        <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FEATURES BAND -->
-<section class="features-band">
-  <div class="track-features reveal">
-    <div class="track-feature">
-      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4c-9 0-16 6-16 15 9 0 15-6 15-15z"/><path d="M5 19c3-4 7-8 12-12"/></svg>
-      <div class="tf-text"><span class="tf-en">premium fragrance</span><span class="tf-kr">프리미엄 향료 사용</span></div>
-    </div>
-    <div class="track-feature">
-      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
-      <div class="tf-text"><span class="tf-en">paper sachet</span><span class="tf-kr">종이 샤쉐로 안전하고 깔끔하게</span></div>
-    </div>
-    <div class="track-feature">
-      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16"/><path d="M4 16h16v3H4z"/><circle cx="7.5" cy="19" r="1.3"/><circle cx="16.5" cy="19" r="1.3"/></svg>
-      <div class="tf-text"><span class="tf-en">for car &amp; space</span><span class="tf-kr">차량, 옷장, 작은 공간 어디든</span></div>
-    </div>
-    <div class="track-feature">
-      <svg class="tf-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
-      <div class="tf-text"><span class="tf-en">music playlist</span><span class="tf-kr">향과 어울리는 플레이리스트</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- GIVING -->
-<section class="giving">
-  <div class="giving-photo" role="img" aria-label="환하게 웃고 있는 두 아이"></div>
-  <div class="giving-inner">
-    <div class="giving-body reveal">
-      <div class="giving-kicker">Giving Back</div>
-      <p class="giving-lead">판매 순이익의 <b>10%</b>는 저소득층 아이들의<br>교육과 주거환경 개선을 위해 기부됩니다.</p>
-      <p class="giving-head">모든 아이들의 가능성이<br>더 넓은 미래로 이어질 수 있도록,</p>
-      <p class="giving-sub">어반그리드와 urban scent track,<br class="m-br"> 그리고 고객이 함께합니다.</p>
-      <p class="giving-note">누적 기부 금액 77,320원 | 9월 22일 기준</p>
-    </div>
-  </div>
-</section>
-
-<!-- BUNDLE -->
-<section class="bundle" id="bundle">
-  <div class="reveal">
-    <div class="track-kicker" style="color:var(--grey);">Full Collection</div>
-    <h2 style="margin-top:18px;">세 트랙을,<br>한 번에.</h2>
-    <p>city citrus, clean cotton, concrete forest<br>서로 다른 향을 번갈아 사용하거나 선물용으로 선택할 수 있는 3종 세트입니다.</p>
-  </div>
-
-  <div class="bundle-stage reveal d1">
-    <div class="mini m1">city citrus</div>
-    <div class="mini m2">clean cotton</div>
-    <div class="mini m3">concrete forest</div>
-  </div>
-
-  <div class="bundle-meta reveal d2"><b>3 Tracks</b> · 샤쉐 총 6개</div>
-  <a class="btn-pill dark reveal d2" href="https://smartstore.naver.com/urbanscenttrack/products/13762727150" target="_blank" rel="noopener">3종 세트 구매하기</a>
-</section>
-
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="faq-inner">
-    <div class="track-kicker reveal" style="color:var(--grey);">FAQ</div>
-    <h2 class="faq-title reveal d1">자주 묻는 질문</h2>
-
-    <div class="faq-list reveal d2">
-      <details class="faq-item">
-        <summary>향은 얼마나 지속되나요?</summary>
-        <div class="faq-a">
-          <p>옷장·서랍 등 밀폐된 공간에서는 2~3개월, 방·거실 등 열린 공간에서는 2~3주 정도 지속됩니다. <br class="d-br">차량은 환기가 잦을수록 발향 기간이 짧아질 수 있습니다.</p>
-          <p>여름철 직사광선이 직접 닿는 운전석·조수석 앞쪽에는 두지 않는 것이 좋습니다. <br class="d-br">앞좌석 헤드레스트에 걸어 뒷좌석 방향으로 늘어뜨리는 방식을 추천합니다. <br class="d-br">발향이 줄었다고 느껴지면 샤쉐를 한 번씩 흔들어주면 향이 다시 퍼집니다.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>QR을 찍으면 무엇이 나오나요?</summary>
-        <div class="faq-a">
-          <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다. <br class="d-br">향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>배송은 얼마나 걸리나요?</summary>
-        <div class="faq-a">
-          <p>결제 완료 후 2~3영업일 이내 출고됩니다. <br class="d-br">제주·도서산간 지역은 추가 배송비가 발생할 수 있습니다.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>교환·반품은 어떻게 하나요?</summary>
-        <div class="faq-a">
-          <p>단순 변심에 의한 교환·반품은 미개봉 상태에 한해 수령 후 7일 이내 가능합니다. <br class="d-br">향 제품 특성상 개봉 후에는 단순 변심에 의한 교환·반품이 어렵습니다.</p>
-          <p>제품 불량·오배송의 경우 판매자 부담으로 교환해 드립니다. <br class="d-br">이메일(urbanscenttrack@gmail.com) 또는 카카오톡 채널로 문의해주세요.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>개봉했더니 습기가 느껴지거나 포장에 얼룩이 있어요.</summary>
-        <div class="faq-a">
-          <p>밀봉 포장 특성상 개봉 직후 파우치에 습기가 느껴질 수 있으며, 사용하면서 차츰 건조됩니다. <br class="d-br">일부 향료는 보관 중 포장지에 배어나며 자국이 남을 수 있으나, 제품 성능과 품질에는 문제가 없습니다.</p>
-          <p>플라스틱·원목·가죽·실크 등에 직접 닿으면 변색될 수 있으니 주의해주세요.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>반려동물이 있어도 사용할 수 있나요?</summary>
-        <div class="faq-a">
-          <p>유해물질 검사와 안전확인대상생활화학제품 인증 신고를 마친 제품입니다. <br class="d-br">다만 모든 향료에는 반려동물이 섭취해서는 안 되는 성분이 있을 수 있으므로, 반려동물이 섭취할 수 없는 장소에서 사용해주세요. <br class="d-br">개별 반려동물마다 반응이 다를 수 있습니다.</p>
-        </div>
-      </details>
-      <details class="faq-item">
-        <summary>다 쓴 샤쉐는 어떻게 버리나요?</summary>
-        <div class="faq-a">
-          <p>사용이 끝난 샤쉐는 일반쓰레기로, 포장에 사용된 비닐·종이는 개별 표기에 따라 분리배출해주세요.</p>
-        </div>
-      </details>
-    </div>
-
-    <p class="faq-cert reveal d3">안전확인대상생활화학제품 신고 완료 · 신고번호 EB25-12-0234</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<!-- SCENT NOTES MODAL -->
-<div class="notes-modal" id="notesModal">
-  <div class="notes-box">
-    <button class="notes-close" id="notesClose" type="button" aria-label="닫기">&times;</button>
-    <div class="notes-head">
-      <span class="notes-dot" id="notesDot"></span>
-      <span class="notes-title" id="notesTitle"></span>
-    </div>
-    <div class="notes-row"><div class="notes-label">Top</div><div class="notes-val" id="notesTop"></div></div>
-    <div class="notes-row"><div class="notes-label">Middle</div><div class="notes-val" id="notesMid"></div></div>
-    <div class="notes-row"><div class="notes-label">Base</div><div class="notes-val" id="notesBase"></div></div>
-    <p class="notes-desc" id="notesDesc"></p>
-  </div>
+<div class="dock" id="dock">
+  <a class="dock-shop" href="https://smartstore.naver.com/urbanscenttrack" target="_blank" rel="noopener">Shop the tracks ↗</a>
+  <button class="dock-sound" id="audio-toggle" type="button" aria-label="브랜드 음악 재생" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
 </div>
 
-<footer id="contact">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">urban scent track <span class="footer-brand-kr">(어반센트트랙)</span></div>
-        <p class="footer-brand-sub">서로 다른 분위기의 향을 트랙처럼 구성한 차량용 샤쉐 브랜드. 향과 음악으로 드라이브의 무드를 완성합니다.</p>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <div class="footer-col-title">배송</div>
-          <p>결제 완료 후 2~3영업일 내 출고</p>
-          <p>제주·도서산간 추가 배송비 발생</p>
+<main>
+  <!-- HERO → THE IDEA -->
+  <section class="hero" id="top">
+    <span class="anchor" id="idea" style="top:365vh"></span>
+    <div class="stage">
+      <img class="hero-img" id="city" src="assets/hero-city.webp" width="1672" height="941" alt="">
+      <div class="photo-layer" id="photoLayer">
+        <img class="hero-img" id="photo" src="assets/hero-windshield.webp" width="1672" height="941" alt="운전석에서 바라본 해 질 녘 서울 도심 도로와 남산타워">
+        <div class="hang" id="hang" aria-hidden="true">
+          <img class="on" src="assets/hang-03.webp" width="1024" height="1880" alt="">
         </div>
-        <div class="footer-col">
-          <div class="footer-col-title">교환 · 문의</div>
-          <a href="http://pf.kakao.com/_dAbxaX/chat" target="_blank" rel="noopener">고객센터 문의하기 ↗</a>
-          <a href="https://pf.kakao.com/_dAbxaX" target="_blank" rel="noopener">카카오톡 ↗</a>
-          <a href="https://www.instagram.com/urbanscenttrack" target="_blank" rel="noopener">Instagram ↗</a>
-          <p>단순 변심 교환·반품 7일 이내</p>
+        <img class="hero-img" src="assets/hero-mirror.webp" width="1672" height="941" alt="" aria-hidden="true">
+      </div>
+      <div class="shade-city" id="shade"></div>
+      <div class="shade-top fade"></div>
+      <div class="hero-topline fade"><span class="lbl">Scents for your everyday scenes</span><span class="lbl">Fragrance × Music</span></div>
+      <h1><span class="t-left" id="tl">Scent<br>in.</span><span class="t-right" id="tr">Sound<br>on.</span></h1>
+      <div class="hero-caption fade"><p>공간에 향을.<br>순간에 음악을.</p><span>향과 음악이 함께하는<br>나만의 작은 장면.</span></div>
+      <a class="hero-scroll fade" href="#idea"><span class="lbl">Scroll to find your mood</span><i aria-hidden="true"></i></a>
+      <div class="hero-bottom fade">
+        <span class="lbl">The everyday collection / 3 tracks</span>
+        <div class="selectors" aria-label="트랙 바로가기">
+          <a href="#track01"><span>01</span>City Citrus</a>
+          <a href="#track02"><span>02</span>Clean Cotton</a>
+          <a href="#track03"><span>03</span>Concrete Forest</a>
+        </div>
+      </div>
+
+      <div class="idea" id="idea-panel">
+        <div class="idea-top"><span class="lbl">Our way of feeling</span><span class="kr">향을 고르고, 음악을 켜세요.</span></div>
+        <h2>좋은 향이 좋은 음악을<br><span>만났을 때.</span></h2>
+        <div class="idea-side">
+          <p>매일 지나치는 길도, 익숙한 나의 공간도.<br>향과 음악이 더해지면 새로운 장면이 됩니다.</p>
+          <p class="m">제품의 QR을 스캔해보세요. 각 향에 어울리는<br>플레이리스트가 당신의 일상으로 이어집니다.</p>
+          <a href="#tracks"><span>당신의 트랙을 찾아보세요</span><span>↓</span></a>
         </div>
       </div>
     </div>
-    <div class="footer-legal">
-      <p>urbangrid(어반그리드) &nbsp;|&nbsp; 대표 : 허수정<br>
-      사업장 주소 : 경기도 수원시 효원로 1 사회혁신공간 팔로우 604호<br>
-      사업자등록번호 : 324-49-00977<br>
-      이메일 문의 : urbanscenttrack@gmail.com</p>
+  </section>
+
+  <!-- 01 TRACKS : 트랙리스트 -->
+  <section class="dark-band tracklist-sec" id="tracks" data-tone="dark">
+    <div class="wrap">
+      <div class="section-top"><span class="lbl">01 — The tracks</span><span class="lbl">Side A / 3 tracks</span></div>
+      <div class="tracklist-head grid12 after-top">
+        <h2 class="h2 rv">Three scents.<br><span class="soft">Three sounds.</span></h2>
+        <p class="body rv">향마다 어울리는 플레이리스트가 있습니다.<br>오늘의 기분에 맞는 트랙을 골라보세요.</p>
+      </div>
+      <ol class="tracklist rv">
+        <li><a href="#track01"><span class="n">01</span><span class="t">City Citrus</span><span class="m">Bright &amp; rhythmic</span><span class="k">레몬 · 샌달우드 · 파출리</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+        <li><a href="#track02"><span class="n">02</span><span class="t">Clean Cotton</span><span class="m">Soft &amp; slow</span><span class="k">민트 · 코튼 · 화이트 머스크</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+        <li><a href="#track03"><span class="n">03</span><span class="t">Concrete Forest</span><span class="m">Deep &amp; groovy</span><span class="k">그린 뱀부 · 오크 · 모스</span><span class="p">₩16,900</span><span class="go">↓</span></a></li>
+      </ol>
     </div>
-    <div class="footer-bottom">
-      <span>© Urban Scent Track. All rights reserved.</span>
-      <span><a href="/privacy/" style="text-decoration:none; color:inherit;">개인정보처리방침</a> &nbsp;·&nbsp; www.urbanscenttrack.com</span>
+  </section>
+
+  <section class="chapter c1" id="track01" data-tone="light">
+    <div class="wrap">
+      <div class="chapter-bar"><span class="lbl">Track 01 / 03</span><span class="lbl">City Citrus</span><span class="lbl">Bright &amp; rhythmic</span></div>
+        <article class="track grid12">
+      <div class="plate rv"><img src="assets/sachet-01.webp" alt="City Citrus 차량용 종이 샤쉐" loading="lazy" width="560" height="857"></div>
+      <div class="track-copy rv">
+        <span class="lbl">Track 01 — Bright &amp; rhythmic</span>
+        <h3>City Citrus</h3>
+        <p class="en">Fresh citrus layered over calm woods.</p>
+        <p class="lead">도시의 아침을 깨우는 향.</p>
+        <p class="body">레몬과 버베나의 산뜻함 뒤로 샌달우드와 베티버의 차분한 우디 향이 이어집니다. 상큼하지만 가볍기만 하지 않은 향을 좋아하는 분께 잘 맞습니다.</p>
+        <p class="tags"><span>#상큼한향</span><span>#시트러스향</span><span>#우디향</span></p>
+        <p class="music"><b>▶</b><span>어울리는 음악 — <a href="https://urbanscenttrack.com/play01" target="_blank" rel="noopener">밝고 경쾌한 플레이리스트</a></span></p>
+        <details class="notes"><summary>Scent notes <i>+</i></summary>
+          <dl><div><dt>Top</dt><dd>Lemon · Verbena · Basil</dd></div><div><dt>Heart</dt><dd>Black Pepper · Sandalwood · Jasmine</dd></div><div><dt>Base</dt><dd>Patchouli · Clove · Vetiver</dd></div></dl>
+        </details>
+        <div class="buy">
+          <span class="price">₩16,900<small>2 piece set · paper sachet</small></span>
+          <div class="buy-actions">
+            <a class="btn solid" href="https://smartstore.naver.com/urbanscenttrack/products/13762727147" target="_blank" rel="noopener">구매하기 <span>↗</span></a>
+            <a class="btn line" href="https://urbanscenttrack.com/play01" target="_blank" rel="noopener">음악 듣기 <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section>
+
+  <section class="chapter c2" id="track02" data-tone="light">
+    <div class="wrap">
+      <div class="chapter-bar"><span class="lbl">Track 02 / 03</span><span class="lbl">Clean Cotton</span><span class="lbl">Soft &amp; slow</span></div>
+        <article class="track grid12 flip">
+      <div class="plate rv"><img src="assets/sachet-02.webp" alt="Clean Cotton 차량용 종이 샤쉐" loading="lazy" width="560" height="857"></div>
+      <div class="track-copy rv">
+        <span class="lbl">Track 02 — Soft &amp; slow</span>
+        <h3>Clean Cotton</h3>
+        <p class="en">Clean cotton with soft white musk.</p>
+        <p class="lead">가장 편안한 순간의 공기.</p>
+        <p class="body">유칼립투스와 민트의 깨끗한 첫인상 뒤로 코튼과 화이트 머스크의 부드러운 향이 이어집니다. 갓 세탁한 섬유처럼 포근하고 깨끗한 향을 좋아하는 분께 잘 맞습니다.</p>
+        <p class="tags"><span>#깨끗한향</span><span>#포근한향</span><span>#비누향</span></p>
+        <p class="music"><b>▶</b><span>어울리는 음악 — <a href="https://urbanscenttrack.com/play02" target="_blank" rel="noopener">부드럽고 편안한 플레이리스트</a></span></p>
+        <details class="notes"><summary>Scent notes <i>+</i></summary>
+          <dl><div><dt>Top</dt><dd>Eucalyptus · Mint · Cotton</dd></div><div><dt>Heart</dt><dd>Aldehyde · Muguet · Peony</dd></div><div><dt>Base</dt><dd>Cotton Accord · White Musk · Iris</dd></div></dl>
+        </details>
+        <div class="buy">
+          <span class="price">₩16,900<small>2 piece set · paper sachet</small></span>
+          <div class="buy-actions">
+            <a class="btn solid" href="https://smartstore.naver.com/urbanscenttrack/products/13762727148" target="_blank" rel="noopener">구매하기 <span>↗</span></a>
+            <a class="btn line" href="https://urbanscenttrack.com/play02" target="_blank" rel="noopener">음악 듣기 <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section>
+
+  <section class="chapter c3" id="track03" data-tone="light">
+    <div class="wrap">
+      <div class="chapter-bar"><span class="lbl">Track 03 / 03</span><span class="lbl">Concrete Forest</span><span class="lbl">Deep &amp; groovy</span></div>
+        <article class="track grid12">
+      <div class="plate rv"><img src="assets/sachet-03.webp" alt="Concrete Forest 차량용 종이 샤쉐" loading="lazy" width="560" height="857"></div>
+      <div class="track-copy rv">
+        <span class="lbl">Track 03 — Deep &amp; groovy</span>
+        <h3>Concrete Forest</h3>
+        <p class="en">Where the city meets the forest.</p>
+        <p class="lead">도시의 리듬, 숲의 여유.</p>
+        <p class="body">비터 오렌지와 그린 노트의 쌉쌀한 첫인상 뒤로 오크와 모스의 깊은 우디 향이 이어집니다. 풀잎과 나무가 함께 느껴지는 차분한 향을 좋아하는 분께 잘 맞습니다.</p>
+        <p class="tags"><span>#호텔향</span><span>#우디향</span><span>#숲향</span></p>
+        <p class="music"><b>▶</b><span>어울리는 음악 — <a href="https://urbanscenttrack.com/play03" target="_blank" rel="noopener">도시적인 그루브와 자연의 여유가 공존하는 플레이리스트</a></span></p>
+        <details class="notes"><summary>Scent notes <i>+</i></summary>
+          <dl><div><dt>Top</dt><dd>Bitter Orange · Geranium · Violet Leaf</dd></div><div><dt>Heart</dt><dd>Green Bamboo · Oak · Mate</dd></div><div><dt>Base</dt><dd>Benzoin · Mimosa · Moss</dd></div></dl>
+        </details>
+        <div class="buy">
+          <span class="price">₩16,900<small>2 piece set · paper sachet</small></span>
+          <div class="buy-actions">
+            <a class="btn solid" href="https://smartstore.naver.com/urbanscenttrack/products/13762727149" target="_blank" rel="noopener">구매하기 <span>↗</span></a>
+            <a class="btn line" href="https://urbanscenttrack.com/play03" target="_blank" rel="noopener">음악 듣기 <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+    </div>
+  </section>
+
+  <!-- 02 DETAILS -->
+  <section class="dark-band details-band" data-tone="dark" aria-label="제품 특징">
+    <div class="wrap">
+      <div class="details-grid">
+        <div class="detail rv"><span class="num">01</span><span class="lbl">Premium fragrance</span><p>프리미엄 향료 사용</p></div>
+        <div class="detail rv"><span class="num">02</span><span class="lbl">Paper sachet</span><p>종이 샤쉐로 안전하고 깔끔하게</p></div>
+        <div class="detail rv"><span class="num">03</span><span class="lbl">For car &amp; space</span><p>차량, 옷장, 작은 공간 어디든</p></div>
+        <div class="detail rv"><span class="num">04</span><span class="lbl">Music playlist</span><p>향과 어울리는 플레이리스트</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 COLLECTION -->
+  <section class="section collection" id="collection" data-tone="light">
+    <div class="wrap">
+      <div class="section-top"><span class="lbl">02 — The full collection</span><span class="lbl">3 tracks / 6 pieces</span></div>
+      <div class="collection-head after-top rv">
+        <h2 class="h2">One collection.<br><span class="soft">Every mood.</span></h2>
+        <p class="body">City Citrus, Clean Cotton, Concrete Forest. 서로 다른 향을 번갈아 사용하거나 선물용으로 선택할 수 있는 3종 세트입니다.</p>
+      </div>
+      <div class="trio rv">
+        <a href="#track01"><figure><img src="assets/sachet-01.webp" loading="lazy" alt="City Citrus" width="560" height="857"></figure><div><span class="lbl">Track 01</span><strong>City Citrus</strong><span class="kr">상큼한 시트러스와 차분한 우디</span></div></a>
+        <a href="#track02"><figure><img src="assets/sachet-02.webp" loading="lazy" alt="Clean Cotton" width="560" height="857"></figure><div><span class="lbl">Track 02</span><strong>Clean Cotton</strong><span class="kr">깨끗한 코튼과 화이트 머스크</span></div></a>
+        <a href="#track03"><figure><img src="assets/sachet-03.webp" loading="lazy" alt="Concrete Forest" width="560" height="857"></figure><div><span class="lbl">Track 03</span><strong>Concrete Forest</strong><span class="kr">그린 노트와 깊은 우디</span></div></a>
+      </div>
+      <div class="collection-bar rv">
+        <p>세 가지 향을, 한 번에.<span>3 tracks · 샤쉐 총 6개</span></p>
+        <a class="btn solid" href="https://smartstore.naver.com/urbanscenttrack/products/13762727150" target="_blank" rel="noopener">3종 세트 만나보기 <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 GIVING -->
+  <section class="giving" data-tone="light">
+    <div class="giving-photo" role="img" aria-label="환하게 웃고 있는 두 아이"></div>
+    <div class="wrap giving-inner">
+      <div class="giving-body rv">
+        <span class="lbl">03 — Giving back</span>
+        <p class="giving-lead">판매 순이익의 <b>10%</b>는 저소득층 아이들의<br>교육과 주거환경 개선을 위해 기부됩니다.</p>
+        <p class="giving-head">모든 아이들의 가능성이<br>더 넓은 미래로 이어질 수 있도록,</p>
+        <p class="giving-sub">어반그리드와 urban scent track, 그리고 고객이 함께합니다.</p>
+        <p class="giving-note">누적 기부 금액 77,320원 | 9월 22일 기준</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 FAQ -->
+  <section class="section faq-sec" id="faq" data-tone="light">
+    <div class="wrap">
+      <div class="section-top"><span class="lbl">04 — FAQ</span><span class="lbl">A few things to know</span></div>
+      <div class="faq-grid grid12 after-top">
+        <h2 class="h2 k">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details class="faq-item"><summary><i>01</i>향은 얼마나 지속되나요?</summary><div class="faq-a">
+            <p>옷장·서랍 등 밀폐된 공간에서는 2~3개월, 방·거실 등 열린 공간에서는 2~3주 정도 지속됩니다. 차량은 환기가 잦을수록 발향 기간이 짧아질 수 있습니다.</p>
+            <p>여름철 직사광선이 직접 닿는 운전석·조수석 앞쪽에는 두지 않는 것이 좋습니다. 앞좌석 헤드레스트에 걸어 뒷좌석 방향으로 늘어뜨리는 방식을 추천합니다. 발향이 줄었다고 느껴지면 샤쉐를 한 번씩 흔들어주면 향이 다시 퍼집니다.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>02</i>QR을 찍으면 무엇이 나오나요?</summary><div class="faq-a">
+            <p>제품의 QR을 스캔하면 각 트랙의 향에 어울리는 플레이리스트가 바로 재생됩니다. 향과 음악을 함께 경험하는 urban scent track만의 방식입니다.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>03</i>배송은 얼마나 걸리나요?</summary><div class="faq-a">
+            <p>결제 완료 후 2~3영업일 이내 출고됩니다. 제주·도서산간 지역은 추가 배송비가 발생할 수 있습니다.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>04</i>교환·반품은 어떻게 하나요?</summary><div class="faq-a">
+            <p>단순 변심에 의한 교환·반품은 미개봉 상태에 한해 수령 후 7일 이내 가능합니다. 향 제품 특성상 개봉 후에는 단순 변심에 의한 교환·반품이 어렵습니다.</p>
+            <p>제품 불량·오배송의 경우 판매자 부담으로 교환해 드립니다. 이메일(urbanscenttrack@gmail.com) 또는 카카오톡 채널로 문의해주세요.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>05</i>개봉했더니 습기가 느껴지거나 포장에 얼룩이 있어요.</summary><div class="faq-a">
+            <p>밀봉 포장 특성상 개봉 직후 파우치에 습기가 느껴질 수 있으며, 사용하면서 차츰 건조됩니다. 일부 향료는 보관 중 포장지에 배어나며 자국이 남을 수 있으나, 제품 성능과 품질에는 문제가 없습니다.</p>
+            <p>플라스틱·원목·가죽·실크 등에 직접 닿으면 변색될 수 있으니 주의해주세요.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>06</i>반려동물이 있어도 사용할 수 있나요?</summary><div class="faq-a">
+            <p>유해물질 검사와 안전확인대상생활화학제품 인증 신고를 마친 제품입니다. 다만 모든 향료에는 반려동물이 섭취해서는 안 되는 성분이 있을 수 있으므로, 반려동물이 섭취할 수 없는 장소에서 사용해주세요. 개별 반려동물마다 반응이 다를 수 있습니다.</p>
+          </div></details>
+          <details class="faq-item"><summary><i>07</i>다 쓴 샤쉐는 어떻게 버리나요?</summary><div class="faq-a">
+            <p>사용이 끝난 샤쉐는 일반쓰레기로, 포장에 사용된 비닐·종이는 개별 표기에 따라 분리배출해주세요.</p>
+          </div></details>
+          <p class="cert">안전확인대상생활화학제품 신고 완료 · EB25-12-0234</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer" data-tone="dark">
+  <div class="wrap">
+    <div class="section-top"><span class="lbl">urban scent track</span><span class="lbl">Scent in. Sound on.</span></div>
+    <div class="footer-top grid12 after-top">
+      <h2 class="rv">Stay in<br>your mood.</h2>
+      <div class="footer-links">
+        <a href="https://pf.kakao.com/_dAbxaX/chat" target="_blank" rel="noopener"><span>고객센터</span><span>↗</span></a>
+        <a href="https://www.instagram.com/urbanscenttrack" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
+        <a href="mailto:urbanscenttrack@gmail.com"><span>urbanscenttrack@gmail.com</span><span>↗</span></a>
+      </div>
+    </div>
+    <div class="legal">
+      <p>urbangrid(어반그리드) | 대표 허수정 | 사업자등록번호 324-49-00977<br>경기도 수원시 효원로 1 사회혁신공간 팔로우 604호<br>결제 완료 후 2~3영업일 내 출고 · 제주·도서산간 추가 배송비 발생</p>
+      <a href="https://urbanscenttrack.com/privacy/" target="_blank" rel="noopener">개인정보처리방침 ↗</a>
     </div>
   </div>
+  <div class="wordmark" aria-hidden="true"><span>urban scent track</span></div>
+  <div class="wrap"><div class="footer-end"><span class="lbl">© Urban Scent Track</span><span class="lbl">Scent in. Sound on.</span></div></div>
 </footer>
 
-<script>
-  // hero title: 페이지 로드 직후 줄 단위 등장
-  window.addEventListener('load', ()=>{
-    const t = document.querySelector('.hero-title');
-    if(t) setTimeout(()=> t.classList.add('in'), 120);
-  });
-
-  // nav: 히어로 위에서는 투명, 스크롤하면 어두운 바
-  (function(){
-    const nav = document.querySelector('.nav');
-    if(!nav) return;
-    const onScroll = ()=> nav.classList.toggle('scrolled', window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive:true });
-    onScroll();
-  })();
-
-  // Listen 버튼 배치: 데스크탑은 hero 밖(overflow:hidden에 의한 클리핑 방지, 스크롤해도 항상 노출),
-  // 모바일은 hero-outro 안(워드마크 바로 아래, 문서 흐름 안에서 자연스럽게 표시)
-  (function(){
-    const fab = document.getElementById('themeAudioToggle');
-    const outro = document.getElementById('heroOutro');
-    const nav = document.querySelector('.nav');
-    if(!fab || !outro || !nav) return;
-
-    function place(){
-      if(window.matchMedia('(max-width:760px)').matches){
-        if(fab.parentElement !== outro) outro.appendChild(fab);
-      } else {
-        if(fab.parentElement !== document.body) document.body.insertBefore(fab, nav.nextSibling);
-      }
-    }
-    place();
-    window.addEventListener('resize', place);
-  })();
-
-  // 히어로: 페이지 열리는 즉시(딜레이 없이) 브랜드명이 타이핑되고, 다 찍히면 그대로 계속 유지
-  (function(){
-    const outro = document.getElementById('heroOutro');
-    const outroText = document.getElementById('heroOutroText');
-    if(!outro || !outroText) return;
-
-    const FULL_TEXT = 'urbanscenttrack';
-
-    // 타이핑은 화면이 움직이는 애니메이션이 아니라 글자가 차례로 나타나는 방식이라
-    // "동작 줄이기"(iOS 손쉬운 사용) 설정에서도 그대로 보여주되, 더 빠르게 끝냄.
-    // (깜빡이는 커서만 CSS에서 정지 — 깜빡임은 민감할 수 있음)
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    const TYPE_INTERVAL_MS = reduceMotion ? 34 : 62;   // 15글자 ≒ 0.5초 / 0.9초
-
-    outro.classList.add('is-visible');
-
-    // 첫 글자는 첫 페인트에 바로 보이게 하고(빈 화면 구간 없음) 이어서 타이핑
-    outroText.textContent = FULL_TEXT.slice(0, 1);
-    let i = 1;
-    const timer = setInterval(() => {
-      i++;
-      outroText.textContent = FULL_TEXT.slice(0, i);
-      if(i >= FULL_TEXT.length) clearInterval(timer);  // 다 찍히면 멈춘 채로 유지
-    }, TYPE_INTERVAL_MS);
-  })();
-
-  // 브랜드 테마곡: 클릭 재생/일시정지 (자동재생 없음)
-  (function(){
-    const btn = document.getElementById('themeAudioToggle');
-    const audio = document.getElementById('themeAudio');
-    const label = btn ? btn.querySelector('.audio-fab-label') : null;
-    if(!btn || !audio) return;
-    const TEXT = { idle: () => 'Listen', playing: () => 'Playing' };
-    if(label) label.textContent = TEXT.idle();
-    btn.addEventListener('click', ()=>{
-      if(audio.paused){
-        audio.play().catch(()=>{});
-      } else {
-        audio.pause();
-      }
-    });
-    audio.addEventListener('play', ()=>{
-      btn.classList.add('is-playing');
-      btn.setAttribute('aria-pressed','true');
-      btn.setAttribute('aria-label','브랜드 테마곡 일시정지');
-      if(label) label.textContent = TEXT.playing();
-    });
-    audio.addEventListener('pause', ()=>{
-      btn.classList.remove('is-playing');
-      btn.setAttribute('aria-pressed','false');
-      btn.setAttribute('aria-label','브랜드 테마곡 재생');
-      if(label) label.textContent = TEXT.idle();
-    });
-  })();
-
-  const els = document.querySelectorAll('.reveal:not(.in)');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold:0.15 });
-  els.forEach(el=>io.observe(el));
-</script>
+<span id="audio-status" class="sr-only" aria-live="polite"></span>
+<audio id="theme-audio" src="assets/theme-song.mp3" preload="none" loop></audio>
 
 <script>
-  const NOTES = {
-    "1": { title:"01 · City Citrus", dot:"d1",
-           top:"Lemon · Verbena · Basil",
-           mid:"Black Pepper · Sandalwood · Jasmine",
-           base:"Patchouli · Clove · Vetiver",
-           desc:"레몬과 버베나의 산뜻함 뒤로 샌달우드와 베티버의 차분한 우디 향이 이어집니다. 상큼하지만 가볍기만 하지 않은 향을 좋아하는 분께 잘 맞습니다." },
-    "2": { title:"02 · Clean Cotton", dot:"d2",
-           top:"Eucalyptus · Mint · Cotton",
-           mid:"Aldehyde · Muguet · Peony",
-           base:"Cotton Accord · White Musk · Iris",
-           desc:"유칼립투스와 민트의 깨끗한 첫인상 뒤로 코튼과 화이트 머스크의 부드러운 향이 이어집니다. 갓 세탁한 섬유처럼 포근하고 깨끗한 향을 좋아하는 분께 잘 맞습니다." },
-    "3": { title:"03 · Concrete Forest", dot:"d3",
-           top:"Bitter Orange · Geranium · Violet Leaf",
-           mid:"Green Bamboo · Oak · Mate",
-           base:"Benzoin · Mimosa · Moss",
-           desc:"비터 오렌지와 그린 노트의 쌉쌀한 첫인상 뒤로 오크와 모스의 깊은 우디 향이 이어집니다. 풀잎과 나무가 함께 느껴지는 차분한 향을 좋아하는 분께 잘 맞습니다." }
-  };
-  const modal = document.getElementById('notesModal');
-  function openNotes(key){
-    const n = NOTES[key]; if(!n) return;
-    document.getElementById('notesTitle').textContent = n.title;
-    document.getElementById('notesDot').className = 'notes-dot ' + n.dot;
-    document.getElementById('notesTop').textContent = n.top;
-    document.getElementById('notesMid').textContent = n.mid;
-    document.getElementById('notesBase').textContent = n.base;
-    document.getElementById('notesDesc').textContent = n.desc || '';
-    modal.classList.add('open');
+(function(){
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const nav = $('nav'), dock = $('dock'), hero = $('top');
+  const photo = $('photo'), photoLayer = $('photoLayer'), hang = $('hang'), city = $('city'), shade = $('shade'), tl = $('tl'), tr = $('tr');
+  const fades = document.querySelectorAll('.fade');
+  const ideaParts = [...document.querySelectorAll('#idea-panel > *')];
+  const parallax = [...document.querySelectorAll('[data-parallax]')];
+  const toned = [...document.querySelectorAll('[data-tone]')];
+  const PW = 1672, PH = 941, VPX = 836, VPY = 460;
+  const clamp = (v,a,b) => Math.min(Math.max(v,a),b);
+  const seg = (p,a,b) => clamp((p-a)/(b-a),0,1);
+  const easeIn = t => t*t*t, easeOut = t => 1-Math.pow(1-t,3);
+  const easeInOut = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  let vh = innerHeight;
+
+  function measure(){
+    const vw = innerWidth; vh = innerHeight;
+    const s0 = Math.max(vw/PW, vh/PH), ox = (vw - PW*s0)/2;
+    photoLayer.style.transformOrigin = city.style.transformOrigin = (ox + VPX*s0) + 'px ' + (VPY*s0) + 'px';
+    // 룸미러에 샤쉐 줄이 걸리도록 (원본 사진 기준 x 826)
+    const HW = 243;
+    hang.style.width = (HW*s0) + 'px';
+    hang.style.left = (ox + (826 - .5*HW)*s0) + 'px';
+    hang.style.top = (150*s0) + 'px';   // 줄 끝이 룸미러 뒤에서 시작 → 거울 위 레이어가 줄을 덮어 실제로 걸린 것처럼
+    render();
   }
-  function closeNotes(){ modal.classList.remove('open'); }
-  document.querySelectorAll('.notes-btn').forEach(b=>{
-    b.addEventListener('click', ()=> openNotes(b.dataset.track));
+
+  function render(){
+    const y = scrollY, total = hero.offsetHeight - vh, p = clamp(y/total, 0, 1);
+
+    // 네비 색: 네비 아래에 있는 섹션의 톤을 따른다
+    let light = false;
+    if(y > hero.offsetHeight - 60){ for(const s of toned){ const r = s.getBoundingClientRect(); if(r.top <= 40 && r.bottom > 40){ light = s.dataset.tone === 'light'; break; } } }
+    nav.classList.toggle('tone-light', light);
+    dock.classList.toggle('show', p > .1);
+
+    if(!reduce){
+      // 히어로 → 앞유리 통과 → 도시 → The idea
+      fades.forEach(el => el.style.opacity = 1 - seg(p, 0, .1));
+      const t = easeIn(seg(p, 0, .34));
+      tl.style.transform = 'translateX(' + (-t*45) + 'vw)'; tr.style.transform = 'translateX(' + (t*45) + 'vw)';
+      tl.style.opacity = tr.style.opacity = 1 - seg(p, .06, .32);
+      const S = 1 + 1.05*easeInOut(seg(p, 0, .5)) + .14*seg(p, .5, 1);
+      photoLayer.style.transform = city.style.transform = 'scale(' + S + ')';
+      photoLayer.style.opacity = 1 - seg(p, .2, .4);
+      shade.style.opacity = easeOut(seg(p, .46, .64));
+      ideaParts.forEach((el, i) => {
+        const a = easeOut(seg(p, .56 + i*.04, .72 + i*.04));
+        el.style.opacity = a; el.style.transform = 'translateY(' + ((1-a)*30) + 'px)';
+      });
+
+      // 샤쉐: 스크롤에 따라 살짝 떠오름
+      parallax.forEach(el => {
+        const r = el.parentElement.getBoundingClientRect();
+        const k = clamp((vh - r.top) / (vh + r.height), 0, 1);
+        el.style.transform = 'translateY(' + ((.5 - k) * 70) + 'px)';
+      });
+    }
+  }
+  let ticking = false;
+  addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(() => { render(); ticking = false; }); ticking = true; } }, { passive:true });
+  addEventListener('resize', measure);
+  measure();
+
+  // 등장
+  const rv = document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduce){
+    const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin:'0px 0px -10% 0px' });
+    rv.forEach(el => io.observe(el));
+  } else rv.forEach(el => el.classList.add('in'));
+
+  // 맨 아래 워드마크를 가로폭에 맞춤
+  const mark = document.querySelector('.wordmark');
+  function fit(){
+    const cs = getComputedStyle(mark); mark.style.fontSize = '100px';
+    const avail = mark.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const w = mark.firstElementChild.getBoundingClientRect().width;
+    if(w > 0) mark.style.fontSize = Math.floor(100 * avail / w * .98) + 'px';
+  }
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fit);
+  addEventListener('resize', fit);
+
+  // 사운드
+  const audio = $('theme-audio'), btn = $('audio-toggle'), status = $('audio-status');
+  btn.addEventListener('click', () => {
+    if(audio.paused){ audio.play().then(() => { btn.setAttribute('aria-pressed','true'); btn.setAttribute('aria-label','브랜드 음악 일시정지'); status.textContent = '브랜드 음악 재생 중'; }).catch(() => {}); }
+    else { audio.pause(); btn.setAttribute('aria-pressed','false'); btn.setAttribute('aria-label','브랜드 음악 재생'); status.textContent = '브랜드 음악 일시정지'; }
   });
-  document.getElementById('notesClose').addEventListener('click', closeNotes);
-  modal.addEventListener('click', e=>{ if(e.target === modal) closeNotes(); });
-  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeNotes(); });
+})();
 </script>
 
-
-</body>
-</html>
+</body></html>
