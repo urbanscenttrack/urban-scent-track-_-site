@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="naver-site-verification" content="68bd69a5ad4f9411a82f6a0fc07e56c3f42f34a2" />
 
+<!-- 외부 링크/공유/즐겨찾기로 #idea, #tracks 같은 해시가 붙은 주소로 바로 들어와도
+     히어로부터 보여주기 위해 맨 위로 스크롤. 사이트 안에서 메뉴를 눌러 이동하는 것은
+     이 스크립트 실행 이후(클릭 시점)에 일어나므로 영향받지 않음. -->
+<script>
+if (location.hash) {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
+    requestAnimationFrame(function () { window.scrollTo(0, 0); });
+  });
+}
+</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18EHFHNG88"></script>
 <script>
