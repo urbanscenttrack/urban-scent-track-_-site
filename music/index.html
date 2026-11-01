@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오늘의 음악 — urban scent track</title>
+<meta name="description" content="향, 날씨, 기분, 상황에 맞는 노래를 매일 5곡씩 골라드립니다. urban scent track의 오늘의 음악.">
+<link rel="canonical" href="https://urbanscenttrack.com/music/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="오늘의 음악 — urban scent track">
+<meta property="og:description" content="향, 날씨, 기분, 상황에 맞는 노래를 매일 5곡씩.">
+<meta property="og:url" content="https://urbanscenttrack.com/music/">
+<meta property="og:image" content="https://urbanscenttrack.com/assets/og-image.png">
+<meta name="theme-color" content="#f3f1ec">
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-18EHFHNG88"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-18EHFHNG88');
+</script>
+
+
+
+<style>
+:root{
+  --ink:#111; --ink-2:#4a4a47; --mute:#8b8a85; --cream:#f3f1ec; --card:#fbfaf7;
+  --line:rgba(17,17,17,.12); --night:#0d0d0d;
+  --c1:#dd5a1c; --c2:#1e8bd1; --c3:#4f8f22;
+  --f:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{ margin:0; background:var(--cream); color:var(--ink); font-family:var(--f); -webkit-font-smoothing:antialiased; word-break:keep-all; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; }
+.wrap{ max-width:600px; margin:0 auto; padding:0 20px; }
+
+/* top */
+.top{ position:sticky; top:0; z-index:5; background:rgba(243,241,236,.9); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+.top .wrap{ display:flex; justify-content:space-between; align-items:center; height:54px; }
+.brand{ font-weight:600; font-size:15px; letter-spacing:-.03em; }
+.top a.back{ font-size:13px; color:var(--ink-2); }
+
+/* hero */
+.hero{ padding:40px 0 8px; }
+.eyebrow{ font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); }
+h1{ margin:10px 0 0; font-size:clamp(34px,9vw,52px); line-height:1.05; letter-spacing:-.055em; font-weight:700; }
+.hero p{ margin:14px 0 0; font-size:15px; line-height:1.7; color:var(--ink-2); }
+
+/* now card */
+.now{ margin:28px 0 0; padding:20px; border-radius:20px; background:var(--night); color:var(--cream); }
+.now-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.now-ctx{ font-size:20px; font-weight:650; letter-spacing:-.04em; line-height:1.3; }
+.now-sub{ margin-top:6px; font-size:13px; color:rgba(243,241,236,.6); }
+.loc{ flex:none; border:1px solid rgba(243,241,236,.25); background:transparent; color:var(--cream); border-radius:999px; padding:7px 12px; font-size:12px; cursor:pointer; white-space:nowrap; }
+.loc:disabled{ opacity:.5; cursor:default; }
+
+/* picker */
+.picker{ margin:36px 0 0; }
+.tabs{ display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; margin:0 -20px; padding:0 20px 2px; }
+.tabs::-webkit-scrollbar{ display:none; }
+.tab{ flex:none; border:0; background:transparent; padding:8px 2px; margin-right:14px; font-size:16px; font-weight:600; color:var(--mute); cursor:pointer; border-bottom:2px solid transparent; letter-spacing:-.03em; }
+.tab[aria-pressed="true"]{ color:var(--ink); border-color:var(--ink); }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.chip{ border:1px solid var(--line); background:var(--card); border-radius:999px; padding:9px 15px; font-size:14px; font-weight:500; cursor:pointer; display:inline-flex; align-items:center; gap:7px; }
+.chip .dot{ width:8px; height:8px; border-radius:50%; }
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+
+/* list */
+.result{ margin:28px 0 0; scroll-margin-top:70px; }
+.result-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--ink); }
+.result-title{ font-size:22px; font-weight:700; letter-spacing:-.045em; }
+.result-date{ font-size:12px; color:var(--mute); white-space:nowrap; }
+.result-desc{ margin:12px 0 4px; font-size:14px; line-height:1.65; color:var(--ink-2); }
+ol.songs{ list-style:none; margin:0; padding:0; }
+.song{ border-bottom:1px solid var(--line); }
+.song > button{ width:100%; display:grid; grid-template-columns:28px 1fr auto; align-items:center; gap:10px; padding:16px 0; background:none; border:0; text-align:left; cursor:pointer; }
+.no{ font-size:13px; font-weight:600; color:var(--mute); font-variant-numeric:tabular-nums; }
+.t{ display:block; font-size:16px; font-weight:600; letter-spacing:-.03em; line-height:1.35; }
+.a{ display:block; margin-top:3px; font-size:13px; color:var(--mute); }
+.play{ font-size:12px; font-weight:600; border:1px solid var(--line); border-radius:999px; padding:6px 11px; }
+.song[data-open="true"] .play{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+.links{ display:none; flex-wrap:wrap; gap:6px; padding:0 0 16px 38px; }
+.song[data-open="true"] .links{ display:flex; }
+.links a{ font-size:12.5px; font-weight:500; padding:7px 11px; border-radius:999px; background:var(--card); border:1px solid var(--line); }
+.links a:active{ background:#e8e5de; }
+.note{ margin:14px 0 0; font-size:12px; color:var(--mute); line-height:1.6; }
+
+/* scent card */
+.scent{ margin:40px 0 0; padding:22px; border-radius:20px; background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:84px 1fr; gap:18px; align-items:center; }
+.scent img{ width:84px; height:auto; display:block; }
+.scent .eyebrow{ font-size:11px; }
+.scent h3{ margin:6px 0 0; font-size:20px; letter-spacing:-.04em; }
+.scent p{ margin:6px 0 12px; font-size:13px; color:var(--ink-2); line-height:1.6; }
+.buy{ display:inline-flex; gap:10px; align-items:center; background:var(--ink); color:var(--cream); font-size:13px; font-weight:600; padding:10px 16px; border-radius:999px; }
+
+footer{ margin-top:56px; padding-top:28px; padding-bottom:48px; font-size:12px; color:var(--mute); line-height:1.7; position:relative; }
+footer::before{ content:""; position:absolute; top:0; left:20px; right:20px; border-top:1px solid var(--line); }
+
+/* ---------- 데스크탑 (901px 이상): 2단 레이아웃 ---------- */
+@media (min-width:901px){
+  .wrap{ max-width:1180px; padding:0 40px; }
+  footer::before{ left:40px; right:40px; }
+  .top .wrap{ height:64px; }
+  .brand{ font-size:16px; }
+  .layout{ display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); gap:72px; align-items:start; padding-top:24px; }
+  .col-a{ position:sticky; top:88px; }
+  .hero{ padding-top:40px; }
+  h1{ font-size:clamp(48px,4.6vw,66px); }
+  .hero p{ font-size:16px; max-width:30em; }
+  .now{ padding:24px 26px; }
+  .now-ctx{ font-size:22px; }
+  .picker{ margin-top:40px; }
+  .tabs{ margin:0; padding:0; flex-wrap:wrap; row-gap:4px; }
+  .result{ margin-top:64px; }
+  .result-title{ font-size:30px; }
+  .result-desc{ font-size:15px; }
+  .song > button{ padding:20px 0; grid-template-columns:40px 1fr auto; }
+  .t{ font-size:18px; }
+  .a{ font-size:14px; }
+  .links{ padding-left:50px; }
+  .song > button:hover .play{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .chip:hover{ border-color:var(--ink); }
+  .scent{ grid-template-columns:110px 1fr; padding:28px; gap:26px; }
+  .scent img{ width:110px; }
+  .scent h3{ font-size:24px; }
+}
+footer a{ text-decoration:underline; text-underline-offset:3px; }
+
+/* LP edition: original .layout, .hero, .picker, .result and .scent structure retained. */
+:root{--cream:#eeece3;--card:#f5f3ec;--ink:#242522;--ink-2:#5c5e56;--mute:#73766d;--line:rgba(36,37,34,.18);--night:#242522;--accent:#a7ad96}
+html{scroll-behavior:smooth}body{overflow-x:clip}.top{position:relative;isolation:isolate;height:272px;overflow:hidden;background:transparent;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none}.top .wrap{height:92px;align-items:flex-start;padding-top:27px;position:relative;z-index:2}.brand{font-size:19px;font-weight:750;letter-spacing:-.8px;line-height:1.02}.brand-dot{font-size:10px;vertical-align:top;margin-left:2px}.header-nav{display:flex;gap:24px;align-items:center;padding-top:6px;font-size:12px}.header-nav a:hover{text-decoration:underline;text-underline-offset:5px}.top a.back{font-size:12px}.header-record{position:absolute;width:500px;height:500px;left:50%;top:-260px;transform:translateX(-50%);border-radius:50%;pointer-events:none;z-index:1;background:repeating-radial-gradient(circle,transparent 0 2px,#ffffff12 2.6px,transparent 3.3px 4.3px),conic-gradient(from 27deg,#11120f,#494b43 14%,#0a0b09 26%,#24261f 44%,#606157 52%,#0c0d0b 63%,#30322a 83%,#11120f);box-shadow:0 5px 8px #0003,inset 0 0 0 3px #20221b,inset 0 0 0 8px #0c0d0b}.record-inner{position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 35% 28%,#3c3e37,#22231f 70%);box-shadow:0 0 0 2px #5b5d50,0 0 0 8px #11130e;display:flex;align-items:center;justify-content:center}.record-caption{position:absolute;top:22%;font:8px Arial,sans-serif;color:#b5b7a8;letter-spacing:1px;text-align:center;line-height:1.6}.spindle{width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,#fffdf0,#b4b5a8 50%,#676b60);box-shadow:2px 2px 3px #000a}.record-side{position:absolute;bottom:22%;font:7px Arial,sans-serif;letter-spacing:1.5px;color:#aaa99a}.top .header-caption{height:auto;padding-top:0;position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:space-between;color:var(--mute);font:9px monospace;letter-spacing:1px;z-index:0}.hero{padding-top:24px}.hero .eyebrow{font:10px monospace;letter-spacing:2px}h1{font-weight:650;line-height:1.1}.hero p{font-size:14px;line-height:1.85}.now{border-radius:3px;background:transparent;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;color:var(--ink)}.now-ctx{font-size:18px;font-weight:550}.now-ctx:before{content:'';display:inline-block;width:6px;height:6px;background:var(--ink);border-radius:50%;margin-right:9px;vertical-align:middle}.now-sub{color:var(--mute);font-size:11px}.loc{color:var(--ink);border-color:var(--line);font-size:11px;padding:8px 10px}.picker{margin-top:26px}.tab{font-size:14px}.chip{font-size:12px;background:transparent}.scent{border-radius:3px;background:transparent;padding:22px 0;border-width:1px 0 0}.scent img{max-height:140px;object-fit:contain}.scent h3{font-size:21px}.buy{padding:9px 14px;font-size:12px}.play{font-weight:500}.result-title{font-weight:650}.song>button:hover .t{color:var(--ink-2)}a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:5px}.col-a,.col-b{min-width:0}footer{margin-top:38px}
+@media(min-width:901px){.layout{padding-top:0;gap:72px}.col-a{position:sticky;top:28px}.hero{padding-top:24px}h1{font-size:clamp(44px,4.4vw,60px)}.hero p{font-size:14px}.now{padding:20px 0}.now-ctx{font-size:19px}.result{margin-top:24px}.result-title{font-size:26px}.song>button{padding:18px 0}.t{font-size:17px}.a{font-size:12px}.scent{padding:22px 0;grid-template-columns:90px 1fr;gap:24px}.scent img{width:90px}.picker{margin-top:26px}.scent h3{font-size:22px}}
+@media(max-width:900px){.top{height:212px}.top .wrap{padding-top:22px}.header-record{width:350px;height:350px;top:-165px}.header-nav{flex-direction:column;align-items:flex-end;gap:10px;padding-top:0}.brand{font-size:15px}.header-nav a,.top a.back{font-size:11px}.hero{padding-top:26px}.hero p{max-width:34em}.result{margin-top:35px}.top .header-caption{font-size:7px;letter-spacing:.7px}.record-caption{font-size:6px}.record-side{font-size:6px}.spindle{width:10px;height:10px}}
+@media(max-width:480px){.top{height:175px}.header-record{width:260px;height:260px;top:-108px}.top .wrap{padding-top:17px}.brand{font-size:12px;line-height:1.1}.header-nav{gap:9px}.header-nav a,.top a.back{font-size:10px}.record-caption{font-size:5px;letter-spacing:.5px}.record-side{font-size:4px}.record-inner{inset:27%}.header-record{box-shadow:0 4px 6px #0003,inset 0 0 0 3px #20221b}.top .header-caption{font-size:6px;letter-spacing:.5px}.hero{padding-top:24px}h1{font-size:38px}.now{margin-top:22px}.now-ctx{font-size:17px}.tabs{gap:1px}.tab{margin-right:12px;font-size:14px}.result-title{font-size:22px}.result-date{font-size:10px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+@media(max-width:480px){.top{height:140px}.header-record{width:calc(100% - 185px);height:auto;aspect-ratio:1;top:0;transform:translate(-50%,-40%)}.record-caption{font-size:4px}.record-side{font-size:3.5px}.spindle{width:8px;height:8px}}
+
+/* V3: oversized record and wordmark, with the original music layout below. */
+:root{--record-accent:#8e302d}
+.top{height:480px;max-width:1440px;margin:0 auto}.top .wrap{height:90px;padding-top:26px}.header-nav{gap:24px}.header-record{width:650px;height:650px;aspect-ratio:1;top:-255px;transform:translateX(-50%);background:repeating-radial-gradient(circle,transparent 0 2px,#ffffff0d 2.5px,transparent 3px 4px),conic-gradient(from 35deg,#090a09,#383936 17%,#080908 27%,#171815 45%,#484945 54%,#0b0c0b 65%,#272824 83%,#090a09);box-shadow:0 6px 10px #0004,inset 0 0 0 3px #1d1e1b,inset 0 0 0 9px #080908}.record-inner{inset:24%;background:#151613;box-shadow:0 0 0 2px #474940,0 0 0 6px #10110f}.record-label{position:absolute;inset:13.5%;border-radius:50%;background:var(--record-accent);color:var(--cream);border:1px solid #d68b7160;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}.record-label strong{font-size:27px;letter-spacing:-1px;line-height:.95}.record-label small{font:8px monospace;letter-spacing:1.2px;margin-top:16px}.label-context{font-size:8px;letter-spacing:.4px;margin-top:9px}.spindle{flex:none;display:block;margin-top:17px;width:12px;height:12px;background:linear-gradient(135deg,#fffdf0,#deded1 55%,#999d8d)}.top .record-wordmark{position:absolute;top:286px;left:0;right:0;height:auto;display:flex;justify-content:space-between;align-items:baseline;z-index:3;padding-top:0;pointer-events:none;color:var(--record-accent);font-family:var(--f);font-size:clamp(110px,12vw,170px);font-weight:900;letter-spacing:-.045em;line-height:1}.top .header-caption{bottom:15px;padding-top:0;height:auto;font-size:9px}.header-caption:after{content:'';position:absolute;bottom:-15px;left:40px;right:40px;border-bottom:1px solid var(--line)}.layout{padding-top:12px}
+@media(min-width:901px) and (max-width:1100px){.header-record{width:570px;height:570px;top:-235px}.top{height:420px}.top .record-wordmark{top:255px;font-size:12vw}}
+@media(max-width:900px){.top{height:350px}.header-record{width:430px;height:430px;top:-175px}.top .record-wordmark{top:230px;font-size:clamp(60px,12vw,100px);padding-top:0}.record-label{padding:12px}.record-label strong{font-size:20px}.record-label small{font-size:6px;margin-top:10px}.label-context{font-size:6px;margin-top:7px}.spindle{width:9px;height:9px;margin-top:10px}.top .header-caption{font-size:7px;bottom:12px}.header-caption:after{left:20px;right:20px;bottom:-12px}.brand{font-size:15px}.top .wrap{padding-top:22px}.header-nav{gap:10px}.top .record-wordmark,.top .header-caption{padding-top:0}}
+@media(max-width:600px){.top{height:290px}.header-record{width:calc(100% - 175px);height:auto;top:0;transform:translate(-50%,-32%)}.top .record-wordmark{top:auto;bottom:43px;font-size:14vw}.record-label strong{font-size:clamp(9px,2.4vw,15px);letter-spacing:-.4px}.record-label small{font-size:4px;margin-top:7px;letter-spacing:.4px}.label-context{font-size:4px;margin-top:5px;letter-spacing:0}.spindle{width:7px;height:7px;margin-top:8px}.record-label{padding:5px}.brand{font-size:12px}.top .wrap{padding-top:17px}.header-nav a,.top a.back{font-size:10px}.top .record-wordmark,.top .header-caption{padding-top:0}.top .header-caption{font-size:6px;letter-spacing:.4px}.layout{padding-top:0}}
+@media(max-width:420px){.top{height:245px}.top .record-wordmark{bottom:42px;font-size:14.5vw}.hero{padding-top:25px}}
+
+/* Reference proportions: wide wordmark, centered LP, shared lower baseline. */
+@media(min-width:901px){
+ .top{--record-size:clamp(460px,48vw,740px);max-width:1600px;height:calc(var(--record-size) * .6 + 100px)}
+ .top .wrap{max-width:none;width:90%;padding-left:0;padding-right:0}
+ .header-record{width:var(--record-size);height:var(--record-size);top:calc(var(--record-size) * -.4)}
+ .top .record-wordmark{top:calc(var(--record-size) * .6 - clamp(110px,12vw,190px) + 15px);font-size:clamp(110px,14vw,210px);font-weight:900;letter-spacing:-.065em;line-height:1.03}
+ .record-wordmark span{display:block;transform:scaleX(.78);transform-origin:left center}
+ .record-wordmark span:last-child{transform-origin:right center}
+ .top .header-caption{bottom:20px}
+ .header-caption:after{left:0;right:0;bottom:-20px}
+ .record-label strong{font-size:clamp(23px,2.1vw,32px)}
+}
+
+.scent[hidden]{ display:none !important; }
+/* 로고 한 줄 */
+.brand{ white-space:nowrap; }
+/* 태블릿·모바일: 로고(한 줄)가 레코드에 가리지 않도록 위쪽에 얇은 바를 두고, 레코드는 그 아래에서 잘려 보이게 */
+@media(max-width:900px){
+  .top .wrap{ height:52px; padding-top:0 !important; align-items:center; }
+  .header-nav{ flex-direction:row !important; align-items:center !important; gap:14px !important; padding-top:0; }
+  .top::before{ content:""; position:absolute; left:max(20px, calc(50% - 280px)); right:max(20px, calc(50% - 280px)); top:52px; border-top:1px solid var(--line); z-index:2; }
+  .top .record-wordmark{ justify-content:space-between; }
+}
+@media(min-width:601px) and (max-width:900px){
+  .top{ height:402px; }
+  .header-record{ top:-123px; clip-path:inset(40.7% 0 0 0); }
+  .top .record-wordmark{ top:300px; font-size:clamp(56px,8.6vw,74px); }
+}
+@media(max-width:600px){
+  .top{ height:338px; }
+  .header-record{ top:52px; clip-path:inset(32% 0 0 0); }
+  .top .record-wordmark{ font-size:12vw; }
+}
+@media(max-width:420px){
+  .top{ height:296px; }
+  .top .record-wordmark{ font-size:12.2vw; }
+}
+
+/* 심플 모노 LP: 컬러 라벨·SCENT TRACK 워드마크 제거, 라벨이 천천히 회전 */
+.record-wordmark{ display:none !important; }
+.record-label{ background:#151613 !important; border:1px solid rgba(243,241,236,.10) !important; color:#cfcdc4 !important; }
+.record-label strong{ font-weight:650; letter-spacing:-.04em; opacity:.92; }
+.record-label small{ color:#9a9990; }
+.label-context{ display:none; }
+.record-inner{ animation:lp-spin 7s linear infinite; will-change:transform; }
+.header-record::after{ content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background:conic-gradient(from 210deg, transparent 0 8%, rgba(255,255,255,.07) 12%, transparent 18% 58%, rgba(255,255,255,.05) 62%, transparent 68%); }
+@media(min-width:901px){ .record-label strong{ font-size:clamp(16px,1.4vw,22px) !important; } }
+@keyframes lp-spin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .record-inner{ animation:none; } }
+@media(min-width:901px){ .top{ height:calc(var(--record-size) * .6 + 70px); } }
+@media(min-width:601px) and (max-width:900px){ .top{ height:352px; } }
+@media(max-width:600px){ .top{ height:262px; } }
+@media(max-width:420px){ .top{ height:236px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="header-record" aria-hidden="true"><div class="record-inner"><div class="record-label"><strong>urban scent<br>track®</strong><small>SIDE A · 33⅓ RPM</small><span class="label-context" id="lpContext">SCENT IN. SOUND ON.</span><i class="spindle"></i></div></div></div>
+  <div class="wrap">
+    <a class="brand" href="https://urbanscenttrack.com/">urban scent track<span class="brand-dot">®</span></a>
+    <nav class="header-nav" aria-label="메인 메뉴"><a href="#result">오늘의 음악</a><a class="back" href="https://urbanscenttrack.com/">홈으로 ↗</a></nav>
+  </div>
+<div class="header-caption wrap"><span>SCENT / SOUND / EVERYDAY</span><span>YOUR DAILY FIVE TRACKS</span></div>
+</header>
+
+<main class="wrap layout">
+  <div class="col-a">
+  <section class="hero">
+    <div class="eyebrow">today's tracks</div>
+    <h1>오늘, 이 순간에<br>어울리는 노래.</h1>
+    <p>향, 날씨, 기분, 지금 있는 곳에 맞춰 매일 5곡을 골라드려요. 곡은 매일 자정에 바뀝니다.</p>
+
+    <div class="now" aria-live="polite">
+      <div class="now-top">
+        <div>
+          <div class="now-ctx" id="nowCtx">지금 날씨를 확인하고 있어요…</div>
+          <div class="now-sub" id="nowSub">서울 기준</div>
+        </div>
+        <button class="loc" id="locBtn" type="button">내 위치로</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="picker" aria-label="음악 고르기">
+    <div class="tabs" role="group" aria-label="추천 기준" id="tabs"></div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  </div>
+  <div class="col-b">
+  <section class="result" id="result">
+    <div class="result-head">
+      <div class="result-title" id="resTitle"></div>
+      <div class="result-date" id="resDate"></div>
+    </div>
+    <p class="result-desc" id="resDesc"></p>
+    <ol class="songs" id="songs"></ol>
+    <p class="note">노래를 누르면 음원 서비스에서 바로 찾아볼 수 있어요. 음원은 각 서비스에서 재생됩니다.</p>
+  </section>
+
+  <section class="scent" id="scent"></section>
+  </div>
+</main>
+
+<footer class="wrap">
+    urban scent track · 향과 음악이 함께하는 차량용 샤쉐<br>
+    <a href="https://urbanscenttrack.com/">urbanscenttrack.com</a> · <a href="https://www.instagram.com/urbanscenttrack" target="_blank" rel="noopener">Instagram</a>
+</footer>
+
+<script>
+(function(){
+/* ============================================================
+   곡 목록 (2026-11-01, 850곡) — 한 줄에 한 곡: [곡명, 아티스트, '태그 태그 ...']
+   곡을 추가하려면 아래 형식대로 한 줄만 넣으면 됩니다.
+   태그: c1 c2 c3(향) / rain sun cloud snow(날씨)
+         spring summer fall winter(계절)
+         flutter tired blue angry calm(기분)
+         commute home night alone cheer(상황)
+   ============================================================ */
+var SONGS = [
+ ["Dynamite", "BTS", "c1 flutter commute cheer sun summer", "https://www.youtube.com/watch?v=gdZLi9oWNZg"],
+ ["Butter", "BTS", "c1 commute sun summer", "https://www.youtube.com/watch?v=WMweEpGlu_U"],
+ ["Levitating", "Dua Lipa", "c1 flutter commute night sun", "https://www.youtube.com/watch?v=TUVcZfQe-Kw"],
+ ["Sunflower", "Post Malone, Swae Lee", "c1 home sun summer", "https://www.youtube.com/watch?v=ApXoWvfEYVU"],
+ ["Good as Hell", "Lizzo", "c1 angry commute cheer", "https://www.youtube.com/watch?v=G5xa-XAvErw"],
+ ["Can't Stop the Feeling!", "Justin Timberlake", "c1 commute cheer sun summer", "https://www.youtube.com/watch?v=ru0K8uYEZWw"],
+ ["Happy", "Pharrell Williams", "c1 commute cheer sun spring", "https://www.youtube.com/watch?v=ZbZSe6N_BXs"],
+ ["Walking on Sunshine", "Katrina and the Waves", "c1 commute sun spring summer", "https://www.youtube.com/watch?v=iPUmE-tne5U"],
+ ["좋은 날", "아이유", "c1 flutter sun spring", "https://www.youtube.com/watch?v=jeqdYqsrsA0"],
+ ["Hype Boy", "NewJeans", "c1 flutter commute spring", "https://www.youtube.com/watch?v=11cta61wi0g"],
+ ["Super Shy", "NewJeans", "c1 flutter commute summer", "https://www.youtube.com/watch?v=ArmDp-zijuc"],
+ ["Island in the Sun", "Weezer", "c1 c2 home sun summer", "https://www.youtube.com/watch?v=erG5rgNYSdk"],
+ ["Watermelon Sugar", "Harry Styles", "c1 sun summer", "https://www.youtube.com/watch?v=E07s5ZYygMg"],
+ ["여행", "볼빨간사춘기", "c1 commute sun spring summer", "https://www.youtube.com/watch?v=xRbPAVnqtcs"],
+ ["우주를 줄게", "볼빨간사춘기", "c1 flutter spring", "https://www.youtube.com/watch?v=9U8uA702xrE"],
+ ["Celebrity", "아이유", "c1 flutter cheer", "https://www.youtube.com/watch?v=0-q1KafFCLU"],
+ ["CHEER UP", "TWICE", "c1 flutter cheer", "https://www.youtube.com/watch?v=c7rCyll5AeY"],
+ ["Mr. Blue Sky", "Electric Light Orchestra", "c1 cheer sun cloud", "https://www.youtube.com/watch?v=aQUlA8Hcv4s"],
+ ["Steal My Sunshine", "Len", "c1 sun summer", "https://www.youtube.com/watch?v=E1fzJ_AYajA"],
+ ["Shut Up and Dance", "WALK THE MOON", "c1 c3 flutter commute", "https://www.youtube.com/watch?v=6JCLY0Rlx6Q"],
+ ["Summer", "Calvin Harris", "c1 c3 night sun summer", "https://www.youtube.com/watch?v=ebXbLfLACGM"],
+ ["여름 안에서", "듀스", "c1 c3 summer", "https://www.youtube.com/watch?v=_HsRbUaVw5c"],
+ ["아로하", "쿨", "c2 flutter", "https://www.youtube.com/watch?v=Ddw83SZD6Go"],
+ ["Love Story", "Taylor Swift", "c1 flutter", "https://www.youtube.com/watch?v=aXzVF3XeS8M"],
+ ["Shake It Off", "Taylor Swift", "c1 angry commute cheer", "https://www.youtube.com/watch?v=nfWlot6h_JM"],
+ ["September", "Earth, Wind & Fire", "c1 cheer fall", "https://www.youtube.com/watch?v=Gs069dndIYk"],
+ ["봄봄봄", "로이킴", "c1 flutter sun spring", "https://www.youtube.com/watch?v=k3-BDy55tq4"],
+ ["벚꽃 엔딩", "버스커 버스커", "c1 flutter sun spring", "https://www.youtube.com/watch?v=tXV7dfvSefo"],
+ ["봄 사랑 벚꽃 말고", "HIGH4, 아이유", "c1 flutter spring", "https://www.youtube.com/watch?v=ouR4nn1G9r4"],
+ ["Take On Me", "a-ha", "c1 c3 flutter commute", "https://www.youtube.com/watch?v=djV11Xbc914"],
+ ["Coffee", "beabadoobee", "c2 calm tired alone", "https://www.youtube.com/watch?v=jJPMnTXl63E"],
+ ["Sunday Morning", "Maroon 5", "c2 calm home sun rain", "https://www.youtube.com/watch?v=S2Cti12XBw4"],
+ ["Banana Pancakes", "Jack Johnson", "c2 calm tired home rain", "https://www.youtube.com/watch?v=YdgoG8hTMUw"],
+ ["Put Your Records On", "Corinne Bailey Rae", "c2 calm home sun", "https://www.youtube.com/watch?v=rjOhZZyn30k"],
+ ["Better Together", "Jack Johnson", "c2 calm flutter home", "https://www.youtube.com/watch?v=fqxNYjDFJUk"],
+ ["Golden Hour", "JVKE", "c2 calm flutter fall", "https://www.youtube.com/watch?v=UsR08cY8k0A"],
+ ["밤편지", "아이유", "c2 flutter alone", "https://www.youtube.com/watch?v=BzYnNdJhZQw"],
+ ["Best Part", "Daniel Caesar, H.E.R.", "c2 calm flutter night", "https://www.youtube.com/watch?v=vBy7FaapGRo"],
+ ["Lovely Day", "Bill Withers", "c2 c1 tired home cheer sun", "https://www.youtube.com/watch?v=bEeaS6fuUoA"],
+ ["Here Comes the Sun", "The Beatles", "c2 c1 cheer sun spring", "https://www.youtube.com/watch?v=xUNqsfFUwhY"],
+ ["너의 의미", "아이유, 김창완", "c2 flutter sun", "https://www.youtube.com/watch?v=LajvR3lH1cg"],
+ ["Riptide", "Vance Joy", "c2 calm sun summer", "https://www.youtube.com/watch?v=Yq8N59Vnx_w"],
+ ["Bloom", "The Paper Kites", "c2 calm alone spring", "https://www.youtube.com/watch?v=8inJtTG_DuU"],
+ ["Yellow", "Coldplay", "c2 calm flutter cloud", "https://www.youtube.com/watch?v=yKNxeF4KMsY"],
+ ["오래된 노래", "스탠딩 에그", "c2 calm rain fall", "https://www.youtube.com/watch?v=bW3XExLBf7A"],
+ ["Dandelions", "Ruth B.", "c2 calm flutter spring", "https://www.youtube.com/watch?v=jnxdDncfBIM"],
+ ["너를 만나", "폴킴", "c2 flutter", "https://www.youtube.com/watch?v=YBzJ0jmHv-4"],
+ ["모든 날, 모든 순간", "폴킴", "c2 flutter", "https://www.youtube.com/watch?v=nq0BYGyH2Do"],
+ ["잠이 오질 않네요", "장범준", "c2 night alone", "https://www.youtube.com/watch?v=JR-wv5fOJEY"],
+ ["수고했어, 오늘도", "옥상달빛", "c2 tired home cheer", "https://www.youtube.com/watch?v=U3e4AOd-DzE"],
+ ["어른", "손디아", "tired alone", "https://www.youtube.com/watch?v=5a-tqIQc8RM"],
+ ["Let It Be", "The Beatles", "c2 tired cheer cloud", "https://www.youtube.com/watch?v=CGj85pVzRJs"],
+ ["Skinny Love", "Bon Iver", "c2 blue alone winter", "https://www.youtube.com/watch?v=95FyXUHv8hk"],
+ ["Perfect", "Ed Sheeran", "c2 calm flutter winter", "https://www.youtube.com/watch?v=2Vv-BfVoq4g"],
+ ["가을 아침", "아이유", "c2 calm commute sun fall", "https://www.youtube.com/watch?v=ZDoH5dQ58ps"],
+ ["겨울잠", "아이유", "c2 calm snow winter", "https://www.youtube.com/watch?v=SmQhRHS9-YA"],
+ ["Autumn Leaves", "Nat King Cole", "c2 calm rain fall", "https://www.youtube.com/watch?v=YVedK1VUfLM"],
+ ["사랑이 잘", "아이유, 오혁", "c2 calm night", "https://www.youtube.com/watch?v=xQL5rFvrRL8"],
+ ["Lover", "Taylor Swift", "c2 calm flutter fall", "https://www.youtube.com/watch?v=-BjZmE2gtdo"],
+ ["Ditto", "NewJeans", "c2 flutter alone snow winter", "https://www.youtube.com/watch?v=pSUydWEqKwE"],
+ ["흔들리는 꽃들 속에서 네 샴푸향이 느껴진거야", "장범준", "c2 flutter spring", "https://www.youtube.com/watch?v=YBEUXfT7_48"],
+ ["Blinding Lights", "The Weeknd", "c3 angry night", "https://www.youtube.com/watch?v=4NRXx6U8ABQ"],
+ ["Mr. Brightside", "The Killers", "c3 angry commute", "https://www.youtube.com/watch?v=l7MaKmKJqoc"],
+ ["Life Is a Highway", "Rascal Flatts", "c3 commute sun summer", "https://www.youtube.com/watch?v=5tXh_MfrMe0"],
+ ["Don't Stop Me Now", "Queen", "c3 cheer commute", "https://www.youtube.com/watch?v=HgzGwKwLmgM"],
+ ["Africa", "Toto", "c3 home sun summer", "https://www.youtube.com/watch?v=FTQbiNvZqaY"],
+ ["Born to Run", "Bruce Springsteen", "c3 night cheer", "https://www.youtube.com/watch?v=IxuThNgl3YA"],
+ ["Midnight City", "M83", "c3 night", "https://www.youtube.com/watch?v=dX3k_QDnzHE"],
+ ["Electric Feel", "MGMT", "c3 night summer", "https://www.youtube.com/watch?v=MmZexg8sxyk"],
+ ["Dreams", "Fleetwood Mac", "c3 calm night cloud", "https://www.youtube.com/watch?v=Y3ywicffOj4"],
+ ["Go Your Own Way", "Fleetwood Mac", "c3 angry commute", "https://www.youtube.com/watch?v=oiosqtFLBBA"],
+ ["운전만해 (We Ride)", "브레이브걸스", "c3 night summer", "https://www.youtube.com/watch?v=4HjcypoChfQ"],
+ ["Drive", "Incubus", "c3 home alone cloud", "https://www.youtube.com/watch?v=fgT9zGkiLig"],
+ ["Ride", "Twenty One Pilots", "c3 commute cloud", "https://www.youtube.com/watch?v=Pw-0pbY9JeU"],
+ ["Hotel California", "Eagles", "c3 night", "https://www.youtube.com/watch?v=dLl4PZtxia8"],
+ ["Heat Waves", "Glass Animals", "c3 home night summer", "https://www.youtube.com/watch?v=mRD0-GxqHVo"],
+ ["Night Changes", "One Direction", "c3 home night winter", "https://www.youtube.com/watch?v=syFZfO_wfMQ"],
+ ["Seven", "정국, Latto", "c3 night summer", "https://www.youtube.com/watch?v=1QYBiNRu1ok"],
+ ["Supernova", "aespa", "c3 angry night", "https://www.youtube.com/watch?v=phuiiNCxRMg"],
+ ["사건의 지평선", "윤하", "c3 blue night cheer", "https://www.youtube.com/watch?v=BBdC1rl5sKY"],
+ ["Cruel Summer", "Taylor Swift", "c3 night summer", "https://www.youtube.com/watch?v=ic8j13piAhQ"],
+ ["Riders on the Storm", "The Doors", "c3 night rain", "https://www.youtube.com/watch?v=7G2-FPlvY58"],
+ ["비가 오는 날엔", "비스트", "blue alone rain", "https://www.youtube.com/watch?v=NY47mqz4yCg"],
+ ["우산", "에픽하이, 윤하", "blue rain", "https://www.youtube.com/watch?v=NIPtyAKxlRs"],
+ ["Rain on Me", "Lady Gaga, Ariana Grande", "angry cheer rain", "https://www.youtube.com/watch?v=AoAm4om0wTs"],
+ ["Set Fire to the Rain", "Adele", "angry rain", "https://www.youtube.com/watch?v=a2giXO6eyuI"],
+ ["Purple Rain", "Prince", "night rain", "https://www.youtube.com/watch?v=6lsueAsCTnM"],
+ ["Rainy Days", "V", "calm alone rain", "https://www.youtube.com/watch?v=yTsINmrAK4I"],
+ ["Here Comes the Rain Again", "Eurythmics", "rain cloud", "https://www.youtube.com/watch?v=4c9r15O1JVw"],
+ ["Umbrella", "Rihanna, JAY-Z", "rain", "https://www.youtube.com/watch?v=CvBfHwUxHIk"],
+ ["비도 오고 그래서", "헤이즈, 신용재", "blue home rain", "https://www.youtube.com/watch?v=afxLaQiLu-o"],
+ ["Breathe Me", "Sia", "blue alone cloud", "https://www.youtube.com/watch?v=ghPcYqn0p4Y"],
+ ["The Night We Met", "Lord Huron", "blue night alone cloud", "https://www.youtube.com/watch?v=KtlgYxa6BMU"],
+ ["Fix You", "Coldplay", "blue tired cheer cloud", "https://www.youtube.com/watch?v=k4V3Mo61fJM"],
+ ["Lost Stars", "Adam Levine", "blue night cloud", "https://www.youtube.com/watch?v=5U-JroWwFkw"],
+ ["어떻게 이별까지 사랑하겠어, 널 사랑하는 거지", "AKMU", "blue alone", "https://www.youtube.com/watch?v=m3DZsBw5bnE"],
+ ["눈의 꽃", "박효신", "blue winter", "https://www.youtube.com/watch?v=AqwyuF0Rp8k"],
+ ["Snowman", "Sia", "snow winter", "https://www.youtube.com/watch?v=gset79KMmt0"],
+ ["첫눈처럼 너에게 가겠다", "에일리", "blue winter", "https://www.youtube.com/watch?v=6rS7OUGXUik"],
+ ["Let It Snow! Let It Snow! Let It Snow!", "Dean Martin", "home snow winter", "https://www.youtube.com/watch?v=Rnil5LyK_B0"],
+ ["Last Christmas", "Wham!", "snow winter", "https://www.youtube.com/watch?v=E8gmARGvPlI"],
+ ["봄날", "BTS", "blue cheer spring", "https://www.youtube.com/watch?v=xEeFrLSkMm8"],
+ ["It's Beginning to Look a Lot Like Christmas", "Michael Bublé", "home snow winter", "https://www.youtube.com/watch?v=QJ5DOWPGxwg"],
+ ["All I Want for Christmas Is You", "Mariah Carey", "flutter snow winter", "https://www.youtube.com/watch?v=yXQViqx6GMY"],
+ ["잊혀진 계절", "이용", "cloud fall", "https://www.youtube.com/watch?v=fMmgz5RS0RE"],
+ ["Wake Me Up When September Ends", "Green Day", "blue fall", "https://www.youtube.com/watch?v=pGhwBFYtn1s"],
+ ["사랑에 빠지고 싶다", "김조한", "flutter fall", "https://www.youtube.com/watch?v=0Qq5Ik4NVqg"],
+ ["Someone Like You", "Adele", "blue alone", "https://www.youtube.com/watch?v=hLQl3WQQoQ0"],
+ ["Believer", "Imagine Dragons", "angry cheer", "https://www.youtube.com/watch?v=7wtfhZwyrcc"],
+ ["Stronger (What Doesn't Kill You)", "Kelly Clarkson", "angry cheer", "https://www.youtube.com/watch?v=Xn676-fLq7I"],
+ ["불타오르네 (FIRE)", "BTS", "angry", "https://www.youtube.com/watch?v=ALj5MKjy2BU"],
+ ["bad guy", "Billie Eilish", "angry night", "https://www.youtube.com/watch?v=DyDfgMOUjCI"],
+ ["Not Today", "BTS", "angry cheer", "https://www.youtube.com/watch?v=9DwzBICPhdM"],
+ ["걱정말아요 그대", "전인권", "tired cheer", "https://www.youtube.com/watch?v=xLEdPanc8pM"],
+ ["Hall of Fame", "The Script, will.i.am", "cheer commute", "https://www.youtube.com/watch?v=mk48xRzuNvA"],
+ ["말하는 대로", "처진 달팽이", "tired cheer", "https://www.youtube.com/watch?v=oJxPzLLVAuo"],
+ ["첫 만남은 계획대로 되지 않아", "TWS", "c1 flutter", "https://www.youtube.com/watch?v=hVAc1Vf2ITU"],
+ ["Blueming", "아이유", "c1 flutter", "https://www.youtube.com/watch?v=D1PvIWdJ8xo"],
+ ["strawberry moon", "아이유", "c1 flutter", "https://www.youtube.com/watch?v=sqgxcCjD04s"],
+ ["unlucky", "아이유", "c1 cheer", "https://www.youtube.com/watch?v=l5Rb1pNre40"],
+ ["Love poem", "아이유", "tired cheer", "https://www.youtube.com/watch?v=kcx0a2OAhN0"],
+ ["Weekend", "태연", "c1 home", "https://www.youtube.com/watch?v=RmuL-BPFi2Q"],
+ ["Why", "태연", "c1 c3", "https://www.youtube.com/watch?v=Ri6wvGjuoOg"],
+ ["빨간 맛 (Red Flavor)", "Red Velvet", "c1 summer", "https://www.youtube.com/watch?v=WyiIGEHQP8o"],
+ ["You Better Know", "Red Velvet", "c1 cheer", "https://www.youtube.com/watch?v=nUi6jSxO-As"],
+ ["바다가 들려 (Hear The Sea)", "Red Velvet", "c2 summer", "https://www.youtube.com/watch?v=h0gD9OQTQ7w"],
+ ["여름빛 (Mojito)", "Red Velvet", "flutter summer", "https://www.youtube.com/watch?v=DIP0IU30V5c"],
+ ["한 페이지가 될 수 있게", "DAY6", "c3 cheer", "https://www.youtube.com/watch?v=vnS_jn2uibs"],
+ ["For me", "DAY6", "tired cheer", "https://www.youtube.com/watch?v=UTmMpCBsF8Y"],
+ ["Best Part", "DAY6", "c3 cheer", "https://www.youtube.com/watch?v=a-UfQfufkgU"],
+ ["How to love", "DAY6", "c1 flutter", "https://www.youtube.com/watch?v=qCZm8abq8Co"],
+ ["오르트구름", "윤하", "c3 cheer", "https://www.youtube.com/watch?v=58IEh6YkuzQ"],
+ ["물의 여행", "윤하", "c3 cheer", "https://www.youtube.com/watch?v=UYV2QZcZSe8"],
+ ["반짝, 빛을 내", "윤하", "cheer", "https://www.youtube.com/watch?v=GtaorDNm8iA"],
+ ["조깅", "LUCY", "c1 commute", "https://www.youtube.com/watch?v=dh684FWByO4"],
+ ["Straight Line", "LUCY", "c3 cheer", "https://www.youtube.com/watch?v=dNWOPvcIfoE"],
+ ["Flare", "LUCY", "c3 cheer", "https://www.youtube.com/watch?v=dT9HFQAwbZE"],
+ ["개화 (Flowering)", "LUCY", "cheer spring", "https://www.youtube.com/watch?v=WQdFA55hT80"],
+ ["선잠", "LUCY", "tired home", "https://www.youtube.com/watch?v=MR9tD-dkqXI"],
+ ["난로", "LUCY", "c2 winter", "https://www.youtube.com/watch?v=WoTemIwmcWc"],
+ ["하루의 끝 (End of a day)", "종현", "tired home", "https://www.youtube.com/watch?v=wGP-gfCWXYI"],
+ ["내일쯤 (Maybe tomorrow)", "종현", "c2 tired", "https://www.youtube.com/watch?v=2PZrSnMRNEE"],
+ ["Like You", "종현", "c1 flutter", "https://www.youtube.com/watch?v=bEPXqfBVK5w"],
+ ["산하엽 (Diphylleia grayi)", "종현", "blue alone", "https://www.youtube.com/watch?v=ZsZ4Ijor8b4"],
+ ["한숨", "이하이", "tired cheer", "https://www.youtube.com/watch?v=5iSlfF8TQ9k"],
+ ["손잡아 줘요", "이하이", "c1", "https://www.youtube.com/watch?v=cuUEnho33so"],
+ ["괜찮아도 괜찮아 (That's okay)", "도경수(D.O.)", "c2 tired", "https://www.youtube.com/watch?v=j2aQ_NqeTNw"],
+ ["Square (2017)", "백예린", "c1", "https://www.youtube.com/watch?v=4iFP_wd6QU8"],
+ ["Rest", "백예린", "c2 home", "https://www.youtube.com/watch?v=IqfFZ5cJ-WU"],
+ ["우주를 건너", "백예린", "c2 alone", "https://www.youtube.com/watch?v=cQuqs2LrXbo"],
+ ["별 보러 가자", "적재", "c2 flutter", "https://www.youtube.com/watch?v=Mz031oU0Xfw"],
+ ["폰서트", "10CM", "c1 flutter", "https://www.youtube.com/watch?v=mOo8bVzN9M8"],
+ ["보라빛 밤 (pporappippam)", "선미", "c3 night", "https://www.youtube.com/watch?v=H8YW1tlsmE8"],
+ ["네온 (NEON)", "유키카", "c3 night", "https://www.youtube.com/watch?v=67jSYCSrnE4"],
+ ["lovememore.", "dosii", "c3 alone", "https://www.youtube.com/watch?v=9TSPbfbJUkQ"],
+ ["Rain", "태연", "blue rain", "https://www.youtube.com/watch?v=eHir_vB1RUI"],
+ ["비", "폴킴", "c2 rain", "https://www.youtube.com/watch?v=Cm08bRic7Jk"],
+ ["장마 (Feat. 영준 of Brown Eyed Soul)", "정인", "blue rain", "https://www.youtube.com/watch?v=_7E9cw1OiNw"],
+ ["첫 눈", "EXO", "snow winter", "https://www.youtube.com/watch?v=h0b4nw7NDhA"],
+ ["눈사람", "정승환", "snow winter", "https://www.youtube.com/watch?v=gPNu9OIj4Zo"],
+ ["눈 (Feat. 이문세)", "Zion.T", "snow winter", "https://www.youtube.com/watch?v=fiGSDywrX1Y"],
+ ["눈이 오잖아 (Feat. 헤이즈)", "이무진", "snow winter", "https://www.youtube.com/watch?v=YGsBe3H7QGs"],
+ ["너란 봄 (feat. 하림)", "정은지", "alone spring", "https://www.youtube.com/watch?v=PWDISJZr7Yc"],
+ ["우연히 봄 (2021)", "안녕하신가영", "flutter spring", "https://www.youtube.com/watch?v=L8jdd-XqMqs"],
+ ["가을밤에 든 생각", "잔나비", "home fall", "https://www.youtube.com/watch?v=9T_uq_HpfyQ"],
+ ["11:11", "태연", "alone fall", "https://www.youtube.com/watch?v=ulr0muQKjk0"],
+ ["Don't Know Why", "Norah Jones", "c2 calm", "https://www.youtube.com/watch?v=tO4dxvguQDk"],
+ ["Come Away With Me", "Norah Jones", "c2 calm", "https://www.youtube.com/watch?v=lbjZPFBD6JU"],
+ ["From The Start", "Laufey", "c2 flutter", "https://www.youtube.com/watch?v=lSD_L-xic9o"],
+ ["Promise", "Laufey", "blue alone", "https://www.youtube.com/watch?v=Yq6qkq_TWAM"],
+ ["Skate", "Silk Sonic", "c1 c3", "https://www.youtube.com/watch?v=CEw-7cMnBDY"],
+ ["Leave the Door Open", "Silk Sonic", "c2 flutter", "https://www.youtube.com/watch?v=adLGHcj_fmA"],
+ ["Hard Times", "Paramore", "c3 angry", "https://www.youtube.com/watch?v=AEB6ibtdPZc"],
+ ["Get Lucky", "Daft Punk feat. Pharrell Williams, Nile Rodgers", "c3", "https://www.youtube.com/watch?v=5NV6Rdv1a3I"],
+ ["Overnight", "Parcels", "c3", "https://www.youtube.com/watch?v=BTdBc2Ba8ts"],
+ ["Day 1 ◑", "HONNE", "c2 flutter", "https://www.youtube.com/watch?v=hWOB5QYcmh0"],
+ ["NO PAIN", "실리카겔", "c3 angry", "https://www.youtube.com/watch?v=JaIMSzE5yLA"],
+ ["HAPPY", "DAY6", "tired cheer", "https://www.youtube.com/watch?v=2o1zdX72400"],
+ ["광화문에서 (At Gwanghwamun)", "규현", "blue fall", "https://www.youtube.com/watch?v=rUbq_IXBaYg"],
+ ["Letter To My 13 Year Old Self", "Laufey", "tired cheer", "https://www.youtube.com/watch?v=PEOwqZoDEGI"],
+ ["비가 온다", "정승환", "blue rain", "https://www.youtube.com/watch?v=uFxiIVdd25g"],
+ ["다시, 봄", "정승환", "flutter spring", "https://www.youtube.com/watch?v=jsGbdmUqR3c"],
+ ["Don’t Look Back in Anger (Remastered)", "Oasis", "c3 angry cheer", "https://www.youtube.com/watch?v=YZG7z4FOn0g"],
+ ["도망가자 (Feat. 린)", "MC몽", "alone night", "https://www.youtube.com/watch?v=FMTzAAhKk-I"],
+ ["Vodka Cranberry", "Conan Gray", "blue alone", "https://www.youtube.com/watch?v=Yzbvv8WdP9k"],
+ ["Orbit", "Christopher", "flutter", "https://www.youtube.com/watch?v=pjyigegIZKU"],
+ ["가을 우체국 앞에서", "김대명", "calm home fall", "https://www.youtube.com/watch?v=cCyJNklLauw"],
+ ["내 사랑은 저 아래에", "알레프 (ALEPH)", "tired alone cheer", "https://www.youtube.com/watch?v=28nRjoMYYtY"],
+ ["쉴 곳 (Feat. 김영흠)", "MC몽", "tired cheer home", "https://www.youtube.com/watch?v=kixm64RDt5I"],
+ ["내가 죽으려고 생각한 것은", "XIA (준수)", "blue alone", "https://www.youtube.com/watch?v=DqiN8fYSAYw"],
+ ["Answer : Love Myself", "방탄소년단", "tired cheer", "https://www.youtube.com/watch?v=o_SYttJm0SE"],
+ ["아마도 우린", "디핵 (D-Hack) & 류수정", "flutter", "https://www.youtube.com/watch?v=c6XnLGlw7pM"],
+ ["밤, 바다", "최유리", "c2 calm home", "https://www.youtube.com/watch?v=oCXUR138AQo"],
+ ["In The Stars", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=HPR-VwzbDRg"],
+ ["아이와 나의 바다", "아이유 (IU)", "tired cheer alone", "https://www.youtube.com/watch?v=VEHsGajcuXE"],
+ ["Hardest To Love", "The Weeknd", "c3 blue", "https://www.youtube.com/watch?v=pM3nIOYF2W8"],
+ ["WOULD YOU (feat. TARZZAN, WOOCHAN)", "태양 & TARZZAN & WOOCHAN", "c3", "https://www.youtube.com/watch?v=K1VTsnCNu3Y"],
+ ["Too Sad to Dance", "정국", "blue home", "https://www.youtube.com/watch?v=uQ9A0xF7lAM"],
+ ["달리 표현할 수 없어요", "로이킴", "c2 flutter", "https://www.youtube.com/watch?v=mR-kkHE0-tU"],
+ ["할아버지와 카메라", "로이킴", "calm alone", "https://www.youtube.com/watch?v=QQ399poHUak"],
+ ["동행", "김동률", "cheer home", "https://www.youtube.com/watch?v=gWu8or3BPwU"],
+ ["숙녀에게", "변진섭", "c2 flutter", "https://www.youtube.com/watch?v=B-2ud8A8Zcg"],
+ ["Paul", "혁오 (HYUKOH)", "blue alone", "https://www.youtube.com/watch?v=6VY1DDjlD-s"],
+ ["Whatever", "Oasis", "c3 angry cheer", "https://www.youtube.com/watch?v=EHfx9LXzxpw"],
+ ["칵테일 사랑 (Feat. 유연)", "로키드 (Lokid)", "c1 flutter", "https://www.youtube.com/watch?v=P-tjJYD778Y"],
+ ["Ling Ling", "검정치마", "alone", "https://www.youtube.com/watch?v=u9S7ncAOz6I"],
+ ["My Universe", "Coldplay & 방탄소년단", "c3 flutter", "https://www.youtube.com/watch?v=3YqPKLZF_WU"],
+ ["number one girl", "로제 (ROSÉ)", "blue alone", "https://www.youtube.com/watch?v=XcRErXzl1jk"],
+ ["Cozy", "Jeremy Zucker & Lauv & Alexander 23", "c2 flutter", "https://www.youtube.com/watch?v=Ms-xidSx0Ek"],
+ ["녹턴 (Nocturn)", "이예지", "blue alone", "https://www.youtube.com/watch?v=zDdB3nnm88s"],
+ ["편지 (Feat. 엘른)", "하모닉스 (Harmonics)", "blue alone", "https://www.youtube.com/watch?v=PmrbFah9pwA"],
+ ["봄눈", "펜타곤", "c3 spring", "https://www.youtube.com/watch?v=bs15r9ZXkJg"],
+ ["Eastside", "Benny Blanco & Halsey & Khalid", "c3 night", "https://www.youtube.com/watch?v=56WBK4ZK_cw"],
+ ["Popcorn", "도경수 (D.O.)", "c1 flutter spring", "https://www.youtube.com/watch?v=IhKjZk5AYRg"],
+ ["달려라 방탄", "방탄소년단", "c3 angry commute", "https://www.youtube.com/watch?v=Cb70gcTVvYI"],
+ ["Memories", "Maroon 5", "blue alone", "https://www.youtube.com/watch?v=SlPhMPnQ58k"],
+ ["parachute", "John K", "c3 flutter", "https://www.youtube.com/watch?v=d8UAqPZ7d90"],
+ ["봄 to 러브", "10CM", "c1 flutter spring", "https://www.youtube.com/watch?v=9rNh1RXZgt0"],
+ ["Life’s Too Short (English Ver.)", "aespa", "c1 cheer", "https://www.youtube.com/watch?v=z2ZjutyxmjA"],
+ ["좋은 밤 좋은 꿈", "너드커넥션 (Nerd Connection)", "c2 alone", "https://www.youtube.com/watch?v=5cvg1qPoOXM"],
+ ["NORMAL (Explicit Ver.)", "방탄소년단", "c3", "https://www.youtube.com/watch?v=-3iTpT3G-Ag"],
+ ["내가 많이 사랑해요", "이승철", "c2 flutter", "https://www.youtube.com/watch?v=vmh3tZ9rW_0"],
+ ["I’ll Be Missing You (Feat. 112)", "Puff Daddy", "blue alone", "https://www.youtube.com/watch?v=tJalXjMXqhc"],
+ ["Graduation", "benny blanco & Juice WRLD", "alone home", "https://www.youtube.com/watch?v=M3N06KyK3s0"],
+ ["STAR (Feat. 챈슬러 & D.Ark)", "MC몽", "cheer", "https://www.youtube.com/watch?v=S2hR9kUjn9k"],
+ ["Stack It Up (Feat. A Boogie Wit da Hoodie)", "Liam Payne", "c3 commute", "https://www.youtube.com/watch?v=e1r62iOPkGw"],
+ ["폭죽과 별", "김진호 (SG워너비)", "alone", "https://www.youtube.com/watch?v=wSTEJAeccA4"],
+ ["만년설 (Everlasting)", "엔플라잉 (N.Flying)", "flutter cheer winter", "https://www.youtube.com/watch?v=5ENUwyIfjfw"],
+ ["TOO BAD (Feat. Anderson .Paak)", "G-DRAGON", "c3 commute", "https://www.youtube.com/watch?v=o9DhvbqYzns"],
+ ["생각을 멈추다 보면", "최유리", "c2 calm", "https://www.youtube.com/watch?v=35w8SrlepLc"],
+ ["솔직하게 (M.U.P)", "iKON", "c3 cheer", "https://www.youtube.com/watch?v=Zxqjx8IFx5Q"],
+ ["내 사람이여", "김광석", "c2 home", "https://www.youtube.com/watch?v=mG1E15liHy4"],
+ ["Casualties", "Ethan Dufault", "c2 flutter cheer", "https://www.youtube.com/watch?v=NCIKMBAPcFA"],
+ ["다음 생", "ID (BE IDENTITY)", "flutter alone", "https://www.youtube.com/watch?v=9JsE3cPC3e8"],
+ ["Never Ending Story", "아이유 (IU)", "blue cheer", "https://www.youtube.com/watch?v=iQRS0QdhnHI"],
+ ["Love Like That", "Lauv", "flutter", "https://www.youtube.com/watch?v=Bn6nyP6xtzE"],
+ ["잊어야 한다는 마음으로", "김광석", "blue alone", "https://www.youtube.com/watch?v=Fy9SW-cf-74"],
+ ["Touch Love", "윤미래", "c2 flutter", "https://www.youtube.com/watch?v=mnVhQvCsFUM"],
+ ["My Love", "Westlife", "blue alone", "https://www.youtube.com/watch?v=ulOb9gIGGd0"],
+ ["Someone To You", "Banners", "c3 cheer", "https://www.youtube.com/watch?v=XeLaiL9tk68"],
+ ["OUT OF MY SIGHT", "릴러말즈 (Leellamarz)", "blue", "https://www.youtube.com/watch?v=KRB77WI_N-Y"],
+ ["Never Been 2 Heaven", "BOYS II PLANET", "c3 commute", "https://www.youtube.com/watch?v=0p4SphzIiB8"],
+ ["Graduation", "NCT DREAM", "home alone", "https://www.youtube.com/watch?v=2UyJ2dHFA-4"],
+ ["내사랑 내곁에", "홍이삭", "blue alone", "https://www.youtube.com/watch?v=zGzFymXgU8g"],
+ ["소우주 (Mikrokosmos)", "방탄소년단", "c3 cheer", "https://www.youtube.com/watch?v=Iq6RdCTLBd8"],
+ ["Older Overnight (Bonus Track)", "Lova", "tired alone", "https://www.youtube.com/watch?v=0i6f72OXoXg"],
+ ["Alarm", "니브 (NIve)", "cheer alone", "https://www.youtube.com/watch?v=KUqUIi62q98"],
+ ["그녀가 처음 울던 날", "김광석", "blue alone", "https://www.youtube.com/watch?v=hPGzDhHZ7r0"],
+ ["Memories", "Conan Gray", "blue", "https://www.youtube.com/watch?v=2lSyHZLzNYA"],
+ ["in case you miss me", "John K", "blue alone", "https://www.youtube.com/watch?v=h7hrvhY2wqw"],
+ ["등대", "하현상", "tired cheer", "https://www.youtube.com/watch?v=sAORllP6mLU"],
+ ["봄여름가을겨울 (Still Life)", "BIGBANG", "alone home fall", "https://www.youtube.com/watch?v=eN5mG_yMDiM"],
+ ["마음을 드려요", "아이유 (IU)", "c2 flutter", "https://www.youtube.com/watch?v=MUSaT2B7Lt8"],
+ ["이별길 (GOODBYE ROAD)", "iKON", "blue alone home", "https://www.youtube.com/watch?v=2O6dRaBbFoo"],
+ ["Send It", "Austin Mahone", "c3", "https://www.youtube.com/watch?v=QXjq6nsHga8"],
+ ["가로수 그늘 아래 서면", "이문세", "alone fall", "https://www.youtube.com/watch?v=h3y5XVNhOWM"],
+ ["봄 내음보다 너를", "김나영", "flutter spring", "https://www.youtube.com/watch?v=RaTCjhIS4AY"],
+ ["DNA (More Than A Game)", "Andrea Bocelli & David Guetta & EJAE & Megan Thee Stallion", "c3 cheer", "https://www.youtube.com/watch?v=HYIclJwMPus"],
+ ["Purpose (Stripped)", "Etham", "alone", "https://www.youtube.com/watch?v=rOU2NPebeAc"],
+ ["Love Story", "린 (LYn)", "flutter", "https://www.youtube.com/watch?v=T0CwHTyYBX4"],
+ ["어느 60대 노부부 이야기", "김광석", "calm alone", "https://www.youtube.com/watch?v=gye-F_c4HBY"],
+ ["신기루", "PATEKO (파테코) & Kid Wine", "blue night", "https://www.youtube.com/watch?v=rxp1wJaSG88"],
+ ["흰수염고래", "YB (윤도현 밴드)", "c3 cheer", "https://www.youtube.com/watch?v=iD54IrEyiK8"],
+ ["Welcome to the Show", "DAY6 (데이식스)", "c3 cheer", "https://www.youtube.com/watch?v=RowlrvmyFEk"],
+ ["이상한 사람", "존박", "c2 flutter", "https://www.youtube.com/watch?v=o_vQyo0ZRNU"],
+ ["에잇 (Prod. & Feat. SUGA of BTS)", "아이유 (IU)", "c3 alone", "https://www.youtube.com/watch?v=TgOu00Mf3kI"],
+ ["사라진 모든 것들에게 (With ELLE KOREA)", "코드 쿤스트 & 잔나비 최정훈 & 사이먼 도미닉", "alone home", "https://www.youtube.com/watch?v=9GN77NqprHg"],
+ ["가을 우체국 앞에서", "윤도현", "calm fall", "https://www.youtube.com/watch?v=x127nwNpegQ"],
+ ["Home", "임영웅", "cheer home", "https://www.youtube.com/watch?v=r9yPek7FhSQ"],
+ ["바람에", "Kid Wine", "blue home", "https://www.youtube.com/watch?v=ocCe-HqYb94"],
+ ["like my father", "Jax", "c2 flutter", "https://www.youtube.com/watch?v=GCWl50HQZIM"],
+ ["High Hopes", "Panic! At The Disco", "c3 cheer commute", "https://www.youtube.com/watch?v=IPXIgEAGe4U"],
+ ["BEST FRIEND", "iKON", "c1 flutter", "https://www.youtube.com/watch?v=In7YpkXIaEA"],
+ ["EVERYTHING", "검정치마", "c2 flutter", "https://www.youtube.com/watch?v=K4giYflGxAY"],
+ ["Changes", "Lauv", "tired cheer", "https://www.youtube.com/watch?v=pPAAFMtDUzo"],
+ ["Yet To Come", "방탄소년단", "cheer home", "https://www.youtube.com/watch?v=kXpOEzNZ8hQ"],
+ ["A LOT", "John K", "flutter", "https://www.youtube.com/watch?v=Hdk29jZ7G9w"],
+ ["힘든 거 알아", "PATEKO & Jayci yucca & Kid Wine", "tired cheer", "https://www.youtube.com/watch?v=1JTe6Y0PWH4"],
+ ["그대 작은 나의 세상이 되어", "카더가든", "c2 flutter", "https://www.youtube.com/watch?v=ZurHW2kBqrw"],
+ ["북두칠성", "로이킴", "blue alone winter", "https://www.youtube.com/watch?v=4iSuSghFi6c"],
+ ["LOVE YA!", "혁오 (HYUKOH)", "c3 flutter", "https://www.youtube.com/watch?v=aKHbqm-D62Y"],
+ ["사랑을 말해요", "이문세", "c2 flutter", "https://www.youtube.com/watch?v=5Ww-GfXPlYM"],
+ ["Love Yourself", "Justin Bieber", "blue alone", "https://www.youtube.com/watch?v=oyEuk8j8imI"],
+ ["Tired", "니브 (NIve)", "tired alone", "https://www.youtube.com/watch?v=CmlOl_viE8U"],
+ ["Closer (Feat. Halsey)", "The Chainsmokers", "c3 night", "https://www.youtube.com/watch?v=0zGcUoRlhmw"],
+ ["Hey Ari", "LAUV", "tired alone", "https://www.youtube.com/watch?v=cNG4GtVVPUE"],
+ ["Superhero", "LAUV", "c2 flutter", "https://www.youtube.com/watch?v=kb_e5UkI7ak"],
+ ["last day on earth", "Tai Verdes", "c1 cheer", "https://www.youtube.com/watch?v=DTylwRVhPY0"],
+ ["Mood (Remix)", "24KGoldn, Justin Bieber, J. Balvin, iann dior", "c3", "https://www.youtube.com/watch?v=JOHN4EnFqAU"],
+ ["Play Pretend", "Alex Sampson", "blue alone", "https://www.youtube.com/watch?v=3aJCoOGzgOo"],
+ ["Sims (Explicit Ver.)", "LAUV", "c1 flutter", "https://www.youtube.com/watch?v=4-wBllGU6hA"],
+ ["Fake (Explicit Ver.)", "LAUV, Conan Gray", "c3 angry", "https://www.youtube.com/watch?v=5qFVUYBWfGw"],
+ ["Beautiful Mistakes", "Maroon 5, Megan Thee Stallion", "c3 blue", "https://www.youtube.com/watch?v=BSzSn-PRdtI"],
+ ["All My Favorite Songs", "Weezer", "tired alone", "https://www.youtube.com/watch?v=AGPdXYG1msg"],
+ ["Falling", "Harry Styles", "blue alone", "https://www.youtube.com/watch?v=olGSAVOkkTI"],
+ ["We Were Never Really Friends", "Bruno Major", "blue alone", "https://www.youtube.com/watch?v=GWp6-Q6IJic"],
+ ["Ring Pop", "Jax", "c2 flutter", "https://www.youtube.com/watch?v=zf4bBpZ7-xw"],
+ ["blue", "keshi", "blue alone", "https://www.youtube.com/watch?v=o3zVtbw0VDM"],
+ ["Letters", "Maximillian", "alone home cheer", "https://www.youtube.com/watch?v=8wAqc6tpdm4"],
+ ["Something Just Like This", "The Chainsmokers, Coldplay", "c3 flutter", "https://www.youtube.com/watch?v=FM7MFYoylVs"],
+ ["I Don’t Care (Acoustic)", "Ed Sheeran", "c2 flutter", "https://www.youtube.com/watch?v=o0DoTL54DXo"],
+ ["Supermarket Flowers", "Ed Sheeran", "blue alone", "https://www.youtube.com/watch?v=bIB8EWqCPrQ"],
+ ["12:45 (Stripped)", "Etham", "blue alone", "https://www.youtube.com/watch?v=GhWnG7YhcEE"],
+ ["always, i’ll care", "Jeremy Zucker", "c2 cheer home", "https://www.youtube.com/watch?v=57g4JZCvU7A"],
+ ["Pano", "Zack Tabudlo", "blue alone", "https://www.youtube.com/watch?v=aFqE80BkD_I"],
+ ["Give Me Your Forever", "Zack Tabudlo", "c2 flutter", "https://www.youtube.com/watch?v=BKenhu5Nph4"],
+ ["7 rings", "Ariana Grande", "c3 angry", "https://www.youtube.com/watch?v=QYh6mYIJG2Y"],
+ ["At My Worst", "Pink Sweat$", "c2 flutter", "https://www.youtube.com/watch?v=8CEJoCr_9UI"],
+ ["Here With Me", "d4vd", "c2 flutter", "https://www.youtube.com/watch?v=Ip6cw8gfHHI"],
+ ["Overdrive", "Post Malone", "alone home", "https://www.youtube.com/watch?v=hggjZ-FGGkw"],
+ ["Your Song", "Elton John", "c2 flutter", "https://www.youtube.com/watch?v=GlPlfCy1urI"],
+ ["Piano Man", "Billy Joel", "alone home", "https://www.youtube.com/watch?v=TopdlAgjdA4"],
+ ["3D (feat. Jack Harlow)", "정국, Jack Harlow", "c3", "https://www.youtube.com/watch?v=mHNCM-YALSA"],
+ ["The Good Part", "AJR", "tired cheer", "https://www.youtube.com/watch?v=hqrWXNMTaKY"],
+ ["After You (Feat. Calle Lehmann)", "Gryffin, Jason Ross", "c3", "https://www.youtube.com/watch?v=9asbnOdSDfQ"],
+ ["Photograph", "Ed Sheeran", "flutter alone", "https://www.youtube.com/watch?v=nSDgHBxUbVQ"],
+ ["Steal The Show (From “Elemental”)", "LAUV", "c1 flutter", "https://www.youtube.com/watch?v=q7BmlOUk-II"],
+ ["Castle on the Hill", "Ed Sheeran", "c3 home", "https://www.youtube.com/watch?v=K0ibBPhiaG0"],
+ ["Nothing", "Bruno Major", "c2 flutter calm", "https://www.youtube.com/watch?v=ucRVDoFkcxc"],
+ ["Say You Won’t Let Go", "James Arthur", "c2 flutter", "https://www.youtube.com/watch?v=0yW7w8F2TVA"],
+ ["BACK ON TOP (feat. Griff)", "HONNE", "c3 cheer", "https://www.youtube.com/watch?v=Svh_XX8MIrw"],
+ ["Love Someone", "Lukas Graham", "c2 flutter", "https://www.youtube.com/watch?v=dN44xpHjNxE"],
+ ["IOU (feat. Kid Quill)", "Eman8", "c1 cheer", "https://www.youtube.com/watch?v=bXlfVentJOI"],
+ ["Slow Dancing", "V", "c2 calm", "https://www.youtube.com/watch?v=eI0iTRS0Ha8"],
+ ["크게 울어라", "로이킴", "blue tired cheer", "https://www.youtube.com/watch?v=8la3SuNxpPQ"],
+ ["삭제", "이승기", "blue alone", "https://www.youtube.com/watch?v=BbyCVUzB7qw"],
+ ["사랑 안해", "백지영", "blue alone", "https://www.youtube.com/watch?v=jN0uXBwKn8w"],
+ ["거짓말이라도 해서 널 보고싶어", "백지영", "blue alone", "https://www.youtube.com/watch?v=QE3Ma3wYZ28"],
+ ["No Way", "박용인, 권순일 (어반자카파)", "blue alone", "https://www.youtube.com/watch?v=8ChTbmkMkbQ"],
+ ["어느 날 우리", "김필", "blue alone fall", "https://www.youtube.com/watch?v=9iyJOXeHxq8"],
+ ["그대를 잊는다는 건", "다비치", "blue alone", "https://www.youtube.com/watch?v=56raTSAb2Do"],
+ ["그 애 (愛)", "정엽", "c2 flutter", "https://www.youtube.com/watch?v=RPECi9WZGPE"],
+ ["Love Song", "육성재", "c1 flutter", "https://www.youtube.com/watch?v=zdVQ9Q4beIc"],
+ ["LOVE", "린, 한해", "c2 flutter", "https://www.youtube.com/watch?v=py4nem_e-nA"],
+ ["꿈꾸던 어른이 되었나요?", "머무르", "tired alone cheer", "https://www.youtube.com/watch?v=GxChUrrY4bc"],
+ ["내게 사랑이 뭐냐고 물어본다면", "로이킴", "c2 flutter", "https://www.youtube.com/watch?v=5ly8tAU-n_w"],
+ ["바라만 본다", "MSG워너비(M.O.M)", "flutter alone", "https://www.youtube.com/watch?v=vAPIS8DfLGk"],
+ ["듣고 싶을까", "MSG워너비(M.O.M)", "c3 home", "https://www.youtube.com/watch?v=o0KivY1_vC8"],
+ ["지금 고백합니다", "MSG워너비(M.O.M)", "flutter", "https://www.youtube.com/watch?v=MxbAJ0UpgCM"],
+ ["나를 아는 사람", "MSG워너비(정상동기)", "blue alone", "https://www.youtube.com/watch?v=WU1Iahog2Ro"],
+ ["비밀의 화원", "이상은", "c2 cheer spring", "https://www.youtube.com/watch?v=t8mlaGPcDk0"],
+ ["비밀의 화원", "아이유", "c2 cheer spring", "https://www.youtube.com/watch?v=eGXJs7zOHC4"],
+ ["WORK", "ATEEZ", "c3 angry commute", "https://www.youtube.com/watch?v=VGnOpZhsPk4"],
+ ["WAVE", "ATEEZ", "c1 c3 summer", "https://www.youtube.com/watch?v=FIInyEWWW-s"],
+ ["Dreamers", "ATEEZ", "c3 cheer summer", "https://www.youtube.com/watch?v=Npj00fSmAv4"],
+ ["Turbulence (야간비행)", "ATEEZ", "tired cheer alone", "https://www.youtube.com/watch?v=80WvAnsHOdM"],
+ ["Answer", "ATEEZ", "c3 angry cheer", "https://www.youtube.com/watch?v=yW7wZX3DUaY"],
+ ["사랑은 늘 도망가", "임영웅", "blue alone", "https://www.youtube.com/watch?v=Ue763Gp8IKM"],
+ ["시노시작 (SINOSIJAK)", "iKON", "c3 angry commute", "https://www.youtube.com/watch?v=wc1H9a0AHUk"],
+ ["오늘따라 (TODAY)", "iKON", "blue home", "https://www.youtube.com/watch?v=BbWf6NUu0ug"],
+ ["취향저격 (MY TYPE)", "iKON", "c1 flutter", "https://www.youtube.com/watch?v=ZS6vfv4sszg"],
+ ["지못미 (APOLOGY)", "iKON", "blue alone", "https://www.youtube.com/watch?v=blSCDrx0CDA"],
+ ["왜왜왜 (Why Why Why)", "iKON", "blue alone", "https://www.youtube.com/watch?v=DslHQto2V7I"],
+ ["사랑을 했다 (LOVE SCENARIO)", "iKON", "c3 blue home", "https://www.youtube.com/watch?v=vecSVX1QYbQ"],
+ ["LOVE ME", "iKON", "c1 flutter", "https://www.youtube.com/watch?v=VhZsfF9Pgw8"],
+ ["멜로디", "ASH ISLAND", "c3 blue night", "https://www.youtube.com/watch?v=NB8LX6A5BBM"],
+ ["Paranoid", "ASH ISLAND", "c3 angry alone", "https://www.youtube.com/watch?v=USlZolbKXhg"],
+ ["Rainy day (Feat. ASH ISLAND, Skinny Brown)", "PATEKO", "c3 flutter rain", "https://www.youtube.com/watch?v=Ep6o9_n0taU"],
+ ["널 떠올리는 중이야", "PATEKO, Jayci yucca, Kid Wine", "blue night", "https://www.youtube.com/watch?v=HcOuoNgrhFg"],
+ ["2 soon", "keshi", "blue alone night", "https://www.youtube.com/watch?v=LKZyp2cSAy4"],
+ ["Vancouver", "BIG Naughty (서동현)", "c3 flutter", "https://www.youtube.com/watch?v=z1Ci3DSPs0s"],
+ ["정이라고 하자 (Feat. 10CM)", "BIG Naughty (서동현)", "c3 flutter", "https://www.youtube.com/watch?v=iZEXqZoIK_Q"],
+ ["낭만교향곡 (Feat. CHANGMO, 박재범)", "BIG Naughty (서동현)", "c3 flutter", "https://www.youtube.com/watch?v=Fu7JH0xTJX4"],
+ ["사랑이라 믿었던 것들은 (Feat. 이수현)", "BIG Naughty (서동현)", "blue alone", "https://www.youtube.com/watch?v=dmEU6-UQSgU"],
+ ["one life", "charlieonnafriday", "c3 cheer", "https://www.youtube.com/watch?v=epoPjkcW65k"],
+ ["신청곡 (Feat. SUGA of BTS)", "이소라", "blue alone home", "https://www.youtube.com/watch?v=ij0SQZcqnPU"],
+ ["내가 있을게", "김민석 (멜로망스)", "c2 tired cheer home", "https://www.youtube.com/watch?v=Iuyjz83mq2U"],
+ ["Don't Cry", "클랑 (KLANG)", "blue alone", "https://www.youtube.com/watch?v=jb94xjhoogA"],
+ ["바람이 참 좋은 날에", "최유리", "c2 tired cheer home", "https://www.youtube.com/watch?v=G3d9oQ2OOL8"],
+ ["하늘에", "장윤정", "blue tired alone", "https://www.youtube.com/watch?v=tScZprbPxOQ"],
+ ["사랑하게 될 거야", "한로로", "c3 tired cheer", "https://www.youtube.com/watch?v=h0KIWaUEIgQ"],
+ ["칵테일 사랑", "마로니에", "c1 flutter spring", "https://www.youtube.com/watch?v=h0iNw_Z50O8"],
+ ["예술이야", "싸이", "c3 angry cheer", "https://www.youtube.com/watch?v=1cKc1rkZwf8"],
+ ["미안해 미워해 사랑해", "Crush", "blue flutter alone", "https://www.youtube.com/watch?v=Z4qVfCi_lUI"],
+ ["I Like Me Better", "Lauv", "c1 flutter commute", "https://www.youtube.com/watch?v=a7fzkqLozwA"],
+ ["Paris in the Rain", "Lauv", "c2 flutter rain", "https://www.youtube.com/watch?v=kOCkne-Bku4"],
+ ["Never Not", "Lauv", "blue alone", "https://www.youtube.com/watch?v=VT_hLby9uSY"],
+ ["Modern Loneliness", "Lauv", "tired alone", "https://www.youtube.com/watch?v=bDidwMxir4o"],
+ ["Feelings", "Lauv", "c3 flutter", "https://www.youtube.com/watch?v=2k5w6eTxGXk"],
+ ["All 4 Nothing (I'm So In Love)", "Lauv", "c1 flutter", "https://www.youtube.com/watch?v=AH8b7EynJ60"],
+ ["Kids Are Born Stars", "Lauv", "c1 cheer commute", "https://www.youtube.com/watch?v=QdTupNZjRcQ"],
+ ["26", "Lauv", "tired alone", "https://www.youtube.com/watch?v=FHtQrPX_JpY"],
+ ["Mean It", "Lauv, LANY", "c3 blue", "https://www.youtube.com/watch?v=c_10qS7amjk"],
+ ["I'm So Tired...", "Lauv, Troye Sivan", "c3 blue", "https://www.youtube.com/watch?v=fvjpE_wFL5A"],
+ ["Beautiful Things", "Benson Boone", "flutter alone", "https://www.youtube.com/watch?v=Oa_RSwwpPaA"],
+ ["Slow It Down", "Benson Boone", "c3 flutter", "https://www.youtube.com/watch?v=f4Y3b7un4LE"],
+ ["Ghost Town", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=prYbXj3zPfs"],
+ ["Before You", "Benson Boone", "flutter", "https://www.youtube.com/watch?v=pdxXAPI-dVg"],
+ ["Pretty Slowly", "Benson Boone", "c3 blue", "https://www.youtube.com/watch?v=4BuWrb8A_w4"],
+ ["Cry", "Benson Boone", "c3 angry", "https://www.youtube.com/watch?v=i828eLpviiY"],
+ ["Sorry I'm Here For Someone Else", "Benson Boone", "c3 blue", "https://www.youtube.com/watch?v=O7Dt2L_rAhI"],
+ ["Beautiful Scars", "Maximillian", "tired cheer", "https://www.youtube.com/watch?v=OUFuaMj6z-w"],
+ ["Got It In You", "BANNERS", "tired cheer", "https://www.youtube.com/watch?v=Cj3KqcUbW3Q"],
+ ["Start A Riot", "BANNERS", "c3 cheer", "https://www.youtube.com/watch?v=ZXorliBQMxg"],
+ ["Half Light", "BANNERS", "c3 alone", "https://www.youtube.com/watch?v=3SE1WaaNzW0"],
+ ["초록빛", "폴킴", "cheer home spring", "https://www.youtube.com/watch?v=xWL29QHZ_mA"],
+ ["길", "폴킴", "alone home", "https://www.youtube.com/watch?v=h_CPQPTwwLo"],
+ ["있잖아", "폴킴", "blue alone", "https://www.youtube.com/watch?v=OFoDjhe-KfE"],
+ ["안녕", "폴킴", "flutter blue", "https://www.youtube.com/watch?v=_RpYVWDyt4g"],
+ ["바람이 불어오는 곳", "김광석", "c1 c2 sun spring", "https://www.youtube.com/watch?v=V20kfzhjVw8"],
+ ["서른 즈음에", "김광석", "blue alone fall", "https://www.youtube.com/watch?v=L7lED8RtdAI"],
+ ["너무 아픈 사랑은 사랑이 아니었음을", "김광석", "blue alone fall", "https://www.youtube.com/watch?v=NASQB-oJ6dI"],
+ ["일어나", "김광석", "tired cheer", "https://www.youtube.com/watch?v=MrDdP6P5zgg"],
+ ["두 바퀴로 가는 자동차", "김광석", "c1 commute", "https://www.youtube.com/watch?v=_ONoJHzCzMY"],
+ ["사랑했지만", "김광석", "blue alone", "https://www.youtube.com/watch?v=ZZEv8ZB6G_s"],
+ ["거리에서", "김광석", "blue alone fall", "https://www.youtube.com/watch?v=oy9BSiKIY4E"],
+ ["사랑이라는 이유로", "김광석", "blue alone", "https://www.youtube.com/watch?v=DfBaNMRybnY"],
+ ["혜화동", "동물원", "c2 home alone", "https://www.youtube.com/watch?v=zHrP01x1KQY"],
+ ["해변의 여인", "쿨", "c1 c3 summer", "https://www.youtube.com/watch?v=cq5SsjeoWXA"],
+ ["운명", "쿨", "c1 flutter", "https://www.youtube.com/watch?v=tEpLqkMRY6k"],
+ ["커플", "젝스키스", "c1 flutter winter", "https://www.youtube.com/watch?v=qqkavNXs5u4"],
+ ["Candy", "H.O.T.", "c1 flutter", "https://www.youtube.com/watch?v=3NUaXU1d-NY"],
+ ["너에게", "서태지와 아이들", "c2 flutter", "https://www.youtube.com/watch?v=cxIAiAUyvXo"],
+ ["오래된 노래", "김동률", "alone home", "https://www.youtube.com/watch?v=uuI7SsiRCuM"],
+ ["취중진담", "전람회", "flutter alone", "https://www.youtube.com/watch?v=S0G-sVyabT0"],
+ ["기억의 습작", "전람회", "blue alone", "https://www.youtube.com/watch?v=NZlTxBUgbtM"],
+ ["세상에 뿌려진 사랑만큼", "이승환", "c3 flutter", "https://www.youtube.com/watch?v=PnRz6YNc3Zk"],
+ ["화려하지 않은 고백", "이승환", "c2 flutter", "https://www.youtube.com/watch?v=vEIGCXWop3I"],
+ ["오래전 그날", "윤종신", "blue alone fall", "https://www.youtube.com/watch?v=bUgta_wp4_M"],
+ ["슬픈 언약식", "김정민", "blue alone", "https://www.youtube.com/watch?v=YpTBbmV2Se4"],
+ ["여전히 아름다운지", "토이", "blue alone", "https://www.youtube.com/watch?v=nuAiFzEkFZM"],
+ ["좋은 사람", "토이", "flutter blue", "https://www.youtube.com/watch?v=2VQc6OLy_EY"],
+ ["걱정말아요 그대", "이적", "tired cheer home", "https://www.youtube.com/watch?v=Dic27EnDDls"],
+ ["청춘", "김필 (Feat. 김창완)", "tired alone", "https://www.youtube.com/watch?v=jqZ2Ie4pd30"],
+ ["소녀", "오혁", "c2 flutter", "https://www.youtube.com/watch?v=bLoO0FSXncg"],
+ ["혜화동 (혹은 쌍문동)", "박보람", "c2 home alone", "https://www.youtube.com/watch?v=7_mNEE3Y96A"],
+ ["Beautiful", "Crush", "flutter blue", "https://www.youtube.com/watch?v=W0cs6ciCt_k"],
+ ["Stay With Me", "찬열, 펀치", "c3 flutter night", "https://www.youtube.com/watch?v=pcKR0LPwoYs"],
+ ["너였다면", "정승환", "blue alone", "https://www.youtube.com/watch?v=D0_9KxhyJns"],
+ ["사랑인가 봐", "멜로망스", "c1 flutter", "https://www.youtube.com/watch?v=McidaTgrQB0"],
+ ["Love, Maybe", "김세정", "c2 flutter", "https://www.youtube.com/watch?v=V3qCiCv_WIo"],
+ ["시작", "가호", "c3 cheer commute", "https://www.youtube.com/watch?v=o99aQZ62nCQ"],
+ ["Dear Moon", "제휘", "c2 alone", "https://www.youtube.com/watch?v=fJ2VwO88Eno"],
+ ["그대라는 시", "태연", "flutter blue", "https://www.youtube.com/watch?v=Xe74B_PuJzs"],
+ ["기억해줘요 내 모든 날과 그때를", "거미", "blue alone", "https://www.youtube.com/watch?v=OJ8nt2XV4TQ"],
+ ["우연인 듯 운명", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=jGGQyqohOaw"],
+ ["서랍", "10CM", "c2 alone home", "https://www.youtube.com/watch?v=aTSJXSJ4Rbk"],
+ ["봄이 좋냐??", "10CM", "angry spring", "https://www.youtube.com/watch?v=hBeMNv8IriI"],
+ ["스토커", "10CM", "blue alone", "https://www.youtube.com/watch?v=mRIGDXQVU5c"],
+ ["그라데이션", "10CM", "c1 flutter", "https://www.youtube.com/watch?v=VQZXXciZb_c"],
+ ["아메리카노", "10CM", "c1 commute", "https://www.youtube.com/watch?v=wjI9wG_uIIM"],
+ ["비가 와", "10CM", "blue rain", "https://www.youtube.com/watch?v=uKsGxDdTaOg"],
+ ["그런 사람 또 없습니다", "이승철", "flutter blue", "https://www.youtube.com/watch?v=TV-U45a4Auk"],
+ ["인연", "이승철", "blue alone", "https://www.youtube.com/watch?v=pdM2259BnW8"],
+ ["My Love", "이승철", "flutter", "https://www.youtube.com/watch?v=hXiCB6SZp4U"],
+ ["소리쳐", "이승철", "angry blue", "https://www.youtube.com/watch?v=U7PBbBpZ0Q4"],
+ ["아마추어", "이승철", "tired cheer", "https://www.youtube.com/watch?v=Bf00g81MGB0"],
+ ["Life Goes On", "방탄소년단", "tired home cheer", "https://www.youtube.com/watch?v=-5q5mZbe3V8"],
+ ["Magic Shop", "방탄소년단", "tired cheer", "https://www.youtube.com/watch?v=VTRGOBT6p80"],
+ ["00:00 (Zero O'Clock)", "방탄소년단", "tired home cheer", "https://www.youtube.com/watch?v=sBWesVezIrc"],
+ ["Permission to Dance", "방탄소년단", "c1 cheer commute", "https://www.youtube.com/watch?v=CuklIb9d3fI"],
+ ["Love wins all", "아이유", "flutter cheer", "https://www.youtube.com/watch?v=JleoAppaxi0"],
+ ["후라이의 꿈", "AKMU", "c2 tired", "https://www.youtube.com/watch?v=Jc-Pj9Ho0d0"],
+ ["오랜 날 오랜 밤", "AKMU", "blue alone fall", "https://www.youtube.com/watch?v=wEQpfil0IYA"],
+ ["DINOSAUR", "AKMU", "c3 angry summer", "https://www.youtube.com/watch?v=8Oz7DG76ibY"],
+ ["Love Lee", "AKMU", "c1 flutter", "https://www.youtube.com/watch?v=EIz09kLzN9k"],
+ ["200%", "AKMU", "c1 flutter spring", "https://www.youtube.com/watch?v=0Oi8jDMvd_w"],
+ ["Give Love", "AKMU", "c1 flutter", "https://www.youtube.com/watch?v=x2XX3cNW4K0"],
+ ["솔직하게 말해서 나", "김나영", "blue alone", "https://www.youtube.com/watch?v=4Sd09Mruhnk"],
+ ["홀로", "김나영", "blue alone", "https://www.youtube.com/watch?v=8f8cOM1nWb8"],
+ ["다시 너를", "매드클라운, 김나영", "blue alone", "https://www.youtube.com/watch?v=JSWjW_esNu8"],
+ ["그대만 보여서", "김나영", "flutter blue", "https://www.youtube.com/watch?v=Cz-A5Pv-_1E"],
+ ["사랑의 인사", "씨야", "blue alone", "https://www.youtube.com/watch?v=Mc-JacZOZ6k"],
+ ["너에게 난, 나에게 넌", "자전거 탄 풍경", "c2 flutter sun", "https://www.youtube.com/watch?v=mwZbGNTq8ys"],
+ ["숲", "최유리", "c2 tired alone", "https://www.youtube.com/watch?v=AOGhUcAdTKk"],
+ ["동그라미", "최유리", "c2 tired alone", "https://www.youtube.com/watch?v=hSw269wHWEE"],
+ ["너의 모든 순간", "성시경", "c2 flutter", "https://www.youtube.com/watch?v=Dbxzh078jr4"],
+ ["그대에게", "무한궤도", "c3 cheer", "https://www.youtube.com/watch?v=gJqCO8E63-s"],
+ ["아로하", "조정석", "c2 flutter", "https://www.youtube.com/watch?v=3DOkxQ3HDXE"],
+ ["아름다운 구속", "김종서", "c3 flutter", "https://www.youtube.com/watch?v=iO_XR277KyU"],
+ ["애상", "쿨", "c3 blue", "https://www.youtube.com/watch?v=0g-_cDxZzMg"],
+ ["너의 곁으로", "조성모", "flutter blue", "https://www.youtube.com/watch?v=Bu-EaPkS6W0"],
+ ["보고 싶다", "김범수", "blue alone", "https://www.youtube.com/watch?v=n4uG9ym6kKA"],
+ ["그 여자", "백지영", "blue alone", "https://www.youtube.com/watch?v=3yOJEb9MuFY"],
+ ["잊지 말아요", "백지영", "blue alone", "https://www.youtube.com/watch?v=tmp_1hc3p2A"],
+ ["말해! 뭐해?", "케이윌", "c1 flutter", "https://www.youtube.com/watch?v=aFgy_E_PV44"],
+ ["Everytime", "첸, 펀치", "c1 flutter", "https://www.youtube.com/watch?v=WPJs0jlqdhc"],
+ ["You Are My Everything", "거미", "flutter blue", "https://www.youtube.com/watch?v=1Xig0oF7h34"],
+ ["우연히 봄", "로꼬, 유주", "c1 flutter spring", "https://www.youtube.com/watch?v=LCZrhy6PbmY"],
+ ["러브홀릭", "러브홀릭", "c3 flutter", "https://www.youtube.com/watch?v=-a7WW1I7yJ4"],
+ ["Perhaps Love (사랑인가요)", "하울, 제이", "c2 flutter", "https://www.youtube.com/watch?v=uv6fDAgzNYs"],
+ ["Dream High", "택연, 우영, 수지, 김수현, JOO", "c3 cheer", "https://www.youtube.com/watch?v=mtucJNA53Fc"],
+ ["Christmas Tree", "V", "c2 flutter winter", "https://www.youtube.com/watch?v=lj8TV9q59P4"],
+ ["Love Me Like That", "샘김", "c2 flutter", "https://www.youtube.com/watch?v=CcLwbT-9jSM"],
+ ["소나기", "이클립스 (ECLIPSE)", "flutter blue rain", "https://www.youtube.com/watch?v=fBB4MaBybyg"],
+ ["봄눈", "10CM", "flutter spring", "https://www.youtube.com/watch?v=ok2pqepWTLU"],
+ ["사랑이 맞을 거야", "윤미래", "flutter", "https://www.youtube.com/watch?v=ONACez-twhc"],
+ ["죽을 만큼 아파서 (Feat. 멜로우)", "MC몽", "blue alone", "https://www.youtube.com/watch?v=phckZQ30r_Y"],
+ ["너에게 쓰는 편지 (Feat. 린)", "MC몽", "c3 flutter", "https://www.youtube.com/watch?v=nhuFm3BGIBY"],
+ ["서커스 (Feat. 임유경)", "MC몽", "c3 angry", "https://www.youtube.com/watch?v=TKkvLovr1Jo"],
+ ["고백", "델리스파이스", "c3 blue alone", "https://www.youtube.com/watch?v=F0aPN-ZiZlA"],
+ ["너의 밤은 어때", "그_냥", "c2 alone", "https://www.youtube.com/watch?v=uFwfvQYPj9E"],
+ ["회상", "터보", "blue winter", "https://www.youtube.com/watch?v=5HGm4FBTGmc"],
+ ["화이트 (White)", "핑클", "flutter snow winter", "https://www.youtube.com/watch?v=-u13DgqNCt8"],
+ ["Must Have Love", "SG워너비, 브라운아이드걸스", "flutter snow winter", "https://www.youtube.com/watch?v=_RFdjrKyGqY"],
+ ["Home", "로이킴", "c2 tired home fall", "https://www.youtube.com/watch?v=czdxV99r89Y"],
+ ["Love Love Love", "로이킴", "c1 flutter sun summer", "https://www.youtube.com/watch?v=Yfkolh96-rc"],
+ ["그때 헤어지면 돼", "로이킴", "blue alone", "https://www.youtube.com/watch?v=SkN_hWI6n28"],
+ ["우리 그만하자", "로이킴", "blue alone fall", "https://www.youtube.com/watch?v=fB406grTgz4"],
+ ["살아가는 거야", "로이킴", "tired cheer home", "https://www.youtube.com/watch?v=K965drQkMLM"],
+ ["잘 지내자, 우리", "로이킴", "blue alone home", "https://www.youtube.com/watch?v=xXSz2bEYZeQ"],
+ ["그대만 떠올라", "로이킴", "c2 flutter", "https://www.youtube.com/watch?v=dYG6_XORm4Q"],
+ ["힐링이 필요해", "로이킴", "tired alone", "https://www.youtube.com/watch?v=dY8VsUCRbwU"],
+ ["예뻤어", "DAY6", "c3 blue alone", "https://www.youtube.com/watch?v=BS7tz2rAOSA"],
+ ["Congratulations", "DAY6", "c3 blue angry", "https://www.youtube.com/watch?v=x3sFsHrUyLQ"],
+ ["놓아 놓아 놓아", "DAY6", "blue alone", "https://www.youtube.com/watch?v=1-1TGNmQqZA"],
+ ["좋아합니다", "DAY6", "flutter", "https://www.youtube.com/watch?v=daoMYJv8i0c"],
+ ["그렇더라고요", "DAY6", "c2 tired cheer", "https://www.youtube.com/watch?v=qWQ1xOfUNYQ"],
+ ["Zombie", "DAY6", "tired alone home", "https://www.youtube.com/watch?v=k8gx-C7GCGU"],
+ ["녹아내려요", "DAY6", "c3 flutter cheer", "https://www.youtube.com/watch?v=yss4rIrHl6o"],
+ ["괴물", "DAY6", "tired alone", "https://www.youtube.com/watch?v=QPsJrZGB_gc"],
+ ["도와줘요 Rock&Roll", "DAY6", "c3 angry cheer", "https://www.youtube.com/watch?v=LCpEVQ9yvVk"],
+ ["나만 슬픈 엔딩", "DAY6", "c3 blue", "https://www.youtube.com/watch?v=rBZi0LKBfBE"],
+ ["아직 거기 살아", "DAY6", "blue alone", "https://www.youtube.com/watch?v=KzXkHD3W7Pk"],
+ ["Love me or Leave me", "DAY6", "c3 blue angry", "https://www.youtube.com/watch?v=LlFcvjDBSCU"],
+ ["Sweet Chaos", "DAY6", "c3 flutter", "https://www.youtube.com/watch?v=CWUGikRxGQs"],
+ ["Shoot Me", "DAY6", "c3 angry", "https://www.youtube.com/watch?v=g2X2LdJAIpU"],
+ ["장난 아닌데", "DAY6", "c1 flutter commute", "https://www.youtube.com/watch?v=ZmHQbzbM8pI"],
+ ["행복했던 날들이었다", "DAY6", "blue home", "https://www.youtube.com/watch?v=1nk5O__ALI8"],
+ ["Beautiful Feeling", "DAY6", "flutter cheer", "https://www.youtube.com/watch?v=ltBiIr_QXac"],
+ ["파도가 끝나는 곳까지", "DAY6 (Even of Day)", "c3 cheer", "https://www.youtube.com/watch?v=_NmzMzjoJyk"],
+ ["아지랑이", "LUCY", "tired cheer home", "https://www.youtube.com/watch?v=uSW1iY2iacc"],
+ ["히어로", "LUCY", "c3 flutter cheer", "https://www.youtube.com/watch?v=V-eHkQ_YABo"],
+ ["놀이", "LUCY", "c3 blue", "https://www.youtube.com/watch?v=wFJxzoljf10"],
+ ["떼굴떼굴", "LUCY", "c3 tired commute", "https://www.youtube.com/watch?v=yhjzwwLQdXA"],
+ ["맞네", "LUCY", "blue alone", "https://www.youtube.com/watch?v=BRs0GGCT4bU"],
+ ["아니 근데 진짜", "LUCY", "c1 flutter", "https://www.youtube.com/watch?v=3qtrJHLjfEI"],
+ ["못 죽는 기사와 비단 요람", "LUCY", "c3 angry cheer", "https://www.youtube.com/watch?v=y7jrpS8GHxs"],
+ ["부기맨", "LUCY", "c3 angry", "https://www.youtube.com/watch?v=-HaF77liu-g"],
+ ["동문서답", "LUCY", "c1 flutter", "https://www.youtube.com/watch?v=rYwRr0mV5UY"],
+ ["애정표현", "LUCY", "c1 flutter", "https://www.youtube.com/watch?v=1Kng2dr0Zuk"],
+ ["수박깨러가", "LUCY", "c1 c3 summer", "https://www.youtube.com/watch?v=mK8ROkM8ff4"],
+ ["The Other", "Lauv", "blue alone", "https://www.youtube.com/watch?v=aSe1adndzfs"],
+ ["Reforget", "Lauv", "blue alone night", "https://www.youtube.com/watch?v=hmlQOKVMOmk"],
+ ["Easy Love", "Lauv", "c3 flutter", "https://www.youtube.com/watch?v=e2jMJV6UHWU"],
+ ["Adrenaline", "Lauv", "c3 flutter", "https://www.youtube.com/watch?v=URLBK3nwL1I"],
+ ["Chasing Fire", "Lauv", "c3 blue", "https://www.youtube.com/watch?v=o-BODsf2T68"],
+ ["Getting Over You", "Lauv", "blue alone", "https://www.youtube.com/watch?v=sZoZryCb0P0"],
+ ["Bracelet", "Lauv", "blue alone", "https://www.youtube.com/watch?v=UhiXEgqhBWs"],
+ ["Enemies", "Lauv", "c3 blue", "https://www.youtube.com/watch?v=HZoX-10-VMs"],
+ ["Breathe", "Lauv", "blue alone", "https://www.youtube.com/watch?v=Tkc_9OPC20E"],
+ ["Come Back Home", "Lauv", "blue home", "https://www.youtube.com/watch?v=KKzULgoggR4"],
+ ["Comfortable", "Lauv", "blue alone", "https://www.youtube.com/watch?v=ZRcEzDtNI6o"],
+ ["Drugs & The Internet", "Lauv", "c3 angry alone", "https://www.youtube.com/watch?v=W775nQuxOwY"],
+ ["Sad Forever", "Lauv", "tired alone", "https://www.youtube.com/watch?v=Klsi8CbSm8Y"],
+ ["Tattoos Together", "Lauv", "c1 flutter", "https://www.youtube.com/watch?v=j9DnUII28fI"],
+ ["Julia", "Lauv", "blue alone", "https://www.youtube.com/watch?v=0PTU4kGj5JI"],
+ ["Love U Like That", "Lauv", "c3 flutter", "https://www.youtube.com/watch?v=7ympPwhl0iU"],
+ ["Who", "Lauv, BTS", "blue alone", "https://www.youtube.com/watch?v=vS0YXAfUo4k"],
+ ["fuck, i'm lonely", "Lauv, Anne-Marie", "c3 blue alone", "https://www.youtube.com/watch?v=Q6tyuV9R6cc"],
+ ["NIGHTS LIKE THESE", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=dEtuadwCd6c"],
+ ["To Love Someone", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=HlI4icpg9uE"],
+ ["What Was", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=LRBBzbFQ7mw"],
+ ["Better Alone", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=fvXn3rmhdc4"],
+ ["Room For 2", "Benson Boone", "c2 flutter", "https://www.youtube.com/watch?v=aHkwrs__Z6o"],
+ ["Sugar Sweet", "Benson Boone", "c3 angry", "https://www.youtube.com/watch?v=H5RpMywlZ2Q"],
+ ["Friend", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=GF7_KGSJjTM"],
+ ["Be Someone", "Benson Boone", "c3 flutter", "https://www.youtube.com/watch?v=I9qxHs761Cg"],
+ ["Forever and a Day", "Benson Boone", "flutter", "https://www.youtube.com/watch?v=8YX_205D7iU"],
+ ["Drunk In My Mind", "Benson Boone", "c3 blue", "https://www.youtube.com/watch?v=JN2qS74tcUU"],
+ ["There She Goes", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=mWDwNydOlho"],
+ ["Hello Love", "Benson Boone", "blue alone", "https://www.youtube.com/watch?v=nNjVmAsaBdY"],
+ ["Mystical Magical", "Benson Boone", "c1 flutter", "https://www.youtube.com/watch?v=U8QhB8_0t2g"],
+ ["Shine a Light", "BANNERS", "c3 cheer", "https://www.youtube.com/watch?v=uaLblVmnNL4"],
+ ["Supercollide", "BANNERS", "c3 flutter", "https://www.youtube.com/watch?v=MX_GVa7jVts"],
+ ["Life's Just No Fun", "BANNERS", "blue alone", "https://www.youtube.com/watch?v=lZASxwYFS6o"],
+ ["Perfectly Broken", "BANNERS", "c2 tired cheer", "https://www.youtube.com/watch?v=megeCFl4z8c"],
+ ["Always Yours", "BANNERS", "c2 flutter", "https://www.youtube.com/watch?v=8kEeGr-jR2g"],
+ ["If I Didn't Have You", "BANNERS", "flutter cheer", "https://www.youtube.com/watch?v=MrOV8HyEiJQ"],
+ ["커피 한 잔 할래요", "폴킴", "c2 flutter calm", "https://www.youtube.com/watch?v=l7PgoVBZpc8"],
+ ["사랑하는 당신께", "폴킴", "c2 flutter", "https://www.youtube.com/watch?v=Wy-OkbPj8hY"],
+ ["우리 만남이", "폴킴", "blue alone", "https://www.youtube.com/watch?v=FEI_imQ1Eaw"],
+ ["헤어질 걸 알아", "폴킴", "blue alone", "https://www.youtube.com/watch?v=n4R7CU379v4"],
+ ["사랑은 타이밍", "폴킴", "c1 flutter", "https://www.youtube.com/watch?v=fNpaaGLmIFs"],
+ ["찬란한 계절", "폴킴", "blue fall", "https://www.youtube.com/watch?v=B0f9ezdIhnY"],
+ ["한강에서 (Feat. BIG Naughty)", "폴킴", "c1 flutter summer", "https://www.youtube.com/watch?v=YXZl-_xSzMQ"],
+ ["꺼내본다", "김나영", "blue alone", "https://www.youtube.com/watch?v=8C2v__OI8EY"],
+ ["니 말대로", "김나영", "blue alone", "https://www.youtube.com/watch?v=KWdMrbIoItE"],
+ ["너의 번호를 누르고", "김나영", "blue alone", "https://www.youtube.com/watch?v=zmT2p-YSbEY"],
+ ["너의 모든 기억 속에", "김나영", "blue alone", "https://www.youtube.com/watch?v=pJrEiotnUc4"],
+ ["그 한마디", "김나영", "blue alone", "https://www.youtube.com/watch?v=A8EcsltmWSk"],
+ ["사랑은 은하수 다방에서", "10CM", "c1 flutter", "https://www.youtube.com/watch?v=82QbjPoHmyg"],
+ ["쓰담쓰담", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=etNUF5oT54U"],
+ ["안아줘요", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=S2Y6LSveZ7A"],
+ ["오늘밤은 어둠이 무서워요", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=GcUQtqFFLxg"],
+ ["나의 어깨에 기대어요", "10CM", "c2 tired cheer", "https://www.youtube.com/watch?v=tUrrTiorXso"],
+ ["너에게 닿기를", "10CM", "c3 flutter", "https://www.youtube.com/watch?v=Ry1RrIVyl1M"],
+ ["이 밤을 빌려 말해요", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=Y_8aUSyNM9Y"],
+ ["입김", "10CM", "blue winter", "https://www.youtube.com/watch?v=XQuijcuK95U"],
+ ["Help", "10CM", "tired alone", "https://www.youtube.com/watch?v=LnT9LmmlLXw"],
+ ["Perfect", "10CM", "c2 flutter", "https://www.youtube.com/watch?v=tThD_vYEhck"],
+ ["시간과 낙엽", "AKMU", "blue alone fall", "https://www.youtube.com/watch?v=aPZrI_MVtF0"],
+ ["얼음들", "AKMU", "alone winter", "https://www.youtube.com/watch?v=sUCIzn0mRHc"],
+ ["사람들이 움직이는 게", "AKMU", "c1 commute", "https://www.youtube.com/watch?v=sbc2yBheAbo"],
+ ["RE-BYE", "AKMU", "c3", "https://www.youtube.com/watch?v=ST8O-AeY3Uo"],
+ ["낙하 (with 아이유)", "AKMU", "c3 cheer", "https://www.youtube.com/watch?v=EtiPbWzUY9o"],
+ ["전쟁터 (with 이선희)", "AKMU", "angry alone", "https://www.youtube.com/watch?v=gMXXVS6Hil4"],
+ ["BENCH (with Zion.T)", "AKMU", "c2 calm", "https://www.youtube.com/watch?v=PTYo1IdhuBA"],
+ ["물 만난 물고기", "AKMU", "c3 summer", "https://www.youtube.com/watch?v=mEGpi5NMd_E"],
+ ["뱃노래", "AKMU", "blue alone", "https://www.youtube.com/watch?v=NewORF3VFeA"],
+ ["고래", "AKMU", "c3 cheer summer", "https://www.youtube.com/watch?v=huj809wLjAU"],
+ ["작별 인사", "AKMU", "blue alone", "https://www.youtube.com/watch?v=5yIzrpxCFJY"],
+ ["집에 돌아오는 길", "AKMU", "home alone", "https://www.youtube.com/watch?v=1p5u2LBNedI"],
+ ["인공잔디", "AKMU", "tired alone", "https://www.youtube.com/watch?v=5pK1cnHCPdk"],
+ ["Euphoria", "방탄소년단", "c1 flutter", "https://www.youtube.com/watch?v=dj0MgHYbFYI"],
+ ["Serendipity", "방탄소년단", "c2 flutter", "https://www.youtube.com/watch?v=BEMaH9Sm3lQ"],
+ ["Epiphany", "방탄소년단", "tired cheer", "https://www.youtube.com/watch?v=fIkZOLsnoqY"],
+ ["Butterfly", "방탄소년단", "flutter blue alone", "https://www.youtube.com/watch?v=jucstn9Uonk"],
+ ["Save ME", "방탄소년단", "c3 blue", "https://www.youtube.com/watch?v=GZjt_sA2eso"],
+ ["I'm Fine", "방탄소년단", "c3 cheer", "https://www.youtube.com/watch?v=tGVjM8b3Xwo"],
+ ["MAMA", "방탄소년단", "cheer home", "https://www.youtube.com/watch?v=m5BMmuwcGtg"],
+ ["둘! 셋! (그래도 좋은 날이 더 많기를)", "방탄소년단", "tired cheer", "https://www.youtube.com/watch?v=8D7Xxaq7sBU"],
+ ["Love Maze", "방탄소년단", "c3 flutter", "https://www.youtube.com/watch?v=n_R0-YosZ3g"],
+ ["낙원", "방탄소년단", "tired cheer", "https://www.youtube.com/watch?v=3g60P1VD2Lc"],
+ ["바다", "방탄소년단", "tired alone", "https://www.youtube.com/watch?v=K2pLIcGHUEE"],
+ ["Blue & Grey", "방탄소년단", "blue alone cloud", "https://www.youtube.com/watch?v=O-C0oV2HXaU"],
+ ["병", "방탄소년단", "c3 angry", "https://www.youtube.com/watch?v=wJdjHxQCUPw"],
+ ["Stay Gold", "방탄소년단", "c1 cheer", "https://www.youtube.com/watch?v=9IHwqdz8Xhw"],
+ ["Film out", "방탄소년단", "blue alone", "https://www.youtube.com/watch?v=zFT3f9biz68"],
+ ["Still With You", "정국", "c2 blue alone rain", "https://www.youtube.com/watch?v=BksBNbTIoPE"],
+ ["Yes or No", "정국", "c1 flutter", "https://www.youtube.com/watch?v=uOFIcm-L0po"],
+ ["Standing Next to You", "정국", "c3 flutter", "https://www.youtube.com/watch?v=UNo0TG9LwwI"],
+ ["Hate You", "정국", "blue alone", "https://www.youtube.com/watch?v=tAcKfnf0zv4"],
+ ["Somebody", "정국", "c3 blue", "https://www.youtube.com/watch?v=ONxOGXC_YNk"],
+ ["Shot Glass of Tears", "정국", "blue alone", "https://www.youtube.com/watch?v=vpnQilFlc_4"],
+ ["Please Don't Change (feat. DJ Snake)", "정국", "c3 flutter", "https://www.youtube.com/watch?v=Shz9iLeE6i4"],
+ ["3D (Alternate Ver.)", "정국", "c3", "https://www.youtube.com/watch?v=lXqNiVJJ2s8"],
+ ["The Astronaut", "진", "c3 flutter cheer", "https://www.youtube.com/watch?v=c6ASQOwKkhk"],
+ ["슈퍼 참치", "진", "c1 commute", "https://www.youtube.com/watch?v=ArHGiOxYwHM"],
+ ["어비스 (Abyss)", "진", "tired alone", "https://www.youtube.com/watch?v=aqtSOksH-NE"],
+ ["들꽃놀이 (with 조유진)", "RM", "c3 alone cheer", "https://www.youtube.com/watch?v=u18be_kRmC0"],
+ ["seoul (prod. HONNE)", "RM", "c3 alone home", "https://www.youtube.com/watch?v=F8wI5ZosdRA"],
+ ["everythingoes (with NELL)", "RM", "tired cheer", "https://www.youtube.com/watch?v=h7tOmPqRlOI"],
+ ["Daydream (백일몽)", "j-hope", "c3 commute", "https://www.youtube.com/watch?v=OK3GJ0WIQ8s"],
+ ["on the street", "j-hope, J. Cole", "c3 home cheer", "https://www.youtube.com/watch?v=r6WbbU_lLCA"],
+ ["사람 Pt.2 (feat. 아이유)", "Agust D", "c3 alone", "https://www.youtube.com/watch?v=uVD-YgzDzyY"],
+ ["어땠을까 (feat. 김종완 of NELL)", "Agust D", "blue alone", "https://www.youtube.com/watch?v=GWA_Gy1LKkE"],
+ ["Like Crazy", "지민", "c3 blue night", "https://www.youtube.com/watch?v=nOI67IDlNMQ"],
+ ["약속", "지민", "c2 tired cheer", "https://www.youtube.com/watch?v=PwhgRnjhB84"],
+ ["Love Me Again", "V", "c2 blue", "https://www.youtube.com/watch?v=HYzyRHAHJl8"],
+ ["Better", "ATEEZ", "tired cheer", "https://www.youtube.com/watch?v=eUloGWHblRs"],
+ ["One Day At A Time", "ATEEZ", "tired cheer", "https://www.youtube.com/watch?v=AvuJkaLSSnw"],
+ ["Utopia", "ATEEZ", "c3 cheer", "https://www.youtube.com/watch?v=MriePJkEays"],
+ ["Promise", "ATEEZ", "c3 cheer", "https://www.youtube.com/watch?v=IgGcUQjYtxc"],
+ ["Eternal Sunshine", "ATEEZ", "c1 flutter summer", "https://www.youtube.com/watch?v=WJgTnDAmJHc"],
+ ["ILLUSION", "ATEEZ", "c1 c3 summer", "https://www.youtube.com/watch?v=i_HzsHss94E"],
+ ["BOUNCY (K-HOT CHILLI PEPPERS)", "ATEEZ", "c3 angry", "https://www.youtube.com/watch?v=U0G5OA6ZH5w"],
+ ["멋 (The Real) (흥:興 Ver.)", "ATEEZ", "c3 angry", "https://www.youtube.com/watch?v=yxfCbV21ck8"],
+ ["HALAZIA", "ATEEZ", "c3 angry", "https://www.youtube.com/watch?v=SszP3hlQ55Y"],
+ ["불놀이야 (I'm The One)", "ATEEZ", "c3 angry", "https://www.youtube.com/watch?v=xtcVwuauVV0"],
+ ["Dancing Like Butterfly Wings", "ATEEZ", "c3 cheer", "https://www.youtube.com/watch?v=1JvnEkxuIOI"],
+ ["Sunrise", "ATEEZ", "tired cheer", "https://www.youtube.com/watch?v=t8B1JRnO7VY"],
+ ["THANK U", "ATEEZ", "cheer home", "https://www.youtube.com/watch?v=v1DZweA1_zA"],
+ ["Light", "ATEEZ", "c2 flutter", "https://www.youtube.com/watch?v=bGFc1jSIHKI"],
+ ["Error (Feat. Loopy)", "ASH ISLAND", "blue alone night", "https://www.youtube.com/watch?v=JMw_cyEjNUw"],
+ ["Beautiful (Feat. Skinny Brown)", "ASH ISLAND", "c3 flutter", "https://www.youtube.com/watch?v=HjYl3D7Wjfo"],
+ ["작별인사 (Feat. Paul Blanco)", "ASH ISLAND", "blue alone", "https://www.youtube.com/watch?v=y1L0B5c3Ed8"],
+ ["악몽", "ASH ISLAND", "blue alone", "https://www.youtube.com/watch?v=Q0sZX07H2Ew"],
+ ["Lonely", "ASH ISLAND", "blue alone", "https://www.youtube.com/watch?v=R5f-IpCkU4o"],
+ ["Stay With Me (Feat. Skinny Brown)", "ASH ISLAND", "c3 flutter blue", "https://www.youtube.com/watch?v=-E8rHkAlHmQ"],
+ ["Everything", "ASH ISLAND", "flutter blue", "https://www.youtube.com/watch?v=jKmib7okBdY"],
+ ["친구로 지내다 보면 (Feat. 김민석 of 멜로망스)", "BIG Naughty (서동현)", "flutter blue", "https://www.youtube.com/watch?v=syrirec77aQ"],
+ ["딱 10CM만", "BIG Naughty (서동현)", "c1 flutter", "https://www.youtube.com/watch?v=eKIR4pvulK8"],
+ ["OHAYO MY NIGHT", "디핵 (D-Hack), PATEKO", "c3 flutter night", "https://www.youtube.com/watch?v=zT-Ne6mCRHY"],
+ ["작은 날", "PATEKO, Jayci yucca, Kid Wine", "tired alone", "https://www.youtube.com/watch?v=Fdztqh4MQS8"],
+ ["Love Love Love (Feat. 융진)", "에픽하이", "c3 flutter", "https://www.youtube.com/watch?v=qdr0fZbuffY"],
+ ["FLY", "에픽하이", "c3 cheer commute", "https://www.youtube.com/watch?v=sHqLlyBlmQI"],
+ ["평화의 날", "에픽하이", "c3 cheer", "https://www.youtube.com/watch?v=xOALAXrPr6E"],
+ ["One (Feat. 지선)", "에픽하이", "c3 tired cheer", "https://www.youtube.com/watch?v=OpTKLNjUdwQ"],
+ ["연애소설 (Feat. 아이유)", "에픽하이", "blue alone", "https://www.youtube.com/watch?v=Z3INNjAEqHk"],
+ ["술이 달다 (Feat. Crush)", "에픽하이", "blue alone", "https://www.youtube.com/watch?v=47Vz-ptyKbQ"],
+ ["빈차 (Feat. 오혁)", "에픽하이", "tired home alone", "https://www.youtube.com/watch?v=pTD9Jysi3_g"],
+ ["춥다 (Feat. 이하이)", "에픽하이", "blue winter", "https://www.youtube.com/watch?v=CyFrK4tL-SM"],
+ ["헤픈엔딩 (Feat. 조원선)", "에픽하이", "blue home", "https://www.youtube.com/watch?v=Hm5yvTFA53c"],
+ ["스포일러", "에픽하이", "blue alone", "https://www.youtube.com/watch?v=M8GUlNNXBVg"],
+ ["옛사랑", "이문세", "blue alone fall", "https://www.youtube.com/watch?v=jdwGke-kWzs"],
+ ["소녀", "이문세", "c2 flutter", "https://www.youtube.com/watch?v=sclOqrS8WNQ"],
+ ["깊은 밤을 날아서", "이문세", "c1 flutter", "https://www.youtube.com/watch?v=mf1a6VfspKg"],
+ ["붉은 노을", "이문세", "c3 cheer", "https://www.youtube.com/watch?v=vO2Ve4nhNtk"],
+ ["빗속에서", "이문세", "blue alone rain", "https://www.youtube.com/watch?v=IqtxtT1aKmo"],
+ ["광화문 연가", "이문세", "blue fall", "https://www.youtube.com/watch?v=wJmFkK7MBI0"],
+ ["휘파람", "이문세", "c2 flutter alone", "https://www.youtube.com/watch?v=VITmYAGMtC4"],
+ ["사랑이 지나가면", "이문세", "blue alone", "https://www.youtube.com/watch?v=64y1ChmDEgA"],
+ ["알 수 없는 인생", "이문세", "cheer commute", "https://www.youtube.com/watch?v=BGq7A1kUCl4"],
+ ["봄바람 (Feat. 나얼)", "이문세", "c1 flutter spring", "https://www.youtube.com/watch?v=smVvQVCtka4"],
+ ["잠 못 드는 밤 비는 내리고", "김건모", "c3 blue rain", "https://www.youtube.com/watch?v=llY4UtFtrgM"],
+ ["아름다운 이별", "김건모", "blue alone", "https://www.youtube.com/watch?v=bNiV5fpfPU8"],
+ ["잘못된 만남", "김건모", "c3 angry", "https://www.youtube.com/watch?v=n2AsXQtK8aA"],
+ ["첫인상", "김건모", "c3 flutter", "https://www.youtube.com/watch?v=7I2SvDUPNZo"],
+ ["핑계", "김건모", "c3 blue", "https://www.youtube.com/watch?v=GSunUuKABhI"],
+ ["서울의 달", "김건모", "c3 alone night", "https://www.youtube.com/watch?v=IgvRBuSG9lY"],
+ ["미안해요", "김건모", "blue alone", "https://www.youtube.com/watch?v=Wl84Xsbu5cI"],
+ ["춘천가는 기차", "김현철", "c2 home spring", "https://www.youtube.com/watch?v=h-w_nLeYQN8"],
+ ["달의 몰락", "김현철", "c3 night", "https://www.youtube.com/watch?v=8l03U8d7mIw"],
+ ["왜 그래", "김현철", "c3 flutter", "https://www.youtube.com/watch?v=nV2tkWs2G9A"],
+ ["동네", "김현철", "c2 calm home", "https://www.youtube.com/watch?v=c0AmqTE_bSI"],
+ ["그대안의 블루", "김현철, 이소라", "c2 flutter", "https://www.youtube.com/watch?v=trTuqzRHAVw"],
+ ["난 행복해", "이소라", "blue alone", "https://www.youtube.com/watch?v=ilpxwWd0b5Q"],
+ ["바람이 분다", "이소라", "blue alone fall", "https://www.youtube.com/watch?v=Fk__GLYSFMw"],
+ ["제발", "이소라", "blue alone", "https://www.youtube.com/watch?v=_zxo8xYG3as"],
+ ["Track 9", "이소라", "tired cheer alone", "https://www.youtube.com/watch?v=MjQjaB-HedA"],
+ ["믿음", "이소라", "flutter blue", "https://www.youtube.com/watch?v=ijzzqP2jzA4"],
+ ["청혼", "이소라", "c2 flutter", "https://www.youtube.com/watch?v=EaI3oIQUceY"],
+ ["다행이다", "이적", "c2 flutter", "https://www.youtube.com/watch?v=WRJZwkLUg-w"],
+ ["하늘을 달리다", "이적", "c3 cheer commute", "https://www.youtube.com/watch?v=sYBgwD6nzyk"],
+ ["같이 걸을까", "이적", "tired cheer home", "https://www.youtube.com/watch?v=nQNLhUl7AfQ"],
+ ["거짓말 거짓말 거짓말", "이적", "blue alone", "https://www.youtube.com/watch?v=2TK0eL50EkA"],
+ ["당연한 것들", "이적", "tired home", "https://www.youtube.com/watch?v=Mq49K7Td3rw"],
+ ["달팽이", "패닉", "tired cheer", "https://www.youtube.com/watch?v=gsLeCGz5j7s"],
+ ["기다리다", "패닉", "blue alone", "https://www.youtube.com/watch?v=qrU5TCIe2H0"],
+ ["왼손잡이", "패닉", "c3 angry cheer", "https://www.youtube.com/watch?v=Y8UyXWLQV6Q"],
+ ["감사", "김동률", "c2 flutter cheer", "https://www.youtube.com/watch?v=OHJle2J3RTA"],
+ ["다시 사랑한다 말할까", "김동률", "flutter blue", "https://www.youtube.com/watch?v=DInxRru5WkU"],
+ ["출발", "김동률", "c2 cheer commute spring", "https://www.youtube.com/watch?v=xgvckGs6xhU"],
+ ["아이처럼 (Feat. 알렉스)", "김동률", "c1 flutter", "https://www.youtube.com/watch?v=v-vyuLSEdfI"],
+ ["답장", "김동률", "blue alone", "https://www.youtube.com/watch?v=kMRLzSQorK0"],
+ ["그게 나야", "김동률", "blue alone", "https://www.youtube.com/watch?v=4GW7xwZkDsY"],
+ ["Replay", "김동률", "blue alone", "https://www.youtube.com/watch?v=xEeR5z8pTQY"],
+ ["기적 (Duet With 이소은)", "김동률", "flutter", "https://www.youtube.com/watch?v=BIW83tkNcgo"],
+ ["여름의 끝자락 (Feat. 김정원)", "김동률", "alone summer fall", "https://www.youtube.com/watch?v=YVB8vL7rBjY"],
+ ["천일동안", "이승환", "blue alone", "https://www.youtube.com/watch?v=mMVdPKvokVc"],
+ ["어떻게 사랑이 그래요", "이승환", "blue alone", "https://www.youtube.com/watch?v=srIzTSRpxo8"],
+ ["가족", "이승환", "home alone", "https://www.youtube.com/watch?v=_sVd_f4aNrc"],
+ ["덩크슛", "이승환", "c1 cheer commute", "https://www.youtube.com/watch?v=WyoVsC8Rk6s"],
+ ["슈퍼히어로", "이승환", "c3 cheer", "https://www.youtube.com/watch?v=Uww7Gu6-OE4"],
+ ["두 사람", "성시경", "c2 flutter", "https://www.youtube.com/watch?v=kiuHKKbNYII"],
+ ["거리에서", "성시경", "blue alone fall", "https://www.youtube.com/watch?v=v_K4tnMYsn4"],
+ ["희재", "성시경", "blue alone", "https://www.youtube.com/watch?v=-pPDEayEY4M"],
+ ["넌 감동이었어", "성시경", "blue alone", "https://www.youtube.com/watch?v=VkBy49_9sqM"],
+ ["좋을텐데", "성시경", "c2 flutter blue", "https://www.youtube.com/watch?v=dA_ivcadYdc"],
+ ["우린 제법 잘 어울려요", "성시경", "c1 flutter", "https://www.youtube.com/watch?v=t3RXFXPpYhc"],
+ ["내게 오는 길", "성시경", "c2 flutter", "https://www.youtube.com/watch?v=NmEUdrIjhWs"],
+ ["너는 나의 봄이다", "성시경", "c2 flutter spring", "https://www.youtube.com/watch?v=yl8It450z-E"],
+ ["안녕 나의 사랑", "성시경", "blue alone", "https://www.youtube.com/watch?v=NwbP-akFu4c"],
+ ["미소천사", "성시경", "c1 flutter", "https://www.youtube.com/watch?v=ro1knsWzgjQ"],
+ ["그건 아마 우리의 잘못은 아닐 거야", "백예린", "c2 blue alone", "https://www.youtube.com/watch?v=IRNBtocmQ58"],
+ ["Bye bye my blue", "백예린", "c2 blue alone", "https://www.youtube.com/watch?v=WbhK3wMXluE"],
+ ["산책", "백예린", "c2 calm home", "https://www.youtube.com/watch?v=iAeeTin1uCA"],
+ ["0310", "백예린", "blue alone", "https://www.youtube.com/watch?v=Yp_vF0k1arc"],
+ ["Antifreeze", "백예린", "c2 flutter winter", "https://www.youtube.com/watch?v=74_yqNBhQbA"],
+ ["주저하는 연인들을 위해", "잔나비", "flutter blue alone", "https://www.youtube.com/watch?v=GpQ222I1ULc"],
+ ["뜨거운 여름밤은 가고 남은 건 볼품없지만", "잔나비", "blue summer fall", "https://www.youtube.com/watch?v=f5wCZ0-3Eos"],
+ ["꿈과 책과 힘과 벽", "잔나비", "tired alone cheer", "https://www.youtube.com/watch?v=SJUWooZnfVQ"],
+ ["외딴섬 로맨틱", "잔나비", "c3 flutter", "https://www.youtube.com/watch?v=vrDjwvi-f94"],
+ ["She", "잔나비", "c2 flutter", "https://www.youtube.com/watch?v=UbSlWaerUIE"],
+ ["초록을거머쥔우리는", "잔나비", "c3 cheer spring", "https://www.youtube.com/watch?v=tKt0yuPcqKk"],
+ ["투게더!", "잔나비", "c1 cheer", "https://www.youtube.com/watch?v=1HfsK4rzr5s"],
+ ["보편적인 노래", "브로콜리너마저", "blue alone", "https://www.youtube.com/watch?v=zrXHySXfdhk"],
+ ["졸업", "브로콜리너마저", "tired alone", "https://www.youtube.com/watch?v=0jVziDGnNrA"],
+ ["앵콜요청금지", "브로콜리너마저", "blue alone", "https://www.youtube.com/watch?v=xvmwqB4fjQ4"],
+ ["유자차", "브로콜리너마저", "c2 tired winter", "https://www.youtube.com/watch?v=y95EpV5KKgI"],
+ ["행운을 빌어요", "페퍼톤스", "c3 cheer commute", "https://www.youtube.com/watch?v=U6dTSMCqlp4"],
+ ["공원여행", "페퍼톤스", "c1 sun spring", "https://www.youtube.com/watch?v=gFEHrhNEiHQ"],
+ ["Ready, Get Set, Go!", "페퍼톤스", "c3 cheer commute", "https://www.youtube.com/watch?v=wHNTpaTXxwM"],
+ ["긴 여행의 끝", "페퍼톤스", "c3 home cheer", "https://www.youtube.com/watch?v=ban-n5B7S5U"],
+ ["비밀번호 486", "윤하", "c1 flutter commute", "https://www.youtube.com/watch?v=r5MM2iI8-58"],
+ ["기다리다", "윤하", "blue alone", "https://www.youtube.com/watch?v=_6C5-abCx6g"],
+ ["혜성", "윤하", "c3 cheer", "https://www.youtube.com/watch?v=ZnR0JiQGxRE"],
+ ["우산", "윤하", "blue alone rain", "https://www.youtube.com/watch?v=kTVvtlfU-Ts"],
+ ["먹구름", "윤하", "blue cloud", "https://www.youtube.com/watch?v=hrO-BgLjJ-Q"],
+ ["비가 내리는 날에는", "윤하", "blue alone rain", "https://www.youtube.com/watch?v=gWHgpJ3m-x8"],
+ ["오늘 헤어졌어요", "윤하", "blue winter", "https://www.youtube.com/watch?v=f8ymKHxUV_8"],
+ ["사계 (Four Seasons)", "태연", "blue alone", "https://www.youtube.com/watch?v=4HG_CJzyX6A"],
+ ["I (Feat. 버벌진트)", "태연", "c3 cheer sun", "https://www.youtube.com/watch?v=4OrCA1OInoo"],
+ ["Fine", "태연", "blue alone", "https://www.youtube.com/watch?v=NHXUM-6a3dU"],
+ ["너를 그리는 시간 (Drawing Our Moments)", "태연", "flutter blue alone", "https://www.youtube.com/watch?v=2JJtrImDPHs"],
+ ["겨울나무 (I'm all ears)", "태연", "tired cheer winter", "https://www.youtube.com/watch?v=PcYhtiJneHg"],
+ ["This Christmas", "태연", "blue winter", "https://www.youtube.com/watch?v=hsh54g9JmC0"],
+ ["Happy", "태연", "c1 flutter spring", "https://www.youtube.com/watch?v=Raj-AuQgCTg"],
+ ["To. X", "태연", "c3 angry blue", "https://www.youtube.com/watch?v=5_n6t9G2TUQ"],
+ ["돌아오지마 (Feat. 용준형)", "헤이즈", "blue alone", "https://www.youtube.com/watch?v=I7EwLNhPgpg"],
+ ["저 별", "헤이즈", "blue alone", "https://www.youtube.com/watch?v=XUR8QByF2As"],
+ ["And July (Feat. DEAN, DJ Friz)", "헤이즈", "c3 flutter summer", "https://www.youtube.com/watch?v=rCeM57e2BfU"],
+ ["헤픈 우연", "헤이즈", "c3 blue", "https://www.youtube.com/watch?v=AJPLgrfBiBo"],
+ ["떨어지는 낙엽까지도", "헤이즈", "blue fall", "https://www.youtube.com/watch?v=n57Dusg_ia8"],
+ ["가끔", "크러쉬", "blue alone", "https://www.youtube.com/watch?v=VN4EusA9zmE"],
+ ["잊어버리지마 (Feat. 태연)", "크러쉬", "flutter blue", "https://www.youtube.com/watch?v=TcytstV1_XE"],
+ ["둘만의 세상으로 가", "크러쉬", "c2 flutter", "https://www.youtube.com/watch?v=EXJfWc4JciQ"],
+ ["Rush Hour (Feat. j-hope of BTS)", "크러쉬", "c3 commute", "https://www.youtube.com/watch?v=stibNqDOo1g"],
+ ["D (half moon) (Feat. 개코)", "DEAN", "blue alone night", "https://www.youtube.com/watch?v=eelfrHtmk68"],
+ ["instagram", "DEAN", "blue alone night", "https://www.youtube.com/watch?v=wKyMIrBClYw"],
+ ["넘어와 (Feat. 백예린)", "DEAN", "c2 flutter night", "https://www.youtube.com/watch?v=_zb1OzlCYto"],
+ ["양화대교", "Zion.T", "tired home", "https://www.youtube.com/watch?v=uLUvHUzd4UA"],
+ ["꺼내 먹어요", "Zion.T", "c2 tired cheer", "https://www.youtube.com/watch?v=Ibb5RhoKfzE"],
+ ["노래", "Zion.T", "c2 flutter", "https://www.youtube.com/watch?v=ecxzqqHwe-4"],
+ ["No Make Up", "Zion.T", "c2 flutter", "https://www.youtube.com/watch?v=eqcte1r3aiQ"],
+ ["멋지게 인사하는 법 (Feat. 슬기)", "Zion.T", "c3 flutter", "https://www.youtube.com/watch?v=nqMYG2Riq54"],
+ ["위로", "권진아", "c2 tired cheer", "https://www.youtube.com/watch?v=qMkQ3lAD418"],
+ ["끝", "권진아", "blue alone", "https://www.youtube.com/watch?v=sOgsp64fw0M"],
+ ["운이 좋았지", "권진아", "blue alone", "https://www.youtube.com/watch?v=BFYjjFkrTNQ"],
+ ["잘 가", "권진아", "blue alone", "https://www.youtube.com/watch?v=znR7ntGGihU"],
+ ["뭔가 잘못됐어", "권진아", "c3 blue", "https://www.youtube.com/watch?v=0kx2KBD34CM"],
+ ["이 바보야", "정승환", "blue alone", "https://www.youtube.com/watch?v=ZDhnGA66Eoo"],
+ ["보통의 하루", "정승환", "c2 tired home", "https://www.youtube.com/watch?v=GRWh711Y_dw"],
+ ["언제라도 어디에서라도", "정승환", "c2 flutter", "https://www.youtube.com/watch?v=C9RI-OXMyu4"],
+ ["십이월 이십오일의 고백", "정승환", "flutter snow winter", "https://www.youtube.com/watch?v=QUXNXYB1tq0"],
+ ["우주선", "정승환", "flutter cheer", "https://www.youtube.com/watch?v=m1I7X3KoFy8"],
+ ["나만, 봄", "볼빨간사춘기", "c1 flutter spring", "https://www.youtube.com/watch?v=AsXxuIdpkWM"],
+ ["나의 사춘기에게", "볼빨간사춘기", "tired cheer alone", "https://www.youtube.com/watch?v=3gMAEZCOFtE"],
+ ["좋다고 말해", "볼빨간사춘기", "c1 flutter", "https://www.youtube.com/watch?v=y5MAgMVwfFs"],
+ ["썸 탈꺼야", "볼빨간사춘기", "c1 flutter", "https://www.youtube.com/watch?v=hZmoMyFXDoI"],
+ ["별 보러 갈래?", "볼빨간사춘기", "c1 flutter", "https://www.youtube.com/watch?v=8n9wklIG9qU"],
+ ["여름날 (Feat. 하현상)", "볼빨간사춘기", "c2 flutter summer", "https://www.youtube.com/watch?v=AaOt0jZefis"],
+ ["나만 안되는 연애", "볼빨간사춘기", "blue alone", "https://www.youtube.com/watch?v=iLlLLBuuvVU"],
+ ["노래방에서", "장범준", "blue alone", "https://www.youtube.com/watch?v=ZuXCLVCztE4"],
+ ["당신과는 천천히", "장범준", "c2 flutter", "https://www.youtube.com/watch?v=EAVp84B888U"],
+ ["여수 밤바다", "버스커 버스커", "c2 night summer", "https://www.youtube.com/watch?v=zekDc_07xSo"],
+ ["정말로 사랑한다면", "버스커 버스커", "flutter blue", "https://www.youtube.com/watch?v=6SKunZTZzXc"],
+ ["첫사랑", "버스커 버스커", "c2 flutter", "https://www.youtube.com/watch?v=Sfh4zHdoC30"],
+ ["잘할 걸", "버스커 버스커", "blue alone", "https://www.youtube.com/watch?v=-BaJ4C4PHmM"],
+ ["꽃송이가", "버스커 버스커", "c1 flutter spring", "https://www.youtube.com/watch?v=HRadddyS5jg"],
+ ["White Love (스키장에서)", "터보", "flutter snow winter", "https://www.youtube.com/watch?v=JBKoqaLo5KA"],
+ ["크리스마스니까", "성시경, 박효신, 이석훈, 서인국, VIXX", "flutter snow winter", "https://www.youtube.com/watch?v=pay5EQNPA-I"],
+ ["첫 겨울이니까", "성시경, 아이유", "c2 flutter winter", "https://www.youtube.com/watch?v=1YZzSkP6KZo"],
+ ["12월의 기적 (Miracles in December)", "EXO", "blue winter", "https://www.youtube.com/watch?v=yVLxRXoLaas"],
+ ["Universe", "EXO", "blue winter", "https://www.youtube.com/watch?v=leu-cTvMWTA"],
+ ["Sing For You", "EXO", "c2 flutter winter", "https://www.youtube.com/watch?v=nqaSboKBIuA"],
+ ["종소리", "러블리즈", "c1 flutter winter", "https://www.youtube.com/watch?v=vDxD4HwEFdY"],
+ ["러시안 룰렛 (Russian Roulette)", "Red Velvet", "c1 flutter", "https://www.youtube.com/watch?v=QslJYDX3o8s"],
+ ["Power Up", "Red Velvet", "c1 commute summer", "https://www.youtube.com/watch?v=aiHSVQy9xN8"],
+ ["음파음파 (Umpah Umpah)", "Red Velvet", "c1 summer", "https://www.youtube.com/watch?v=vHS9E6JFja8"],
+ ["Ice Cream Cake", "Red Velvet", "c1 flutter", "https://www.youtube.com/watch?v=glXgSSOKlls"],
+ ["Dolphin", "오마이걸", "c1 flutter summer", "https://www.youtube.com/watch?v=oaRTMjLdiDw"],
+ ["살짝 설렜어 (Nonstop)", "오마이걸", "c1 flutter summer", "https://www.youtube.com/watch?v=iDjQSdN_ig8"],
+ ["비밀정원", "오마이걸", "c1 cheer spring", "https://www.youtube.com/watch?v=Lznx5A7fNto"],
+ ["오늘부터 우리는 (Me gustas tu)", "여자친구", "c1 flutter summer", "https://www.youtube.com/watch?v=YYHyAIFG3iI"],
+ ["밤 (Time for the moon night)", "여자친구", "c3 flutter blue", "https://www.youtube.com/watch?v=_XyBa8QsVQU"],
+ ["여름여름해 (Sunny Summer)", "여자친구", "c1 summer", "https://www.youtube.com/watch?v=M9P90QTo_uE"],
+ ["Dance The Night Away", "TWICE", "c1 c3 summer", "https://www.youtube.com/watch?v=Fm5iP0S1z9w"],
+ ["Alcohol-Free", "TWICE", "c1 flutter summer", "https://www.youtube.com/watch?v=XA2YEHn-A8Q"],
+ ["What is Love?", "TWICE", "c1 flutter", "https://www.youtube.com/watch?v=i0p1bmr0EmE"],
+ ["Feel Special", "TWICE", "c3 tired cheer", "https://www.youtube.com/watch?v=3ymwOvzhwHs"],
+ ["다시 만난 세계 (Into The New World)", "소녀시대", "c3 cheer", "https://www.youtube.com/watch?v=0k2Zzkw_-0I"],
+ ["힘 내! (Way To Go)", "소녀시대", "c1 cheer commute", "https://www.youtube.com/watch?v=_0Ke2fThnG0"],
+ ["Gee", "소녀시대", "c1 flutter", "https://www.youtube.com/watch?v=U7mPqycQ0tQ"],
+ ["소원을 말해봐 (Genie)", "소녀시대", "c3 cheer", "https://www.youtube.com/watch?v=6SwiSpudKWI"],
+ ["View", "SHINee", "c3 flutter summer", "https://www.youtube.com/watch?v=UF53cptEE5k"],
+ ["초록비 (Green Rain)", "SHINee", "cheer rain spring", "https://www.youtube.com/watch?v=QfvULgz0umY"],
+ ["너와 나의 거리 (Selene 6.23)", "SHINee", "blue alone", "https://www.youtube.com/watch?v=nqZi3EaIakY"],
+ ["다정한 봄에게", "온유", "flutter blue spring", "https://www.youtube.com/watch?v=H03CadK88aY"],
+ ["청춘찬가", "세븐틴", "tired cheer", "https://www.youtube.com/watch?v=bw4AuPrLWeA"],
+ ["아주 NICE", "세븐틴", "c1 flutter commute", "https://www.youtube.com/watch?v=J-wFp43XOrA"],
+ ["예쁘다", "세븐틴", "c1 flutter", "https://www.youtube.com/watch?v=Ur243WXPEpA"],
+ ["어쩌나", "세븐틴", "c1 flutter summer", "https://www.youtube.com/watch?v=_5PELxP8Udg"],
+ ["울고 싶지 않아", "세븐틴", "c3 blue", "https://www.youtube.com/watch?v=zEkg4GBQumc"],
+ ["박수", "세븐틴", "c3 angry cheer", "https://www.youtube.com/watch?v=CyzEtbG-sxY"],
+ ["우리의 새벽은 낮보다 뜨겁다", "세븐틴", "c3 night summer", "https://www.youtube.com/watch?v=MAWM7Y9Wnd0"],
+ ["같이 가요", "세븐틴", "cheer home", "https://www.youtube.com/watch?v=pa86DMlUpHg"],
+ ["웃음꽃", "세븐틴", "tired cheer", "https://www.youtube.com/watch?v=PFCQiURzLkk"],
+ ["음악의 신", "세븐틴", "c1 cheer", "https://www.youtube.com/watch?v=zSQ48zyWZrY"]
+].map(function(s){ return { t:s[0], a:s[1], tags:s[2].split(' '), y:s[3] || '' }; });
+
+/* 카테고리 — 이름과 한 줄 설명은 여기서 바꾸면 됩니다 */
+var GROUPS = [
+ { id:'scent', label:'향으로', items:[
+   { tag:'c1', label:'city citrus', dot:'var(--c1)', title:'01. city citrus', desc:'상큼하고 밝은 노래. 레몬처럼 기분이 톡 올라가는 곡들이에요.' },
+   { tag:'c2', label:'clean cotton', dot:'var(--c2)', title:'02. clean cotton', desc:'나른하고 편안한 노래. 갓 마른 빨래처럼 포근한 곡들이에요.' },
+   { tag:'c3', label:'concrete forest', dot:'var(--c3)', title:'03. concrete forest', desc:'창문 내리고 달리고 싶은 드라이브 노래들이에요.' } ]},
+ { id:'mood', label:'기분으로', items:[
+   { tag:'flutter', label:'설레요', title:'설레는 날', desc:'괜히 웃음이 나는 날에.' },
+   { tag:'tired', label:'지쳤어요', title:'지친 날', desc:'오늘 하루 고생한 나에게.' },
+   { tag:'blue', label:'우울해요', title:'우울한 날', desc:'마음껏 가라앉아도 괜찮은 노래.' },
+   { tag:'angry', label:'답답해요', title:'답답한 날', desc:'볼륨 올리고 털어내기 좋은 노래.' },
+   { tag:'calm', label:'차분해요', title:'차분한 날', desc:'잔잔하게 흘려듣기 좋은 노래.' } ]},
+ { id:'scene', label:'상황으로', items:[
+   { tag:'commute', label:'출근길', title:'출근길', desc:'하루를 가볍게 시작하는 노래.' },
+   { tag:'home', label:'퇴근길', title:'퇴근길', desc:'집으로 가는 길이 조금 더 좋아지는 노래.' },
+   { tag:'night', label:'밤 드라이브', title:'밤 드라이브', desc:'불빛 사이를 달릴 때 듣는 노래.' },
+   { tag:'alone', label:'혼자 있을 때', title:'혼자 있는 시간', desc:'나에게만 집중하는 시간에.' },
+   { tag:'cheer', label:'응원이 필요할 때', title:'응원이 필요할 때', desc:'힘내라는 말 대신 건네는 노래.' } ]},
+ { id:'weather', label:'날씨·계절로', items:[
+   { tag:'rain', label:'비 오는 날', title:'비 오는 날', desc:'빗소리와 함께 듣기 좋은 노래.' },
+   { tag:'sun', label:'맑은 날', title:'맑은 날', desc:'햇살 좋은 날에 어울리는 노래.' },
+   { tag:'cloud', label:'흐린 날', title:'흐린 날', desc:'회색 하늘 아래 듣는 노래.' },
+   { tag:'snow', label:'눈 오는 날', title:'눈 오는 날', desc:'창밖에 눈이 내릴 때.' },
+   { tag:'spring', label:'봄', title:'봄', desc:'꽃 피는 계절의 노래.' },
+   { tag:'summer', label:'여름', title:'여름', desc:'뜨거운 계절의 노래.' },
+   { tag:'fall', label:'가을', title:'가을', desc:'선선한 바람이 부는 계절의 노래.' },
+   { tag:'winter', label:'겨울', title:'겨울', desc:'따뜻한 게 그리운 계절의 노래.' } ]}
+];
+
+var SCENTS = {
+ c1:{ name:'01. city citrus', kr:'고요한 우드 위로 상큼한 시트러스가 퍼지는 향', img:'/assets/sachet-01.webp', buy:'https://linki.kr/bcf1901' },
+ c2:{ name:'02. clean cotton', kr:'부드러운 화이트 머스크를 머금은 깨끗한 코튼 향', img:'/assets/sachet-02.webp', buy:'https://linki.kr/b70c56b' },
+ c3:{ name:'03. concrete forest', kr:'도시와 숲이 만나는 순간의 향', img:'/assets/sachet-03.webp', buy:'https://linki.kr/90c0a88' }
+};
+var PLATFORMS = [
+ ['유튜브', function(q, s){ return s.y || ('https://www.youtube.com/results?search_query=' + q); }],   // 곡에 유튜브 주소가 있으면 그 영상으로 바로, 없으면 검색
+ ['멜론', function(q){ return 'https://www.melon.com/search/total/index.htm?q=' + q; }],
+ ['지니', function(q){ return 'https://www.genie.co.kr/search/searchMain?query=' + q; }],
+ ['스포티파이', function(q){ return 'https://open.spotify.com/search/' + q; }],
+ ['애플 뮤직', function(q){ return 'https://music.apple.com/kr/search?term=' + q; }]
+];
+var COUNT = 5;   // 하루에 보여줄 곡 수
+
+/* 계절이 분명한 곡 — 그 계절에만 나옵니다 (계절 칩을 직접 고르면 언제든 보임)
+   예: 가을에 '벚꽃 엔딩'이 나오지 않게 */
+var SEASON_ONLY = {"Summer": ["summer"], "여름 안에서": ["summer"], "September": ["fall"], "봄봄봄": ["spring"], "벚꽃 엔딩": ["spring"], "봄 사랑 벚꽃 말고": ["spring"], "가을 아침": ["fall"], "겨울잠": ["winter"], "Autumn Leaves": ["fall"], "Cruel Summer": ["summer"], "눈의 꽃": ["winter"], "Snowman": ["winter"], "첫눈처럼 너에게 가겠다": ["winter"], "Let It Snow! Let It Snow! Let It Snow!": ["winter"], "봄날": ["spring"], "Wake Me Up When September Ends": ["fall"], "여름빛 (Mojito)": ["summer"], "첫 눈": ["winter"], "눈사람": ["winter"], "눈 (Feat. 이문세)": ["winter"], "눈이 오잖아 (Feat. 헤이즈)": ["winter"], "너란 봄 (feat. 하림)": ["spring"], "우연히 봄 (2021)": ["spring"], "가을밤에 든 생각": ["fall"], "다시, 봄": ["spring"], "가을 우체국 앞에서": ["fall"], "봄눈": ["spring"], "봄 to 러브": ["spring"], "봄 내음보다 너를": ["spring"], "봄이 좋냐??": ["spring"], "우연히 봄": ["spring"], "봄바람 (Feat. 나얼)": ["spring"], "여름의 끝자락 (Feat. 김정원)": ["summer", "fall"], "너는 나의 봄이다": ["spring"], "뜨거운 여름밤은 가고 남은 건 볼품없지만": ["summer", "fall"], "겨울나무 (I'm all ears)": ["winter"], "And July (Feat. DEAN, DJ Friz)": ["summer"], "나만, 봄": ["spring"], "여름날 (Feat. 하현상)": ["summer"], "첫 겨울이니까": ["winter"], "여름여름해 (Sunny Summer)": ["summer"], "다정한 봄에게": ["spring"], "장마 (Feat. 영준 of Brown Eyed Soul)": ["summer"], "소나기": ["summer"], "시간과 낙엽": ["fall"], "떨어지는 낙엽까지도": ["fall"], "해변의 여인": ["summer"]};
+/* 크리스마스 곡 — 11월 15일 ~ 12월 31일에만 나옵니다 */
+/* 특정 달에만 나오는 곡 — 제목에 달이 들어간 노래 */
+var MONTH_ONLY = {"September": [9], "Wake Me Up When September Ends": [9], "잊혀진 계절": [10, 11]};
+/* 밤(20시~5시)의 '지금' 추천에서 빼는 곡 — 아침·햇살 노래 */
+var NOT_AT_NIGHT = ['가을 아침','Walking on Sunshine','Here Comes the Sun','Steal My Sunshine','Sunday Morning','Banana Pancakes','Happy','Good as Hell'];
+var XMAS_ONLY = ["Last Christmas", "It's Beginning to Look a Lot Like Christmas", "All I Want for Christmas Is You", "Christmas Tree", "This Christmas", "크리스마스니까", "12월의 기적 (Miracles in December)"];
+
+/* ---------- 날짜(한국 시간) & 하루 단위 랜덤 ---------- */
+var kst = new Date(Date.now() + (new Date().getTimezoneOffset() + 540) * 60000);
+var dayKey = kst.getFullYear() + '-' + (kst.getMonth()+1) + '-' + kst.getDate();
+var hour = kst.getHours(), month = kst.getMonth() + 1;
+var DOW = ['일','월','화','수','목','금','토'];
+var dateLabel = (kst.getMonth()+1) + '.' + kst.getDate() + ' ' + DOW[kst.getDay()];
+function hash(s){ var h = 2166136261; for (var i = 0; i < s.length; i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function shuffle(arr, key){ var r = rng(hash(dayKey + '|' + key)), a = arr.slice(); for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(r() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+function has(s, t){ return s.tags.indexOf(t) > -1; }
+var SEASON_TAGS = ['spring','summer','fall','winter'];
+function inSeason(s){
+  if (XMAS_ONLY.indexOf(s.t) > -1) return (month === 11 && kst.getDate() >= 15) || month === 12;
+  if (MONTH_ONLY[s.t] && MONTH_ONLY[s.t].indexOf(month) < 0) return false;
+  var only = SEASON_ONLY[s.t];
+  return !only || only.indexOf(season) > -1;
+}
+
+function pickByTag(tag){
+  var explicitSeason = SEASON_TAGS.indexOf(tag) > -1 || tag === 'snow';
+  return shuffle(SONGS.filter(function(s){
+    if (!has(s, tag)) return false;
+    if (MONTH_ONLY[s.t] && MONTH_ONLY[s.t].indexOf(month) < 0) return false;   // 9월 노래는 9월에만
+    return explicitSeason || inSeason(s);
+  }), tag).slice(0, COUNT);
+}
+function pickByContext(tags, key){
+  var w = nowState.w;
+  var scored = SONGS.filter(function(s){
+    if (!inSeason(s)) return false;
+    if (timeTag === 'night' && NOT_AT_NIGHT.indexOf(s.t) > -1) return false;
+    // 날씨와 반대인 노래 제외: 비/눈/흐림인데 햇살 노래, 맑은데 비 노래
+    if (w && w !== 'sun' && has(s, 'sun') && !has(s, w)) return false;
+    if (w === 'sun' && (has(s, 'rain') || has(s, 'snow')) && !has(s, 'sun')) return false;
+    return true;
+  }).map(function(s){ var sc = 0; tags.forEach(function(t, i){ if (has(s, t)) sc += (i === 0 ? 3 : 1); }); return { s:s, sc:sc }; })
+    .filter(function(x){ return x.sc > 0; });
+  scored = shuffle(scored, key).sort(function(a, b){ return b.sc - a.sc; });
+  var pool = scored.slice(0, Math.max(COUNT * 3, 12)).map(function(x){ return x.s; });
+  return shuffle(pool, key + '#').slice(0, COUNT);
+}
+
+var season = month >= 3 && month <= 5 ? 'spring' : month >= 6 && month <= 8 ? 'summer' : month >= 9 && month <= 11 ? 'fall' : 'winter';
+var SEASON_KR = { spring:'봄', summer:'여름', fall:'가을', winter:'겨울' };
+var timeTag = (hour >= 20 || hour < 5) ? 'night' : (hour >= 6 && hour < 10) ? 'commute' : (hour >= 17 && hour < 20) ? 'home' : null;
+var TIME_KR = { night:'밤', commute:'아침', home:'저녁' };
+var WEATHER_KR = { rain:'비', sun:'맑음', cloud:'흐림', snow:'눈' };
+
+function weatherTag(code){
+  if (code === 0 || code === 1) return 'sun';
+  if (code === 2 || code === 3 || code === 45 || code === 48) return 'cloud';
+  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return 'snow';
+  if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82) || code >= 95) return 'rain';
+  return null;
+}
+function scentFor(list, fallback){
+  var n = { c1:0, c2:0, c3:0 };
+  list.forEach(function(s){ ['c1','c2','c3'].forEach(function(c){ if (has(s, c)) n[c]++; }); });
+  var best = Object.keys(n).sort(function(a, b){ return n[b] - n[a]; })[0];
+  return n[best] > 0 ? best : fallback;
+}
+
+/* ---------- 화면 ---------- */
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); };
+
+function render(title, desc, list, scentKey, source){
+  $('resTitle').textContent = title;
+  document.getElementById('lpContext').textContent = title;
+  $('resDate').textContent = dateLabel + ' · ' + list.length + '곡';
+  $('resDesc').textContent = desc;
+  $('songs').innerHTML = list.map(function(s, i){
+    var q = encodeURIComponent(s.t + ' ' + s.a.split(',')[0]);
+    return '<li class="song"><button type="button" aria-expanded="false">'
+      + '<span class="no">' + String(i+1).padStart(2,'0') + '</span>'
+      + '<span><span class="t">' + esc(s.t) + '</span><span class="a">' + esc(s.a) + '</span></span>'
+      + '<span class="play">듣기</span></button>'
+      + '<div class="links">' + PLATFORMS.map(function(p){
+          return '<a href="' + p[1](q, s) + '" target="_blank" rel="noopener" data-p="' + p[0] + '">' + p[0] + '</a>'; }).join('') + '</div></li>';
+  }).join('');
+  // 어울리는 향 칸은 '향으로'에서 향을 골랐을 때만 보여줌 (지금·기분·상황·날씨에서는 숨김)
+  var showScent = /^c[123]$/.test(source);
+  $('scent').hidden = !showScent;
+  var sc = SCENTS[scentKey];
+  $('scent').innerHTML = '<img src="' + sc.img + '" alt="' + esc(sc.name) + ' 샤쉐" width="856" height="1342" loading="lazy">'
+    + '<div><div class="eyebrow">이 노래들과 어울리는 향</div><h3>' + esc(sc.name) + '</h3><p>' + esc(sc.kr) + '</p>'
+    + '<a class="buy" href="' + sc.buy + '" target="_blank" rel="noopener" data-scent="' + scentKey + '">향 보러가기 ↗</a></div>';
+  try { gtag('event', 'music_view', { music_list: source }); } catch(e){}
+}
+
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.song > button');
+  if (btn){ var li = btn.parentNode, open = li.dataset.open === 'true'; li.dataset.open = open ? 'false' : 'true'; btn.setAttribute('aria-expanded', String(!open)); return; }
+  var a = e.target.closest('.links a');
+  if (a){ var t = a.closest('.song').querySelector('.t').textContent; try { gtag('event', 'music_listen', { platform: a.dataset.p, song: t }); } catch(err){} return; }
+  var b = e.target.closest('.buy');
+  if (b){ try { gtag('event', 'music_scent_click', { scent: b.dataset.scent }); } catch(err){} }
+});
+
+/* 탭 & 칩 */
+var current = { group:null, tag:null };
+function drawTabs(){
+  $('tabs').innerHTML = '<button class="tab"  data-g="now" aria-pressed="' + (current.group === null) + '">지금</button>'
+    + GROUPS.map(function(g){ return '<button class="tab"  data-g="' + g.id + '" aria-pressed="' + (current.group === g.id) + '">' + g.label + '</button>'; }).join('');
+  var g = GROUPS.filter(function(x){ return x.id === current.group; })[0];
+  $('chips').innerHTML = g ? g.items.map(function(it){
+    return '<button class="chip" type="button" data-tag="' + it.tag + '" aria-pressed="' + (current.tag === it.tag) + '">'
+      + (it.dot ? '<span class="dot" style="background:' + it.dot + '"></span>' : '') + it.label + '</button>'; }).join('') : '';
+}
+$('tabs').addEventListener('click', function(e){
+  var t = e.target.closest('.tab'); if (!t) return;
+  if (t.dataset.g === 'now'){ current = { group:null, tag:null }; drawTabs(); showNow(); return; }
+  current.group = t.dataset.g; current.tag = null; drawTabs();
+});
+$('chips').addEventListener('click', function(e){
+  var c = e.target.closest('.chip'); if (!c) return;
+  current.tag = c.dataset.tag; drawTabs(); showTag(current.tag);
+  if (window.innerWidth <= 900) $('result').scrollIntoView({ behavior:'smooth', block:'start' });
+});
+function findItem(tag){ for (var i = 0; i < GROUPS.length; i++) for (var j = 0; j < GROUPS[i].items.length; j++) if (GROUPS[i].items[j].tag === tag) return { g:GROUPS[i], it:GROUPS[i].items[j] }; }
+function showTag(tag){
+  var f = findItem(tag); if (!f) return;
+  var list = pickByTag(tag);
+  var scent = /^c[123]$/.test(tag) ? tag : scentFor(list, 'c2');
+  render(f.it.title, f.it.desc, list, scent, tag);
+}
+
+/* 지금(날씨·계절·시간) */
+var nowState = { w:null, temp:null, place:'서울' };
+function showNow(){
+  var tags = [];
+  // 밤에 맑음은 '햇살'이 아니라 '맑은 밤' → 햇살 노래 대신 밤 노래 위주
+  if (nowState.w && !(nowState.w === 'sun' && timeTag === 'night')) tags.push(nowState.w);
+  tags.push(season);
+  if (timeTag) tags.push(timeTag);
+  var list = pickByContext(tags, 'now|' + tags.join(','));
+  var parts = [];
+  if (nowState.w) parts.push(nowState.w === 'sun' && timeTag === 'night' ? '맑은 밤' : WEATHER_KR[nowState.w]);
+  parts.push(SEASON_KR[season] + (timeTag && !(nowState.w === 'sun' && timeTag === 'night') ? ' ' + TIME_KR[timeTag] : ''));
+  var title = '지금, ' + parts.join(' · ');
+  var fallback = timeTag === 'night' ? 'c3' : nowState.w === 'sun' ? 'c1' : 'c2';
+  render(title, '지금 날씨와 계절, 시간에 맞춰 고른 오늘의 5곡이에요.', list, scentFor(list, fallback), 'now');
+}
+function setNowLabel(){
+  $('nowCtx').textContent = nowState.w
+    ? '지금 ' + nowState.place + '은 ' + WEATHER_KR[nowState.w] + (nowState.temp !== null ? ', ' + Math.round(nowState.temp) + '°' : '')
+    : '오늘은 ' + SEASON_KR[season] + (timeTag ? ' ' + TIME_KR[timeTag] : '') + '이에요';
+  $('nowSub').textContent = dateLabel + ' · ' + (nowState.w ? (nowState.place === '서울' ? '서울 기준 날씨' : '내 위치 날씨') : '날씨 정보를 불러오지 못해 계절 기준으로 골랐어요');
+}
+function loadWeather(lat, lon, place){
+  var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code&timezone=Asia%2FSeoul';
+  return fetch(url, {signal: AbortSignal.timeout(7000)}).then(function(r){ return r.json(); }).then(function(d){
+    nowState.w = weatherTag(d.current.weather_code); nowState.temp = d.current.temperature_2m; nowState.place = place;
+  }).catch(function(){}).then(function(){ setNowLabel(); if (current.group === null) showNow(); });
+}
+$('locBtn').addEventListener('click', function(){
+  var b = this;
+  if (!navigator.geolocation){ b.textContent = '위치 사용 불가'; b.disabled = true; return; }
+  b.textContent = '확인 중…'; b.disabled = true;
+  navigator.geolocation.getCurrentPosition(function(p){
+    loadWeather(p.coords.latitude.toFixed(3), p.coords.longitude.toFixed(3), '내 위치').then(function(){ b.textContent = '내 위치 날씨'; b.disabled = false; });
+    try { gtag('event', 'music_location'); } catch(e){}
+  }, function(){ b.textContent = '내 위치로'; b.disabled = false; }, { timeout:8000, maximumAge:600000 });
+});
+
+/* 시작: ?scent=01|02|03 으로 들어오면(QR) 그 향부터 보여줌 */
+var qs = new URLSearchParams(location.search).get('scent');
+var startScent = { '01':'c1', '02':'c2', '03':'c3', '1':'c1', '2':'c2', '3':'c3' }[qs || ''];
+if (startScent){ current = { group:'scent', tag:startScent }; drawTabs(); showTag(startScent); }
+else { drawTabs(); showNow(); }
+setNowLabel();
+loadWeather(37.5665, 126.9780, '서울');
+})();
+</script>
+</body>
+</html>
