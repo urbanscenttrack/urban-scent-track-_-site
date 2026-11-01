@@ -8,12 +8,12 @@
 
 <!--
   ============================================================
-   Track 01 · city citrus 플레이리스트 연결
+   Track 01 · city citrus 음악 페이지 연결
   ============================================================
-   ▼▼▼ 유튜브 주소가 바뀌면 아래 한 줄만 고치세요 ▼▼▼
+   ▼▼▼ QR이 이동할 주소 (지금은 오늘의 음악 페이지) ▼▼▼
 -->
 <script>
-  var PLAYLIST_URL = "https://youtu.be/jLrZ1mFQNho";
+  var PLAYLIST_URL = "/music/?scent=01";  // 이전 유튜브 주소: https://youtu.be/jLrZ1mFQNho
 </script>
 <!--
    ▲▲▲ 여기까지 ▲▲▲
@@ -32,7 +32,7 @@
   gtag('event', 'qr_play_visit', { track: 'play01' });
   setTimeout(function(){ location.replace(PLAYLIST_URL); }, 400);
 </script>
-<noscript><meta http-equiv="refresh" content="0; url=https://youtu.be/jLrZ1mFQNho"></noscript>
+<noscript><meta http-equiv="refresh" content="0; url=/music/?scent=01"></noscript>
 
 <style>
   html,body{height:100%;margin:0;}
@@ -58,7 +58,7 @@
   <div class="brand">urban scent track</div>
   <div class="track">Track 01 · city citrus</div>
   <div class="spin"></div>
-  <div class="msg">플레이리스트로 이동 중입니다…</div>
-  <a href="https://youtu.be/jLrZ1mFQNho">자동으로 이동하지 않으면 여기를 눌러주세요</a>
+  <div class="msg">오늘의 음악으로 이동 중입니다…</div>
+  <a href="/music/?scent=01">자동으로 이동하지 않으면 여기를 눌러주세요</a>
 </body>
 </html>
