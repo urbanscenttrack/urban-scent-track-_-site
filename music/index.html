@@ -213,6 +213,10 @@ html{scroll-behavior:smooth}body{overflow-x:clip}.top{position:relative;isolatio
 .record-label small{ margin-top:10px !important; }
 @media(max-width:900px){ .record-label{ padding-top:calc(50% + 9px) !important; } .record-label small{ margin-top:6px !important; } }
 @media(max-width:600px){ .record-label{ padding-top:calc(50% + 6px) !important; } .record-label small{ margin-top:4px !important; } }
+.record-label .label-text{ position:absolute; left:0; right:0; top:calc(50% + 16px); display:flex; flex-direction:column; align-items:center; text-align:center; }
+@media(max-width:900px){ .record-label .label-text{ top:calc(50% + 10px); } .record-label strong{ font-size:16px !important; } }
+@media(max-width:600px){ .record-label strong{ font-size:clamp(9px,2.4vw,13px) !important; } }
+@media(max-width:600px){ .record-label .label-text{ top:calc(50% + 7px); } }
 @keyframes lp-spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .grooves{ animation:none; } }
 @media(min-width:901px){ .top{ height:calc(var(--record-size) * .54 + 70px); } .header-record{ top:calc(var(--record-size) * -.46) !important; } }
@@ -224,7 +228,7 @@ html{scroll-behavior:smooth}body{overflow-x:clip}.top{position:relative;isolatio
 <body>
 
 <header class="top">
-  <div class="header-record" aria-hidden="true"><div class="grooves"></div><div class="record-inner"><div class="record-label"><strong>urban scent<br>track®</strong><small>SIDE A · 33⅓ RPM</small><span class="label-context" id="lpContext">SCENT IN. SOUND ON.</span><i class="spindle"></i></div></div></div>
+  <div class="header-record" aria-hidden="true"><div class="grooves"></div><div class="record-inner"><div class="record-label"><span class="label-text"><strong>urban scent<br>track®</strong><small>SIDE A · 33⅓ RPM</small></span><span class="label-context" id="lpContext">SCENT IN. SOUND ON.</span><i class="spindle"></i></div></div></div>
   <div class="wrap">
     <a class="brand" href="https://urbanscenttrack.com/">urban scent track<span class="brand-dot">®</span></a>
     <nav class="header-nav" aria-label="메인 메뉴"><a href="#result">오늘의 음악</a><a class="back" href="https://urbanscenttrack.com/">홈으로 ↗</a></nav>
