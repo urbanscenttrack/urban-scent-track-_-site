@@ -198,22 +198,33 @@ html{scroll-behavior:smooth}body{overflow-x:clip}.top{position:relative;isolatio
 .record-label strong{ font-weight:650; letter-spacing:-.04em; opacity:.92; }
 .record-label small{ color:#9a9990; }
 .label-context{ display:none; }
-.record-inner{ animation:lp-spin 7s linear infinite; will-change:transform; }
+.record-inner{ animation:none; }
+.header-record{ background:none !important; }
+.grooves{ position:absolute; inset:0; border-radius:50%;
+  background:repeating-radial-gradient(circle,transparent 0 2px,#ffffff0d 2.5px,transparent 3px 4px),conic-gradient(from 35deg,#090a09,#383936 17%,#080908 27%,#171815 45%,#484945 54%,#0b0c0b 65%,#272824 83%,#090a09);
+  box-shadow:inset 0 0 0 3px #1d1e1b, inset 0 0 0 9px #080908;
+  animation:lp-spin 6s linear infinite; will-change:transform; }
 .header-record::after{ content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
   background:conic-gradient(from 210deg, transparent 0 8%, rgba(255,255,255,.07) 12%, transparent 18% 58%, rgba(255,255,255,.05) 62%, transparent 68%); }
 @media(min-width:901px){ .record-label strong{ font-size:clamp(16px,1.4vw,22px) !important; } }
+/* 라벨 고정: 스핀들은 정중앙, 로고 글씨는 그 아래(보이는 영역)에 */
+.record-label{ justify-content:flex-start !important; padding:calc(50% + 14px) 10px 0 !important; position:absolute; }
+.record-label .spindle{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); margin:0 !important; }
+.record-label small{ margin-top:10px !important; }
+@media(max-width:900px){ .record-label{ padding-top:calc(50% + 9px) !important; } .record-label small{ margin-top:6px !important; } }
+@media(max-width:600px){ .record-label{ padding-top:calc(50% + 6px) !important; } .record-label small{ margin-top:4px !important; } }
 @keyframes lp-spin{ to{ transform:rotate(360deg); } }
-@media (prefers-reduced-motion: reduce){ .record-inner{ animation:none; } }
-@media(min-width:901px){ .top{ height:calc(var(--record-size) * .6 + 70px); } }
-@media(min-width:601px) and (max-width:900px){ .top{ height:352px; } }
-@media(max-width:600px){ .top{ height:262px; } }
-@media(max-width:420px){ .top{ height:236px; } }
+@media (prefers-reduced-motion: reduce){ .grooves{ animation:none; } }
+@media(min-width:901px){ .top{ height:calc(var(--record-size) * .54 + 70px); } .header-record{ top:calc(var(--record-size) * -.46) !important; } }
+@media(min-width:601px) and (max-width:900px){ .top{ height:327px; } .header-record{ top:-148px !important; clip-path:inset(46.5% 0 0 0) !important; } }
+@media(max-width:600px){ .top{ height:246px; } .header-record{ transform:translate(-50%,-40%) !important; clip-path:inset(40% 0 0 0) !important; } }
+@media(max-width:420px){ .top{ height:222px; } }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="header-record" aria-hidden="true"><div class="record-inner"><div class="record-label"><strong>urban scent<br>track®</strong><small>SIDE A · 33⅓ RPM</small><span class="label-context" id="lpContext">SCENT IN. SOUND ON.</span><i class="spindle"></i></div></div></div>
+  <div class="header-record" aria-hidden="true"><div class="grooves"></div><div class="record-inner"><div class="record-label"><strong>urban scent<br>track®</strong><small>SIDE A · 33⅓ RPM</small><span class="label-context" id="lpContext">SCENT IN. SOUND ON.</span><i class="spindle"></i></div></div></div>
   <div class="wrap">
     <a class="brand" href="https://urbanscenttrack.com/">urban scent track<span class="brand-dot">®</span></a>
     <nav class="header-nav" aria-label="메인 메뉴"><a href="#result">오늘의 음악</a><a class="back" href="https://urbanscenttrack.com/">홈으로 ↗</a></nav>
