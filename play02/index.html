@@ -8,12 +8,12 @@
 
 <!--
   ============================================================
-   Track 02 · clean cotton 플레이리스트 연결
+   Track 02 · clean cotton 음악 페이지 연결
   ============================================================
-   ▼▼▼ 유튜브 주소가 바뀌면 아래 한 줄만 고치세요 ▼▼▼
+   ▼▼▼ QR이 이동할 주소 (지금은 오늘의 음악 페이지) ▼▼▼
 -->
 <script>
-  var PLAYLIST_URL = "https://youtu.be/v6FlUqQbiPI";
+  var PLAYLIST_URL = "/music/?scent=02";  // 이전 유튜브 주소: https://youtu.be/v6FlUqQbiPI
 </script>
 <!--
    ▲▲▲ 여기까지 ▲▲▲
@@ -32,7 +32,7 @@
   gtag('event', 'qr_play_visit', { track: 'play02' });
   setTimeout(function(){ location.replace(PLAYLIST_URL); }, 400);
 </script>
-<noscript><meta http-equiv="refresh" content="0; url=https://youtu.be/v6FlUqQbiPI"></noscript>
+<noscript><meta http-equiv="refresh" content="0; url=/music/?scent=02"></noscript>
 
 <style>
   html,body{height:100%;margin:0;}
@@ -58,7 +58,7 @@
   <div class="brand">urban scent track</div>
   <div class="track">Track 02 · clean cotton</div>
   <div class="spin"></div>
-  <div class="msg">플레이리스트로 이동 중입니다…</div>
-  <a href="https://youtu.be/v6FlUqQbiPI">자동으로 이동하지 않으면 여기를 눌러주세요</a>
+  <div class="msg">오늘의 음악으로 이동 중입니다…</div>
+  <a href="/music/?scent=02">자동으로 이동하지 않으면 여기를 눌러주세요</a>
 </body>
 </html>
